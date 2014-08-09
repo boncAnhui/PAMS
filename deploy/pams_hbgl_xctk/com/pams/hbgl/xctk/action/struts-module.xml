@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="com.pams.hbgl.xctk.action" extends="default" namespace="/module/pams/hbgl/xctk">
+		<action name="apply_*" class="com.pams.hbgl.xctk.action.ApplyAction" method="{1}">
+			<result name="mainframe" type="freemarker">/com/pams/hbgl/xctk/view/mainframe.ftl</result>
+			<result name="browsewait" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			<result name="browsehandle" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			<result name="browsegroupall" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			<result name="browsegroupsall" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			<result name="input" type="freemarker">/com/pams/hbgl/xctk/view/input.ftl</result>
+			<result name="insert" type="redirect">apply_locate.action?id=${arg.id}&amp;runactkey=${arg.runactkey}</result>
+			<result name="locate" type="freemarker">/com/pams/hbgl/xctk/view/locate.ftl</result>
+			<result name="delete" type="redirect">apply_browsewait.action?_searchname=hbgl.xctk.browsewait</result>						
+		</action>
+	</package>
+</struts>

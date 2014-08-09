@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators>
+	<excludes>
+		<pattern>/index.*</pattern>
+		<pattern>/styles/*</pattern>
+		<pattern>/images/*</pattern>
+		<pattern>/js/*</pattern>
+		<pattern>/decorator/*</pattern>
+		<pattern>/login*</pattern>
+		<pattern>/menu*</pattern>
+		<pattern>/*setworkcount.action*</pattern>		
+		
+		<!-- 
+		<pattern>/*_mainframe*.action*</pattern>
+		<pattern>/*_browse*.action*</pattern>
+		<pattern>/*_input*.action*</pattern>
+		<pattern>/*_locate*.action*</pattern>
+		-->
+		<pattern>/*_tree*.action*</pattern>
+		<pattern>/*_is*.action*</pattern>
+		<pattern>/module/irm/config/topology/showtopology/*.action*</pattern>
+		<pattern>/module/irm/portal/portal/portal/*.action*</pattern>
+		
+	</excludes>
+
+	<decorator name="master" page="/decorator/main.dec">
+		<pattern>*.action</pattern>
+	</decorator>
+</decorators>

@@ -1,0 +1,138 @@
+-- 创建表空间
+
+create tablespace pams
+
+logging  
+
+datafile 'C:\oracle\product\10.2.0\oradata\orcl\pams.dbf' 
+
+size 50m  
+
+autoextend on  
+
+next 50m maxsize 20480m;
+
+-- 创建用户
+create user pams identified by pams123 default tablespace pams;
+grant DBA to pams with admin option;
+grant DBA to pams with admin option;
+grant ALTER ANY CLUSTER to pams with admin option;
+grant ALTER ANY DIMENSION to pams with admin option;
+grant ALTER ANY INDEX to pams with admin option;
+grant ALTER ANY INDEXTYPE to pams with admin option;
+grant ALTER ANY LIBRARY to pams with admin option;
+grant ALTER ANY OUTLINE to pams with admin option;
+grant ALTER ANY PROCEDURE to pams with admin option;
+grant ALTER ANY ROLE to pams with admin option;
+grant ALTER ANY SEQUENCE to pams with admin option;
+grant ALTER ANY SNAPSHOT to pams with admin option;
+grant ALTER ANY TABLE to pams with admin option;
+grant ALTER ANY TRIGGER to pams with admin option;
+grant ALTER ANY TYPE to pams with admin option;
+grant ALTER DATABASE to pams with admin option;
+grant ALTER PROFILE to pams with admin option;
+grant ALTER RESOURCE COST to pams with admin option;
+grant ALTER ROLLBACK SEGMENT to pams with admin option;
+grant ALTER SESSION to pams with admin option;
+grant ALTER SYSTEM to pams with admin option;
+grant ALTER TABLESPACE to pams with admin option;
+grant ALTER USER to pams with admin option;
+grant ANALYZE ANY to pams with admin option;
+grant AUDIT ANY to pams with admin option;
+grant AUDIT SYSTEM to pams with admin option;
+grant BACKUP ANY TABLE to pams with admin option;
+grant BECOME USER to pams with admin option;
+grant COMMENT ANY TABLE to pams with admin option;
+grant CREATE ANY CLUSTER to pams with admin option;
+grant CREATE ANY CONTEXT to pams with admin option;
+grant CREATE ANY DIMENSION to pams with admin option;
+grant CREATE ANY DIRECTORY to pams with admin option;
+grant CREATE ANY INDEX to pams with admin option;
+grant CREATE ANY INDEXTYPE to pams with admin option;
+grant CREATE ANY LIBRARY to pams with admin option;
+grant CREATE ANY OUTLINE to pams with admin option;
+grant CREATE ANY PROCEDURE to pams with admin option;
+grant CREATE ANY SEQUENCE to pams with admin option;
+grant CREATE ANY SNAPSHOT to pams with admin option;
+grant CREATE ANY SYNONYM to pams with admin option;
+grant CREATE ANY TABLE to pams with admin option;
+grant CREATE ANY TRIGGER to pams with admin option;
+grant CREATE ANY TYPE to pams with admin option;
+grant CREATE ANY VIEW to pams with admin option;
+grant CREATE CLUSTER to pams with admin option;
+grant CREATE DATABASE LINK to pams with admin option;
+grant CREATE DIMENSION to pams with admin option;
+grant CREATE INDEXTYPE to pams with admin option;
+grant CREATE LIBRARY to pams with admin option;
+grant CREATE PROCEDURE to pams with admin option;
+grant CREATE PROFILE to pams with admin option;
+grant CREATE PUBLIC DATABASE LINK to pams with admin option;
+grant CREATE PUBLIC SYNONYM to pams with admin option;
+grant CREATE ROLE to pams with admin option;
+grant CREATE ROLLBACK SEGMENT to pams with admin option;
+grant CREATE SEQUENCE to pams with admin option;
+grant CREATE SESSION to pams with admin option;
+grant CREATE SNAPSHOT to pams with admin option;
+grant CREATE SYNONYM to pams with admin option;
+grant CREATE TABLE to pams with admin option;
+grant CREATE TABLESPACE to pams with admin option;
+grant CREATE TRIGGER to pams with admin option;
+grant CREATE TYPE to pams with admin option;
+grant CREATE USER to pams with admin option;
+grant CREATE VIEW to pams with admin option;
+grant DEBUG ANY PROCEDURE to pams with admin option;
+grant DEBUG CONNECT SESSION to pams with admin option;
+grant DELETE ANY TABLE to pams with admin option;
+grant DROP ANY CLUSTER to pams with admin option;
+grant DROP ANY CONTEXT to pams with admin option;
+grant DROP ANY DIMENSION to pams with admin option;
+grant DROP ANY DIRECTORY to pams with admin option;
+grant DROP ANY INDEXTYPE to pams with admin option;
+grant DROP ANY LIBRARY to pams with admin option;
+grant DROP ANY OUTLINE to pams with admin option;
+grant DROP ANY PROCEDURE to pams with admin option;
+grant DROP ANY ROLE to pams with admin option;
+grant DROP ANY SEQUENCE to pams with admin option;
+grant DROP ANY SNAPSHOT to pams with admin option;
+grant DROP ANY SYNONYM to pams with admin option;
+grant DROP ANY TABLE to pams with admin option;
+grant DROP ANY TRIGGER to pams with admin option;
+grant DROP ANY TYPE to pams with admin option;
+grant DROP ANY VIEW to pams with admin option;
+grant DROP PROFILE to pams with admin option;
+grant DROP PUBLIC DATABASE LINK to pams with admin option;
+grant DROP PUBLIC SYNONYM to pams with admin option;
+grant DROP ROLLBACK SEGMENT to pams with admin option;
+grant DROP TABLESPACE to pams with admin option;
+grant DROP USER to pams with admin option;
+grant EXECUTE ANY INDEXTYPE to pams with admin option;
+grant EXECUTE ANY LIBRARY to pams with admin option;
+grant EXECUTE ANY PROCEDURE to pams with admin option;
+grant EXECUTE ANY TYPE to pams with admin option;
+grant FORCE ANY TRANSACTION to pams with admin option;
+grant FORCE TRANSACTION to pams with admin option;
+grant GLOBAL QUERY REWRITE to pams with admin option;
+grant grant ANY OBJECT PRIVILEGE to pams with admin option;
+grant grant ANY PRIVILEGE to pams with admin option;
+grant grant ANY ROLE to pams with admin option;
+grant INSERT ANY TABLE to pams with admin option;
+grant LOCK ANY TABLE to pams with admin option;
+grant MANAGE TABLESPACE to pams with admin option;
+grant ON COMMIT REFRESH to pams with admin option;
+grant QUERY REWRITE to pams with admin option;
+grant RESTRICTED SESSION to pams with admin option;
+grant SELECT ANY DICTIONARY to pams with admin option;
+grant SELECT ANY SEQUENCE to pams with admin option;
+grant SELECT ANY TABLE to pams with admin option;
+grant UNDER ANY TABLE to pams with admin option;
+grant UNDER ANY TYPE to pams with admin option;
+grant UNDER ANY VIEW to pams with admin option;
+grant UNLIMITED TABLESPACE to pams with admin option;
+grant UPDATE ANY TABLE to pams with admin option;
+
+
+-- 删除用户
+drop user pams cascade;
+-- 删除表空间
+
+DROP TABLESPACE pams INCLUDING CONTENTS AND DATAFILES;

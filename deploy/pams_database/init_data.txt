@@ -1,0 +1,24 @@
+imp pams/pams123@ORCL file= e:\irmdb_grants__201407071000.dmp fromuser=irmadmin touser=pams grants=n ignore=y  tables=(T_SYS_SEARCH,T_SYS_SEARCHOPTION,T_SYS_SEARCHITEM,T_SYS_SEARCHURL,T_SYS_SEARCHITEM)
+
+imp pams/pams123@ORCL file= e:\irmdb_grants__201407071000.dmp fromuser=irmadmin touser=pams grants=n ignore=y  tables=(T_SYS_USER,T_SYS_ROLE,T_SYS_USERROLE,T_SYS_ORGAN)
+
+exp pams/pams123@ORCL file=e:\pams_20140710.dmp owner=pams
+
+-- 清理通用查询数据
+
+delete from t_sys_search where searchname not like 'search%';
+delete from t_sys_searchoption where searchid not in (select searchid from t_sys_search);
+delete from t_sys_searchoption where searchid is null;
+delete from t_sys_searchurl where searchid not in (select searchid from t_sys_search);
+delete from t_sys_searchurl where searchid is null;
+
+-- 常用操作语句
+select t.*, t.rowid from t_sys_searchoption t where searchid = (select searchid from t_sys_search where searchname = 'meterapply.browse');
+
+
+delete from t_sys_search where searchid like '02010102%';
+delete from t_sys_searchoption where searchid like '02010102%';
+delete from t_sys_searchitem where searchid like '02010102%';
+delete from t_sys_searchurl where searchid like '02010102%';
+delete from t_sys_searchlink where searchid like '02010102%';
+

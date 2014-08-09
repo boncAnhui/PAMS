@@ -1,0 +1,55 @@
+<public:attach event="onmouseover" onevent="mouseover()" />
+<public:attach event="onmouseout" onevent="mouseout()" />
+<public:attach event="onclick" onevent="oClick()" />
+
+<script>
+var oldObj=null;
+
+function mouseover(){
+srcElem=event.srcElement;
+
+if(srcElem.tagName=="TABLE"||srcElem.tagName=="TBODY")return;
+while(srcElem.tagName!="TR")srcElem=srcElem.parentElement;
+if(srcElem.rowIndex==0)return;
+	
+if(srcElem==oldObj){
+	return;
+	}else{
+	srcElem.style.backgroundColor="#eeeeee";	
+	}
+}
+
+function mouseout(){
+srcElem=event.srcElement;
+
+if(srcElem.tagName=="TABLE"||srcElem.tagName=="TBODY")return;
+while(srcElem.tagName!="TR")srcElem=srcElem.parentElement;
+if(srcElem.rowIndex==0)return;
+
+if(srcElem==oldObj){
+	return;
+	}else{
+	srcElem.style.backgroundColor="";	
+	}
+}
+
+function oClick(){
+srcElem=event.srcElement;
+
+if(srcElem.tagName=="INPUT"||srcElem.tagName=="IMG")return;
+
+if(srcElem.tagName=="TABLE"||srcElem.tagName=="TBODY")return;
+while(srcElem.tagName!="TR")srcElem=srcElem.parentElement;
+if(srcElem.rowIndex==0)return;
+
+if(oldObj!=null){
+	oldObj.style.backgroundColor="";
+	oldObj.style.color="";
+	}
+
+srcElem.style.backgroundColor="#eeeeee";
+srcElem.style.color="#000";
+
+oldObj=srcElem;
+}
+</script>

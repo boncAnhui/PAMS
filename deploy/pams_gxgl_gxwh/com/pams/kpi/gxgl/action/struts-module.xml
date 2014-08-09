@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="com.pams.kpi.gxgl.action" extends="default" namespace="/module/pams/kpi/gxgl">
+		<action name="kpi_*" class="com.pams.kpi.gxgl.action.KpiAction" method="{1}">
+			<result name="mainframe" type="freemarker">/com/pams/kpi/gxgl/view/mainframe.ftl</result>
+			<result name="main_zxsc" type="freemarker">/com/pams/kpi/gxgl/view/main_zxsc.ftl</result>
+			<result name="kpi_zxsc" type="freemarker">/com/pams/kpi/gxgl/view/kpi_zxsc.ftl</result>
+			
+			<result name="main_zxscmx" type="freemarker">/com/pams/kpi/gxgl/view/main_zxscmx.ftl</result>
+			<result name="kpi_zxscmx" type="freemarker">/com/pams/kpi/gxgl/view/kpi_zxscmx.ftl</result>
+			
+			<result name="main_xxgxjsl" type="freemarker">/com/pams/kpi/gxgl/view/main_xxgxjsl.ftl</result>
+			<result name="kpi_xxgxjsl" type="freemarker">/com/pams/kpi/gxgl/view/kpi_xxgxjsl.ftl</result>
+			
+			<result name="main_xxgxjsllcmx" type="freemarker">/com/pams/kpi/gxgl/view/main_xxgxjsllcmx.ftl</result>
+			<result name="kpi_xxgxjsllcmx" type="freemarker">/com/pams/kpi/gxgl/view/kpi_xxgxjsllcmx.ftl</result>
+			
+			<result name="main_xxgxjsllcjdmx" type="freemarker">/com/pams/kpi/gxgl/view/main_xxgxjsllcjdmx.ftl</result>
+			<result name="kpi_xxgxjsllcjdmx" type="freemarker">/com/pams/kpi/gxgl/view/kpi_xxgxjsllcjdmx.ftl</result>
+								
+		</action>
+	</package>
+</struts>

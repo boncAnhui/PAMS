@@ -1,0 +1,73 @@
+/*通用元素*/
+body,td {
+	font-family: tahoma,verdana,"宋体";
+	font-size: 11px;
+	line-height: 130%;
+	color: #000;
+}
+body {margin: 0px;border-top: solid 2px #ccc;background-image:url(/FrameWorkWeb/coa/resource/default/images/waiting.gif) no-repeat center center;}/*页面载入时，显示正在加载中...*/
+table {border-collapse:collapse;}
+td {word-break:break-all;}
+#showtable th {font:bold 12px;background-color:#369;color:white}
+hr {height:1px;}
+
+/*表单类样式*/
+input,button,textarea,select {font:11px tahoma;}
+form {margin:0px;}
+
+.calendar {border:none;background:transparent;width:100%;height:100%;text-align:center;}
+.calendarAlert {border:none;width:100%;height:100%;text-align:center;background:#ffcccc;cursor:hand}
+.calendarToday {border:none;width:100%;height:100%;text-align:center;background:#ccccff;cursor:hand}
+
+.dateSelect {background:url(/FrameWorkWeb/coa/resource/default/images/dateselectinput.gif) #fff no-repeat right;cursor:hand;font-size:11px;font-family:tahoma;padding-right:16px;width:115px;}
+.inputSelect {background:url(/FrameWorkWeb/coa/resource/default/images/dateselectinput.gif) #fff no-repeat right;cursor:hand;font-size:11px;font-family:tahoma;padding-right:16px;}/*和上面样式一样！*/
+
+.readOnly {background-color:#cceeff}
+.focus {background-color:#cef}
+.hand {cursor:hand}
+.hide {display:none;}
+
+a {color:#000;text-decoration:none}
+a:hover {text-decoration:underline;color:#c00}
+/*a:active {background-color:#ccffcc;padding-left:2px;padding-right:2px;}*/
+
+ul {list-style-image:url(/FrameWorkWeb/coa/resource/default/images/triangle.gif);}
+
+/*id元素*/
+#showTable {border-collapse:collapse;behavior:url("/FrameWorkWeb/coa/resource/default/htc/view_showtable.htc");margin:5px;otable:expression(this.border=1,this.borderColor="#666666",this.cellSpacing=0,this.cellPadding=3);cursor:hand;}
+/*#showTable tr {oColor:expresson(this.rowIndex=)}*/
+#showTable {border-top:solid 2px inactivecaptiontext !important;border-bottom:solid 2px inactivecaptiontext !important}
+#showTable th {background-color:inactivecaptiontext;color:#000 !important}
+#naviTable {background-color:buttonface}
+#oContextSubMenu {cursor: hand; padding: 1px; padding-left: 10px; padding-right: 10px}
+
+
+/*伪类*/
+.en {font-size:11px;font-family:tahoma;}
+.title {font:bolder 13.5px tahoma;}
+.gradientAlpha {filter:progid:DXImageTransform.microsoft.alpha(startX=0,finishX=100,opacity=100,finishopacity=5,style=1);}
+.cancelBubble {cancel:expression(onclick=function(){event.cancelBubble=true})}/*关闭事件冒泡*/
+.underline {width:100%;border:none;border-bottom:solid 1px #369;}
+.outline {border:solid 1px #369;width:100%;padding:3px;}
+.labelOver {background-color:#369;color:white;font-weight:bold;border:none;border-left:solid 1px white;cursor:hand}
+.labelOut {background-color:#cfcfcf;color:;font-weight:;border:none;border-left:solid 1px white;cursor:hand}
+
+@media print {/*指定不打印内容的样式*/
+.noprint {display:none;}
+} 
+
+/*时间选择框的样式*/
+.time {border:none;background:transparent;width:14px;;text-align:right;padding:0px;margin:0px}
+.plusButton {font:8px 'webdings';height:11px;line-height:2px;}
+.likeInput {border:inset 2px;padding-left:3px;background-color:white;}
+/*时间选择框的样式*/
+
+.fullWidth {width:100%;}
+.display {border:none;background:transparent;oReadOnly:expression(this.readOnly=true);width:100%;}
+.oContextMenu {background: buttonface; padding: 1px;border:1px solid;
+		border-color:	ThreeDLightShadow ThreeDDarkShadow
+						ThreeDDarkShadow ThreeDLightShadow;
+		filter: progid : dximagetransform . microsoft . shadow(direction=135, strength=2, color= #666666); z-index: 10}
+/*老版本:{background: #eee; padding: 1px; border: outset 1px #666; filter: progid : dximagetransform . microsoft . shadow(direction=135, strength=2, color= #666666); z-index: 10}*/
+
+/*注意！！这条必须是最后一条！请不要再在此后添加任何样式！！切切！*/

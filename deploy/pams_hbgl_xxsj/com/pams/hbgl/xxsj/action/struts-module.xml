@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="com.pams.hbgl.xxsj.action" extends="default" namespace="/module/pams/hbgl/xxsj">
+		<action name="apply_*" class="com.pams.hbgl.xxsj.action.ApplyAction" method="{1}">
+			<result name="mainframe" type="freemarker">/com/pams/hbgl/xxsj/view/mainframe.ftl</result>
+			<result name="browsewait" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			<result name="browsehandle" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			<result name="browsegroupall" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			
+			<result name="readpageframe" type="freemarker">/com/pams/hbgl/xxsj/view/readpageframe.ftl</result>
+			<result name="readpage" type="freemarker">/com/pams/hbgl/xxsj/view/readpage.ftl</result>
+			<result name="tolocateframe" type="redirect">apply_locateframe.action?runactkey=${arg.runactkey}</result>
+			<result name="locateframe" type="freemarker">/com/pams/hbgl/xxsj/view/locateframe.ftl</result>
+			<result name="locate" type="freemarker">/com/pams/hbgl/xxsj/view/locate.ftl</result>
+			<result name="browsefile" type="freemarker">/com/pams/hbgl/xxsj/view/browsefile.ftl</result>
+
+			<result name="input" type="freemarker">/com/pams/hbgl/xxsj/view/input.ftl</result>
+			<result name="insert" type="redirect">apply_locateframe.action?runactkey=${arg.runactkey}&amp;isinput=${arg.isinput}</result>
+			<result name="delete" type="redirect">apply_browsewait.action?_searchname=hbgl.xxsj.browsewait</result>
+
+			<result name="apply" type="redirect">apply_readpageframe.action?runactkey=${arg.runactkey}</result>
+			<result name="relayfrom" type="redirect">apply_locate.action?runactkey=${arg.runactkey}</result>
+			<result name="upload" type="freemarker">/com/pams/hbgl/xxsj/view/upload.ftl</result>
+									
+		</action>
+	</package>
+</struts>

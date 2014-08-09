@@ -1,0 +1,25 @@
+insert into t_sys_dictionary (id, dkey, dtext, dvalue, dorder)
+values(sys_guid(), 'app.infoshare.sourcename','会议','HY',1);
+
+insert into t_sys_dictionary (id, dkey, dtext, dvalue, dorder)
+values(sys_guid(), 'app.infoshare.sourcename','现场办公','XCBG',2);
+
+insert into t_sys_dictionary (id, dkey, dtext, dvalue, dorder)
+values(sys_guid(), 'app.infoshare.sourcename','现场踏勘','XCTK',3);
+
+insert into t_sys_dictionary (id, dkey, dtext, dvalue, dorder)
+values(sys_guid(), 'app.infoshare.sourcename','考察调研','KCDY',4);
+
+insert into t_sys_dictionary (id, dkey, dtext, dvalue, dorder)
+values(sys_guid(), 'app.infoshare.sourcename','培训学习','PXXX',5);
+
+insert into t_sys_dictionary (id, dkey, dtext, dvalue, dorder)
+values(sys_guid(), 'app.infoshare.sourcename','其他','QT',6);
+
+-- 共享权限
+insert into t_sys_dictionary (id, dkey, dtext, dvalue, dorder)
+values(sys_guid(), 'app.infoshare.shareauthor','查询','READ',1);
+insert into t_sys_dictionary (id, dkey, dtext, dvalue, dorder)
+values(sys_guid(), 'app.infoshare.shareauthor','共享','SHARE',2);
+
+

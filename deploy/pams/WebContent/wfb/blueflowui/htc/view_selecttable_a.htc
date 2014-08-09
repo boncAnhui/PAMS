@@ -1,0 +1,37 @@
+<public:attach event="onmouseover" onevent="mouseover()" />
+<public:attach event="onmouseout" onevent="mouseout()" />
+<public:attach event="onclick" onevent="oClick()" />
+
+<script>
+var oldObj=null;
+
+function mouseover()
+{
+}
+
+function mouseout()
+{
+}
+
+function oClick()
+{
+	srcElem=event.srcElement;
+
+	while(srcElem.tagName!="TR")
+	
+	srcElem=srcElem.parentElement;
+
+
+	if(oldObj!=null)
+	{
+		oldObj.style.backgroundColor="";
+		oldObj.style.color="";
+	}
+
+	srcElem.style.backgroundColor="#14a";
+	srcElem.style.color="#fff";
+
+	oldObj=srcElem;
+}
+
+</script>

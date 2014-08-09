@@ -1,0 +1,77 @@
+html,body {margin:0;padding:0;}
+canvas {position:absolute;z-index:0;}
+#cvContainer {background:url(images/grid.png);height:3000px;width:3000px;position:absolute;}
+#icons {position:absolute;z-index:1;top:0;left:0;height:100%;width:100%;}
+
+#gToolbar {position:absolute;top:45px;left:6px;z-index:3;width:44px;height:44px;background:url(images/mapctrls.png);_background-image:url(images/mapctrls.gif);margin:0}
+
+#toLeft {position:absolute;background:transparent;width:15px;height:15px;top:12px;left:1px;}
+#toRight {position:absolute;background:transparent;width:15px;height:15px;top:12px;left:27px;}
+#toTop {position:absolute;background:transparent;width:15px;height:15px;top:0;left:14px;}
+#toBottom {position:absolute;background:transparent;width:15px;height:15px;top:25px;left:14px;}
+
+body {background:#ccc;}
+
+html,body {overflow:hidden;}
+
+/*
+.tuopu_host {width:68px;height:68px;position:absolute;background:transparent url(images/computer-app.png) center center no-repeat;cursor:pointer;_background-image:url(images/computer-app.gif);}
+*/
+.tuopu_host {width:68px;height:68px;position:absolute;background:transparent url(images/ball.png) center center no-repeat;cursor:pointer;_background-image:url(images/ball.gif);}
+.tuopu_host .it {width:48px;height:48px;background-position:center center;background-repeat:no-repeat;position:absolute;top:10px;left:10px;}
+.tuopu_host .t {position:absolute;width:108px;white-space:nowrap;text-align:center;height:20px;top:68px;overflow:hidden;text-overflow:ellipsis;margin-left:-20px;}
+.tuopu_host a {position:absolute;top:0;right:0;background:url(images/information.png) center center no-repeat;width:16px;height:16px;_background-image:url(images/information.gif)}
+.tuopu_host a:hover {background-image:url(images/information-h.png);_background-image:url(images/information-h.gif)}
+
+#tuopu_self {width:88px;height:88px;background-image:url(images/ball88.png);_background-image:url(images/ball88.gif);margin-top:-10px;margin-left:-10px;z-index:2;}
+#tuopu_self .it {top:15px;left:20px;}
+#tuopu_self .t {top:88px;margin-left:-10px;}
+
+.tuopu_host .zj {background-image:url(images/pz_host.png);_background-image:url(images/pz_host.gif);}
+.tuopu_host .yyxt {background-image:url(images/pz_app.png);_background-image:url(images/pz_app.gif);}
+.tuopu_host .qtrj {background-image:url(images/pz_other.png);_background-image:url(images/pz_other.gif);}
+.tuopu_host .yysl {background-image:url(images/pz_inst.png);_background-image:url(images/pz_inst.gif);}
+.tuopu_host .sjk {background-image:url(images/pz_database.png);_background-image:url(images/pz_database.gif);}
+.tuopu_host .wlsb {background-image:url(images/pz_network.png);_background-image:url(images/pz_network.gif);}
+.tuopu_host .ccsb {background-image:url(images/pz_storage.png);_background-image:url(images/pz_storage.gif);}
+.tuopu_host .xnpt {background-image:url(images/pz_virtual.png);_background-image:url(images/pz_virtual.gif);}
+.tuopu_host .xnzj {background-image:url(images/pz_vhost.png);_background-image:url(images/pz_vhost.gif);}
+.tuopu_host .dpjx {background-image:url(images/pz_blade.png);_background-image:url(images/pz_blade.gif);}
+.tuopu_host .czxt {background-image:url(images/pz_os.png);_background-image:url(images/pz_os.gif);}
+.tuopu_host .zjj {background-image:url(images/pz_mid.png);_background-image:url(images/pz_mid.gif);}
+.tuopu_host .sjksl {background-image:url(images/pz_dinst.png);_background-image:url(images/pz_dinst.gif);}
+/*
+	应用实例
+	应用系统
+	
+	刀片机箱
+	网络设备
+	存储设备
+	操作系统
+	数据库
+	中间件
+	其它软件
+	数据库实例
+	虚拟平台
+	虚拟主机
+
+app
+host
+other
+inst
+database
+network
+storage
+virtual
+vhost
+blade
+os
+mid
+dinst
+*/
+
+/*
+.tuhover {border:solid 1px #aaf;background-color:#eef;margin-left:-1px;margin-top:-1px;}
+*/
+#fixedOpPlaceHolder {display:none;}
+#stickToolbar {display:none;}
