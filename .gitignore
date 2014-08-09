@@ -1,8 +1,7 @@
-<<<<<<< HEAD
+
 .class
 .classpath
-=======
-*.class
+
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -16,4 +15,3 @@
 hs_err_pid*
 
 *.classpath
->>>>>>> 6d1412cacf1ded174d62438f81df6ac558afd681
