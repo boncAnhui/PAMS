@@ -12,7 +12,7 @@ delete from t_sys_searchoption where searchid is null;
 delete from t_sys_searchurl where searchid not in (select searchid from t_sys_search);
 delete from t_sys_searchurl where searchid is null;
 
--- 常用操作语句 TEST
+-- 常用操作语句 TEST0001
 select t.*, t.rowid from t_sys_searchoption t where searchid = (select searchid from t_sys_search where searchname = 'meterapply.browse');
 
 
