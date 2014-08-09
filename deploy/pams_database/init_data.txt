@@ -4,7 +4,7 @@ imp pams/pams123@ORCL file= e:\irmdb_grants__201407071000.dmp fromuser=irmadmin 
 
 exp pams/pams123@ORCL file=e:\pams_20140710.dmp owner=pams
 
--- 清理通用查询数据djdjdj
+-- 清理通用查询数据
 
 delete from t_sys_search where searchname not like 'search%';
 delete from t_sys_searchoption where searchid not in (select searchid from t_sys_search);
