@@ -78,7 +78,6 @@ public class InfoShareService
 		String creatername = (String)map.get("creatername");	
 		String bactcname = (String)map.get("bactcname");
 		
-		
 		StringBuffer sql = new StringBuffer();
 
 		sql.append(" select bv.id, bv.cno, bv.title, bv.obtaintime, ").append("\n");
