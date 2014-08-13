@@ -71,6 +71,14 @@ public class InfoShareService
 	// 查询待办记录
 	public String get_browsewait_sql(Map map) throws Exception
 	{
+		String cno = (String)map.get("cno");
+		String title = (String)map.get("title");	
+		String sourcename = (String)map.get("sourcename");	
+		String cclassname = (String)map.get("cclassname");
+		String creatername = (String)map.get("creatername");	
+		String bactcname = (String)map.get("bactcname");
+		
+		
 		StringBuffer sql = new StringBuffer();
 
 		sql.append(" select bv.id, bv.cno, bv.title, bv.obtaintime, ").append("\n");
@@ -78,6 +86,33 @@ public class InfoShareService
 		sql.append(" from t_app_infoshare bv, " + uIService.get_browsewait_table(map)).append("\n");
 		sql.append(" where 1 = 1 ").append("\n");
 		sql.append(uIService.get_browsewait_where(map)).append("\n");
+		if (!StringToolKit.isBlank(cno))
+		{
+			sql.append(" and bv.cno like " + SQLParser.charLikeValue(cno));
+		}		
+		if (!StringToolKit.isBlank(title))
+		{
+			sql.append(" and bv.title like " + SQLParser.charLikeValue(title));
+		}
+		if (!StringToolKit.isBlank(sourcename))
+		{
+			sql.append(" and bv.sourcename like " + SQLParser.charLikeValue(sourcename));
+		}		
+		if (!StringToolKit.isBlank(cclassname))
+		{
+			sql.append(" and bv.cclassname like " + SQLParser.charLikeValue(cclassname));
+		}
+		
+		if (!StringToolKit.isBlank(creatername))
+		{
+			sql.append(" and bv.creatername like " + SQLParser.charLikeValue(creatername));
+		}		
+		if (!StringToolKit.isBlank(bactcname))
+		{
+			sql.append(" and bact.cname like " + SQLParser.charLikeValue(bactcname));
+		}		
+		
+		
 		sql.append(" order by ract.createtime desc ").append("\n");
 		return sql.toString();
 	}
@@ -87,12 +122,22 @@ public class InfoShareService
 	{
 		StringBuffer sql = new StringBuffer();
 
+		sql.append(" select v.id, v.cno, v.title, v.obtaintime, v.bactid, v.bactcname, v.ractcreatetime, v.ractstate, v.runactkey, ractowner.ownerctx ractownerctx, usr.cname username").append("\n");
+		sql.append("  from ( ").append("\n");
+		
 		sql.append(" select distinct bv.id, bv.cno, bv.title, bv.obtaintime, ").append("\n");
 		sql.append(uIService.get_browsehandle_field(map)).append("\n");
 		sql.append(" from t_app_infoshare bv, " + uIService.get_browsehandle_table(map)).append("\n");
 		sql.append(" where 1 = 1 ").append("\n");
 		sql.append(uIService.get_browsehandle_where(map)).append("\n");
-		sql.append(" order by ract.createtime desc ").append("\n");
+		
+		sql.append("   ) v ").append("\n");
+		sql.append("   left join t_sys_wfractowner ractowner ").append("\n");
+		sql.append("   on v.runactkey = ractowner.runactkey ").append("\n");
+		sql.append("   left join t_sys_user usr ").append("\n");
+		sql.append("   on ractowner.ownerctx = usr.loginname ").append("\n");
+		
+		sql.append(" order by v.cno desc, v.ractcreatetime desc ").append("\n");
 		return sql.toString();
 	}
 	
