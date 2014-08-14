@@ -69,7 +69,9 @@
 	</tr>
 	<tr>
 		<td class="r"><label for="cclassname">分类：</label></td>
-		<td><input class="text required" id="cclassname" name="cclassname" style="width:20em"/><button id="bt_cclassname" class="btn2">选择</button></td>
+		<td>
+		<input type="hidden" id="cclassid" name="cclassid">		
+		<input class="text required" readonly id="cclassname" name="cclassname" style="width:20em"/><button id="bt_cclassname" class="btn2">选择</button></td>
 		<td class="r"><label id="lb_title">共享权限：</label></td>
 		<td>
 		<span class="selectSpan">
@@ -83,8 +85,9 @@
 		<td colspan="3">
 		<input type="hidden" id="infosharescopeid" name="infosharescopeid">
 		<input type="hidden" id="infosharescopectype" name="infosharescopectype">
-		<input class="text" id="infosharescope" name="infosharescope" style="width:50em" />
+		<input class="text" readonly id="infosharescope" name="infosharescope" style="width:45em" />
 		<button id="bt_scope" class="btn2">选择</button>
+		<button id="bt_scope_clear" class="btn2">清除</button>
 		</td>
 	</tr>
 	<tr>
@@ -111,6 +114,7 @@ $("#bt_save").click(function() {page_save()});
 $("#bt_cclassname").click(function() {page_cclassname()});
 $("#bt_scope").click(function() {page_scope()});
 
+// 保存
 function page_save()
 {
 	$("#obtaintime").val($("#obtaintimed").val() + " " + $("#obtaintimet").val() + ":00");
@@ -120,12 +124,14 @@ function page_save()
     $("#aform").trigger('submit');
 }
 
+// 选择分类
 function page_cclassname()
 {
 	url = "${base}/module/pams/gxgl/gxwh/apply_selectcclassname.action";
 	openwin(url,'',pub_width_small,pub_height_small,null,'新增');
 }
 
+// 选择共享范围
 function page_scope()
 {
 	url = "${base}/module/pams/gxgl/gxwh/apply_selectscope.action";

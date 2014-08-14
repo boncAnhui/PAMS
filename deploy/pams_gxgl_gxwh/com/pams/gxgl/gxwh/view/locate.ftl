@@ -38,8 +38,9 @@ table.dataGrid{border-collapse:collapse;}
 	<button id="bt_save">保存</button>
 </#if>
 
-<#if arg.ispublish>
 <button id="bt_publish">发布</button>
+<#if arg.ispublish>
+
 </#if>
 
 <#if arg.isedit>
@@ -103,7 +104,9 @@ table.dataGrid{border-collapse:collapse;}
 	</tr>
 	<tr>
 		<td class="r"><label for="cclassname">分类：</label></td>
-		<td><input class="text required" id="cclassname" name="cclassname" style="width:20em" value="${data.infoshare.cclassname}"/><button id="bt_cclassname" class="btn2">选择</button></td>
+		<td>
+		<input type="hidden" id="cclassid" name="cclassid" value="${data.infoshare.cclassid}">	
+		<input class="text required" id="cclassname" name="cclassname" style="width:20em" value="${data.infoshare.cclassname}"/><button id="bt_cclassname" class="btn2">选择</button></td>
 		<td class="r"><label id="lb_title">共享权限：</label></td>
 		<td>
 		<span class="selectSpan">
