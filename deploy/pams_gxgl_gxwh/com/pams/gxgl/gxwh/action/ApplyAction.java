@@ -21,6 +21,7 @@ import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.headray.framework.services.function.StringToolKit;
 import com.pams.entity.FileTemplate;
 import com.pams.entity.InfoShare;
+import com.pams.entity.KnowledgeClass;
 import com.pams.gxgl.gxwh.service.InfoShareService;
 import com.pams.gxgl.wjwh.service.FileAttachmentService;
 import com.pams.gxgl.wjwh.service.FileTemplateService;
@@ -662,6 +663,7 @@ public class ApplyAction extends SimpleAction
 		String runactkey = Struts2Utils.getRequest().getParameter("runactkey");
 		DynamicObject obj_ract = workFlowEngine.getDemandManager().getRAct(runactkey, tableid);
 
+		String id = Struts2Utils.getRequest().getParameter("id");
 		String flowdefid = obj_ract.getFormatAttr("flowdefid");
 
 		String positionname = Struts2Utils.getRequest().getParameter("positionname");
@@ -685,7 +687,7 @@ public class ApplyAction extends SimpleAction
 
 		String memo = Struts2Utils.getRequest().getParameter("memo");
 
-		InfoShare infoshare = new InfoShare();
+		InfoShare infoshare = infoshareService.get(id);
 		Timestamp nowtime = new Timestamp(System.currentTimeMillis());
 
 		infoshare.setDeptid(deptid);
@@ -710,6 +712,8 @@ public class ApplyAction extends SimpleAction
 		infoshare.setCreater(loginname);
 		infoshare.setCreatername(username);
 		infoshare.setCreatetime(nowtime);
+		
+		infoshareService.save(infoshare);
 
 		arg.put("id", infoshare.getId());
 		arg.put("runactkey", runactkey);
@@ -728,7 +732,7 @@ public class ApplyAction extends SimpleAction
 		String runactkey = Struts2Utils.getRequest().getParameter("runactkey");
 		String id = workFlowEngine.getDemandManager().getRAct(runactkey, InfoShareService._tableid).getFormatAttr("dataid");
 
-		String cclassid = "R0"; // 信息共享分类标识
+		String cclassid = infoshareService.get(id).getCclassid(); // 信息共享分类标识
 		infoshareService.publish(id, cclassid, login_token);
 		
 		arg.put("runactkey", runactkey);
@@ -896,8 +900,25 @@ public class ApplyAction extends SimpleAction
 
 	public String selectcclassname() throws Exception
 	{
+		// 查询资源库信息共享分类
+		String cclassid = knowledgeclassService.treechild("R0", "信息共享").getId();
+		KnowledgeClass knowledgeclass = knowledgeclassService.getKnowledgeClass(cclassid);
+		List<KnowledgeClass> knowledgeclasses = knowledgeclassService.treechild(cclassid);
+		data.put("knowledgeclass", knowledgeclass);
+		data.put("knowledgeclasses", knowledgeclasses);
 		return "selectcclassname";
 	}
+	
+	public String selectchildcclassname() throws Exception
+	{
+		// 查询资源库信息共享分类
+		String supid = Struts2Utils.getRequest().getParameter("supid");
+		List<KnowledgeClass> knowledgeclasses = knowledgeclassService.treechild(supid);
+		data.put("knowledgeclasses", knowledgeclasses);
+		arg.put("supid", supid);
+		return "selectchildcclassname";
+	}
+
 
 	public String selectscope() throws Exception
 	{

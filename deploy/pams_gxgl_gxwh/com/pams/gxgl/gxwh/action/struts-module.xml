@@ -29,6 +29,7 @@
 			<result name="apply" type="redirect">apply_readpageframe.action?runactkey=${arg.runactkey}</result>
 			<result name="upload" type="freemarker">/com/pams/gxgl/gxwh/view/upload.ftl</result>
 			<result name="selectcclassname" type="freemarker">/com/pams/gxgl/gxwh/view/selectcclassname.ftl</result>
+			<result name="selectchildcclassname" type="freemarker">/com/pams/gxgl/gxwh/view/selectchildcclassname.ftl</result>
 			<result name="selectscope" type="freemarker">/com/pams/gxgl/gxwh/view/selectscope.ftl</result>
 			<result name="selectscopeorgan" type="freemarker">/com/pams/gxgl/gxwh/view/selectscopeorgan.ftl</result>
 			<result name="selectscoperole" type="freemarker">/com/pams/gxgl/gxwh/view/selectscoperole.ftl</result>
