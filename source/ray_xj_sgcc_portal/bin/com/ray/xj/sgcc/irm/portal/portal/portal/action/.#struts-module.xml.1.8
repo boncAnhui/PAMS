@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="module.irm.portal.portal.portal" extends="default" namespace="/module/irm/portal/portal/portal">
+		<action name="portal_*" class="com.ray.xj.sgcc.irm.portal.portal.portal.action.PortalAction" method="{1}">
+			<result name="browse" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browse.ftl</result>
+			<result name="home" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/home.ftl</result>
+			<result name="browsejson" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsejson.ftl</result>
+			<result name="preferences" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/preferences.ftl</result>
+			<result name="preferencestop" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/preferencestop.ftl</result>
+			<result name="preferenceshome" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/preferenceshome.ftl</result>
+			<result name="preferencesleft" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/preferencesleft.ftl</result>
+			<result name="subjects" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/subjects.ftl</result>
+			<result name="waitwork" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/waitwork.ftl</result>
+			<result name="portalsubject" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/${arg.returnpage}.ftl</result>
+			
+			<result name="knowledgemap" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/knowledgemap.ftl</result>
+			<result name="savetop" type="redirect">portal_preferencestop.action</result>
+			
+			<!-- from nwpn code -->
+			<result name="updatestatus" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/updatestatus.ftl</result>
+			<result name="welcome" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/${arg.pmodel}.ftl</result>
+			
+			<result name="alltodo" type="freemarker">/com/ray/nwpn/itsm/portal/view/alltodo.ftl</result>
+			<result name="allprocess" type="freemarker">/com/ray/nwpn/itsm/portal/view/allprocess.ftl</result>
+			<result name="browsealltodo" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			<result name="browseallprocess" type="freemarker">/com/ray/app/query/view/page.ftl</result>	
+			<result name="mainplan" type="freemarker">/com/ray/nwpn/itsm/portal/view/mainplan.ftl</result>					
+			<result name="mainframe" type="freemarker">/com/ray/nwpn/itsm/repmange/view/mainframe.ftl</result>
+			<result name="show" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/show.ftl</result>
+			
+			<result name="mainframedeepen" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/mainframe.ftl</result>
+			<result name="browsedeepen" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsedeepen.ftl</result>
+			<result name="browsealarm" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsealarm.ftl</result>
+			<result name="browsedefect" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsedefect.ftl</result>
+			<result name="browseevent" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browseevent.ftl</result>
+			<result name="browseaudit" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browseaudit.ftl</result>
+			<result name="browsemaintance" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsemaintance.ftl</result>
+			<result name="browsechange" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsechange.ftl</result>
+			<result name="browsestopapp" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsestopapp.ftl</result>
+			<result name="browseequip" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browseequip.ftl</result>
+			<result name="browseyjya" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browseyjya.ftl</result>
+			<result name="browsectooperation" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsectooperation.ftl</result>
+			<result name="getchartdata" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/data_pie.ftl</result>
+			
+			<result name="browsealarmgl" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsealarmgl.ftl</result>
+			<result name="browsedefectgl" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsedefectgl.ftl</result>
+			<result name="browseyjyagl" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browseyjyagl.ftl</result>
+			<result name="browseauditgl" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browseauditgl.ftl</result>
+			<result name="browsemaintancegl" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsemaintancegl.ftl</result>
+			<result name="browsechangegl" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsechangegl.ftl</result>
+			<result name="browsestopappgl" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsestopappgl.ftl</result>
+			
+			
+		</action>
+	</package>
+</struts>
