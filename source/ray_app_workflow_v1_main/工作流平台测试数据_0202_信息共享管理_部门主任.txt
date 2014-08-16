@@ -19,15 +19,15 @@ insert into t_sys_wfbact(id, cname, ctype, flowid, formid, handletype, split, jo
 values('GXGL_BMZR_999','结束','END','GXGL_BMZR','GXGL','普通','OR','OR','N',null,'单人','N',null);
 
 insert into t_sys_wfbactowner(id, actid, ownerchoice, ctype, ownerctx, cname, outstyle)
-values('GXGL_BMZR_QC_001','GXGL_BMZR_QC',null,'ROLE','XTYH','系统用户',null);
+values('GXGL_BMZR_QC_001','GXGL_BMZR_QC',null,'ROLE','BMZR','系统用户',null);
 insert into t_sys_wfbactowner(id, actid, ownerchoice, ctype, ownerctx, cname, outstyle)
-values('GXGL_BMZR_GXSH_BMZR_001','GXGL_BMZR_GXSH_BMZR',null,'ROLE','XTYH','系统用户',null);
+values('GXGL_BMZR_GXSH_BMZR_001','GXGL_BMZR_GXSH_BMZR',null,'ROLE','BMZR','系统用户',null);
 insert into t_sys_wfbactowner(id, actid, ownerchoice, ctype, ownerctx, cname, outstyle)
-values('GXGL_BMZR_GXSH_GSZGLD_001','GXGL_BMZR_GXSH_GSZGLD',null,'ROLE','XTYH','系统用户',null);
+values('GXGL_BMZR_GXSH_GSZGLD_001','GXGL_BMZR_GXSH_GSZGLD',null,'ROLE','BMZR','系统用户',null);
 insert into t_sys_wfbactowner(id, actid, ownerchoice, ctype, ownerctx, cname, outstyle)
-values('GXGL_BMZR_GXSH_ZJL_001','GXGL_BMZR_GXSH_ZJL',null,'ROLE','XTYH','系统用户',null);
+values('GXGL_BMZR_GXSH_ZJL_001','GXGL_BMZR_GXSH_ZJL',null,'ROLE','BMZR','系统用户',null);
 insert into t_sys_wfbactowner(id, actid, ownerchoice, ctype, ownerctx, cname, outstyle)
-values('GXGL_BMZR_XXGX_001','GXGL_BMZR_XXGX',null,'ROLE','XTYH','系统用户',null);
+values('GXGL_BMZR_XXGX_001','GXGL_BMZR_XXGX',null,'ROLE','BMZR','系统用户',null);
 
 insert into t_sys_wfbroute(id, cname, routetype, conditions, startactid, endactid, flowid, direct) 
 values('GXGL_BMZR_000_QC','转起草',null,null,'GXGL_BMZR_000','GXGL_BMZR_QC','GXGL_BMZR',null);
