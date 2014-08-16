@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.headray.framework.services.db.SQLParser;
 import com.headray.framework.services.function.StringToolKit;
 import com.headray.framework.services.function.Types;
 import com.pams.dao.KnowledgeClassDao;
@@ -55,6 +56,12 @@ public class KnowledgeClassService
 		List<KnowledgeClass> knowledgeclasses = knowledgeClassDao.findBy("supid", supid, Order.asc("ordernum"));
 
 		return knowledgeclasses;
+	}
+	
+	public KnowledgeClass treechild(String supid, String cclassname) throws Exception
+	{
+		KnowledgeClass knowledgeclass = knowledgeClassDao.findUnique(" from KnowledgeClass where 1 = 1 and supid = " + SQLParser.charValue(supid) + " and cname = " + SQLParser.charValue(cclassname));
+		return knowledgeclass;
 	}
 
 	public List<KnowledgeClass> treetask(String cclassid) throws Exception
