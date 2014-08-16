@@ -47,6 +47,8 @@ public class KpiAction extends SimpleAction
 		KpiZXSC tab = new KpiZXSC();
 		tab.setJdbcTemplate(reportDao.getJdbcTemplate());
 		List datas = tab.execute(obj);
+		arg.put("begindate", begindate);
+		arg.put("enddate", enddate);
 		data.put("zxscs", datas);
 		return "kpi_zxsc";
 	}
@@ -54,6 +56,11 @@ public class KpiAction extends SimpleAction
 	public String main_zxscmx() throws Exception
 	{
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String begindate = Struts2Utils.getRequest().getParameter("begindate");
+		String enddate = Struts2Utils.getRequest().getParameter("enddate");		
+		
+		arg.put("begindate", begindate);
+		arg.put("enddate", enddate);		
 		arg.put("ownerctx", ownerctx);
 		return "main_zxscmx";
 	}
