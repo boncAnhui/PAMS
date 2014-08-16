@@ -3250,32 +3250,48 @@ public class DemandManager
 	// 查询出非公式定义的所有者
 	public static String SQL_GETACTIONOWNER(String actdefid)
 	{
-		String sql = new String();
-		sql = "	select a.id, a.ownerchoice, a.ctype, a.ownerctx, a.actid, \n" + "   case when substr(a.ownerctx,1,1)='P' then b.name \n" + "        when substr(a.ownerctx,1,1)='R' then c.name \n "
-				+ "        when substr(a.ownerctx,1,1)='D' then d.name \n " + "    end cname \n" + "   from t_sys_wfbactowner a \n" + "	  left join t_sys_wfperson b \n" + "  		on a.ownerctx = b.personid \n" + "  	left join t_sys_wfrole c \n"
-				+ "  		on a.ownerctx = c.roleid \n" + "  	left join t_sys_wfdepartment d \n" + "  		on a.ownerctx = d.deptid \n" + " where 1 = 1 \n" + "   and ctype in (" + DBFieldConstants.CTYPES_STR + ") \n" + "   and actid = "
-				+ SQLParser.charValueRT(actdefid);
-
-		/*
-		 * sql =
-		 * "select a.id, a.ownerchoice, a.ctype, a.cname, a.ownerctx, a.actid \n"
-		 * + "  from t_sys_wfbactowner a \n" + " where 1 = 1 \n" +
-		 * "   and ctype in (" + DBFieldConstants.CTYPES_STR + ") \n" +
-		 * "   and actid = " + SQLParser.charValueRT(actdefid);
-		 */
-		return sql;
+		StringBuffer sql = new StringBuffer();
+		sql.append(" select a.id, a.ownerchoice, a.ctype, a.ownerctx, a.actid,  ").append("\n");
+		sql.append("    case when a.ctype = 'PERSON' then b.name  ").append("\n");
+		sql.append("         when a.ctype = 'ROLE' then c.name  ").append("\n");
+		sql.append("          when a.ctype = 'DEPT' then d.name  ").append("\n");
+		sql.append("      end cname  ").append("\n");
+		sql.append("    from t_sys_wfbactowner a  ").append("\n");
+		sql.append(" 	  left join t_sys_wfperson b  ").append("\n");
+		sql.append("   		on a.ownerctx = b.personid  ").append("\n");
+		sql.append("   	left join t_sys_wfrole c  ").append("\n");
+		sql.append("   		on a.ownerctx = c.roleid  ").append("\n");
+		sql.append("   	left join t_sys_wfdepartment d  ").append("\n");
+		sql.append("   		on a.ownerctx = d.deptid  ").append("\n");
+		sql.append("  where 1 = 1  ").append("\n");
+		sql.append("   and a.ctype in (" + DBFieldConstants.CTYPES_STR + ") ").append("\n");
+		sql.append("   and a.actid = " + SQLParser.charValueRT(actdefid));
+		
+		return sql.toString();
 	}
 
 	// 查询出非公式定义的所有者
 	public static String SQL_GETACTIONOWNER(String actdefid, String outstyle)
 	{
-		String sql = new String();
-		sql = "	select a.id, a.ownerchoice, a.ctype, a.ownerctx, a.actid, \n" + "   case when substr(a.ownerctx,1,1)='P' then b.name \n" + "        when substr(a.ownerctx,1,1)='R' then c.name \n "
-				+ "        when substr(a.ownerctx,1,1)='D' then d.name \n " + "    end cname \n" + "   from t_sys_wfbactowner a \n" + "	  left join t_sys_wfperson b \n" + "  		on a.ownerctx = b.personid \n" + "  	left join t_sys_wfrole c \n"
-				+ "  		on a.ownerctx = c.roleid \n" + "  	left join t_sys_wfdepartment d \n" + "  		on a.ownerctx = d.deptid \n" + " where 1 = 1 \n" + "   and ctype in (" + DBFieldConstants.CTYPES_STR + ") \n" + "   and actid = "
-				+ SQLParser.charValueRT(actdefid) + "   and outstyle = " + SQLParser.charValueRT(outstyle);
-
-		return sql;
+		StringBuffer sql = new StringBuffer();
+		sql.append(" ﻿select a.id, a.ownerchoice, a.ctype, a.ownerctx, a.actid,  ").append("\n");
+		sql.append("    case when a.ctype = 'PERSON' then b.name  ").append("\n");
+		sql.append("         when a.ctype = 'ROLE' then c.name  ").append("\n");
+		sql.append("          when a.ctype = 'DEPT' then d.name  ").append("\n");
+		sql.append("      end cname  ").append("\n");
+		sql.append("    from t_sys_wfbactowner a  ").append("\n");
+		sql.append(" 	  left join t_sys_wfperson b  ").append("\n");
+		sql.append("   		on a.ownerctx = b.personid  ").append("\n");
+		sql.append("   	left join t_sys_wfrole c  ").append("\n");
+		sql.append("   		on a.ownerctx = c.roleid  ").append("\n");
+		sql.append("   	left join t_sys_wfdepartment d  ").append("\n");
+		sql.append("   		on a.ownerctx = d.deptid  ").append("\n");
+		sql.append("  where 1 = 1  ").append("\n");
+		sql.append("   and ctype in (" + DBFieldConstants.CTYPES_STR + ") ").append("\n");
+		sql.append("   and actid = " + SQLParser.charValueRT(actdefid)).append("\n");
+		sql.append("   and outstyle = " + SQLParser.charValueRT(outstyle));
+		
+		return sql.toString();
 	}
 
 	// 查询出指定类型的所有者
