@@ -204,7 +204,7 @@ public class InfoShareService
 		String cno = gen_cno();
 		infoshare.setCno(cno);
 		infoshareDao.save(infoshare);
-		
+		String id = infoshare.getId();
 		// 创建信息共享范围
 		String infosharescope = infoshare.getInfosharescope();
 		String infosharescopeid = infoshare.getInfosharescopeid();
@@ -218,6 +218,7 @@ public class InfoShareService
 			for(int i=0;i<infosharescopeids.length;i++)
 			{
 				InfoShareScope scope = new InfoShareScope();
+				scope.setInfoshareid(id);
 				scope.setGroupid(infosharescopeids[i]);
 				scope.setGroupname(infosharescopenames[i]);
 				scope.setGrouptype(infosharescopectypes[i]);
@@ -249,6 +250,9 @@ public class InfoShareService
 		String infosharescope = infoshare.getInfosharescope();
 		String infosharescopeid = infoshare.getInfosharescopeid();
 		String infosharescopectype = infoshare.getInfosharescopectype();
+		
+		infosharescopeDao.batchExecute("delete from InfoShareScope where 1 = 1 and infoshareid = " + SQLParser.charValue(id));
+		
 		if(!StringToolKit.isBlank(infosharescopeid))
 		{
 			String[] infosharescopeids = StringToolKit.split(infosharescopeid, ",");
