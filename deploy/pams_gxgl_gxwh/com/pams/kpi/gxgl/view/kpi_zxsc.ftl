@@ -16,7 +16,7 @@
 <td>${aobj.cname}</td>
 <td>${aobj.zxsccskh}</td>
 <td>
-<a href="${base}/module/pams/kpi/gxgl/kpi_main_zxscmx.action?ownerctx=${aobj.ownerctx}">${aobj.zxsccskh}</a>
+<a href="${base}/module/pams/kpi/gxgl/kpi_main_zxscmx.action?ownerctx=${aobj.ownerctx}&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.zxsccskh}</a>
 </td>
 <td></td>
 </tr>
