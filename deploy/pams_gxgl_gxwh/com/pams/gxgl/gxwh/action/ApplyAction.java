@@ -85,7 +85,7 @@ public class ApplyAction extends SimpleAction
 
 	private final static String tableid = "InfoShare";
 	
-	private final static String flowclassid = "GXGL";
+	private final static String flowclass = "GXGL";
 	
 	public String mainframe() throws Exception
 	{
@@ -94,7 +94,7 @@ public class ApplyAction extends SimpleAction
 	
 	public String selectflowdefine() throws Exception
 	{
-		List bflows = workFlowEngine.getDemandManager().getFlowsByClassid(flowclassid);
+		List bflows = workFlowEngine.getDemandManager().getFlowsByClass(flowclass);
 		
 		StringBuffer bflow_texts = new StringBuffer();
 		StringBuffer bflow_values = new StringBuffer();
@@ -420,7 +420,9 @@ public class ApplyAction extends SimpleAction
 		String shareauthor_texts = dictionaryService.getTexts("app.infoshare.shareauthor");
 		String shareauthor_values = dictionaryService.getValues("app.infoshare.shareauthor");
 		
-		List bflows = workFlowEngine.getDemandManager().getFlowsByClassid(flowclassid);
+		// List bflows = workFlowEngine.getDemandManager().getFlowsByClassid(flowclassid);
+		
+		List bflows = workFlowEngine.getDemandManager().getEnableCreateFlow(loginname, "PERSON", flowclass);
 		
 		StringBuffer bflow_texts = new StringBuffer();
 		StringBuffer bflow_values = new StringBuffer();
