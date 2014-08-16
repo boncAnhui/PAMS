@@ -113,7 +113,7 @@
 $("#bt_save").click(function() {page_save()});
 $("#bt_cclassname").click(function() {page_cclassname()});
 $("#bt_scope").click(function() {page_scope()});
-
+$("#bt_scope_clear").click(function() {page_scope_clear()});
 // 保存
 function page_save()
 {
@@ -136,6 +136,14 @@ function page_scope()
 {
 	url = "${base}/module/pams/gxgl/gxwh/apply_selectscope.action";
 	openwin(url,'',pub_width_small,pub_height_small,null,'新增');
+}
+
+// 选择共享范围
+function page_scope_clear()
+{
+	$("#infosharescope").val("");
+	$("#infosharescopectype").val("");
+	$("#infosharescopeid").val("");
 }
 </script>
 </body>

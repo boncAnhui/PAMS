@@ -118,8 +118,8 @@ table.dataGrid{border-collapse:collapse;}
 	<tr>
 		<td class="r"><label for="infosharescope">共享范围：</label></td>
 		<td colspan="3">
-		<input type="hidden" id="infosharescopeid" name="infosharescopeid">
-		<input type="hidden" id="infosharescopectype" name="infosharescopectype">
+		<input type="hidden" id="infosharescopeid" name="infosharescopeid" value="${data.infoshare.infosharescopeid}">
+		<input type="hidden" id="infosharescopectype" name="infosharescopectype" value="${data.infoshare.infosharescopectype}">
 		<input class="text" id="infosharescope" name="infosharescope" value="${data.infoshare.infosharescope}" style="width:45em" />
 		<button id="bt_scope" class="btn2">选择</button>	
 		<button id="bt_clearscope" class="btn2">清空</button>	
@@ -229,8 +229,8 @@ function page_scope()
 function page_clearscope()
 {
 	$("#infosharescope").val("");
-	$("#infosharescopevalue").val("");
-	$("#infosharescopectype").val("");	
+	$("#infosharescopectype").val("");
+	$("#infosharescopeid").val("");
 }
 
 //填写意见
