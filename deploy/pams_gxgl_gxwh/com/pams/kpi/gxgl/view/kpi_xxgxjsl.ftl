@@ -13,7 +13,7 @@
 <td >${aobj_index+1}</td>
 <td>${aobj.deptname}</td>
 <td>${aobj.cname}</td>
-<td><a href="${base}/module/pams/kpi/gxgl/kpi_main_xxgxjsllcmx.action?loginname=${aobj.loginname}">${aobj.cskh?number?string("#.00")}</a></td>
+<td><a href="${base}/module/pams/kpi/gxgl/kpi_main_xxgxjsllcmx.action?loginname=${aobj.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.cskh?number?string("#.00")}</a></td>
 <td></td>
 </tr>
 </#list>

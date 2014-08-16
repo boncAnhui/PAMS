@@ -18,7 +18,7 @@
 <td><#if aobj.publishtime!=''>${aobj.publishtime?date?string('yyyy-MM-dd hh:mm')}</#if></td>
 <td>${aobj.bzsc?number?string('#.00')}</td>
 <td>${aobj.zxsc?number?string('#.00')}</td>
-<td><a href="${base}/module/pams/kpi/gxgl/kpi_main_xxgxjsllcjdmx.action?cno=${aobj.cno}">${aobj.cskh?number?string('#.00')}</a></td>
+<td><a href="${base}/module/pams/kpi/gxgl/kpi_main_xxgxjsllcjdmx.action?cno=${aobj.cno}&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.cskh?number?string('#.00')}</a></td>
 </tr>
 </#list>
 

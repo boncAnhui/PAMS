@@ -77,6 +77,7 @@ public class KpiAction extends SimpleAction
 		KpiZXSCMX tab = new KpiZXSCMX();
 		tab.setJdbcTemplate(reportDao.getJdbcTemplate());
 		List datas = tab.execute(obj);
+		
 		data.put("zxscs", datas);
 		return "kpi_zxscmx";
 	}
@@ -144,6 +145,8 @@ public class KpiAction extends SimpleAction
 		tab.setJdbcTemplate(reportDao.getJdbcTemplate());
 		List datas = tab.execute(obj);
 		data.put("xxgxjsllcmxs", datas);
+		arg.put("begindate", begindate);
+		arg.put("enddate", enddate);
 		return "kpi_xxgxjsllcmx";
 	}
 	
@@ -154,6 +157,11 @@ public class KpiAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String cno = Struts2Utils.getRequest().getParameter("cno");
+		
+		DynamicObject obj = new DynamicObject();
+		obj.setAttr("begindate", begindate);
+		obj.setAttr("enddate", enddate);
+		obj.setAttr("cno", cno);
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
@@ -177,6 +185,9 @@ public class KpiAction extends SimpleAction
 		tab.setJdbcTemplate(reportDao.getJdbcTemplate());
 		List datas = tab.execute(obj);
 		data.put("xxgxjsllcjdmxs", datas);
+		
+		arg.put("begindate", begindate);
+		arg.put("enddate", enddate);
 		return "kpi_xxgxjsllcjdmx";
 	}
 	
