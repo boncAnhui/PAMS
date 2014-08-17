@@ -641,14 +641,8 @@ public class InfoShareService
 
 		String state = workFlowEngine.getDemandManager().getFlowState(tableid, dataid);
 		
-		// 流程在起草环节，允许保存
-		if (!"信息共享".equals(state))
-		{
-			sign = false;
-			return sign;
-		}
-		
 		Timestamp publishtime = infoshareDao.get(dataid).getPublishtime();
+		// 未发布的共享单，可进行发布。
 		if(publishtime==null)
 		{
 			sign = true;

@@ -30,7 +30,7 @@ function initialTabNsHeight(){
 	//console.log($('#gTabsContainterN .topTr').height())
 	var avialHeight=$('body').height()-40;
 	$('#gTabsContainterN iframe').css({height:avialHeight+'px'});
-	$('.bottomTr').css({height:avialHeight+'px'})
+	$('.bottomTr').css({height:avialHeight-100+'px'})
 }
 
 $(function(){
@@ -154,8 +154,15 @@ $('.back2grid').click(function()
 		<input class="route" type="checkbox" id="rindex${route_index}" name="rindex" checked onclick="page_selectroute('${route_index}','${route.endactid}')" acttype="${endact.ctype}">
 	</#if>
 	</td>
-	<td width="140">${route.cname}</td>
-	<td width="400">&nbsp;<input readonly class="text" id="actowner${route_index}" name="actowner" style="width:300;">&nbsp;&nbsp;<a href="javascript:void(0)" onclick="page_selectroute('${route_index}','${route.endactid}')">人员</a></td>
+	<td width="140">${route.cname}&nbsp;</td>
+	<td width="400">
+	<#if endact.ctype=="END">
+	<input type="hidden" id="actowner${route_index}" name="actowner">
+	<#else>
+	<input readonly class="text" id="actowner${route_index}" name="actowner" style="width:300;">&nbsp;&nbsp;
+	<a href="javascript:void(0)" onclick="page_selectroute('${route_index}','${route.endactid}')">人员</a>
+	</#if>
+	</td>
 	</tr>
 	</#list>
 	</tbody>
@@ -169,15 +176,17 @@ $('.back2grid').click(function()
 		<td>
 			<ul>
 				<li class="c" id="tab1">流程人员</li>
+				<#--
 				<li id="tab2">组织机构</li>
 			    <li id="tab3">岗位角色</li>
 				<li id="tab4">组织人员</li>
+				-->
 			</ul>	
 		</td>
 		</tr>
 		<tr class="bottomTr">
-		<td height="200">
-		<iframe id="frame_selectowner" name="frame_selectowner" src="" frameborder="1" height="200" ></iframe>
+		<td height="100">
+		<iframe id="frame_selectowner" name="frame_selectowner" src="" frameborder="1" height="100" ></iframe>
 		</td>
 		</tr>
 		</table>
@@ -246,6 +255,8 @@ function page_addperson()
 	list_endactpersons[c_rindex] = new Array();
 	var act = list_endactpersons[c_rindex];
 	var num = 0;
+	
+	// 检查是否单选
 	
 	$("#tb_persons tbody .checkbox", window.frames[0].document).each(function(j,k)
 	{

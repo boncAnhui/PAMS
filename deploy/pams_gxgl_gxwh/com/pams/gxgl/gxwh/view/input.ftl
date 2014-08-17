@@ -19,18 +19,9 @@
 <div id="pageContainer" style="display:inline-block;">
 	<div class="formDiv">
 	<form id="aform" action="apply_create.action" method="post">
+		<input type="hidden" id="flowdefid" name="flowdefid" value="${data.bflow_values}">
+		<input type="hidden" id="flowname" name="flowname" value="${data.bflow_texts}">
 	<table class="formGrid">
-	<tr>
-		<td class="r">审批流程：</td>
-		<td>
-		<span class="selectSpan">
-		<input type="hidden" id="flowdefid" name="flowdefid">
-		<input readonly class="select required" style="width:200;" id="selectflowdefid" data-options="${data.bflow_texts}" data-values="${data.bflow_values}" data-default="">
-		</span>
-		</td>
-		<td class="r"></td>
-		<td></td>
-	</tr>
 	<tr>
 		<td class="r"><label for="deptname">信息共享部门：</label></td>
 		<td>
@@ -40,8 +31,12 @@
 		<td class="r"><label for="positionname">岗位：</label></td>
 		<td>
 		<span class="selectSpan">
+		<#--
 		<input type="hidden" id="positionname" name="positionname">
 		<input class="select readonly required" id="selectpositionname" data-options="${data.userrole_texts}" data-values="${data.userrole_values}" data-default="">
+		-->
+		<input type="text" readonly id="positionname" name="positionname" value="${data.position}" style="width:20em">
+		
 		</span>
 		</td>
 	</tr>
@@ -117,6 +112,13 @@ $("#bt_scope_clear").click(function() {page_scope_clear()});
 // 保存
 function page_save()
 {
+	// 检查是否具备共享流程
+	if($("#flowdefid").val()=="")
+	{
+		alert("您的信息共享流程为空，无法发起共享流程，请联系系统管理人员.");
+		return;
+	}
+
 	$("#obtaintime").val($("#obtaintimed").val() + " " + $("#obtaintimet").val() + ":00");
 
     $("#aform").attr("target","_parent");

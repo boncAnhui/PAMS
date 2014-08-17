@@ -33,7 +33,7 @@
 <td></td>
 <td></td>
 </tr>
-</#list>	
+</#list>
 </tbody>
 </table>
 
@@ -45,6 +45,20 @@ function page_addperson()
 {
 	window.parent.page_addperson();
 }
+
+// 自动加人
+function page_autoaddperson()
+{
+	if($("#tb_persons tbody tr").length==1)
+	{
+		// alert($("#tb_persons tbody tr:eq(0) .checkbox").attr("ownerctx"));
+		$("#tb_persons tbody tr:eq(0) .checkbox").val("1");
+		window.parent.page_addperson();
+	}
+}
+
+page_autoaddperson();
+
 </script>
 
 </body>

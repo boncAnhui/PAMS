@@ -38,9 +38,8 @@ table.dataGrid{border-collapse:collapse;}
 	<button id="bt_save">保存</button>
 </#if>
 
-<button id="bt_publish">发布</button>
 <#if arg.ispublish>
-
+<button id="bt_publish">发布</button>
 </#if>
 
 <#if arg.isedit>
@@ -74,10 +73,7 @@ table.dataGrid{border-collapse:collapse;}
 		</td>
 		<td class="r"><label for="positionname">岗位：</label></td>
 		<td>
-		<span class="selectSpan">
-		<input type="hidden" id="positionname" name="positionname">
-		<input readonly class="select required" id="selectpositionname" data-options="${data.userrole_texts}" data-values="${data.userrole_values}" data-default="${data.infoshare.positionname}">
-		</span>
+		<input type="text" readonly id="positionname" name="positionname" value="${data.infoshare.positionname}" style="width:20em">
 		</td>
 	</tr>
 	<tr>
@@ -144,7 +140,7 @@ table.dataGrid{border-collapse:collapse;}
 	<tr>
 		<td>&nbsp;</td>
 		<td colspan="3">	
-		<ul class="attachmentUl">
+		<ul class="attachmentUl" id="attachmentUl">
 			<#list data.fileattachments as afile>
 			<li data-id="${afile.id}" cno="${afile.cno}">
 			<a target="_blank" class="attachment" href="${base}/module/pams/gxgl/wjwh/fileattachment_downloadbyid.action?id=${afile.id}">【${afile.sfilename}】</a>&nbsp;&nbsp;${afile.creatername}&nbsp;&nbsp;${afile.createtime}&nbsp;&nbsp;<span class="del">X</span><br>
@@ -179,6 +175,14 @@ function page_save()
 
 function page_publish()
 {
+	if($("#attachmentUl li").length==0)
+	{
+		if(!confirm("您还没有共享文件，确定要发布共享信息吗？"))
+		{
+			return;
+		}		
+	};
+	
     $("#aform").attr("target","_self");
 	$("#aform").attr("action","apply_publish.action");
     $("#aform").trigger('submit');

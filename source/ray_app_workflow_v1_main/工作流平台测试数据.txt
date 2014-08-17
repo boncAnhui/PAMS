@@ -1,0 +1,54 @@
+﻿delete from t_sys_wfbact;
+delete from t_sys_wfbactdecision;
+delete from t_sys_wfbactowner;
+delete from t_sys_wfbactpos;
+delete from t_sys_wfbacttask;
+delete from t_sys_wfbflow;
+delete from t_sys_wfbflowapp;
+delete from t_sys_wfbflowappmanager;
+delete from t_sys_wfbflowclass;
+delete from t_sys_wfbflowowner;
+delete from t_sys_wfbflowreader;
+delete from t_sys_wfbform;
+delete from t_sys_wfbnoract;
+delete from t_sys_wfbpriority;
+delete from t_sys_wfbroute;
+delete from t_sys_wfbroutepos;
+delete from t_sys_wfbroutetask;
+
+delete from t_sys_wflevent;
+delete from t_sys_wfleventact;
+delete from t_sys_wfleventact_receiver;
+delete from t_sys_wfleventact_toassorter;
+delete from t_sys_wfleventact_tohander;
+delete from t_sys_wfleventerror;
+delete from t_sys_wfleventflow;
+delete from t_sys_wfleventroute;
+delete from t_sys_wfleventroute_receiver;
+delete from t_sys_wflflowassapp;
+delete from t_sys_wflflowauthor;
+delete from t_sys_wflflowreader;
+delete from t_sys_wfract;
+delete from t_sys_wfractassorter;
+delete from t_sys_wfracthandler;
+delete from t_sys_wfractowner;
+delete from t_sys_wfracttask;
+delete from t_sys_wfrflow;
+delete from t_sys_wfrflowauthor;
+delete from t_sys_wfrflowreader;
+delete from t_sys_wfrnoract;
+delete from t_sys_wfwaitwork;
+
+delete from t_sys_vinitflowlog;
+
+insert into t_sys_vinitflowlog(id, scclass, dcclass, stable, dtable, sidfield, didfield, vbflowid, bflowid, sworknamefield, sordertime) 
+values(sys_guid(), 'task', 'Task', 'T_APP_TASK', 'T_APP_TASK', 'id', 'id', 'TaskVinit', 'Task', 'workname', 'issuetime');
+
+insert into t_sys_vinitflowlog(id, scclass, dcclass, stable, dtable, sidfield, didfield, vbflowid, bflowid, sworknamefield, sordertime) 
+values(sys_guid(), 'tasktail', 'TaskTail', 'T_APP_TASKTAIL', 'T_APP_TASKTAIL', 'id', 'id', 'TaskTailVinit', 'TaskTail', 'audittime', 'tailtime');
+
+insert into t_sys_vinitflowlog(id, scclass, dcclass, stable, dtable, sidfield, didfield, vbflowid, bflowid, sworknamefield, sordertime) 
+values(sys_guid(), 'change', 'ConfigChange', 'T_APP_CONFIGCHANGE', 'T_APP_CONFIGCHANGE', 'id', 'id', 'ConfigChangeVinit', 'ConfigChange', 'worknumber', 'applytime');
+
+insert into t_sys_vinitflowlog(id, scclass, dcclass, stable, dtable, sidfield, didfield, vbflowid, bflowid, sworknamefield, sordertime) 
+values(sys_guid(), 'businessact', 'BusinessAct', 'T_APP_BUSINESSACT', 'T_APP_BUSINESSACT', 'id', 'id', 'BusinessActVinit', 'BusinessAct', 'title', 'recordtime');
