@@ -16,4 +16,4 @@ union
 select a.id as groupid, a.cname as groupname, 'DEPT' as ctype, b.id as userid, b.cname as username, b.loginname as loginname
   from t_sys_organ a, t_sys_user b
  where 1 = 1
-   and a.internal = b.ownerorg 
+   and a.internal = b.ownerdept 

@@ -19,9 +19,16 @@ insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), 
 insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), '应用管理员','SYSTEM','褚磊','chul');
 
 
+
+insert into t_sys_role (id, name, cname) values('XXGXZZ','XXGXZZ','信息共享专责');
+insert into t_sys_role (id, name, cname) values('BMZR','BMZR','部门主任');
+insert into t_sys_role (id, name, cname) values('GSZGLD','GSZGLD','公司主管领导');
+insert into t_sys_role (id, name, cname) values('ZJL','ZJL','总经理');
+
 insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), '信息共享专责','XXGXZZ','张瑜','zhangy');
 insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), '信息共享专责','XXGXZZ','高博','gaob');
 insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), '部门主任','BMZR','李梅梅','limm');
+insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), '部门主任','BMZR','姚亚强','yaoyq');
 insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), '公司主管领导','GSZGLD','欧晓勇','ouxy');
 insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), '总经理','ZJL','徐敏','xum');
 
