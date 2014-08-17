@@ -31,8 +31,12 @@
 		<td class="r"><label for="positionname">岗位：</label></td>
 		<td>
 		<span class="selectSpan">
+		<#--
 		<input type="hidden" id="positionname" name="positionname">
 		<input class="select readonly required" id="selectpositionname" data-options="${data.userrole_texts}" data-values="${data.userrole_values}" data-default="">
+		-->
+		<input type="text" readonly id="positionname" name="positionname" value="${data.position}" style="width:20em">
+		
 		</span>
 		</td>
 	</tr>
