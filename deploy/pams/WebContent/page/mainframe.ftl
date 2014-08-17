@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>信息运维管理系统</title>
+<title>任务管理系统</title>
 <link rel="shortcut icon" href="${base}/themes/default/images/favicon.ico" />
 <script type="text/javascript" src="${base}/themes/default/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="${base}/themes/default/gex.js"></script>
@@ -97,7 +97,8 @@ function openwin(url,winname,w,h,handler){
 			<td id="leftTd">
 			<div id="menuContainer"></div>  
 			</td>
-			 <td class="mainTd"><iframe src="" width="100%" height="100%" frameborder="0" allowtransparency="true" id="mainIframe" name="mainIframe"></iframe></td> 
+			 <td class="mainTd"><iframe src="${base}/module/irm/portal/portal/portal/portal_welcome.action" width="100%" height="100%" frameborder="0" allowtransparency="true" id="mainIframe" name="mainIframe"></iframe></td> 
+		 
 		</tr>
     </table>
 </td></tr>
