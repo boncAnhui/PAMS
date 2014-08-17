@@ -21,7 +21,7 @@ values('GXGL_ZZ_QC_001','GXGL_ZZ_QC',null,'ROLE','XXGXZZ','系统用户',null);
 insert into t_sys_wfbactowner(id, actid, ownerchoice, ctype, ownerctx, cname, outstyle)
 values('GXGL_ZZ_GXSH_ZZ_001','GXGL_ZZ_GXSH_ZZ',null,'ROLE','XXGXZZ','信息共享专责',null);
 insert into t_sys_wfbactowner(id, actid, ownerchoice, ctype, ownerctx, cname, outstyle)
-values('GXGL_ZZ_GXSH_BMZR_001','GXGL_ZZ_GXSH_BMZR',null,'FORMULA','@DefDeptRoleByName(部门主任#0)','@DefDeptRoleByName(部门主任#0)',null);
+values('GXGL_ZZ_GXSH_BMZR_001','GXGL_ZZ_GXSH_BMZR',null,'FORMULA','@DefDeptRoleByName(部门主任#10)','@DefDeptRoleByName(部门主任#10)',null);
 insert into t_sys_wfbactowner(id, actid, ownerchoice, ctype, ownerctx, cname, outstyle)
 values('GXGL_ZZ_GXSH_GSZGLD_001','GXGL_ZZ_GXSH_GSZGLD',null,'ROLE','GSZGLD','公司主管领导',null);
 insert into t_sys_wfbactowner(id, actid, ownerchoice, ctype, ownerctx, cname, outstyle)
