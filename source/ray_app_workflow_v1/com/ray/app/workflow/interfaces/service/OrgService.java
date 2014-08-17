@@ -488,6 +488,7 @@ public class OrgService
 			sql.append(" where 1 = 1 \n");
 			sql.append(" and a.deptid = b.parentdeptid \n");
 			sql.append(" and b.deptid = " + SQLParser.charValueRT(deptid));
+			// sql.append(" and a.ctype = 'DEPT' ").append("\n");
 
 			List list = new ArrayList();
 			list = DyDaoHelper.query(getJdbcDao().getJdbcTemplate(), sql.toString());

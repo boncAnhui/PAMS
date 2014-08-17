@@ -1,6 +1,6 @@
 <script type="text/javascript">
 $("#bt_input").click(function() {page_input()});
-$("#bt_del").click(function() {page_del()});
+$("#bt_del").click(function() {page_test()});
 
 // 新增
 function page_input()
@@ -30,5 +30,11 @@ function page_del()
 	{
 		window.location = "${base}/module/pams/meter/apply/apply_delete.action?runactkeys=" + oids;
 	}
+}
+
+function page_test()
+{
+	url = "${base}/module/pams/gxgl/gxwh/apply_test.action";
+	openwinT(url,'test',pub_width_large,pub_height_large,null,'');
 }
 </script>

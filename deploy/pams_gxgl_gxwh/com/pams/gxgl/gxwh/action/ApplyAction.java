@@ -16,6 +16,7 @@ import com.blue.ssh.core.action.ActionSessionHelper;
 import com.blue.ssh.core.action.SimpleAction;
 import com.blue.ssh.core.orm.Page;
 import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
+import com.headray.core.spring.jdo.JdbcDao;
 import com.headray.framework.common.generator.TimeGenerator;
 import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.headray.framework.services.function.StringToolKit;
@@ -32,6 +33,7 @@ import com.ray.app.query.action.QueryActionHelper;
 import com.ray.app.query.entity.Search;
 import com.ray.app.query.service.QueryService;
 import com.ray.app.workflow.enginee.WorkFlowEngine;
+import com.ray.app.workflow.expression.formula.FormulaParser;
 import com.ray.app.workflow.spec.GlobalConstants;
 import com.ray.app.workflow.ui.action.FormHelper;
 import com.ray.xj.sgcc.irm.system.author.userrole.entity.UserRole;
@@ -86,6 +88,10 @@ public class ApplyAction extends SimpleAction
 	private final static String tableid = "InfoShare";
 	
 	private final static String flowclass = "GXGL";
+	
+	
+	@Autowired
+	JdbcDao jdbcDao;
 	
 	public String mainframe() throws Exception
 	{
@@ -427,19 +433,28 @@ public class ApplyAction extends SimpleAction
 		StringBuffer bflow_texts = new StringBuffer();
 		StringBuffer bflow_values = new StringBuffer();
 
-		for (int i = 0; i < bflows.size(); i++)
+//		for (int i = 0; i < bflows.size(); i++)
+//		{
+//			DynamicObject bflow = (DynamicObject)bflows.get(i);
+//			String cname = bflow.getFormatAttr("cname");
+//			String id = bflow.getFormatAttr("id");
+//			bflow_texts.append(cname);
+//			bflow_values.append(id);
+//
+//			if (i < bflows.size() - 1)
+//			{
+//				bflow_texts.append("||");
+//				bflow_values.append("||");
+//			}
+//		}
+		
+		if(bflows.size()>0)
 		{
-			DynamicObject bflow = (DynamicObject)bflows.get(i);
+			DynamicObject bflow = (DynamicObject)bflows.get(0);
 			String cname = bflow.getFormatAttr("cname");
 			String id = bflow.getFormatAttr("id");
 			bflow_texts.append(cname);
-			bflow_values.append(id);
-
-			if (i < bflows.size() - 1)
-			{
-				bflow_texts.append("||");
-				bflow_values.append("||");
-			}
+			bflow_values.append(id);			
 		}
 		
 		List<UserRole> userroles = userroleService.findBy("userid", loginname);
@@ -899,7 +914,7 @@ public class ApplyAction extends SimpleAction
 
 		return "upload";
 	}
-
+	
 	public String selectcclassname() throws Exception
 	{
 		// 查询资源库信息共享分类
@@ -948,7 +963,26 @@ public class ApplyAction extends SimpleAction
 
 		return "selectscopeuser";
 	}
-
+	
+	public String test() throws Exception
+	{
+		HttpServletRequest req = Struts2Utils.getRequest();
+		HttpServletResponse resp = Struts2Utils.getResponse();
+		
+		DynamicObject obj = FormHelper.preparedFlow(req, resp);
+		DynamicObject swapFlow = FormHelper.preparedSwapFlow(req, resp);
+		
+		String formula_ctx = "@DefDeptRoleByName(部门主任#10)";
+		FormulaParser parser = new FormulaParser();
+		parser.setJdbcDao(jdbcDao);
+		parser.setSwapFlow(swapFlow);
+		List owners = parser.parser(formula_ctx);
+		
+		data.put("owners", owners);
+		
+		return "test";
+	}
+	
 	public String get_searchname()
 	{
 		return _searchname;
@@ -1078,5 +1112,27 @@ public class ApplyAction extends SimpleAction
 	{
 		this.userService = userService;
 	}
+
+	public JdbcDao getJdbcDao()
+	{
+		return jdbcDao;
+	}
+
+	public void setJdbcDao(JdbcDao jdbcDao)
+	{
+		this.jdbcDao = jdbcDao;
+	}
+
+	public static String getTableid()
+	{
+		return tableid;
+	}
+
+	public static String getFlowclass()
+	{
+		return flowclass;
+	}
+	
+	
 
 }

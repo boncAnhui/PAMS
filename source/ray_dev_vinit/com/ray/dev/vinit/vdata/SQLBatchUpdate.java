@@ -22,8 +22,8 @@ public class SQLBatchUpdate
 
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@127.0.0.1:1521:orcl";
-	String user = "itsm3xb";
-	String password = "admin";
+	String user = "pams";
+	String password = "pams123";
 	String infile = "sql_in.txt";
 	String outfile = "sql_out.txt";
 
