@@ -756,84 +756,22 @@ public class PortalAction extends BaseAction
 		return "ajaxinfo";
 
 	}
-
-	// from nwpn code
-	// 首页更新坐席状态
-	public String updatestatus() throws Exception
-	{
-		String loginname = ActionSessionHelper._get_loginname();
-		;
-		User user = userService.getUserByLoginName(loginname);
-
-		String gUsrStatus = Struts2Utils.getRequest().getParameter("gUsrStatus");
-		if (gUsrStatus.equals("busy"))
-		{
-			user.setIsbusy("1");
-		}
-		else
-		{
-			user.setIsbusy("0");
-		}
-		userService.saveUser(user);
-		return "updatestatus";
-	}
-
 	// from nwpn code
 	@SuppressWarnings("unchecked")
 	public String welcome() throws Exception
 	{
-		HttpServletRequest request = Struts2Utils.getRequest();
-
-		String lefturl = request.getParameter("lefturl");
-		String righturl = request.getParameter("righturl");
-		String containid = request.getParameter("containid");
-		String reasonid = request.getParameter("reasonid");
-		String type = request.getParameter("type");
-		String popupclass = request.getParameter("popupclass");
-
-		String begintime = request.getParameter("begintime");
-		String endtime = request.getParameter("endtime");
-
-		// 获取用户指定模板；如用户未指定模板，查询用户角色缺省模板；如仍未指定，缺省设定为标准模板。
-		String pmodel = StringToolKit.formatText(request.getParameter("pmodel"), "welcome");
-
-		List subjects = pmsubjectService.getAllOfPmodel(pmodel);
-
-		arg.put("pmodel", pmodel);
-		data.put("subjects", subjects);
-
-		arg.put("lefturl", lefturl);
-		arg.put("righturl", righturl);
-		arg.put("containid", containid);
-		arg.put("reasonid", reasonid);
-		arg.put("type", type);
-		data.put("type", type);
-		data.put("begintime", begintime);
-		data.put("endtime", endtime);
-
-		arg.put("popupclass", popupclass);
+		arg.put("pmodel", "welcome");
 		return "welcome";
 	}
 
 	// from nwpn code
 	public String getAllToDo() throws Exception
 	{
-		// List listalltodo = new ArrayList();
-		// List listevent = new ArrayList();
-		// List listproblem = new ArrayList();
-		// List listchange = new ArrayList();
-		String loginname = ActionSessionHelper._get_loginname();
-		//
-		// listevent = portalService.getEventToDo(loginname);
-		// listproblem = portalService.getProblemToDo(loginname);
-		// listchange = portalService.getChangeToDo(loginname);
-		//
-		// listalltodo.addAll(listevent);
-		// listalltodo.addAll(listproblem);
-		// listalltodo.addAll(listchange);
 
-		List listalltodo = portalService.getAllToDo(loginname);
-		data.put("listall", listalltodo);
+		String loginname = ActionSessionHelper._get_loginname();
+
+		List alltodo = portalService.getAllToDo(loginname);
+		data.put("alltodo", alltodo);
 
 		return "alltodo";
 	}

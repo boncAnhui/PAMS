@@ -8,76 +8,38 @@
 <script type="text/javascript" src="${base}/themes/default/main.js"></script>
 <style type="text/css">@import url(${base}/themes/default/main.css);</style>
 <style type="text/css">@import url(${base}/themes/default/welcome.css);</style>
-<style>
-#gsbrpopup {
-	position:fixed;
-	bottom:0;right:0;_position:absolute;background: #fff;border:solid 1px #ddd;font-size: 12px;*width:380px;}
-#gsbrpopup .title {background: 	#ddd;line-height: 30px;padding:0 8px;cursor:pointer;color:#666;white-space: nowrap;}
 
-#gsbrpopup .title .collapse {float:right;border:solid 6px #999;border-right-color:transparent;border-left-color:transparent;border-bottom: 0;margin-top: 	12px; margin-left: 20px;height:0;overflow:hidden;}
 
-#gsbrpopup .title .collapse {_border-right-color:#ddd;_border-left-color:#ddd;}
-
-#gsbrpopup .body {height:200px;overflow: auto}
-
-#gsbrpopup.closed .body {display: none;}
-#gsbrpopup.closed .title .collapse {border-right-color:transparent;border-left-color:transparent;border-bottom: solid 6px #999;border-top:0;_border-right-color:#ddd;_border-left-color:#ddd;}
-#gsbrpopup ul {margin: 0;	padding: 10px;	list-style-type: none;}
-#gsbrpopup ul li {margin: 0;	padding: 0;	list-style-type: none;line-height: 20px;white-space: nowrap;}
-#gsbrpopup ul li .date {float: right;color:#999;padding-left:40px;}
-#gsbrpopup ul li a {display:inline-block;*display:inline;*zoom:1;white-space:nowrap;width:20em;overflow:hidden;text-overflow:ellipsis;color:#333;text-decoration: none;}
-</style>
-<script>
-jQuery(function($){
-////////////////////////
-
-$('#gsbrpopup .title').on('click',function(){
-	$('#gsbrpopup').toggleClass('closed');
-	
-})
-if('${arg.popupclass}'=='closed'|| ${data.bulletins?size} <= 0)
-{
-	$('#gsbrpopup').toggleClass('closed');
-}
-////////////////////////
-})
-</script>
 <script type="text/javascript">
 
 //需要的content list
-var realContentArr=[<#list data.subjects as subject>'${subject.pname?lower_case}'<#if subject_has_next>,</#if></#list>];
 
 //实际content url（数据库没有，所以在这里手写全部）
-var contentArr={
-	'allprocess':'${base}/module/irm/portal/portal/portal/portal_getAllProcess.action',//处理中,
-	'mainplan':'${base}/module/app/business/maintenance/maintenance/maintenance_portal_welcome_maintenance.action',//检修计划,
-	'alltodo':'${base}/module/irm/portal/portal/portal/portal_getAllToDo.action', //个人代办,
-	'dutyplan':'${base}/module/irm/portal/portal/portal/portal_getDutyplan.action' //值班表
-}
+var contentArr ={'alltodo':'${base}/module/irm/portal/portal/portal/portal_getAllToDo.action'};
+
+
 
 jQuery(function($){
 /////////////////////////////////////
 
 function loadContent(){
 	var obj=$('#pageContent');
+	
 	obj.empty();
-	$.each(realContentArr,function(j,k){
-		//console.log(contentArr[k])
-		$.ajax({
-			url:contentArr[k],
-			cache:false,
-			async:false,
-			success:function(d){
-				//console.log(obj)
-				obj.append('<div class="sec" style="width:850px;margin-right:10px;margin-bottom:10px;"><div class="p8">'+d+'</div></div>');
-				$('table.gGrid tbody tr:odd').addClass('odd');
-			}
-		})
+	$.ajax({
+		url:'${base}/module/irm/portal/portal/portal/portal_getAllToDo.action',
+		cache:false,
+		async:false,
+		success:function(d){
+			//alert(d);
+			//console.log(obj)
+			obj.append('<div class="section sec1" ><div class="p8">'+d+'</div></div>');
+			$('table.gGrid tbody tr:odd').addClass('odd');
+		}
 	})
 };
 
 loadContent();
-//setInterval(loadContent,120000);
 
 //remove portalMenu when homepage
 $('#portalMenu',window.parent.document).empty();
@@ -86,50 +48,22 @@ $('#portalMenu',window.parent.document).empty();
 })
 
 function redirctmoduleurl(a,url){
-	openwin(url,'welcomeWin',pub_width_large,pub_height_large);
-}
-
-function page_change_model(model)
-{
-	window.location = "portal_welcome.action?pmodel=" + model+"&popupclass="+$('#gsbrpopup').attr('class');
-}
-
-function page_change_model(model,type)
-{
-	window.location = "portal_welcome.action?pmodel=" + model +"&type="+type+"&popupclass="+$('#gsbrpopup').attr('class');
-}
-
-function page_change_browse(ccate)
-{
-	window.location = "portal_browse.action?ccate=" + ccate+"&popupclass="+$('#gsbrpopup').attr('class');
+	//location=url;
+	openwin(url,'opennew',pub_width_mid,pub_height_mid);
 }
 
 </script>
 </head>
 <body>
-<div id="siteWizard">
-	<ul>
-		<li class="c" onclick="page_change_model('welcome')">个人工作平台</li>
-		<li onclick="page_change_model('manage')">管理平台</li>
-		<#--<li onclick="page_change_model('managerep')">管理平台图表</li>-->
-		<li onclick="page_change_model('deepen','all')">相关业务查询</li>
-		<li onclick="page_change_model('stat')">报表统计</li>
-		<li onclick="page_change_browse('show')">系统拓扑</li>
-	</ul>
-</div>
 
 <div id="pageContainer">
-<div id="gsbrpopup">
-	<div class="title"><span class="collapse"></span>公告栏</div>
-	<div class="body">
-		<ul>
-		<#list data.bulletins as bulletin>
-			<li><span class="date">${bulletin.createtime?string('yyyy-MM-dd')}</span><a href="javascript:void(0);" title='${bulletin.description}'>${bulletin.description}</a></li>
-		</#list>
-		</ul>
-	</div>
+
+<div id="pageContent">
+
+
+
 </div>
-<div id="pageContent"></div>
+
 </div>
 
 </body>
