@@ -472,6 +472,9 @@ public class ApplyAction extends SimpleAction
 				userrole_texts.append("||");
 			}
 		}
+		
+		// 岗位信息
+		String position = userService.getUserByLoginName(loginname).getPosition();
 
 		String obtaintimed = TimeGenerator.getDateStr();
 		String obtaintimet = "10:00";
@@ -493,6 +496,8 @@ public class ApplyAction extends SimpleAction
 
 		data.put("shareauthor_texts", shareauthor_texts);
 		data.put("shareauthor_values", shareauthor_values);
+		
+		data.put("position", position);
 
 		data.put("obtaintimed", obtaintimed);
 		data.put("obtaintimet", obtaintimet);

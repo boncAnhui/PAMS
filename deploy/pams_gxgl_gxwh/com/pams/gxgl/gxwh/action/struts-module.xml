@@ -34,8 +34,6 @@
 			<result name="selectscopeorgan" type="freemarker">/com/pams/gxgl/gxwh/view/selectscopeorgan.ftl</result>
 			<result name="selectscoperole" type="freemarker">/com/pams/gxgl/gxwh/view/selectscoperole.ftl</result>
 			<result name="selectscopeuser" type="freemarker">/com/pams/gxgl/gxwh/view/selectscopeuser.ftl</result>
-			
-			<result name="test" type="freemarker">/com/pams/gxgl/gxwh/view/test.ftl</result>						
 		</action>
 	</package>
 </struts>
