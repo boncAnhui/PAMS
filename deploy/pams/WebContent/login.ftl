@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>计划任务管理系统</title>
+<title>任务管理系统</title>
 <link rel="shortcut icon" href="${base}/themes/default/images/favicon.ico" />
 <script type="text/javascript" src="${base}/themes/default/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="${base}/themes/default/gex.js"></script>
