@@ -3,14 +3,5 @@
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/pams"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/headray_app_query_v1"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/headray_core_data"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ray_core_framework"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ray_core_function"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ray_core_json"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ray_core_ssh"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ray_xj_sgcc_system"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ray_app_dictionary"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ray_app_query"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

@@ -8,7 +8,20 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v6.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/pams"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_authority"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_base"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_gxgl_gxwh"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_gxgl_wjwh"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_gxgl_zswh"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_hbgl_base"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_hbgl_main"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_hbgl_xctk"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_hbgl_xxsj"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_hbgl_xygl"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_hbgl_yhsq"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_kpi_run"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ray_xj_sgcc_portal"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v5.5"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
