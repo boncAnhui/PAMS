@@ -21,7 +21,12 @@
 			
 			<result name="main_xxgxjsllcjdmx" type="freemarker">/com/pams/kpi/gxgl/view/main_xxgxjsllcjdmx.ftl</result>
 			<result name="kpi_xxgxjsllcjdmx" type="freemarker">/com/pams/kpi/gxgl/view/kpi_xxgxjsllcjdmx.ftl</result>
-								
+				
+				
+			<result name="depart_zxsc" type="freemarker">/com/pams/kpi/gxgl/view/depart_zxsc.ftl</result>
+			<result name="depart_zxsc_tb" type="freemarker">/com/pams/kpi/gxgl/view/depart_zxsc_tb.ftl</result>
+			
+			
 		</action>
 	</package>
 </struts>

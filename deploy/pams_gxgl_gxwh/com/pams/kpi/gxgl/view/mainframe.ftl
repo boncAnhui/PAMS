@@ -90,6 +90,9 @@ $('#dragHandlerLR').draggable({iframeFix: true,scroll:false,containment:[0,0,400
 		<li data-pid="main" data-index="21" data-parent="" data-leaf="0" data-id="kpi_zxsc" data-url="${base}/module/pams/kpi/gxgl/kpi_main_zxsc.action">
 		<span class="folder">执行时长</span>
 		</li>
+		<li data-pid="main" data-index="23" data-parent="" data-leaf="0" data-id="kpi_zxsc_depart" data-url="${base}/module/pams/kpi/gxgl/kpi_depart_zxsc.action">
+		<span class="folder">执行时长(部门)</span>
+		</li>
 		<li data-pid="main" data-index="22" data-parent="" data-leaf="0" data-id="gxgl_browsehandle" data-url="${base}/module/pams/kpi/gxgl/kpi_main_xxgxjsl.action">
 		<span class="folder">信息共享及时率</span>
 		</li>

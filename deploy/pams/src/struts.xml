@@ -118,12 +118,19 @@
 	
 	<!-- 附件 -->
 	
+	<!-- 综合展现 -->
+	<include file="com/ray/app/chart/report/action/struts-module.xml" />
+	
+	
 	<!-- 共享管理 -->
 	<include file="com/pams/gxgl/gxwh/action/struts-module.xml"></include>
 	<include file="com/pams/gxgl/wjwh/action/struts-module.xml"></include>
 	<include file="com/pams/gxgl/zswh/action/struts-module.xml"></include>
 	
 	<include file="com/pams/kpi/gxgl/action/struts-module.xml"></include>
+	
+	
+	
 	
 	<!-- 户表改造 -->
 	<include file="com/pams/hbgl/main/action/struts-module.xml"></include>

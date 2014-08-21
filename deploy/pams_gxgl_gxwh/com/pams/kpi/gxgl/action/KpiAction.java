@@ -52,6 +52,36 @@ public class KpiAction extends SimpleAction
 		data.put("zxscs", datas);
 		return "kpi_zxsc";
 	}
+	
+	
+	
+	public String depart_zxsc() throws Exception 
+	{
+		String begindate = Struts2Utils.getRequest().getParameter("begindate");
+		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		
+		arg.put("begindate", begindate);
+		arg.put("enddate", enddate);	
+		return "depart_zxsc";
+	}
+	
+	public String depart_zxsc_tb() throws Exception 
+	{
+		String begindate = Struts2Utils.getRequest().getParameter("begindate");
+		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		
+		DynamicObject obj = new DynamicObject();
+		
+		KpiZXSC tab = new KpiZXSC();
+		tab.setJdbcTemplate(reportDao.getJdbcTemplate());
+		List datas = tab.execute(obj);
+		
+		arg.put("begindate", begindate);
+		arg.put("enddate", enddate);	
+
+		data.put("zxscs", datas);
+		return "depart_zxsc_tb";
+	}
 
 	public String main_zxscmx() throws Exception
 	{
