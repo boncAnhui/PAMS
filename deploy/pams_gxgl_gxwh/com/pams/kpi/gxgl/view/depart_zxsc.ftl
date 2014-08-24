@@ -83,7 +83,7 @@ function page_load_dhrx_table()
 
 function page_load_dhrx_chart()
 {
-	page_load_chart_test("pki.depart.zxsc", "zxscbm", 0, "Column3D", new Array("source","sourcedept"), new Array($("#source").val(),$("#sourcedept").val()));
+	page_load_chart("pki.depart.zxsc", "zxscbm", 0, "Column3D", new Array("source","sourcedept"), new Array($("#source").val(),$("#sourcedept").val()));
 }
 
 
@@ -95,30 +95,6 @@ function page_load()
 }
 
 
-function page_load_chart_test(chartname, chartid, nums, charttype, names, values)
-{
-	begindate = pub_date_format_value(_begindate);
-	enddate = pub_date_format_value(_enddate);
-	
-	url = "${base}/chart/chart_main.action";
-	url += "?_chartname=" + chartname;
-	url += "&_div=" + chartid;
-	url += "&_type=" + charttype;　　
-	
-	url += "&random=" + Math.random();
-	url += "&begindate=" + begindate;
-	url += "&enddate=" + enddate;
-
-	for(i=0;i<names.length;i++)
-	{
-		url += "&" + names[i] + "=" + values[i];
-	}
-	
-	window.open(url);
-	
-	$('#rep_' + chartid).load(url);
-	
-}
 
 page_load();
 

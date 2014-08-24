@@ -11,7 +11,7 @@
 <#assign total = total + aobj.zxsccskh?number>
 <tr>
 <td>${aobj_index+1}</td>
-<td>${aobj.deptname}</td>
+<td>${aobj.dname}</td>
 <td>${aobj.zxsccskh}</td>
 <td>
 <a href="${base}/module/pams/kpi/gxgl/kpi_main_zxscmx.action?ownerctx=${aobj.ownerctx}&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.zxsccskh}</a>

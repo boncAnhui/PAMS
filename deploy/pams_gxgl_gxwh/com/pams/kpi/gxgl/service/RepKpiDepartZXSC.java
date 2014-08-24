@@ -13,9 +13,9 @@ public class RepKpiDepartZXSC implements IReportService
 	
 	public List execute(DynamicObject map) throws Exception
 	{
-		KpiZXSC kpiZXSC = new KpiZXSC();
-		kpiZXSC.setJdbcTemplate(jt);
-		return kpiZXSC.execute(map);
+		KpiZXSCBM kpiZXSCBM = new KpiZXSCBM();
+		kpiZXSCBM.setJdbcTemplate(jt);
+		return kpiZXSCBM.execute(map);
 	}
 	
 
