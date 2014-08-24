@@ -11,6 +11,7 @@ import com.pams.kpi.gxgl.service.KpiXXGXJSL;
 import com.pams.kpi.gxgl.service.KpiXXGXJSLLCJDMX;
 import com.pams.kpi.gxgl.service.KpiXXGXJSLLCMX;
 import com.pams.kpi.gxgl.service.KpiZXSC;
+import com.pams.kpi.gxgl.service.KpiZXSCBM;
 import com.pams.kpi.gxgl.service.KpiZXSCMX;
 import com.ray.app.chart.report.dao.ReportDao;
 import com.ray.app.query.service.QueryService;
@@ -72,9 +73,9 @@ public class KpiAction extends SimpleAction
 		
 		DynamicObject obj = new DynamicObject();
 		
-		KpiZXSC tab = new KpiZXSC();
-		tab.setJdbcTemplate(reportDao.getJdbcTemplate());
-		List datas = tab.execute(obj);
+		KpiZXSCBM zxscTab = new KpiZXSCBM();
+		zxscTab.setJdbcTemplate(reportDao.getJdbcTemplate());
+		List datas = zxscTab.execute(obj);
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);	
