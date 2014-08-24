@@ -29,6 +29,16 @@
 			<result name="depart_xxgxjsl" type="freemarker">/com/pams/kpi/gxgl/view/depart_xxgxjsl.ftl</result>
 			<result name="depart_xxgxjsl_tb" type="freemarker">/com/pams/kpi/gxgl/view/depart_xxgxjsl_tb.ftl</result>
 			
+			<!-- 文件共享数量统计 -->
+			<result name="main_wjwhsl" type="freemarker">/com/pams/kpi/gxgl/view/main_wjwhsl.ftl</result>
+			<result name="kpi_wjwhsl" type="freemarker">/com/pams/kpi/gxgl/view/kpi_wjwhsl.ftl</result>
+			
+			<result name="main_wjwhslmx" type="freemarker">/com/pams/kpi/gxgl/view/main_wjwhslmx.ftl</result>
+			<result name="kpi_wjwhslmx" type="freemarker">/com/pams/kpi/gxgl/view/kpi_wjwhslmx.ftl</result>
+			
+			<result name="depart_wjwhsl" type="freemarker">/com/pams/kpi/gxgl/view/depart_wjwhsl.ftl</result>
+			<result name="depart_wjwhsl_tb" type="freemarker">/com/pams/kpi/gxgl/view/depart_wjwhsl_tb.ftl</result>
+			
 		</action>
 	</package>
 </struts>
