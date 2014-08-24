@@ -7,14 +7,14 @@
 <th>说明</th>
 </tr>
 <#assign total = 0>
-<#list data.zxscs as aobj>
-<#assign total = total + aobj.zxsccskh?number>
+<#list data.xxgxjsls as aobj>
+<#assign total = total + aobj.cskh?number>
 <tr>
 <td>${aobj_index+1}</td>
-<td>${aobj.dname}</td>
-<td>${aobj.zxsccskh}</td>
+<td>${aobj.deptname}</td>
+<td>${aobj.bzsc}</td>
 <td>
-<a href="${base}/module/pams/kpi/gxgl/kpi_main_zxscmx.action?ownerdept=${aobj.odept}&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.zxsccskh}</a>
+<a href="${base}/module/pams/kpi/gxgl/kpi_main_xxgxjsllcmx.action?ownerdept=${aobj.odept}&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.cskh}</a>
 </td>
 <td></td>
 </tr>

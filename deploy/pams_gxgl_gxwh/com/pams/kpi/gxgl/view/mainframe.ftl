@@ -96,6 +96,9 @@ $('#dragHandlerLR').draggable({iframeFix: true,scroll:false,containment:[0,0,400
 		<li data-pid="main" data-index="22" data-parent="" data-leaf="0" data-id="gxgl_browsehandle" data-url="${base}/module/pams/kpi/gxgl/kpi_main_xxgxjsl.action">
 		<span class="folder">信息共享及时率</span>
 		</li>
+		<li data-pid="main" data-index="33" data-parent="" data-leaf="0" data-id="kpi_browsehandle_depart" data-url="${base}/module/pams/kpi/gxgl/kpi_depart_xxgxjsl.action">
+		<span class="folder">信息共享及时率(部门)</span>
+		</li>
 		</ul>
 	</li>
 </ul>

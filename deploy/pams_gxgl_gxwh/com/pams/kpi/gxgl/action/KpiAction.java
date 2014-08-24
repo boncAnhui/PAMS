@@ -8,6 +8,7 @@ import com.blue.ssh.core.action.SimpleAction;
 import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
 import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.pams.kpi.gxgl.service.KpiXXGXJSL;
+import com.pams.kpi.gxgl.service.KpiXXGXJSLBM;
 import com.pams.kpi.gxgl.service.KpiXXGXJSLLCJDMX;
 import com.pams.kpi.gxgl.service.KpiXXGXJSLLCMX;
 import com.pams.kpi.gxgl.service.KpiZXSC;
@@ -66,6 +67,16 @@ public class KpiAction extends SimpleAction
 		return "depart_zxsc";
 	}
 	
+	public String depart_xxgxjsl()
+	{
+		String begindate = Struts2Utils.getRequest().getParameter("begindate");
+		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		
+		arg.put("begindate", begindate);
+		arg.put("enddate", enddate);	
+		return "depart_xxgxjsl";
+	}
+	
 	public String depart_zxsc_tb() throws Exception 
 	{
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
@@ -82,6 +93,24 @@ public class KpiAction extends SimpleAction
 
 		data.put("zxscs", datas);
 		return "depart_zxsc_tb";
+	}
+	
+	public String depart_xxgxjsl_tb() throws Exception 
+	{
+		String begindate = Struts2Utils.getRequest().getParameter("begindate");
+		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		
+		DynamicObject obj = new DynamicObject();
+		
+		KpiXXGXJSLBM xxgxjslTab = new KpiXXGXJSLBM();
+		xxgxjslTab.setJdbcTemplate(reportDao.getJdbcTemplate());
+		List datas = xxgxjslTab.execute(obj);
+		
+		arg.put("begindate", begindate);
+		arg.put("enddate", enddate);	
+
+		data.put("xxgxjsls", datas);
+		return "depart_xxgxjsl_tb";
 	}
 
 	public String main_zxscmx() throws Exception

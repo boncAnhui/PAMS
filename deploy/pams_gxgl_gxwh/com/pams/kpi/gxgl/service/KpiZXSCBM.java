@@ -22,8 +22,8 @@ public class KpiZXSCBM {
 		String enddate = obj.getFormatAttr("enddate");
 
 		StringBuffer sql = new StringBuffer();
-		sql.append("select xx.dname,sum(sss) zxsccskh from (").append("\n");
-		sql.append("  select zx.ownerctx, zx.cname, usr.ownerdept ownerdept, usr.deptname dname, sum(zxsccskh) sss ").append("\n");
+		sql.append("select xx.dname,odept ,sum(sss) zxsccskh  from (").append("\n");
+		sql.append("  select zx.ownerctx, zx.cname, usr.ownerdept odept, usr.deptname dname, sum(zxsccskh) sss ").append("\n");
 		sql.append("  from t_sys_user usr, ").append("\n");
 		sql.append("  ( ").append("\n");
 		sql.append("    select ownerctx, cname, runflowkey, actdefid, zxsc, zxsccs, case when zxsccs > 5.0 then 5 else zxsccs end zxsccskh ").append("\n");
@@ -71,7 +71,7 @@ public class KpiZXSCBM {
 		sql.append("  group by zx.ownerctx, zx.cname, usr.ownerdept, usr.deptname  ").append("\n");
 		sql.append(" order by ownerdept ").append("\n");
 		sql.append(")xx  ").append("\n");
-		sql.append(" group by xx.dname");
+		sql.append(" group by xx.dname ,xx.odept");
 		
 		List datas = DyDaoHelper.query(jt, sql.toString());
 

@@ -26,6 +26,8 @@
 			<result name="depart_zxsc" type="freemarker">/com/pams/kpi/gxgl/view/depart_zxsc.ftl</result>
 			<result name="depart_zxsc_tb" type="freemarker">/com/pams/kpi/gxgl/view/depart_zxsc_tb.ftl</result>
 			
+			<result name="depart_xxgxjsl" type="freemarker">/com/pams/kpi/gxgl/view/depart_xxgxjsl.ftl</result>
+			<result name="depart_xxgxjsl_tb" type="freemarker">/com/pams/kpi/gxgl/view/depart_xxgxjsl_tb.ftl</result>
 			
 		</action>
 	</package>
