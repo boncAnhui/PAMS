@@ -15,7 +15,7 @@ var uploadNames=[];
 $('#file_upload').uploadify({
     'uploader'  : '${base}/uploadify/uploadify.swf',
     'script'    : '${base}/module/pams/gxgl/wjwh/fileattachment_upload.action',
-    'scriptData': {'runactkey':'${data.obj_ract.runactkey}','cno':'${data.obj_filetemplate.cno}','cclass':'${data.obj_filetemplate.cclass}'},
+    'scriptData': {'runactkey':'${data.obj_ract.runactkey}','filetemplateid':'${data.obj_filetemplate.id}'},
 	'buttonImg': '${base}/uploadify/upload.png',
     'cancelImg' : '${base}/uploadify/cancel.png',
     'folder'    : 'uploads',

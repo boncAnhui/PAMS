@@ -41,18 +41,28 @@
 		</td>
 	</tr>
 	<tr>
+		<td class="r"><label for="creatername">共享人：</label></td>
+		<td>
+		<input type="text" readonly id="creatername" name="creatername" value="${data.username}" style="width:20em">
+		</td>
 		<td class="r"><label for="sourcename">信息来源：</label></td>
 		<td>
 		<span class="selectSpan">
 		<input type="hidden" id="sourceid" name="sourceid" value="">
 		<input class="select readonly required" id="selectsourceid" data-options="${data.sourcename_texts}" data-values="${data.sourcename_values}" data-default="">
 		</span>
+	</tr>
+	<tr>
 		<td class="r"><label for="obtaintime">信息获取时间：</label></td>
 		<td>
 		<input type="hidden" id="obtaintime" name="obtaintime" value=""> 
 		<input class="date required" id="obtaintimed" name="obtaintimed" style="width:10em" value="${data.obtaintimed}"/>
 		<input class="time required" id="obtaintimet" name="obtaintimet" style="width:10em" value="${data.obtaintimet}"/>
 		</td>
+		<td class="r"><label for="publishtime">发布时间：</label></td>
+		<td>
+		<input type="text" readonly id="publishtime" name="publishtime" value="" style="width:20em">
+		</td>		
 	</tr>
 	<tr>
 		<td class="r"><label for="title">信息共享名称：</label></td>
@@ -67,6 +77,7 @@
 		<td>
 		<input type="hidden" id="cclassid" name="cclassid">		
 		<input class="text required" readonly id="cclassname" name="cclassname" style="width:20em"/><button id="bt_cclassname" class="btn2">选择</button></td>
+		<#--
 		<td class="r"><label id="lb_title">共享权限：</label></td>
 		<td>
 		<span class="selectSpan">
@@ -74,6 +85,9 @@
 		<input class="select readonly required" id="selectshareauthor" data-options="${data.shareauthor_texts}" data-values="${data.shareauthor_values}" data-default="">
 		</span>
 		</td>
+		-->
+		<td class="r">&nbsp;</td>
+		<td>
 	</tr>
 	<tr>
 		<td class="r"><label for="infosharescope">共享范围：</label></td>

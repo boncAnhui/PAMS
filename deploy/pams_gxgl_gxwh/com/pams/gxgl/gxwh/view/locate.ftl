@@ -38,16 +38,26 @@ table.dataGrid{border-collapse:collapse;}
 	<button id="bt_save">保存</button>
 </#if>
 
+<#--
 <#if arg.ispublish>
 <button id="bt_publish">发布</button>
 </#if>
+-->
 
 <#if arg.isedit>
 <button id="bt_opinion">意见</button>
 </#if>
 
+<!-- 
 <#if arg.isforward == true>
 <button id="bt_forward">转发</button>
+</#if>
+-->
+
+<#if arg.isforward == true>
+	<#list data.routes as aobj>
+	<button id="bt_route_${aobj_index}" ctype="${aobj.ctype}" onclick="page_forwardto(${aobj_index},'${aobj.endactid}','${aobj.endactname}','${aobj.ctype}')">${aobj.routename}</button>
+	</#list>
 </#if>
 
 <#if arg.isbackward == true>
@@ -77,17 +87,28 @@ table.dataGrid{border-collapse:collapse;}
 		</td>
 	</tr>
 	<tr>
+		<td class="r"><label for="creatername">共享人：</label></td>
+		<td>
+		<input type="text" readonly id="creatername" name="creatername" value="${data.infoshare.creatername}" style="width:20em">
+		</td>
 		<td class="r"><label for="sourcename">信息来源：</label></td>
 		<td>
 		<span class="selectSpan">
 		<input type="hidden" id="sourceid" name="sourceid" value="" >
 		<input class="select readonly required" id="selectsourcename" name="selectsourcename"  data-options="${data.sourcename_texts}" data-values="${data.sourcename_values}" data-default="${data.infoshare.sourceid}">
 		</span>
-		<td class="r"><label for="obtaintime">信息获取时间：</label></td>
+		</td>
+	</tr>
+	<tr>
+		<td class="r"><label for="obtaintime">获取时间：</label></td>
 		<td>
 		<input type="hidden" id="obtaintime" name="obtaintime" value="${data.infoshare.obtaintime}"> 
 		<input class="date required" id="obtaintimed" name="obtaintimed" style="width:10em" value="${data.infoshare.obtaintimed}"/>
 		<input class="time required" id="obtaintimet" name="obtaintimet" style="width:10em" value="${data.infoshare.obtaintimet}"/>
+		</td>
+		<td class="r"><label for="publishtime">发布时间：</label></td>
+		<td>
+		<input type="text" readonly id="publishtime" name="publishtime" value="<#if data.infoshare.publishtime!="">${data.infoshare.publishtime?string("yyyy-MM-dd HH:mm")}</#if>" style="width:20em">
 		</td>
 	</tr>
 	<tr>
@@ -103,6 +124,7 @@ table.dataGrid{border-collapse:collapse;}
 		<td>
 		<input type="hidden" id="cclassid" name="cclassid" value="${data.infoshare.cclassid}">	
 		<input class="text required" id="cclassname" name="cclassname" style="width:20em" value="${data.infoshare.cclassname}"/><button id="bt_cclassname" class="btn2">选择</button></td>
+		<#--
 		<td class="r"><label id="lb_title">共享权限：</label></td>
 		<td>
 		<span class="selectSpan">
@@ -110,6 +132,9 @@ table.dataGrid{border-collapse:collapse;}
 		<input class="select readonly required" id="selectshareauthor" data-options="${data.shareauthor_texts}" data-values="${data.shareauthor_values}" data-default="${data.infoshare.shareauthor}">
 		</span>
 		</td>
+		-->
+		<td class="r">&nbsp;</td>
+		<td>
 	</tr>
 	<tr>
 		<td class="r"><label for="infosharescope">共享范围：</label></td>
@@ -134,7 +159,7 @@ table.dataGrid{border-collapse:collapse;}
 	<tr>
 		<td class="r">文件列表：</td>
 		<td colspan="3" align="left" class="attachname" name="attachname">
-		<span class="uploadtr uploadepro" title="上传附件">&nbsp;</span>
+		<#if arg.isupload><span class="uploadtr uploadepro" title="上传附件">&nbsp;</span></#if>
 		</td>
 	</tr>
 	<tr>
@@ -143,7 +168,8 @@ table.dataGrid{border-collapse:collapse;}
 		<ul class="attachmentUl" id="attachmentUl">
 			<#list data.fileattachments as afile>
 			<li data-id="${afile.id}" cno="${afile.cno}">
-			<a target="_blank" class="attachment" href="${base}/module/pams/gxgl/wjwh/fileattachment_downloadbyid.action?id=${afile.id}">【${afile.sfilename}】</a>&nbsp;&nbsp;${afile.creatername}&nbsp;&nbsp;${afile.createtime}&nbsp;&nbsp;<span class="del">X</span><br>
+			<a target="_blank" class="attachment" href="${base}/module/pams/gxgl/wjwh/fileattachment_downloadbyid.action?id=${afile.id}">【${afile.sfilename}】</a>&nbsp;&nbsp;${afile.creatername}&nbsp;于&nbsp;${afile.createtime}&nbsp;在&nbsp; ${afile.actname}&nbsp;业务环节上传。
+			<#if arg.isupload><span class="del">X</span></#if><br>
 			</li>
 			</#list>
 		</ul>
@@ -205,6 +231,57 @@ function page_forward()
 	openwin(url,"forwardselectsingleframe",pub_width_mid,pub_height_mid);	
 }
 
+//转发
+function page_forwardto(index, endactdefid, endactname, ctype)
+{
+	// 检查是否结束节点
+	if(ctype=="END")
+	{
+		// 检查是否上传过文件
+		if($("#attachmentUl li").length==0)
+		{
+			if(!confirm("转发结束会自动发布共享文件，您还没有上传共享文件，确定要转发结束吗？"))
+			{
+				return;
+			}		
+		};
+		
+		$.ajax({
+			type:"POST",
+			url:'${base}/module/pams/gxgl/gxwh/apply_ajaxpublish.action',
+			data:{"runactkey":"${arg.runactkey}"},
+			success:function(d)
+			{
+				if(d=='success')
+				{
+					//后台确认已经发布
+					var url = "${base}/module/app/system/workflow/ui/forwardselectsingleframe.action";
+					url += "?runactkey=${arg.runactkey}";
+					url += "&tableid=${arg.tableid}";
+					url += "&endactdefid=" + endactdefid;
+					openwin(url,"forwardselectsingleframe",pub_width_mid,pub_height_mid, null);
+					return;
+				}
+				else
+				{ 
+					//提示发布失败
+					alert("发布失败，无法转发至结束，请与系统管理员联系。");
+					return;
+				}
+			}	
+		})
+	}
+	else
+	{
+		//后台确认已经发布
+		var url = "${base}/module/app/system/workflow/ui/forwardselectsingleframe.action";
+		url += "?runactkey=${arg.runactkey}";
+		url += "&tableid=${arg.tableid}";
+		url += "&endactdefid=" + endactdefid;
+		openwin(url,"forwardselectsingleframe",pub_width_mid,pub_height_mid, null);	
+	}
+}
+
 // 退回
 function page_backward()
 {
@@ -253,6 +330,7 @@ function page_opinion()
 
 $(function()
 {
+	// 上传附件
 	$('.uploadepro').click(function(){page_uploadepro($(this))}); // 附件上传控件
 	
 	function page_uploadepro(obj)
@@ -260,6 +338,41 @@ $(function()
 		var cno = "";
 		openwin('apply_upload.action?runactkey=${arg.runactkey}&cno=' + cno,'upload',pub_width_small,pub_height_small);
 	}
+	
+	// 删除附件
+	$('.attachmentUl .del').live('click',function()
+	{
+		page_delattachment($(this));
+	})
+
+	function page_delattachment(obj)
+	{
+		if(window.confirm('你确认要删除这个附件吗？')){
+			var oid=obj.parent().attr('data-id');
+			var oparent=obj.parent();
+			$.ajax({
+				url:'${base}/module/pams/gxgl/wjwh/fileattachment_ajaxdelete.action',
+				data:{attachid:oid},
+				success:function(d){
+					if(d=='done'){//后台确认已经删除	
+					    			
+						oparent.animate({opacity:0},'fast','swing',function(){						
+							oparent.empty().css({opacity:1,color:'#c00'}).append('该附件已经被删除！');
+							setTimeout(function(){
+								oparent.remove();
+							},1000)							
+						})
+					}else{ //删除失败
+						oparent.find('.error').remove();
+						oparent.append(' <span class="error" style="color:#c00">删除操作失败：该文件已经被删除，或者你没有权限</span>');
+					}
+					
+				}	
+			})
+		}
+
+	}
+	
 	
 })
 

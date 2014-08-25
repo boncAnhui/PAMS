@@ -83,8 +83,6 @@ $('#gAjaxTree>li span').trigger('click');
 //默认点击根节点下的第一个节点
 $('#gAjaxTree>li>ul>li:first span').trigger('click');
 
-//设置拖动条位置及交互效果（放出来是因为根据内容可给出不同于 200px 宽度的左侧-下面 #leftTd 也要改！）
-$('#dragHandlerLR').draggable({iframeFix: true,scroll:false,containment:[0,0,400,0],stop:function(){$('.leftTd,#leftTreeDiv').css({width:$(this).position().left});}}).disableSelection().css({left:'200px'});
 
 ///////////////////
 })
@@ -94,14 +92,13 @@ $('#dragHandlerLR').draggable({iframeFix: true,scroll:false,containment:[0,0,400
 <div id="fixedOp">
 <button id="bt_save" class="btn2">确定</button>
 </div>
-<div id="dragHandlerLR"></div>
-<table id="leftRightTB" height="100%;">
+<table width="100%" height="100%">
 <tr>
-<td class="leftTd" style="border-right:solid 4px #ccc;vertical-align:top;">
-<div id="leftTreeDiv" style="height:100%;overflow:auto;">
+<td style="border-right:solid 4px #ccc;vertical-align:top;">
+
 <ul id="gAjaxTree">
 	<li data-pid="R0" data-index="1" data-parent="" data-leaf="1" data-id="${data.knowledgeclass.id}" data-url="">
-	<span class="root">信息共享</span>
+	<span class="root">分类目录</span>
 		<ul>
 		<#list data.knowledgeclasses as treeview>
 		<#if arg.isopen!="1">

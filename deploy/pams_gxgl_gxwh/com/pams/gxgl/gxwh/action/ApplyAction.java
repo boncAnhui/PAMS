@@ -199,6 +199,7 @@ public class ApplyAction extends SimpleAction
 		String username = ActionSessionHelper._get_username();
 		String loginname = ActionSessionHelper._get_loginname();
 		String userid = ActionSessionHelper._get_userid();
+
 		QueryActionHelper helper = new QueryActionHelper();
 
 		arg.putAll(helper.mockArg(_searchname, queryService));
@@ -213,7 +214,7 @@ public class ApplyAction extends SimpleAction
 		amap.put("flowcclass", flowcclass);
 
 		Search search = (Search) BeanUtils.cloneBean(queryService.findUniqueByOfSearch("searchname", _searchname));
-		search.setMysql(infoshareService.get_browseall_sql(amap));// 查询全体记录
+		search.setMysql(infoshareService.get_browseall_sql(amap));// 查询已办记录
 
 		Page page = helper.mockJdbcPage(search, queryService);
 		Map vo = helper.mockVO(_searchname, queryService);
@@ -223,7 +224,7 @@ public class ApplyAction extends SimpleAction
 		data.put("vo", vo);
 		data.put("page", page);
 
-		return "browsegroupall";
+		return "browseall";
 	}
 
 	public String browsegroupall() throws Exception
@@ -523,7 +524,7 @@ public class ApplyAction extends SimpleAction
 
 		String positionname = Struts2Utils.getRequest().getParameter("positionname");
 		String sourceid = Struts2Utils.getRequest().getParameter("sourceid");
-		String sourcename = Struts2Utils.getRequest().getParameter("sourcename");
+		String sourcename = dictionaryService.getDtext("app.infoshare.sourcename", sourceid);
 		String title = Struts2Utils.getRequest().getParameter("title");
 		String obtaintimed = Struts2Utils.getRequest().getParameter("obtaintimed");
 		String obtaintimet = Struts2Utils.getRequest().getParameter("obtaintimet");
@@ -638,7 +639,7 @@ public class ApplyAction extends SimpleAction
 				userrole_texts.append("||");
 			}
 		}
-
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String cdate = sdf.format(infoshare.getObtaintime());
 		System.out.println(cdate);
@@ -646,6 +647,9 @@ public class ApplyAction extends SimpleAction
 		SimpleDateFormat stf = new SimpleDateFormat("hh:mm:ss");
 		String ctime = stf.format(infoshare.getObtaintime());
 		System.out.println(ctime);
+		
+		// 查询可选路由
+		List routes = workFlowEngine.getDemandManager().getRoutes(actdefid);
 
 		data.put("infoshare", infoshare);
 		data.put("fileattachments", flowfiles);
@@ -659,6 +663,8 @@ public class ApplyAction extends SimpleAction
 		data.put("shareauthor_texts", shareauthor_texts);
 		data.put("shareauthor_values", shareauthor_values);
 
+		data.put("routes", routes);
+		
 		arg.put("id", id);
 		arg.put("runflowkey", runflowkey);
 		arg.put("runactkey", runactkey);
@@ -690,7 +696,7 @@ public class ApplyAction extends SimpleAction
 
 		String positionname = Struts2Utils.getRequest().getParameter("positionname");
 		String sourceid = Struts2Utils.getRequest().getParameter("sourceid");
-		String sourcename = Struts2Utils.getRequest().getParameter("sourcename");
+		String sourcename = dictionaryService.getDtext("app.infoshare.sourcename", sourceid);
 		String title = Struts2Utils.getRequest().getParameter("title");
 		
 		String obtaintimed = Struts2Utils.getRequest().getParameter("obtaintimed");
@@ -731,9 +737,9 @@ public class ApplyAction extends SimpleAction
 		infoshare.setInfosharescopectype(infosharescopectype);
 		infoshare.setMemo(memo);
 
-		infoshare.setCreater(loginname);
-		infoshare.setCreatername(username);
-		infoshare.setCreatetime(nowtime);
+//		infoshare.setCreater(loginname);
+//		infoshare.setCreatername(username);
+//		infoshare.setCreatetime(nowtime);
 		
 		infoshareService.save(infoshare);
 
@@ -760,6 +766,25 @@ public class ApplyAction extends SimpleAction
 		arg.put("runactkey", runactkey);
 
 		return "publish";
+	}
+	
+	// 发布
+	public String ajaxpublish() throws Exception
+	{
+		DynamicObject login_token = (DynamicObject) Struts2Utils.getRequest().getSession().getAttribute(com.headray.framework.spec.GlobalConstants.sys_login_token);
+
+		String loginname = ActionSessionHelper._get_loginname();
+		String username = ActionSessionHelper._get_username();
+
+		String runactkey = Struts2Utils.getRequest().getParameter("runactkey");
+		String id = workFlowEngine.getDemandManager().getRAct(runactkey, InfoShareService._tableid).getFormatAttr("dataid");
+
+		String cclassid = infoshareService.get(id).getCclassid(); // 信息共享分类标识
+		infoshareService.publish(id, cclassid, login_token);
+		String flag = "success";
+		arg.put("runactkey", runactkey);
+		arg.put("flag", flag);
+		return "ajaxpublish";
 	}
 
 	public String browsefile() throws Exception
@@ -802,6 +827,8 @@ public class ApplyAction extends SimpleAction
 	// 删除
 	public String delete() throws Exception
 	{
+		DynamicObject flowobj = get_author_common();
+
 		String[] runactkeys = StringToolKit.split(Struts2Utils.getRequest().getParameter("runactkeys"), ",");
 		if (runactkeys != null)
 		{
@@ -809,8 +836,12 @@ public class ApplyAction extends SimpleAction
 			{
 				try
 				{
-					String id = workFlowEngine.getDemandManager().getRAct(runactkeys[i], "InfoShare").getFormatAttr("dataid");
-					infoshareService.delete(id);
+					boolean isdelete = infoshareService.isdelete(flowobj);
+					if(isdelete)
+					{
+						String id = workFlowEngine.getDemandManager().getRAct(runactkeys[i], "InfoShare").getFormatAttr("dataid");
+						infoshareService.delete(id);
+					}
 				}
 				catch (Exception e)
 				{
@@ -869,7 +900,8 @@ public class ApplyAction extends SimpleAction
 
 		// 以下为特定业务权限
 		boolean ispublish = infoshareService.ispublish(flowobj); // 可否发布
-
+		boolean isupload = infoshareService.isupload(flowobj); // 可否上传文件
+		
 		arg.put("isread", isread);
 		arg.put("isedit", isedit);
 
@@ -882,6 +914,8 @@ public class ApplyAction extends SimpleAction
 		arg.put("isdelete", isdelete);
 
 		arg.put("ispublish", ispublish);
+		arg.put("isupload", isupload);
+		
 	}
 
 	public DynamicObject get_author_common() throws Exception
@@ -904,14 +938,10 @@ public class ApplyAction extends SimpleAction
 	{
 		HttpServletRequest req = Struts2Utils.getRequest();
 		String runactkey = req.getParameter("runactkey");
-		String cno = req.getParameter("cno");
-
 		DynamicObject obj_ract = workFlowEngine.getActManager().getRAct(runactkey);
-		String actdefid = obj_ract.getFormatAttr("actdefid");
 
 		DynamicObject amap = new DynamicObject();
-		amap.put("actdefid", actdefid);
-		amap.put("cno", cno);
+		amap.put("cclass", flowclass);
 		FileTemplate filetemplate = filetemplateService.locate_by(amap);
 
 		data.put("obj_filetemplate", filetemplate);

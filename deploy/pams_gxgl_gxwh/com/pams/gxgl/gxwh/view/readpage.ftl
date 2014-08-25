@@ -49,17 +49,28 @@
 		</td>
 	</tr>
 	<tr>
+		<td class="r"><label for="creatername">共享人：</label></td>
+		<td>
+		<input type="text" readonly id="creatername" name="creatername" value="${data.infoshare.creatername}" style="width:20em">
+		</td>
 		<td class="r"><label for="sourcename">信息来源：</label></td>
 		<td>
 		<span class="selectSpan">
 		<input type="hidden" id="sourceid" name="sourceid" value="" >
 		<input class="select readonly required" id="selectsourcename" name="selectsourcename"  data-options="${data.sourcename_texts}" data-values="${data.sourcename_values}" data-default="${data.infoshare.sourceid}">
 		</span>
-		<td class="r"><label for="obtaintime">信息获取时间：</label></td>
+		</td>
+	</tr>
+	<tr>
+		<td class="r"><label for="obtaintime">获取时间：</label></td>
 		<td>
 		<input type="hidden" id="obtaintime" name="obtaintime" value="${data.infoshare.obtaintime}"> 
 		<input class="date required" id="obtaintimed" name="obtaintimed" style="width:10em" value="${data.infoshare.obtaintimed}"/>
 		<input class="time required" id="obtaintimet" name="obtaintimet" style="width:10em" value="${data.infoshare.obtaintimet}"/>
+		</td>
+		<td class="r"><label for="publishtime">发布时间：</label></td>
+		<td>
+		<input type="text" readonly id="publishtime" name="publishtime" value="<#if data.infoshare.publishtime!="">${data.infoshare.publishtime?string("yyyy-MM-dd HH:mm")}</#if>" style="width:20em">
 		</td>
 	</tr>
 	<tr>
@@ -73,6 +84,7 @@
 	<tr>
 		<td class="r"><label for="cclassname">分类：</label></td>
 		<td><input class="text required" id="cclassname" name="cclassname" style="width:20em" value="${data.infoshare.cclassname}"/></td>
+		<#--
 		<td class="r"><label id="lb_title">共享权限：</label></td>
 		<td>
 		<span class="selectSpan">
@@ -80,6 +92,9 @@
 		<input class="select readonly required" id="selectshareauthor" data-options="${data.shareauthor_texts}" data-values="${data.shareauthor_values}" data-default="${data.infoshare.shareauthor}">
 		</span>
 		</td>
+		-->
+		<td class="r">&nbsp;</td>
+		<td>		
 	</tr>
 	<tr>
 		<td class="r"><label for="infosharescope">共享范围：</label></td>
@@ -111,7 +126,7 @@
 		<ul class="attachmentUl">
 			<#list data.fileattachments as afile>
 			<li data-id="${afile.id}" cno="${afile.cno}">
-			<a target="_blank" class="attachment" href="${base}/module/pams/gxgl/wjwh/fileattachment_downloadbyid.action?id=${afile.id}">【${afile.sfilename}】</a>&nbsp;&nbsp;${afile.creatername}&nbsp;&nbsp;${afile.createtime}&nbsp;&nbsp;<span class="del">X</span><br>
+			<a target="_blank" class="attachment" href="${base}/module/pams/gxgl/wjwh/fileattachment_downloadbyid.action?id=${afile.id}">【${afile.sfilename}】</a>&nbsp;&nbsp;${afile.creatername}&nbsp;于&nbsp;${afile.createtime}&nbsp;在&nbsp; ${afile.actname}&nbsp;业务环节上传。<br>
 			</li>
 			</#list>
 		</ul>

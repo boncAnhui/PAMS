@@ -71,47 +71,66 @@ public class InfoShareService
 	// 查询待办记录
 	public String get_browsewait_sql(Map map) throws Exception
 	{
+		String title = (String)map.get("title");
 		String cno = (String)map.get("cno");
-		String title = (String)map.get("title");	
 		String sourcename = (String)map.get("sourcename");	
 		String cclassname = (String)map.get("cclassname");
 		String creatername = (String)map.get("creatername");	
+		String deptname = (String)map.get("deptname");
+		String positionname = (String)map.get("positionname");
+		String beginpublishtime = (String)map.get("beginpublishtime");
+		String endpublishtime = (String)map.get("endpublishtime");
 		String bactcname = (String)map.get("bactcname");
 		
 		StringBuffer sql = new StringBuffer();
 
-		sql.append(" select bv.id, bv.cno, bv.title, bv.obtaintime, ").append("\n");
+		sql.append(" select bv.id, bv.cno, bv.title, bv.sourcename, bv.publishtime, bv.creatername, ").append("\n");
 		sql.append(uIService.get_browsewait_field(map)).append("\n");
 		sql.append(" from t_app_infoshare bv, " + uIService.get_browsewait_table(map)).append("\n");
 		sql.append(" where 1 = 1 ").append("\n");
 		sql.append(uIService.get_browsewait_where(map)).append("\n");
-		if (!StringToolKit.isBlank(cno))
-		{
-			sql.append(" and bv.cno like " + SQLParser.charLikeValue(cno));
-		}		
+		
 		if (!StringToolKit.isBlank(title))
 		{
-			sql.append(" and bv.title like " + SQLParser.charLikeValue(title));
+			sql.append(" and lower(bv.title) like lower(" + SQLParser.charLikeValue(title) + ")");
 		}
+		if (!StringToolKit.isBlank(cno))
+		{
+			sql.append(" and lower(bv.cno) like lower(" + SQLParser.charLikeValue(cno) + ")");
+		}		
 		if (!StringToolKit.isBlank(sourcename))
 		{
 			sql.append(" and bv.sourcename like " + SQLParser.charLikeValue(sourcename));
-		}		
+		}
 		if (!StringToolKit.isBlank(cclassname))
 		{
 			sql.append(" and bv.cclassname like " + SQLParser.charLikeValue(cclassname));
 		}
-		
 		if (!StringToolKit.isBlank(creatername))
 		{
 			sql.append(" and bv.creatername like " + SQLParser.charLikeValue(creatername));
 		}		
+		if (!StringToolKit.isBlank(deptname))
+		{
+			sql.append(" and bv.deptname like " + SQLParser.charLikeValue(deptname));
+		}	
+		if (!StringToolKit.isBlank(positionname))
+		{
+			sql.append(" and bv.positionname like " + SQLParser.charLikeValue(positionname));
+		}
+		if (!StringToolKit.isBlank(beginpublishtime))
+		{
+			sql.append(" and bv.publishtime >= to_date('" + beginpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
+		}
+		if (!StringToolKit.isBlank(endpublishtime))
+		{
+			sql.append(" and bv.publishtime >= to_date('" + endpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
+		}
 		if (!StringToolKit.isBlank(bactcname))
 		{
 			sql.append(" and bact.cname like " + SQLParser.charLikeValue(bactcname));
-		}		
-		
-		
+		}
+
 		sql.append(" order by ract.createtime desc ").append("\n");
 		return sql.toString();
 	}
@@ -119,12 +138,23 @@ public class InfoShareService
 	// 查询已办记录
 	public String get_browsehandle_sql(Map map) throws Exception
 	{
+		String title = (String)map.get("title");
+		String cno = (String)map.get("cno");
+		String sourcename = (String)map.get("sourcename");	
+		String cclassname = (String)map.get("cclassname");
+		String creatername = (String)map.get("creatername");	
+		String deptname = (String)map.get("deptname");
+		String positionname = (String)map.get("positionname");
+		String beginpublishtime = (String)map.get("beginpublishtime");
+		String endpublishtime = (String)map.get("endpublishtime");
+		String bactcname = (String)map.get("bactcname");
+		
 		StringBuffer sql = new StringBuffer();
 
-		sql.append(" select v.id, v.cno, v.title, v.obtaintime, v.bactid, v.bactcname, v.ractcreatetime, v.ractstate, v.runactkey, ractowner.ownerctx ractownerctx, usr.cname username").append("\n");
+		sql.append(" select v.id, v.cno, v.title, v.sourcename, v.publishtime, v.creatername, v.bactid, v.bactcname, v.ractcreatetime, v.ractstate, v.runactkey, ractowner.ownerctx ractownerctx, usr.cname username, v.zxsc ").append("\n");
 		sql.append("  from ( ").append("\n");
 		
-		sql.append(" select distinct bv.id, bv.cno, bv.title, bv.obtaintime, ").append("\n");
+		sql.append(" select distinct bv.id, bv.cno, bv.title, bv.sourcename, bv.publishtime, bv.creatername, ").append("\n");
 		sql.append(uIService.get_browsehandle_field(map)).append("\n");
 		sql.append(" from t_app_infoshare bv, " + uIService.get_browsehandle_table(map)).append("\n");
 		sql.append(" where 1 = 1 ").append("\n");
@@ -136,21 +166,124 @@ public class InfoShareService
 		sql.append("   left join t_sys_user usr ").append("\n");
 		sql.append("   on ractowner.ownerctx = usr.loginname ").append("\n");
 		
+		if (!StringToolKit.isBlank(title))
+		{
+			sql.append(" and lower(bv.title) like lower(" + SQLParser.charLikeValue(title) + ")");
+		}
+		if (!StringToolKit.isBlank(cno))
+		{
+			sql.append(" and lower(bv.cno) like lower(" + SQLParser.charLikeValue(cno) + ")");
+		}		
+		if (!StringToolKit.isBlank(sourcename))
+		{
+			sql.append(" and bv.sourcename like " + SQLParser.charLikeValue(sourcename));
+		}
+		if (!StringToolKit.isBlank(cclassname))
+		{
+			sql.append(" and bv.cclassname like " + SQLParser.charLikeValue(cclassname));
+		}
+		if (!StringToolKit.isBlank(creatername))
+		{
+			sql.append(" and bv.creatername like " + SQLParser.charLikeValue(creatername));
+		}		
+		if (!StringToolKit.isBlank(deptname))
+		{
+			sql.append(" and bv.deptname like " + SQLParser.charLikeValue(deptname));
+		}	
+		if (!StringToolKit.isBlank(positionname))
+		{
+			sql.append(" and bv.positionname like " + SQLParser.charLikeValue(positionname));
+		}
+		if (!StringToolKit.isBlank(beginpublishtime))
+		{
+			sql.append(" and bv.publishtime >= to_date('" + beginpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
+		}
+		if (!StringToolKit.isBlank(endpublishtime))
+		{
+			sql.append(" and bv.publishtime >= to_date('" + endpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
+		}
+		if (!StringToolKit.isBlank(bactcname))
+		{
+			sql.append(" and bact.cname like " + SQLParser.charLikeValue(bactcname));
+		}
+		
 		sql.append(" order by v.cno desc, v.ractcreatetime desc ").append("\n");
 		return sql.toString();
 	}
 	
-	// 查询个人全部记录
+	// 查询已办记录
 	public String get_browseall_sql(Map map) throws Exception
 	{
+		String title = (String)map.get("title");
+		String cno = (String)map.get("cno");
+		String sourcename = (String)map.get("sourcename");	
+		String cclassname = (String)map.get("cclassname");
+		String creatername = (String)map.get("creatername");	
+		String deptname = (String)map.get("deptname");
+		String positionname = (String)map.get("positionname");
+		String beginpublishtime = (String)map.get("beginpublishtime");
+		String endpublishtime = (String)map.get("endpublishtime");
+		String bactcname = (String)map.get("bactcname");
+		
 		StringBuffer sql = new StringBuffer();
 
-		sql.append(" select bv.id, bv.title, bv.obtaintime, ").append("\n");
-		sql.append(uIService.get_browsehandle_field(map)).append("\n");
-		sql.append(" from t_app_infoshare bv, " + uIService.get_browsehandle_table(map)).append("\n");
+		sql.append(" select v.id, v.cno, v.title, v.sourcename, v.publishtime, v.creatername, v.bactid, v.bactcname, v.ractcreatetime, v.ractstate, v.runactkey, ractowner.ownerctx ractownerctx, usr.cname username, v.zxsc ").append("\n");
+		sql.append("  from ( ").append("\n");
+		
+		sql.append(" select distinct bv.id, bv.cno, bv.title, bv.sourcename, bv.publishtime, bv.creatername, ").append("\n");
+		sql.append(uIService.get_browseall_field(map)).append("\n");
+		sql.append(" from t_app_infoshare bv, " + uIService.get_browseall_table(map)).append("\n");
 		sql.append(" where 1 = 1 ").append("\n");
-		sql.append(uIService.get_browsehandle_where(map)).append("\n");
-		sql.append(" order by ract.createtime desc ").append("\n");
+		sql.append(uIService.get_browseall_where(map)).append("\n");
+		
+		sql.append("   ) v ").append("\n");
+		sql.append("   left join t_sys_wfractowner ractowner ").append("\n");
+		sql.append("   on v.runactkey = ractowner.runactkey ").append("\n");
+		sql.append("   left join t_sys_user usr ").append("\n");
+		sql.append("   on ractowner.ownerctx = usr.loginname ").append("\n");
+		
+		if (!StringToolKit.isBlank(title))
+		{
+			sql.append(" and lower(bv.title) like lower(" + SQLParser.charLikeValue(title) + ")");
+		}
+		if (!StringToolKit.isBlank(cno))
+		{
+			sql.append(" and lower(bv.cno) like lower(" + SQLParser.charLikeValue(cno) + ")");
+		}		
+		if (!StringToolKit.isBlank(sourcename))
+		{
+			sql.append(" and bv.sourcename like " + SQLParser.charLikeValue(sourcename));
+		}
+		if (!StringToolKit.isBlank(cclassname))
+		{
+			sql.append(" and bv.cclassname like " + SQLParser.charLikeValue(cclassname));
+		}
+		if (!StringToolKit.isBlank(creatername))
+		{
+			sql.append(" and bv.creatername like " + SQLParser.charLikeValue(creatername));
+		}		
+		if (!StringToolKit.isBlank(deptname))
+		{
+			sql.append(" and bv.deptname like " + SQLParser.charLikeValue(deptname));
+		}	
+		if (!StringToolKit.isBlank(positionname))
+		{
+			sql.append(" and bv.positionname like " + SQLParser.charLikeValue(positionname));
+		}
+		if (!StringToolKit.isBlank(beginpublishtime))
+		{
+			sql.append(" and bv.publishtime >= to_date('" + beginpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
+		}
+		if (!StringToolKit.isBlank(endpublishtime))
+		{
+			sql.append(" and bv.publishtime >= to_date('" + endpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
+		}
+		if (!StringToolKit.isBlank(bactcname))
+		{
+			sql.append(" and bact.cname like " + SQLParser.charLikeValue(bactcname));
+		}
+		
+		sql.append(" order by v.cno desc, v.ractcreatetime desc ").append("\n");
 		return sql.toString();
 	}
 
@@ -158,26 +291,76 @@ public class InfoShareService
 	// 查询全体记录（当前流程）
 	public String get_browsegroupall_sql(Map map) throws Exception
 	{
+		String title = (String)map.get("title");
+		String cno = (String)map.get("cno");
+		String sourcename = (String)map.get("sourcename");	
+		String cclassname = (String)map.get("cclassname");
+		String creatername = (String)map.get("creatername");	
+		String deptname = (String)map.get("deptname");
+		String positionname = (String)map.get("positionname");
+		String beginpublishtime = (String)map.get("beginpublishtime");
+		String endpublishtime = (String)map.get("endpublishtime");
+		String bactcname = (String)map.get("bactcname");
+		
 		StringBuffer sql = new StringBuffer();
-		sql.append(" select bv.id, bv.title, bv.obtaintime, ").append("\n");
-		sql.append(uIService.get_browsegroupall_field(map)).append("\n");
-		sql.append(" from t_app_infoshare bv, " + uIService.get_browsegroupall_table(map));
-		sql.append(" where 1 = 1 ").append("\n");
-		sql.append(uIService.get_browsegroupall_where(map));
-		sql.append(" order by ract.createtime desc ").append("\n");
-		return sql.toString();
-	}
 
-	// 查询一级子流程全体记录
-	public String get_browsegroupsall_sql(Map map) throws Exception
-	{
-		StringBuffer sql = new StringBuffer();
-		sql.append(" select bv.id, bv.bt, bv.zzxqmc,").append("\n");
-		sql.append(uIService.get_browsegroupsall_field(map)).append("\n");
-		sql.append(" from t_app_infoshare bv, " + uIService.get_browsegroupsall_table(map));
+		sql.append(" select v.id, v.cno, v.title, v.sourcename, v.publishtime, v.creatername, v.bactid, v.bactcname, v.ractcreatetime, v.ractstate, v.runactkey, ractowner.ownerctx ractownerctx, usr.cname username, v.zxsc ").append("\n");
+		sql.append("  from ( ").append("\n");
+		
+		sql.append(" select distinct bv.id, bv.cno, bv.title, bv.sourcename, bv.publishtime, bv.creatername, ").append("\n");
+		sql.append(uIService.get_browsegroupall_field(map)).append("\n");
+		sql.append(" from t_app_infoshare bv, " + uIService.get_browsegroupall_table(map)).append("\n");
 		sql.append(" where 1 = 1 ").append("\n");
-		sql.append(uIService.get_browsegroupsall_where(map));
-		sql.append(" order by ract.createtime desc ").append("\n");
+		sql.append(uIService.get_browsegroupall_where(map)).append("\n");
+		
+		sql.append("   ) v ").append("\n");
+		sql.append("   left join t_sys_wfractowner ractowner ").append("\n");
+		sql.append("   on v.runactkey = ractowner.runactkey ").append("\n");
+		sql.append("   left join t_sys_user usr ").append("\n");
+		sql.append("   on ractowner.ownerctx = usr.loginname ").append("\n");
+		
+		if (!StringToolKit.isBlank(title))
+		{
+			sql.append(" and lower(bv.title) like lower(" + SQLParser.charLikeValue(title) + ")");
+		}
+		if (!StringToolKit.isBlank(cno))
+		{
+			sql.append(" and lower(bv.cno) like lower(" + SQLParser.charLikeValue(cno) + ")");
+		}		
+		if (!StringToolKit.isBlank(sourcename))
+		{
+			sql.append(" and bv.sourcename like " + SQLParser.charLikeValue(sourcename));
+		}
+		if (!StringToolKit.isBlank(cclassname))
+		{
+			sql.append(" and bv.cclassname like " + SQLParser.charLikeValue(cclassname));
+		}
+		if (!StringToolKit.isBlank(creatername))
+		{
+			sql.append(" and bv.creatername like " + SQLParser.charLikeValue(creatername));
+		}		
+		if (!StringToolKit.isBlank(deptname))
+		{
+			sql.append(" and bv.deptname like " + SQLParser.charLikeValue(deptname));
+		}	
+		if (!StringToolKit.isBlank(positionname))
+		{
+			sql.append(" and bv.positionname like " + SQLParser.charLikeValue(positionname));
+		}
+		if (!StringToolKit.isBlank(beginpublishtime))
+		{
+			sql.append(" and bv.publishtime >= to_date('" + beginpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
+		}
+		if (!StringToolKit.isBlank(endpublishtime))
+		{
+			sql.append(" and bv.publishtime >= to_date('" + endpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
+		}
+		if (!StringToolKit.isBlank(bactcname))
+		{
+			sql.append(" and bact.cname like " + SQLParser.charLikeValue(bactcname));
+		}
+		
+		sql.append(" order by v.cno desc, v.ractcreatetime desc ").append("\n");
 		return sql.toString();
 	}
 
@@ -636,6 +819,14 @@ public class InfoShareService
 	{
 		boolean sign = false;
 		
+		boolean isedit = workFlowEngine.getDemandManager().isEdit(map);
+		
+		if(!isedit)
+		{
+			sign = false;
+			return sign;
+		}		
+		
 		String tableid = map.getFormatAttr(GlobalConstants.swap_tableid);
 		String dataid = map.getFormatAttr(GlobalConstants.swap_dataid);
 
@@ -652,6 +843,31 @@ public class InfoShareService
 		return sign;
 	}
 
+	
+	// 是否可上传文件
+	public boolean isupload(DynamicObject map) throws Exception
+	{
+		boolean sign = false;
+		
+		String tableid = map.getFormatAttr(GlobalConstants.swap_tableid);
+		String dataid = map.getFormatAttr(GlobalConstants.swap_dataid);
+		
+		if(!isedit(map))
+		{
+			sign = false;
+			return sign;
+		}
+		
+		Timestamp publishtime = infoshareDao.get(dataid).getPublishtime();
+		// 未发布的共享单，可以上传。
+		if(publishtime==null)
+		{
+			sign = true;
+			return sign;
+		}
+		
+		return sign;
+	}
 	
 
 	public GeneratorService getGeneratorService()
