@@ -32,16 +32,19 @@ public class KnowledgeService
 		String cclassid = (String) map.get("cclassid");
 		String loginname = (String) map.get("loginname");
 		
-		StringBuffer hql = new StringBuffer();
-		hql.append(" select k.* ").append("\n");
-		hql.append(" from t_app_knowledge k, t_app_knowledgeclassrelation kcr ").append("\n");
-		hql.append(" where 1 = 1").append("\n");
-		hql.append(" and k.id = kcr.kid ").append("\n");
-		hql.append(" and kcr.classid = " + SQLParser.charValue(cclassid)).append("\n");
-		hql.append("order by k.createtime desc").append("\n");
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append(" select k.*  ").append("\n");
+		sql.append("  from t_app_knowledge k, t_app_knowledgeclassrelation kcr, t_app_knowledgeclass kc, t_app_knowledgeclass kcc ").append("\n");
+		sql.append("  where 1 = 1 ").append("\n");
+		sql.append("  and k.id = kcr.kid  ").append("\n");
+		sql.append("  and kcr.classid = kc.id ").append("\n");
+		sql.append("  and kc.cno like kcc.cno || '%' ").append("\n");
+		sql.append("  and kcc.id = " +  SQLParser.charValue(cclassid)).append("\n");
+		sql.append(" order by k.createtime desc ").append("\n");
 
 		JdbcTemplate jt = jdbcDao.getJdbcTemplate();
-		List datas = DyDaoHelper.query(jt, hql.toString());
+		List datas = DyDaoHelper.query(jt, sql.toString());
 
 		return datas;
 	}

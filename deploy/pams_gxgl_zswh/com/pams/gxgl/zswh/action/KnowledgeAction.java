@@ -53,7 +53,7 @@ public class KnowledgeAction extends SimpleAction
 		String foldertype = "";
 		if ("R0".equals(rootid))
 		{
-			rootname = "信息分类";
+			rootname = "共享资源库";
 		}
 		else
 		{

@@ -10,6 +10,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.blue.ssh.core.action.SimpleAction;
 import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
+import com.headray.framework.common.generator.FormatKey;
 import com.headray.framework.common.generator.UUIDGenerator;
 import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.headray.framework.services.function.StringToolKit;
@@ -53,7 +55,7 @@ public class FileAttachmentAction extends SimpleAction
 	private InputStream inputStream;
 
 	private String downFileName;
-	
+
 	@Autowired
 	private FileAttachmentService fileattachmentService;
 
@@ -63,6 +65,88 @@ public class FileAttachmentAction extends SimpleAction
 	@Autowired
 	private WorkFlowEngine workFlowEngine;
 
+	// public String upload() throws Exception
+	// {
+	// DynamicObject login_token = (DynamicObject)
+	// Struts2Utils.getRequest().getSession().getAttribute(GlobalConstants.sys_login_token);
+	// String loginname =
+	// login_token.getFormatAttr(GlobalConstants.sys_login_user);
+	// String username =
+	// login_token.getFormatAttr(GlobalConstants.sys_login_username);
+	// Timestamp nowtime = new Timestamp(System.currentTimeMillis());
+	//
+	// String runactkey = Struts2Utils.getRequest().getParameter("runactkey");
+	// // 活动实例标识
+	// String cno = Struts2Utils.getRequest().getParameter("cno"); // 文件模板编号
+	// String cclass = Struts2Utils.getRequest().getParameter("cclass"); // 分类
+	//
+	// DynamicObject obj_ract =
+	// workFlowEngine.getActManager().getRAct(runactkey);
+	// String actdefid = obj_ract.getFormatAttr("actdefid");
+	// String flowdefid = obj_ract.getFormatAttr("flowdefid");
+	// DynamicObject obj_rflow =
+	// workFlowEngine.getDemandManager().getBFlow(flowdefid);
+	// DynamicObject obj_bact =
+	// workFlowEngine.getDemandManager().getBAct(actdefid);
+	//
+	// Map amap = new DynamicObject();
+	// amap.put("actdefid", actdefid);
+	// amap.put("cno", cno);
+	// amap.put("cclass", cclass);
+	// FileTemplate filetemplate = filetemplateService.locate_by(amap);
+	//
+	// // 保存上传附件
+	// String dir = String.valueOf(new GregorianCalendar().get(Calendar.YEAR));
+	//
+	// try
+	// {
+	// Map<String, String> map = uploaddoc(dir);
+	// // 保存附件记录;
+	// FileAttachment fileattachment = new FileAttachment();
+	// fileattachment.setFiletemplateid(filetemplate.getId());
+	// fileattachment.setCclass(cclass);
+	// fileattachment.setDataid(obj_ract.getFormatAttr("dataid"));
+	// fileattachment.setFlowdefid(obj_ract.getFormatAttr("flowdefid"));
+	// fileattachment.setFlowsno(obj_rflow.getFormatAttr("sno"));
+	// fileattachment.setActdefid(actdefid);
+	// fileattachment.setActname(obj_bact.getFormatAttr("cname"));
+	// fileattachment.setRunflowkey(obj_ract.getFormatAttr("runflowkey"));
+	// fileattachment.setRunactkey(runactkey);
+	// fileattachment.setCno(cno);
+	// fileattachment.setCname(filetemplate.getCname());
+	// fileattachment.setCtype(filetemplate.getCtype());
+	// fileattachment.setProperty(filetemplate.getProperty());
+	// fileattachment.setRequired(filetemplate.getRequired());
+	// fileattachment.setCreater(loginname);
+	// fileattachment.setCreatername(username);
+	// fileattachment.setCreatetime(nowtime);
+	// fileattachment.setSfilename(fuploadFileName);
+	// fileattachment.setFilename(map.get("filename"));
+	// fileattachment.setFileextname(map.get("fileextname"));
+	// fileattachment.setCurl(dir.replace('\\', '/'));
+	// fileattachmentService.create(fileattachment);
+	//
+	// // 返回
+	// SimpleDateFormat simpleDateFormat = new
+	// SimpleDateFormat("yyyy-MM-dd HH:mm");
+	// HttpServletResponse response = ServletActionContext.getResponse();
+	// // response.getWriter().flush();
+	// response.getWriter().append("['" + fileattachment.getCurl() + "','" +
+	// fileattachment.getId() + "','" + fileattachment.getCname() + "','" +
+	// fileattachment.getCreater() + "','" +
+	// simpleDateFormat.format(fileattachment.getCreatetime()) + "']");
+	//
+	// }
+	// catch (Exception e)
+	// {
+	// // 返回
+	// HttpServletResponse response = ServletActionContext.getResponse();
+	// response.getWriter().append(e.getMessage());
+	// }
+	//
+	// return null;
+	// }
+
 	public String upload() throws Exception
 	{
 		DynamicObject login_token = (DynamicObject) Struts2Utils.getRequest().getSession().getAttribute(GlobalConstants.sys_login_token);
@@ -71,22 +155,26 @@ public class FileAttachmentAction extends SimpleAction
 		Timestamp nowtime = new Timestamp(System.currentTimeMillis());
 
 		String runactkey = Struts2Utils.getRequest().getParameter("runactkey"); // 活动实例标识
-		String cno = Struts2Utils.getRequest().getParameter("cno"); // 文件模板编号
-		String cclass = Struts2Utils.getRequest().getParameter("cclass"); // 分类
+		String filetemplateid = Struts2Utils.getRequest().getParameter("filetemplateid");
 
 		DynamicObject obj_ract = workFlowEngine.getActManager().getRAct(runactkey);
 		String actdefid = obj_ract.getFormatAttr("actdefid");
 		String flowdefid = obj_ract.getFormatAttr("flowdefid");
 		DynamicObject obj_rflow = workFlowEngine.getDemandManager().getBFlow(flowdefid);
+		DynamicObject obj_bact = workFlowEngine.getDemandManager().getBAct(actdefid);
 
 		Map amap = new DynamicObject();
-		amap.put("actdefid", actdefid);
-		amap.put("cno", cno);
+		amap.put("filetemplateid", filetemplateid);
+
+		String cclass = "GXGL"; // 临时代码
+
 		FileTemplate filetemplate = filetemplateService.locate_by(amap);
 
-		// 保存上传附件
-		String dir = String.valueOf(new GregorianCalendar().get(Calendar.YEAR));
+		String cno = filetemplate.getCno();
 
+		Calendar cal = new GregorianCalendar();
+		// 保存上传附件
+		String dir = "信息共享\\" + cal.get(Calendar.YEAR) + "\\" + (cal.get(Calendar.YEAR) + "" + FormatKey.format(cal.get(Calendar.MONTH), 2)) + "\\" + ( cal.get(Calendar.YEAR) + "" + FormatKey.format(cal.get(Calendar.MONTH), 2) + "" + FormatKey.format(cal.get(Calendar.DATE), 2));
 		try
 		{
 			Map<String, String> map = uploaddoc(dir);
@@ -98,7 +186,7 @@ public class FileAttachmentAction extends SimpleAction
 			fileattachment.setFlowdefid(obj_ract.getFormatAttr("flowdefid"));
 			fileattachment.setFlowsno(obj_rflow.getFormatAttr("sno"));
 			fileattachment.setActdefid(actdefid);
-			fileattachment.setActname(obj_ract.getFormatAttr("cname"));
+			fileattachment.setActname(obj_bact.getFormatAttr("cname"));
 			fileattachment.setRunflowkey(obj_ract.getFormatAttr("runflowkey"));
 			fileattachment.setRunactkey(runactkey);
 			fileattachment.setCno(cno);
@@ -162,9 +250,9 @@ public class FileAttachmentAction extends SimpleAction
 
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpServletResponse respone = ServletActionContext.getResponse();
-		
+
 		String Agent = request.getHeader("User-Agent");
-		
+
 		if (null != Agent)
 		{
 			Agent = Agent.toLowerCase();
@@ -226,21 +314,57 @@ public class FileAttachmentAction extends SimpleAction
 		}
 
 		newFileName = UUIDGenerator.getInstance().getNextValue() + "." + extName;
-
-		File dirname = new File(rootdir + "\\" + dir);
-
-		if (!dirname.isDirectory())
-		{
-			// 目录不存在
-			dirname.mkdir(); // 创建目录
-		}
-
-		fupload.renameTo(new File(rootdir + "\\" + dir + "\\" + newFileName));
+		
+		String alldirname = rootdir + "\\" + dir;
+		create_folders(alldirname);
+		
+		fupload.renameTo(new File(alldirname + "\\" + newFileName));
 
 		map.put("filename", newFileName);
 		map.put("fileextname", extName);
 
 		return map;
+	}
+
+	public static void create_folders(final String folders)
+	{
+		StringTokenizer st = new StringTokenizer(folders, File.separator);
+		StringBuilder sb = new StringBuilder();
+		String osname = System.getProperty("os.name");
+		if (osname.compareToIgnoreCase("linux") == 0)
+			sb.append(File.separator);
+
+		while (st.hasMoreTokens())
+		{
+			sb.append(st.nextToken());
+			File file = new File(sb.toString());
+			if (!file.exists())
+				file.mkdir();
+			sb.append(File.separator);
+		}
+	}
+
+	// 删除上传文件(包括数据库记录以及服务器文件)
+	public String ajaxdelete() throws Exception
+	{
+		String attachid = Struts2Utils.getRequest().getParameter("attachid");
+		String flag = "";
+		try
+		{
+			fileattachmentService.delete(attachid);
+			flag = "done";
+		}
+		catch (Exception e)
+		{
+			System.out.println("删除文件操作出错");
+			e.printStackTrace();
+			flag = "error";
+		}
+
+		arg.put("flag", flag);
+
+		return "ajaxdelete";
+
 	}
 
 	public String get_searchname()

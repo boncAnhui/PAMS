@@ -157,6 +157,11 @@ public class FileAttachmentService
 
 		return files;
 	}
+	
+	public void delete(String id) throws Exception
+	{
+		fileattachmentDao.delete(id);
+	}
 
 	public GeneratorService getGeneratorService()
 	{

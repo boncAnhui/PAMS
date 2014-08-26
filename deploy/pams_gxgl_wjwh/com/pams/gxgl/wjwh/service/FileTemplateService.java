@@ -42,6 +42,8 @@ public class FileTemplateService
 		String flowdefid = (String)map.get("flowdefid");
 		String actdefid = (String)map.get("actdefid");
 		String cno = (String)map.get("cno");
+		String cclass = (String)map.get("cclass");
+		String flowsno = (String)map.get("flowsno");
 		
 		sql.append(" from FileTemplate a where 1 = 1 ");
 		
@@ -57,6 +59,14 @@ public class FileTemplateService
 		{
 			sql.append(" and cno = " + SQLParser.charValue(cno));
 		}
+		if(!StringToolKit.isBlank(cclass))
+		{
+			sql.append(" and cclass = " + SQLParser.charValue(cclass));
+		}
+		if(!StringToolKit.isBlank(flowsno))
+		{
+			sql.append(" and flowsno = " + SQLParser.charValue(flowsno));
+		}			
 		
 		return filetemplateDao.findUnique(sql.toString());
 	}	

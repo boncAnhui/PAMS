@@ -14,6 +14,7 @@
 				<param name="contentDisposition">attachment;filename="${downFileName}"</param>
 				<param name="bufferSize">4096</param>
 			</result>
+			<result name="ajaxdelete" type="freemarker">/com/pams/gxgl/wjwh/view/ajaxdelete.ftl</result>
 		</action>
 	</package>
 </struts>

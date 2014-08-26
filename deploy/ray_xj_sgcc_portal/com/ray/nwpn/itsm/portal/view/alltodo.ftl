@@ -13,7 +13,7 @@
 	<#if aobj.tableid='InfoShare'>[共享管理]
 		</span>
 		<!-- <a href="${base}/module/pams/gxgl/gxwh/apply_locateframe.action?runactkey=${aobj.runactkey}"> -->
-		<a href="javascript:redirctmoduleurl('${base}/module/app/business/event/event/event_tree.action','${base}/module/pams/gxgl/gxwh/apply_locateframe.action?runactkey=${aobj.runactkey}')">
+		<a href="javascript:openwin('${base}/module/pams/gxgl/gxwh/apply_readpageframe.action?runactkey=${aobj.runactkey}','waitwork',pub_width_large,pub_height_large,null)">
 		<#if aobj.title?length gt 30>${aobj.title?substring(0,29)}...<#else>${aobj.title}</#if></a>
 	</#if>
 		

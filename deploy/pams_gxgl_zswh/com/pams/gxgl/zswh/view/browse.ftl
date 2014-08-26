@@ -116,9 +116,17 @@ function page_migration()
 	<li>
     	<span class="t">
     	<input name="abc" class="checkbox"  data-id="${(aobj.id)!}" />
-    	<a href="javascript:void(0)" onclick="openwin('knowledge_readpage.action?id=${aobj.id}&cclassid=${arg.cclassid}','locateknowledge', pub_width_large, pub_height_large)">${aobj.title}</a>
+    	<a href="javascript:void(0)" onclick="openwin('knowledge_readpage.action?id=${aobj.id}&cclassid=${arg.cclassid}','locateknowledge', pub_width_large, pub_height_large)"><#if aobj.title=="">无标题<#else>${aobj.title}</#if></a>
     	</span>
-        <span class="m">创建日期:${aobj.createtime} 作者：${aobj.mauthor} 文档编号：${aobj.kno} 安全级别：${aobj.slevel} 状态：<#if aobj.iseffective=="Y" >发布<#else>新建</#if></span>
+        <span class="m">
+                           日期:<#if aobj.createtime!="">${aobj.createtime?datetime("yyyy-MM-dd HH:mm")}</#if>
+                           文档编号：${aobj.kno} 
+                           状态：<#if aobj.iseffective=="Y" >发布<#else>新建</#if>
+                           作者：${aobj.mauthor}
+                           部门：${aobj.mauthordept}
+                          文档分类：<#if aobj.restype="InfoShare">信息共享</#if>
+       
+        </span>
         <span class="e">摘要：<#if aobj.summary?length &gt; 50>${aobj.summary?substring(0,50)}...<#else>${aobj.summary}</#if></span>
     </li>
 </#list>
@@ -134,4 +142,5 @@ function page_migration()
 </html>
 
 </script>
+
 
