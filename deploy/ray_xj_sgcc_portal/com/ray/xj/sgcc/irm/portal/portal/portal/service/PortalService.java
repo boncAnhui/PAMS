@@ -323,7 +323,7 @@ public class PortalService
 	public String getAllToDo_sql(String loginname) throws Exception
 	{
 		StringBuffer sql = new StringBuffer();
-		sql.append(" select * from T_SYS_WFWAITWORK  where receiver='" + loginname + "' ").append("\n");
+		sql.append(" select * from T_SYS_WFWAITWORK  where receiver='" + loginname + "' order by sendtime desc  ").append("\n");
 		return sql.toString();
 	}
 
