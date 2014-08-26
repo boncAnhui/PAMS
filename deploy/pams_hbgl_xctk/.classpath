@@ -10,5 +10,15 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/pams_hbgl_yhsq"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/pams_gxgl_wjwh"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/pams_hbgl_main"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/headray_app_query_v1"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/headray_core_data"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ray_core_framework"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ray_core_function"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ray_core_json"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ray_core_ssh"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ray_app_query"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ray_app_query_view_irm"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ray_app_workflow_ui_pams"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ray_app_workflow_v1"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
