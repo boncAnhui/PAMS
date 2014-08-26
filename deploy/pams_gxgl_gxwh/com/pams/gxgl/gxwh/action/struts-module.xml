@@ -23,7 +23,7 @@
 
 			<result name="input" type="freemarker">/com/pams/gxgl/gxwh/view/input.ftl</result>
 			<result name="insert" type="redirect">apply_locateframe.action?runactkey=${arg.runactkey}&amp;isinput=${arg.isinput}</result>
-			<result name="delete" type="redirect">apply_browsewait.action?_searchname=gxgl.gxwh.browsewait&flowcclass=GXGL</result>
+			<result name="delete" type="redirect">apply_browsewait.action?_searchname=gxgl.gxwh.browsewait&amp;flowcclass=GXGL</result>
 			<result name="update" type="redirect">apply_locateframe.action?runactkey=${arg.runactkey}</result>
 			<result name="publish" type="redirect">apply_locate.action?runactkey=${arg.runactkey}</result>
 			<result name="ajaxpublish" type="freemarker">/com/pams/gxgl/gxwh/view/ajaxpublish.ftl</result>

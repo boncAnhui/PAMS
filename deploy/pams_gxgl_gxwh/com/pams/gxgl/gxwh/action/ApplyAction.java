@@ -836,11 +836,12 @@ public class ApplyAction extends SimpleAction
 			{
 				try
 				{
+					flowobj.setAttr("runactkey", runactkeys[i]);
 					boolean isdelete = infoshareService.isdelete(flowobj);
 					if(isdelete)
 					{
 						String id = workFlowEngine.getDemandManager().getRAct(runactkeys[i], "InfoShare").getFormatAttr("dataid");
-						infoshareService.delete(id);
+						// infoshareService.delete(id);
 					}
 				}
 				catch (Exception e)

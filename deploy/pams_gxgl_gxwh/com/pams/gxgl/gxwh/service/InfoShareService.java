@@ -733,7 +733,12 @@ public class InfoShareService
 		String userid = map.getFormatAttr(GlobalConstants.swap_coperatorid);
 		String tableid = "InfoShare";
 		String runactkey = (String) map.get("runactkey");
+		
+		DynamicObject obj_ract = workFlowEngine.getActManager().getRAct(runactkey);
+		String runflowkey = obj_ract.getFormatAttr("runflowkey");
+		
 		String actdefid = workFlowEngine.getActManager().getDao_ract().findById(runactkey, tableid).getFormatAttr("actdefid");
+		String flowdefid = obj_ract.getFormatAttr("flowdefid");
 		String ctype = "PERSON";
 
 		// 检查流程是否终止或结束 不允许删除,终止的视为流转过
@@ -762,10 +767,11 @@ public class InfoShareService
 
 		if (DBFieldConstants.RFlOW_STATE_COMPLETED.equals(state) || DBFieldConstants.RFlOW_STATE_TERMINATED.equals(state))
 		{
+			sign = false;
 			return sign;
 		}
 		// 判断流程是否允许删除
-		boolean enabledelete = workFlowEngine.getDemandManager().checkforwarded("GXGL_ZZ", dataid);// 值真表示转未发过，值为false表示转发过
+		boolean enabledelete = workFlowEngine.getDemandManager().checkflowforwarded(tableid, runflowkey);// 值真表示转未发过，值为false表示转发过
 
 		if (enabledelete)
 		{
