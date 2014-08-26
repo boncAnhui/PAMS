@@ -23,8 +23,8 @@ public class KpiWJWHSLBM
 		String enddate = obj.getFormatAttr("enddate");
 
 		StringBuffer sql = new StringBuffer();
-		sql.append("select deptname,count(filenums) nums from ( ").append("\n");
-		sql.append("select infos.creater,infos.creatername,infos.deptid,infos.deptname ,infos.filenums,infos.memo,infos.id from T_APP_INFOSHARE infos where 1=1  ").append("\n");
+		sql.append("select deptname,count(filenums) nums, deptid from ( ").append("\n");
+		sql.append("select infos.creater,infos.creatername,infos.deptid deptid,infos.deptname ,infos.filenums,infos.memo,infos.id from T_APP_INFOSHARE infos where 1=1  ").append("\n");
 		
 		if (!StringToolKit.isBlank(begindate))
 		{
@@ -36,7 +36,7 @@ public class KpiWJWHSLBM
 			sql.append(RepHelper.date_end("infos.createtime", enddate)).append("\n");
 		}		
 		sql.append(" )xx ").append("\n");
-		sql.append("  group by deptname ").append("\n");
+		sql.append("  group by deptname,deptid ").append("\n");
 		sql.append(" order by deptname ");
 
 		List datas = DyDaoHelper.query(jt, sql.toString());

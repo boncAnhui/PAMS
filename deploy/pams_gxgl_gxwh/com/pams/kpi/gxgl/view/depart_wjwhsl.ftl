@@ -54,7 +54,7 @@ jQuery(function($){
 
 <br />
 <div class="section sec2">
-<h2><span class="title rep_wjwhslbm">文件共享数量(部门) 图</span><span class="more"><@pub_macros.showspan chartname = "pki.depart.zxsc" pname="pki_depart_zxsc" /></span></h2>
+<h2><span class="title rep_wjwhslbm">文件共享数量(部门) 图</span><span class="more"><@pub_macros.showspan chartname = "gxgl.pki.xxgxjsl.xxgxjslbm" pname="gxgl.pki.xxgxjsl.xxgxjslbm" /></span></h2>
 <div class="p8" id="rep_wjwhslbm">
 </div>
 </div>
@@ -78,7 +78,7 @@ jQuery(function($){
 
 function page_load_dhrx_table()
 {
-	page_load_table("${base}/module/pams/kpi/gxgl/kpi_depart_wjwhsl_tb.action", "wjwhslbm", 0, new Array("source","sourcedept"), new Array($("#source").val(),$("#sourcedept").val()));
+	page_load_table("${base}/module/pams/kpi/gxgl/kpi_depart_wjwhsl_tb.action?begindate=${arg.begindate}&enddate=${arg.enddate}", "wjwhslbm", 0, new Array("source","sourcedept"), new Array($("#source").val(),$("#sourcedept").val()));
 }
 
 function page_load_dhrx_chart()

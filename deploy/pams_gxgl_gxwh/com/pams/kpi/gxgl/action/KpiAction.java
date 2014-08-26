@@ -256,7 +256,7 @@ public class KpiAction extends SimpleAction
 	//--------------------------------------------------------------
 	/*
 	 * 
-	 * 文件共享
+	 * 文件共享数量
 	 */
 	public String main_wjwhsl()
 	{
