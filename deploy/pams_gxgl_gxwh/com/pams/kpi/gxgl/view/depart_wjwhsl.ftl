@@ -78,7 +78,7 @@ jQuery(function($){
 
 function page_load_dhrx_table()
 {
-	page_load_table("${base}/module/pams/kpi/gxgl/kpi_depart_wjwhsl_tb.action?begindate=${arg.begindate}&enddate=${arg.enddate}", "wjwhslbm", 0, new Array("source","sourcedept"), new Array($("#source").val(),$("#sourcedept").val()));
+	page_load_table("${base}/module/pams/kpi/gxgl/kpi_depart_wjwhsl_tb.action", "wjwhslbm", 0, new Array(), new Array());
 }
 
 function page_load_dhrx_chart()
