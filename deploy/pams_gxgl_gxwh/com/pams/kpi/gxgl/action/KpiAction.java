@@ -85,6 +85,8 @@ public class KpiAction extends SimpleAction
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		
 		DynamicObject obj = new DynamicObject();
+		obj.setAttr("begindate", begindate);
+		obj.setAttr("enddate", enddate);
 		
 		KpiZXSCBM zxscTab = new KpiZXSCBM();
 		zxscTab.setJdbcTemplate(reportDao.getJdbcTemplate());
@@ -103,6 +105,8 @@ public class KpiAction extends SimpleAction
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		
 		DynamicObject obj = new DynamicObject();
+		obj.setAttr("begindate", begindate);
+		obj.setAttr("enddate", enddate);
 		
 		KpiXXGXJSLBM xxgxjslTab = new KpiXXGXJSLBM();
 		xxgxjslTab.setJdbcTemplate(reportDao.getJdbcTemplate());
@@ -345,6 +349,8 @@ public class KpiAction extends SimpleAction
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		
 		DynamicObject obj = new DynamicObject();
+		obj.setAttr("begindate", begindate);
+		obj.setAttr("enddate", enddate);
 		
 		KpiWJWHSLBM wjwhslTab = new KpiWJWHSLBM();
 		wjwhslTab.setJdbcTemplate(reportDao.getJdbcTemplate());
