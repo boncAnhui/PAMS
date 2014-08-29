@@ -600,6 +600,8 @@ public class ApplyAction extends SimpleAction
 
 		// 查询业务数据
 		InfoShare infoshare = infoshareService.locate(id);
+		
+		
 
 		// 查询流程数据
 		String actdefid = obj_ract.getFormatAttr("actdefid");
