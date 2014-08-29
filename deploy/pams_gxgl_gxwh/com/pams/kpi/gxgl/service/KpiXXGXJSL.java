@@ -1,5 +1,7 @@
 package com.pams.kpi.gxgl.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,6 +25,14 @@ public class KpiXXGXJSL
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 
+		String sql_cdate = " sysdate ";
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	    if(df.parse(enddate).getTime()<System.currentTimeMillis())
+    	{
+	    	sql_cdate = RepHelper.to_time_end(enddate);
+    	}
+
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append(" select usr.loginname, usr.cname, usr.ownerdept, usr.deptname, sum(bzsc) bzsc, sum(zxsc) zxsc, sum(cskh)cskh ").append("\n");
@@ -32,7 +42,7 @@ public class KpiXXGXJSL
 		sql.append("       from  ").append("\n");
 		sql.append("       ( ").append("\n");
 		sql.append("         select zx.runflowkey, zx.cno, zx.bzsc, ").append("\n");
-		sql.append("              ((case when info.publishtime is null then sysdate - info.obtaintime else info.publishtime - info.obtaintime end)*24*60) zxsc ").append("\n");
+		sql.append("              ((case when info.publishtime is null then " + sql_cdate + " - info.obtaintime else info.publishtime - info.obtaintime end)) zxsc ").append("\n");
 		sql.append("           from t_app_infoshare info,  ").append("\n");
 		sql.append("           ( ").append("\n");
 		sql.append("             select runflowkey, flowdefid, cno, sum(bzsc) bzsc ").append("\n");

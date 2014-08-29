@@ -1,5 +1,8 @@
 package com.pams.kpi.gxgl.service;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,7 +24,15 @@ public class KpiZXSC
 	{
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
-
+		
+		String sql_cdate = " sysdate ";
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	    if(df.parse(enddate).getTime()<System.currentTimeMillis())
+    	{
+	    	sql_cdate = RepHelper.to_time_end(enddate);
+    	}
+		
 		StringBuffer sql = new StringBuffer();
 		sql.append("  select zx.ownerctx, zx.cname, usr.ownerdept, usr.deptname, sum(zxsccskh) zxsccskh ").append("\n");
 		sql.append("  from t_sys_user usr, ").append("\n");
@@ -36,10 +47,7 @@ public class KpiZXSC
 		sql.append("          from  ").append("\n");
 		sql.append("         ( ").append("\n");
 		sql.append("         select ractowner.ownerctx, usr.cname, ract.runflowkey, ract.flowdefid, ract.actdefid,  ").append("\n");
-		// sql.append("         (case when ract.completetime is null then " +
-		// RepHelper.to_time(endtime) +
-		// " - ract.createtime else ract.completetime - ract.createtime end) zxsc  ").append("\n");
-		sql.append("         (case when ract.completetime is null then sysdate - ract.createtime else ract.completetime - ract.createtime end)*24*60 zxsc  ").append("\n");
+		sql.append("         (case when ract.completetime is null then " + sql_cdate + " - ract.createtime else ract.completetime - ract.createtime end) zxsc  ").append("\n");
 		sql.append("          from t_sys_wfract ract, t_sys_wfrflow rflow, t_sys_wfbact bact, t_sys_wfractowner ractowner, t_sys_user usr ").append("\n");
 		sql.append("         where 1 = 1 ").append("\n");
 		if (!StringToolKit.isBlank(begindate))

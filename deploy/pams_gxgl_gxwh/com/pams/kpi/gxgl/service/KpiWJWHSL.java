@@ -21,9 +21,17 @@ public class KpiWJWHSL
 	{
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
+		String deptid = obj.getFormatAttr("deptid");
 
 		StringBuffer sql = new StringBuffer();
-		sql.append("select infos.creater,infos.creatername,infos.deptid,infos.deptname ,infos.filenums,infos.memo,infos.id from T_APP_INFOSHARE infos where 1=1  ").append("\n");
+		sql.append("select creater,createname,count(filenums) nums, deptname,deptid from ( ");
+		sql.append("select infos.creater creater,infos.creatername createname,infos.deptid deptid,infos.deptname ,infos.filenums,infos.memo,infos.id from T_APP_INFOSHARE infos where 1=1 ").append("\n");
+		
+		if(!(deptid == null || "".equals(deptid)))
+		{
+			sql.append(" and ");
+			sql.append(" deptid='" + deptid + "'");
+		}
 		
 		if (!StringToolKit.isBlank(begindate))
 		{
@@ -34,8 +42,9 @@ public class KpiWJWHSL
 		{
 			sql.append(RepHelper.date_end("infos.createtime", enddate)).append("\n");
 		}		
-		
-		sql.append(" order by deptname ");
+		sql.append(" )xx ");
+		sql.append("   group by creater,createname,deptname,deptid ");
+		sql.append("  order by creater  ");
 
 		List datas = DyDaoHelper.query(jt, sql.toString());
 

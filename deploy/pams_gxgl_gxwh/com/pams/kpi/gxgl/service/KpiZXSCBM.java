@@ -39,7 +39,7 @@ public class KpiZXSCBM {
 		// sql.append("         (case when ract.completetime is null then " +
 		// RepHelper.to_time(endtime) +
 		// " - ract.createtime else ract.completetime - ract.createtime end) zxsc  ").append("\n");
-		sql.append("         (case when ract.completetime is null then sysdate - ract.createtime else ract.completetime - ract.createtime end)*24*60 zxsc  ").append("\n");
+		sql.append("         (case when ract.completetime is null then sysdate - ract.createtime else ract.completetime - ract.createtime end) zxsc  ").append("\n");
 		sql.append("          from t_sys_wfract ract, t_sys_wfrflow rflow, t_sys_wfbact bact, t_sys_wfractowner ractowner, t_sys_user usr ").append("\n");
 		sql.append("         where 1 = 1 ").append("\n");
 		if (!StringToolKit.isBlank(begindate))

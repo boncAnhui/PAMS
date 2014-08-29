@@ -24,7 +24,7 @@ public class KpiXXGXJSLBM
 		String enddate = obj.getFormatAttr("enddate");
 
 		StringBuffer sql = new StringBuffer();
-		sql.append("select xx.deptname,odept, sum(bzsc) bzsc,sum(cskh) cskh from ").append("\n");
+		sql.append("select xx.deptname,odept, sum(bzsc) bzsc,round(sum(cskh),2) cskh from ").append("\n");
 		sql.append(" ( select usr.loginname, usr.cname, usr.ownerdept odept, usr.deptname, sum(bzsc) bzsc, sum(zxsc) zxsc, sum(cskh) cskh ").append("\n");
 		sql.append("   from t_app_infoshare info, t_sys_user usr, ").append("\n");
 		sql.append("   (  ").append("\n");
@@ -32,7 +32,7 @@ public class KpiXXGXJSLBM
 		sql.append("       from  ").append("\n");
 		sql.append("       ( ").append("\n");
 		sql.append("         select zx.runflowkey, zx.cno, zx.bzsc, ").append("\n");
-		sql.append("              ((case when info.publishtime is null then sysdate - info.obtaintime else info.publishtime - info.obtaintime end)*24*60) zxsc ").append("\n");
+		sql.append("              ((case when info.publishtime is null then sysdate - info.obtaintime else info.publishtime - info.obtaintime end)) zxsc ").append("\n");
 		sql.append("           from t_app_infoshare info,  ").append("\n");
 		sql.append("           ( ").append("\n");
 		sql.append("             select runflowkey, flowdefid, cno, sum(bzsc) bzsc ").append("\n");
