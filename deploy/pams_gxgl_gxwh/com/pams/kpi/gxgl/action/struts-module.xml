@@ -33,6 +33,9 @@
 			<result name="main_wjwhsl" type="freemarker">/com/pams/kpi/gxgl/view/main_wjwhsl.ftl</result>
 			<result name="kpi_wjwhsl" type="freemarker">/com/pams/kpi/gxgl/view/kpi_wjwhsl.ftl</result>
 			
+			<result name="main_wjwhlist" type="freemarker">/com/pams/kpi/gxgl/view/main_wjwhlist.ftl</result>
+			<result name="kpi_wjwhlist" type="freemarker">/com/pams/kpi/gxgl/view/kpi_wjwhlist.ftl</result>
+			
 			<result name="main_wjwhslmx" type="freemarker">/com/pams/kpi/gxgl/view/main_wjwhslmx.ftl</result>
 			<result name="kpi_wjwhslmx" type="freemarker">/com/pams/kpi/gxgl/view/kpi_wjwhslmx.ftl</result>
 			
