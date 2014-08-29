@@ -152,7 +152,7 @@ table.dataGrid{border-collapse:collapse;}
 	</tr>	
 	<tr>
 		<td class="r"><label for="filenums">文件数量：</label></td>
-		<td><input class="text" id="filenums" name="filenums" value="${data.infoshare.filenums}" style="width:20em" /></td>
+		<td><input class="text" readonly id="filenums" name="filenums" value="${data.fileattachments?size}" style="width:20em" /></td>
 		<td class="r"><label id="filetype">文件形式：</label></td>
 		<td><input class="text" id="filetype" name="filetype" value="${data.infoshare.filetype}" style="width:20em"/></td>
 	</tr>

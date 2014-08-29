@@ -124,7 +124,7 @@ public class InfoShareService
 		}
 		if (!StringToolKit.isBlank(endpublishtime))
 		{
-			sql.append(" and bv.publishtime >= to_date('" + endpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
+			sql.append(" and bv.publishtime < to_date('" + endpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
 		}
 		if (!StringToolKit.isBlank(bactcname))
 		{
@@ -160,12 +160,6 @@ public class InfoShareService
 		sql.append(" where 1 = 1 ").append("\n");
 		sql.append(uIService.get_browsehandle_where(map)).append("\n");
 		
-		sql.append("   ) v ").append("\n");
-		sql.append("   left join t_sys_wfractowner ractowner ").append("\n");
-		sql.append("   on v.runactkey = ractowner.runactkey ").append("\n");
-		sql.append("   left join t_sys_user usr ").append("\n");
-		sql.append("   on ractowner.ownerctx = usr.loginname ").append("\n");
-		
 		if (!StringToolKit.isBlank(title))
 		{
 			sql.append(" and lower(bv.title) like lower(" + SQLParser.charLikeValue(title) + ")");
@@ -200,12 +194,18 @@ public class InfoShareService
 		}
 		if (!StringToolKit.isBlank(endpublishtime))
 		{
-			sql.append(" and bv.publishtime >= to_date('" + endpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
+			sql.append(" and bv.publishtime < to_date('" + endpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
 		}
 		if (!StringToolKit.isBlank(bactcname))
 		{
 			sql.append(" and bact.cname like " + SQLParser.charLikeValue(bactcname));
 		}
+				
+		sql.append("   ) v ").append("\n");
+		sql.append("   left join t_sys_wfractowner ractowner ").append("\n");
+		sql.append("   on v.runactkey = ractowner.runactkey ").append("\n");
+		sql.append("   left join t_sys_user usr ").append("\n");
+		sql.append("   on ractowner.ownerctx = usr.loginname ").append("\n");
 		
 		sql.append(" order by v.cno desc, v.ractcreatetime desc ").append("\n");
 		return sql.toString();
@@ -235,13 +235,7 @@ public class InfoShareService
 		sql.append(" from t_app_infoshare bv, " + uIService.get_browseall_table(map)).append("\n");
 		sql.append(" where 1 = 1 ").append("\n");
 		sql.append(uIService.get_browseall_where(map)).append("\n");
-		
-		sql.append("   ) v ").append("\n");
-		sql.append("   left join t_sys_wfractowner ractowner ").append("\n");
-		sql.append("   on v.runactkey = ractowner.runactkey ").append("\n");
-		sql.append("   left join t_sys_user usr ").append("\n");
-		sql.append("   on ractowner.ownerctx = usr.loginname ").append("\n");
-		
+
 		if (!StringToolKit.isBlank(title))
 		{
 			sql.append(" and lower(bv.title) like lower(" + SQLParser.charLikeValue(title) + ")");
@@ -276,12 +270,18 @@ public class InfoShareService
 		}
 		if (!StringToolKit.isBlank(endpublishtime))
 		{
-			sql.append(" and bv.publishtime >= to_date('" + endpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
+			sql.append(" and bv.publishtime < to_date('" + endpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
 		}
 		if (!StringToolKit.isBlank(bactcname))
 		{
 			sql.append(" and bact.cname like " + SQLParser.charLikeValue(bactcname));
 		}
+		
+		sql.append("   ) v ").append("\n");
+		sql.append("   left join t_sys_wfractowner ractowner ").append("\n");
+		sql.append("   on v.runactkey = ractowner.runactkey ").append("\n");
+		sql.append("   left join t_sys_user usr ").append("\n");
+		sql.append("   on ractowner.ownerctx = usr.loginname ").append("\n");
 		
 		sql.append(" order by v.cno desc, v.ractcreatetime desc ").append("\n");
 		return sql.toString();
@@ -312,13 +312,7 @@ public class InfoShareService
 		sql.append(" from t_app_infoshare bv, " + uIService.get_browsegroupall_table(map)).append("\n");
 		sql.append(" where 1 = 1 ").append("\n");
 		sql.append(uIService.get_browsegroupall_where(map)).append("\n");
-		
-		sql.append("   ) v ").append("\n");
-		sql.append("   left join t_sys_wfractowner ractowner ").append("\n");
-		sql.append("   on v.runactkey = ractowner.runactkey ").append("\n");
-		sql.append("   left join t_sys_user usr ").append("\n");
-		sql.append("   on ractowner.ownerctx = usr.loginname ").append("\n");
-		
+
 		if (!StringToolKit.isBlank(title))
 		{
 			sql.append(" and lower(bv.title) like lower(" + SQLParser.charLikeValue(title) + ")");
@@ -353,12 +347,18 @@ public class InfoShareService
 		}
 		if (!StringToolKit.isBlank(endpublishtime))
 		{
-			sql.append(" and bv.publishtime >= to_date('" + endpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
+			sql.append(" and bv.publishtime < to_date('" + endpublishtime + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
 		}
 		if (!StringToolKit.isBlank(bactcname))
 		{
 			sql.append(" and bact.cname like " + SQLParser.charLikeValue(bactcname));
 		}
+		
+		sql.append("   ) v ").append("\n");
+		sql.append("   left join t_sys_wfractowner ractowner ").append("\n");
+		sql.append("   on v.runactkey = ractowner.runactkey ").append("\n");
+		sql.append("   left join t_sys_user usr ").append("\n");
+		sql.append("   on ractowner.ownerctx = usr.loginname ").append("\n");
 		
 		sql.append(" order by v.cno desc, v.ractcreatetime desc ").append("\n");
 		return sql.toString();
@@ -491,6 +491,7 @@ public class InfoShareService
 		String title = infoshare.getTitle();
 		String memo = infoshare.getMemo();
 		String summary = infoshare.getSummary();
+		String kno = gen_kno();
 		
 		Knowledge knowledge = new Knowledge();
 		knowledge.setOrigin(id);
@@ -512,7 +513,8 @@ public class InfoShareService
 		knowledge.setComments(0);
 		knowledge.setCollects(0);
 		knowledge.setMemo(memo);
-		
+		knowledge.setIseffective("Y");
+		knowledge.setKno(kno);
 		
 		knowledgeDao.save(knowledge);
 		String kid = knowledge.getId();
@@ -873,6 +875,22 @@ public class InfoShareService
 		}
 		
 		return sign;
+	}
+	
+	public String gen_kno()
+	{
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar calendar = Calendar.getInstance();
+		Date date = calendar.getTime();
+		String sysdate = sf.format(date);
+		String csql = " select substring(max(cno),length(max(cno))-3, 4) as cno from Knowledge where to_char(createtime,'yyyy-mm-dd') = to_char(to_date('" + sysdate + "', 'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm-dd')";
+		String express = "$yy$mm$dd####";
+
+		Map map = new HashMap();
+		map.put("csql", csql);
+		map.put("express", express);
+
+		return generatorService.getNextValue(map);
 	}
 	
 
