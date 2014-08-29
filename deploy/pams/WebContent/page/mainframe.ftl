@@ -79,11 +79,11 @@ function openwin(url,winname,w,h,handler){
         <br/>
        
     </div>
-    <!--
+    
     <ul id="statusG">
     <li id="mStatus"><span class="free"></span></li>
     </ul>
-     -->
+     
     <div class="toggleTop" title="收起"><span class="ani"></span></div>
     <div id="navigation" style="border-bottom:solid 0px #ccc;"><span class="s">当前位置：<a href="" target="mainIframe">首页</a><span class="realNavi"></span><span id="portalMenu"></span></span></div>
     
