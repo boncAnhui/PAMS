@@ -10,7 +10,7 @@
 <tr>
 <td>${aobj_index+1}</td>
 <td>
-<a href="${base}/module/pams/kpi/gxgl/kpi_main_wjwhsl.action?depname=${aobj.id}&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.deptname}</a></td>
+<a href="${base}/module/pams/kpi/gxgl/kpi_main_wjwhsl.action?deptid=${aobj.deptid}&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.deptname}</a></td>
 <td>${aobj.nums}</td>
 
 <td></td>

@@ -59,16 +59,14 @@ jQuery(function($){
 </div>
 </div>
 
-<div class="section sec1">
+
+<div style="clear:both;height:15px;"></div>
+
+<div class="section sec2">
 <h2><span class="title tab_xxgxjslbm">执行时长(部门)表</span><span class="more"></span></h2>
 <div class="p8" id="tab_xxgxjslbm">
 </div>
 </div>
-
-
-
-<div style="clear:both;height:15px;"></div>
-
 
 
 

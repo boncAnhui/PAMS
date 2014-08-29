@@ -35,7 +35,7 @@ jQuery(function($){
 
 function page_load_zxsc_table()
 {
-	page_load_table("${base}/module/pams/kpi/gxgl/kpi_kpi_wjwhsl.action", "wjwhsl", 0, new Array(), new Array());
+	page_load_table("${base}/module/pams/kpi/gxgl/kpi_kpi_wjwhsl.action", "wjwhsl", 0, new Array("deptid"), new Array('${arg.deptid}'));
 }
 
 function page_load()

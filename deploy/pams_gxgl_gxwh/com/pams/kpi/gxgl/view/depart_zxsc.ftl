@@ -52,24 +52,21 @@ jQuery(function($){
 </form>
 </div>
 
-<br />
+
 <div class="section sec2">
 <h2><span class="title rep_zxscbm">执行时长(部门) 图</span><span class="more"><@pub_macros.showspan chartname = "pki.depart.zxsc" pname="pki_depart_zxsc" /></span></h2>
 <div class="p8" id="rep_zxscbm">
 </div>
 </div>
 
-<div class="section sec1">
+
+<div style="clear:both;height:15px;"></div>
+
+<div class="section sec2">
 <h2><span class="title tab_zxscbm">执行时长(部门)表</span><span class="more"></span></h2>
 <div class="p8" id="tab_zxscbm">
 </div>
 </div>
-
-
-
-<div style="clear:both;height:15px;"></div>
-
-
 
 
 <#include "/com/ray/nwpn/itsm/report/common/view/script.ftl">
