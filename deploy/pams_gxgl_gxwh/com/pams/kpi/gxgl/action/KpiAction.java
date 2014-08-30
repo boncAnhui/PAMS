@@ -292,9 +292,6 @@ public class KpiAction extends SimpleAction
   }
   
 
-
-
-
   public String main_wjwhlist()
   {
     String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");

@@ -21,11 +21,16 @@
    {
      String begindate = obj.getFormatAttr("begindate");
      String enddate = obj.getFormatAttr("enddate");
-     String deptid = obj.getFormatAttr("deptid");
+     String creater = obj.getFormatAttr("creater");
      
      StringBuffer sql = new StringBuffer();
      sql.append("select infos.creater creater,infos.creatername creatername,infos.deptid deptid,infos.deptname ,infos.filenums filenums,infos.memo memo,infos.id from T_APP_INFOSHARE infos where 1=1   ");
      
+     if(creater != null && !("".equals(creater)))
+     {
+    	 sql.append(" and ");
+    	 sql.append(" creater='" + creater + "'").append("\n");
+     }
  
      if (!StringToolKit.isBlank(begindate))
      {

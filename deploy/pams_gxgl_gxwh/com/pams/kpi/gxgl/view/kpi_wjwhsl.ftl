@@ -3,7 +3,7 @@
 <th width="40">序号</th>
 <th width="100">部门</th>
 <th width="100">人员</th>
-<th width="100">文件数量</th>
+<th width="100">共享单数量</th>
 </tr>
 <#assign total = 0>
 <#list data.wjwhsls as aobj>

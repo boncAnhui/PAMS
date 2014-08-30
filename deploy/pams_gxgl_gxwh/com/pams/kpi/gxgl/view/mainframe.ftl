@@ -100,10 +100,10 @@ $('#dragHandlerLR').draggable({iframeFix: true,scroll:false,containment:[0,0,400
 		<span class="folder">信息共享及时率(部门)</span>
 		</li>
 		<li data-pid="main" data-index="33" data-parent="" data-leaf="0" data-id="kpi_wjwhsl" data-url="${base}/module/pams/kpi/gxgl/kpi_main_wjwhsl.action">
-		<span class="folder">文件共享统计</span>
+		<span class="folder">文件共享单统计</span>
 		</li>
 		<li data-pid="main" data-index="33" data-parent="" data-leaf="0" data-id="kpi_wjwhsl_depart" data-url="${base}/module/pams/kpi/gxgl/kpi_depart_wjwhsl.action">
-		<span class="folder">文件共享统计(部门)</span>
+		<span class="folder">文件共享单统计(部门)</span>
 		</li>
 		</ul>
 	</li>

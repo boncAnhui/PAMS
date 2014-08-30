@@ -3,7 +3,7 @@
 <th width="40">序号</th>
 <th width="100">申请人</th>
 <th width="100">共享单名称</th>
-<th width="100">文件数量</th>
+<th width="100">共享文件数量</th>
 </tr>
 <#assign total = 0>
 <#list data.wjwhsls as aobj>

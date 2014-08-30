@@ -18,13 +18,13 @@ jQuery(function($){
 <body><div id="gContainer">
 
 <#import "com/ray/nwpn/itsm/report/common/view/macros.ftl" as pub_macros>
-<@pub_macros.showheader repname="文件共享数量指标统计" />
+<@pub_macros.showheader repname="文件共享单数量指标统计" />
 
 <#include "/com/ray/nwpn/itsm/report/common/view/nav.ftl">
 
 <br />
 <div class="section sec1">
-<h2><span class="title tab_wjwhlist">文件共享数量指标统计</span><span class="more"></span></h2>
+<h2><span class="title tab_wjwhlist">文件共享单数量指标统计</span><span class="more"></span></h2>
 <div class="p8" id="tab_wjwhlist">
 </div>
 </div>
@@ -35,7 +35,7 @@ jQuery(function($){
 
 function page_load_zxsc_table()
 {
-	page_load_table("${base}/module/pams/kpi/gxgl/kpi_kpi_wjwhlist.action", "wjwhlist", 0, new Array("deptid"), new Array('${arg.deptid}'));
+	page_load_table("${base}/module/pams/kpi/gxgl/kpi_kpi_wjwhlist.action", "wjwhlist", 0, new Array("creater"), new Array('${arg.creater}'));
 }
 
 function page_load()
