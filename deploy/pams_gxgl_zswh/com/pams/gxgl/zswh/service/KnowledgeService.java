@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.headray.core.spring.jdo.DyDaoHelper;
 import com.headray.core.spring.jdo.JdbcDao;
 import com.headray.framework.services.db.SQLParser;
+import com.headray.framework.services.function.StringToolKit;
 import com.pams.dao.KnowledgeDao;
 import com.pams.entity.Knowledge;
 
@@ -31,7 +32,12 @@ public class KnowledgeService
 	{
 		String cclassid = (String) map.get("cclassid");
 		String loginname = (String) map.get("loginname");
-		
+		String title = (String) map.get("title");
+		String kno = (String) map.get("kno");
+		String mauthor = (String) map.get("mauthor");
+		String mauthordept = (String) map.get("mauthordept");
+		String beginpublishdate = (String) map.get("beginpublishdate");
+		String endpublishdate = (String) map.get("endpublishdate");		
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append(" select k.*  ").append("\n");
@@ -41,8 +47,32 @@ public class KnowledgeService
 		sql.append("  and kcr.classid = kc.id ").append("\n");
 		sql.append("  and kc.cno like kcc.cno || '%' ").append("\n");
 		sql.append("  and kcc.id = " +  SQLParser.charValue(cclassid)).append("\n");
+		if (!StringToolKit.isBlank(title))
+		{
+			sql.append(" and lower(k.title) like lower(" + SQLParser.charLikeValue(title) + ")");
+		}
+		if (!StringToolKit.isBlank(kno))
+		{
+			sql.append(" and lower(k.kno) like lower(" + SQLParser.charLikeValue(kno) + ")");
+		}
+		if (!StringToolKit.isBlank(mauthor))
+		{
+			sql.append(" and lower(k.mauthor) like lower(" + SQLParser.charLikeValue(mauthor) + ")");
+		}
+		if (!StringToolKit.isBlank(mauthordept))
+		{
+			sql.append(" and lower(k.mauthordept) like lower(" + SQLParser.charLikeValue(mauthordept) + ")");
+		}
+		if (!StringToolKit.isBlank(beginpublishdate))
+		{
+			sql.append(" and k.publishdate >= to_date('" + beginpublishdate + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
+		}		
+		if (!StringToolKit.isBlank(endpublishdate))
+		{
+			sql.append(" and k.publishdate >= to_date('" + endpublishdate + " 00:00:00','yyyy-mm-dd hh24:mi:ss') ");
+		}
 		sql.append(" order by k.createtime desc ").append("\n");
-
+		
 		JdbcTemplate jt = jdbcDao.getJdbcTemplate();
 		List datas = DyDaoHelper.query(jt, sql.toString());
 

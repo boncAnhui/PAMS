@@ -1,0 +1,5 @@
+/default.properties
+/ehcache-hibernate.xml
+/freemarker.properties
+/log4j.properties
+/message_zh_CN.properties

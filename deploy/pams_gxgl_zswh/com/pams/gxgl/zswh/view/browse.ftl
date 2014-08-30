@@ -102,7 +102,6 @@ function page_migration()
 </head>
 <body>
 
-<form>
 	<div id="fixedOp">
 	<!--
 			<button id="bt_input">新增</button>
@@ -110,6 +109,59 @@ function page_migration()
 	-->		
 	</div>
 <div id="pageContainer">
+
+<div id="searchDivContainer">
+<form id="form_quicksearch" method="post" action="${base}/module/pams/gxgl/zswh/knowledge_browse.action">
+<input type="hidden" name="_searchname" value="gxgl.zswh.browse">
+<input type="hidden" name="page" value="1">
+<input type="hidden" name="_sortfield" value="">
+<input type="hidden" name="_sorttag" value="asc">
+<input type="hidden" name="step" value="10">
+
+<input type="hidden" name="cclassid" id="cclassid" value="${arg.cclassid}">
+
+<a href="javascript:void(0);" id="sbtn" hidefocus="true;">搜索</a>
+<a href="javascript:void(0);" class="showAdvSearch showAdvSearchOpened" hidefocus="true;">高级</a> 
+<div class="adv" style="display: block;">
+<div id="clearSearchStr"><span class="t">清除搜索</span></div>
+	<input cname="流程分类" name="flowcclass" type="hidden" value="GXGL"> 
+	<table class="formGrid">
+		<tbody>
+		<tr>
+		<td class="r" width="15%">标题：</td>
+		<td width="35%">
+		<input type="text" class="text" id="title" name="title" style="width:20em" size="" datatype="" value="${arg.title}">
+		</td>
+		<td width="15%" class="r">编号：</td>
+		<td width="35%">
+		<input type="text" class="text" id="kno" name="kno" style="width:20em" size="35" datatype="" value="${arg.kno}">
+		</td>
+		</tr>
+		<tr>
+		<td class="r">作者：</td>
+		<td>
+		<input type="text" class="text" id="mauthor" name="mauthor" style="width:20em" size="35" datatype="" value="${arg.mauthor}">
+		</td>
+		<td class="r">部门：</td>
+		<td>
+		<input type="text" class="text" id="mauthordept" name="mauthordept" style="width:20em" size="35" datatype="" value="${arg.mauthordept}">
+		</td>
+		</tr>
+		<tr>
+		<td class="r">发布时间开始：</td>
+		<td>
+		<input class="date" type="text" id="beginpublishdate" name="beginpublishdate" size="35" datatype="" value="${arg.beginpublishdate}">
+		</td>
+		<td class="r">发布时间结束：</td>
+		<td>
+		<input class="date" type="text" id="endpublishdate" name="endpublishdate" size="35" datatype="" value="${arg.endpublishdate}">
+		</td>
+		</tr>
+	</table>
+</div>
+</form>
+
+</div>
 
 <ul class="knowList">
 <#list data.knowledges as aobj>
@@ -137,10 +189,24 @@ function page_migration()
 </#if>
 </div>
 
+<form method="post" name="form_view" id="form_view" action="${base}/module/pams/gxgl/zswh/knowledge_browse.action">
+<input type="hidden" name="_searchname" value="gxgl.zswh.browse">
+<input type="hidden" name="page" value="1">
+<input type="hidden" name="_sortfield" value="">
+<input type="hidden" name="_sorttag" value="asc">
+<input type="hidden" name="step" value="10">
+
+	<input cname="标题" name="title" type="hidden" value="${arg.title}">
+	<input cname="编号" name="kno" type="hidden" value="${arg.kno}">
+	<input cname="作者" name="mauthor" type="hidden" value="${arg.mauthor}">
+	<input cname="部门" name="mauthordept" type="hidden" value="${arg.mauthordept}">
+	<input cname="发布日期开始" name="beginpublishdate" type="hidden" value="${arg.beginpublishdate}">
+	<input cname="发布日期结束" name="endpublishdate" type="hidden" value="${arg.endpublishdate}">
+
 </form>
+</div>
+
 </body>
 </html>
 
 </script>
-
-

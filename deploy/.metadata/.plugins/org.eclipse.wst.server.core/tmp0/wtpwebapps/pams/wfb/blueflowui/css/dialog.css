@@ -1,0 +1,18 @@
+body {font:12px tahoma;background-color:buttonface;margin:10px;line-height:130%;}
+td,button,input,textarea,select,option {font:12px tahoma;line-height:130%;}
+fieldset {padding:6px;margin:6px;}
+form {margin:0px;}
+th {font:bold 12px;text-align: justify;}
+/*很特殊的用法，控制行间的距离*/
+.oSpan {margin-top:5px;margin-bottom:5px;}
+
+.unselected {
+border:outset 1px;border-bottom:solid 1px inset;position:relative;top:1px;left:1px;
+}
+.selected {
+border:outset 1px;border-bottom:none;background:#eee
+}
+#showtable th {font:bold 12px;background-color:threadface;color:white}
+/*id元素*/
+#showTable {border-collapse:collapse;behavior:url("${base}/wfb/blueflowui/htc/dialog.htc");cursor:hand;}
+#selectTable{cursor:hand;behavior:url("${base}/wfb/blueflowui/htc/view_selecttable.htc");}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="com.pams.gxgl.gxwh.action" extends="default" namespace="/module/pams/gxgl/gxwh">
+		<action name="apply_*" class="com.pams.gxgl.gxwh.action.ApplyAction" method="{1}">
+			<result name="mainframe" type="freemarker">/com/pams/gxgl/gxwh/view/mainframe.ftl</result>
+			<result name="selectflowdefine" type="freemarker">/com/pams/gxgl/gxwh/view/selectflowdefine.ftl</result>
+			<result name="browsewait" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			<result name="browsehandle" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			<result name="browseall" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			<result name="browsegroupall" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			
+			<result name="readpageframe" type="freemarker">/com/pams/gxgl/gxwh/view/readpageframe.ftl</result>
+			<result name="readpage" type="freemarker">/com/pams/gxgl/gxwh/view/readpage.ftl</result>
+			<result name="tolocateframe" type="redirect">apply_locateframe.action?runactkey=${arg.runactkey}</result>
+			<result name="locateframe" type="freemarker">/com/pams/gxgl/gxwh/view/locateframe.ftl</result>
+			<result name="locate" type="freemarker">/com/pams/gxgl/gxwh/view/locate.ftl</result>
+			<result name="browsefile" type="freemarker">/com/pams/gxgl/gxwh/view/browsefile.ftl</result>
+			<result name="readpagekeyframe" type="freemarker">/com/pams/gxgl/gxwh/view/readpageframe.ftl</result>
+
+			<result name="input" type="freemarker">/com/pams/gxgl/gxwh/view/input.ftl</result>
+			<result name="insert" type="redirect">apply_locateframe.action?runactkey=${arg.runactkey}&amp;isinput=${arg.isinput}</result>
+			<!-- <result name="delete" type="redirect">apply_browsewait.action?_searchname=gxgl.gxwh.browsewait&flowcclass=GXGL</result> -->
+			<result name="update" type="redirect">apply_locateframe.action?runactkey=${arg.runactkey}</result>
+			<result name="publish" type="redirect">apply_locate.action?runactkey=${arg.runactkey}</result>
+			<result name="ajaxpublish" type="freemarker">/com/pams/gxgl/gxwh/view/ajaxpublish.ftl</result>
+			<result name="apply" type="redirect">apply_readpageframe.action?runactkey=${arg.runactkey}</result>
+			<result name="upload" type="freemarker">/com/pams/gxgl/gxwh/view/upload.ftl</result>
+			<result name="selectcclassname" type="freemarker">/com/pams/gxgl/gxwh/view/selectcclassname.ftl</result>
+			<result name="selectchildcclassname" type="freemarker">/com/pams/gxgl/gxwh/view/selectchildcclassname.ftl</result>
+			<result name="selectscope" type="freemarker">/com/pams/gxgl/gxwh/view/selectscope.ftl</result>
+			<result name="selectscopeorgan" type="freemarker">/com/pams/gxgl/gxwh/view/selectscopeorgan.ftl</result>
+			<result name="selectscoperole" type="freemarker">/com/pams/gxgl/gxwh/view/selectscoperole.ftl</result>
+			<result name="selectscopeuser" type="freemarker">/com/pams/gxgl/gxwh/view/selectscopeuser.ftl</result>
+		</action>
+	</package>
+</struts>

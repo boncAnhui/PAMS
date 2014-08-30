@@ -79,11 +79,25 @@ public class KnowledgeAction extends SimpleAction
 	{
 		DynamicObject login_token = (DynamicObject) Struts2Utils.getRequest().getSession().getAttribute(GlobalConstants.sys_login_token);
 		String loginname = login_token.getFormatAttr(GlobalConstants.sys_login_user);
-
+		
 		String cclassid = Struts2Utils.getRequest().getParameter("cclassid");
+		String title = Struts2Utils.getRequest().getParameter("title");
+		String kno = Struts2Utils.getRequest().getParameter("kno");
+		String mauthor = Struts2Utils.getRequest().getParameter("mauthor");
+		String mauthordept = Struts2Utils.getRequest().getParameter("mauthordept");
+		String beginpublishdate = Struts2Utils.getRequest().getParameter("beginpublishdate");
+		String endpublishdate = Struts2Utils.getRequest().getParameter("endpublishdate");
+		
 		DynamicObject map = new DynamicObject();
 		map.setAttr("cclassid", cclassid);
 		map.setAttr("loginname", loginname);
+		map.setAttr("title", title);
+		map.setAttr("kno", kno);
+		map.setAttr("mauthor", mauthor);
+		map.setAttr("mauthordept", mauthordept);
+		map.setAttr("beginpublishdate", beginpublishdate);
+		map.setAttr("endpublishdate", endpublishdate);
+		
 		List knowledges = knowledgeService.browse(map);
 
 		// 查看知识分类属性（是否文件库、文件柜、文件柜，文件夹方可允许新增文档）
@@ -93,7 +107,15 @@ public class KnowledgeAction extends SimpleAction
 		String leaf = knowledgeclass.getIslast();
 
 		data.put("knowledges", knowledges);
+		
 		arg.put("cclassid", cclassid);
+		arg.put("title", title);
+		arg.put("kno", kno);
+		arg.put("mauthor", mauthor);
+		arg.put("mauthordept", mauthordept);
+		arg.put("beginpublishdate", beginpublishdate);
+		arg.put("endpublishdate", endpublishdate);		
+		
 		arg.put("leaf", leaf);
 		arg.put("foldertype", foldertype);
 

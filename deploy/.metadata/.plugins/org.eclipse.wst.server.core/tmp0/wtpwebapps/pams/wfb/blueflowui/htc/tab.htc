@@ -1,0 +1,48 @@
+<public:attach event="onmouseover" onevent="oMouseover()" />
+<public:attach event="onmouseout" onevent="oMouseout()" />
+<public:attach event="onclick" onevent="oClick()" />
+<script>
+overColor="#ffffff";
+clickedColor="#eeeeee";
+
+function oMouseover(){
+srcElem=event.srcElement;
+if(srcElem.tagName!="TD"){
+	return;
+}else{
+	//if(srcElem!=oldObj)srcElem.style.color=overColor;
+}
+}
+
+function oMouseout(){
+srcElem=event.srcElement;
+if(srcElem.tagName!="TD"){
+	return;
+}else{
+	//if(srcElem!=oldObj)srcElem.style.color="";
+}
+}
+
+function oClick(){
+srcElem=event.srcElement;
+if(srcElem.tagName!="TD"){
+	return;
+}else{
+	if(oldObj!=null){
+		oldObj.bgColor="";
+		oldObj.style.fontWeight="";
+		oldObj.style.paddingLeft="";
+		oldObj.style.paddingRight="";
+		}
+
+	srcElem.bgColor=clickedColor;
+	srcElem.style.borderTop="solid 2px #C3CDDE";
+	srcElem.style.backgroundRepeat="no-repeat";
+	srcElem.background="../images/tab-top.gif";
+	srcElem.style.fontWeight="bold";
+	srcElem.style.paddingLeft="8px";
+	srcElem.style.paddingRight="8px";
+	oldObj=srcElem;
+}
+}
+</script>
