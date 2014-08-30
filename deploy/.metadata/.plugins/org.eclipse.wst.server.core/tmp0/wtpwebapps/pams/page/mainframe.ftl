@@ -74,8 +74,10 @@ function openwin(url,winname,w,h,handler){
 			<ul class="chooser disableSelection"><li title="主题1">1</li><li title="主题2">2</li><li title="主题3">3</li><li title="主题4">4</li></ul>
 		</span>
 		<a title="退出" class="quit" href="${base}/login.jsp" target="_top">注销</a>
+		<!--
         <a class="preferences" href="${base}/module/irm/portal/portal/portal/portal_browse.action?ccate=admin" title="系统管理" target="mainIframe">系统管理</a>
         <a class="preferences" href="${base}/module/irm/portal/portal/portal/portal_preferences.action" title="个性设置" target="mainIframe">个性设置</a>
+        -->
         <br/>
        
     </div>
