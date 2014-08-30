@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_authority"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_base"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_gxgl_wjwh"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_gxgl_zswh"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_hbgl_base"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_hbgl_main"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_hbgl_xctk"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_hbgl_xxsj"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_hbgl_xygl"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_hbgl_yhsq"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_kpi_run"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/pams"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
