@@ -1,3 +1,0 @@
-INDEX VERSION 1.127
-D:\github\PAMS\deploy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2399627930.index
-\pams\src

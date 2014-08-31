@@ -1,7 +1,0 @@
-<!DOCTYPE HTML>
-<html>
-<#include "/decorator/include/header.ftl">
-<body>
-${body}
-</body>
-</html>
