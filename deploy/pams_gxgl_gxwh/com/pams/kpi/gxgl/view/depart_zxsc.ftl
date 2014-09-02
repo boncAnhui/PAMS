@@ -27,7 +27,7 @@ jQuery(function($){
 <@pub_macros.showheader repname="执行时长(部门)统计报表" />
 
 <#include "/com/ray/nwpn/itsm/report/common/view/nav.ftl">
-
+<!--
 <div style="text-align:right;width:850px;padding:10px;">
 	<form id="form_advsearch" method="post" target="repframe">
 	<input type="hidden" name="begindate">
@@ -51,7 +51,7 @@ jQuery(function($){
 	
 </form>
 </div>
-
+-->
 
 <div class="section sec2">
 <h2><span class="title rep_zxscbm">执行时长(部门) 图</span><span class="more"><@pub_macros.showspan chartname = "pki.depart.zxsc" pname="pki_depart_zxsc" /></span></h2>

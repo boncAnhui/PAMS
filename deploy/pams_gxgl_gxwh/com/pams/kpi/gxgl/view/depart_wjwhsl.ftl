@@ -27,7 +27,7 @@ jQuery(function($){
 <@pub_macros.showheader repname="文件共享数量(部门)统计报表" />
 
 <#include "/com/ray/nwpn/itsm/report/common/view/nav.ftl">
-
+<!--
 <div style="text-align:right;width:850px;padding:10px;">
 	<form id="form_advsearch" method="post" target="repframe">
 	<input type="hidden" name="begindate">
@@ -51,7 +51,7 @@ jQuery(function($){
 	
 </form>
 </div>
-
+-->
 <br />
 <div class="section sec2">
 <h2><span class="title rep_wjwhslbm">文件共享数量(部门) 图</span><span class="more"><@pub_macros.showspan chartname = "gxgl.pki.xxgxjsl.xxgxjslbm" pname="gxgl.pki.xxgxjsl.xxgxjslbm" /></span></h2>

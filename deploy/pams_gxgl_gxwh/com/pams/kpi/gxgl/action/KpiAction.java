@@ -1,5 +1,9 @@
 package com.pams.kpi.gxgl.action;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.blue.ssh.core.action.SimpleAction;
 import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
 import com.headray.framework.services.db.dybeans.DynamicObject;
@@ -15,10 +19,6 @@ import com.pams.kpi.gxgl.service.KpiZXSCBM;
 import com.pams.kpi.gxgl.service.KpiZXSCMX;
 import com.ray.app.chart.report.dao.ReportDao;
 import com.ray.app.query.service.QueryService;
-import java.util.List;
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class KpiAction extends SimpleAction
 {
