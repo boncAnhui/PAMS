@@ -417,7 +417,10 @@ public class InfoShareService
 		String creater = swapFlow.getFormatAttr(GlobalConstants.swap_coperatorid);
 		String creatercname = swapFlow.getFormatAttr(GlobalConstants.swap_coperatorcname);
 
-		String runactkey = workFlowEngine.getFlowManager().create(cno, flowdefid, priority, dataid, tableid, creater, creatercname);
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		String workname = "[" + StringToolKit.formatText(infoshare.getCno()) + "]　" + StringToolKit.formatText(infoshare.getTitle());
+		
+		String runactkey = workFlowEngine.getFlowManager().create(workname, flowdefid, priority, dataid, tableid, creater, creatercname);
 
 		return runactkey;
 	}

@@ -3,6 +3,10 @@
 .project
 .gitignore
 .prefs
+/.metadata
+/Servers
+/RemoteSystemsTempFiles
+/.settings
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
