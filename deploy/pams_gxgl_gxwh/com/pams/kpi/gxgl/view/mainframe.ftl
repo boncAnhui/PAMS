@@ -100,10 +100,40 @@ $('#dragHandlerLR').draggable({iframeFix: true,scroll:false,containment:[0,0,400
 		<span class="folder">信息共享及时率(部门)</span>
 		</li>
 		<li data-pid="main" data-index="33" data-parent="" data-leaf="0" data-id="kpi_wjwhsl" data-url="${base}/module/pams/kpi/gxgl/kpi_main_wjwhsl.action">
-		<span class="folder">文件共享单统计</span>
+		<span class="folder">文件共享统计</span>
 		</li>
 		<li data-pid="main" data-index="33" data-parent="" data-leaf="0" data-id="kpi_wjwhsl_depart" data-url="${base}/module/pams/kpi/gxgl/kpi_depart_wjwhsl.action">
-		<span class="folder">文件共享单统计(部门)</span>
+		<span class="folder">文件共享统计(部门)</span>
+
+		<li data-pid="main" data-index="33" data-parent="" data-leaf="0" data-id="rep_zxqk_gs" data-url="${base}/module/pams/gxgl/rep/zxqk/gs/rep_main_zxqk.action">
+		<span class="folder">共享执行情况(公司)</span>		
+
+		<li data-pid="main" data-index="33" data-parent="" data-leaf="0" data-id="rep_zxqk_bm" data-url="${base}/module/pams/gxgl/rep/zxqk/bm/rep_main_zxqk.action">
+		<span class="folder">共享执行情况(部门)</span>	
+		
+		<li data-pid="main" data-index="33" data-parent="" data-leaf="0" data-id="rep_zxqk_ry" data-url="${base}/module/pams/gxgl/rep/zxqk/ry/rep_main_zxqk.action">
+		<span class="folder">共享执行情况(人员)</span>		
+		
+		<li data-pid="main" data-index="33" data-parent="" data-leaf="0" data-id="rep_wcqk_gs" data-url="${base}/module/pams/gxgl/rep/wcqk/gs/rep_main_wcqk.action">
+		<span class="folder">信息共享完成情况(公司)</span>		
+
+		<li data-pid="main" data-index="33" data-parent="" data-leaf="0" data-id="rep_wcqk_bm" data-url="${base}/module/pams/gxgl/rep/wcqk/bm/rep_main_wcqk.action">
+		<span class="folder">信息共享完成情况(部门)</span>	
+		
+		<li data-pid="main" data-index="33" data-parent="" data-leaf="0" data-id="rep_wcqk_ry" data-url="${base}/module/pams/gxgl/rep/wcqk/ry/rep_main_wcqk.action">
+		<span class="folder">信息共享完成情况(人员)</span>	
+		
+		
+		<li data-pid="main" data-index="33" data-parent="" data-leaf="0" data-id="rep_wwcqk_gs" data-url="${base}/module/pams/gxgl/rep/wwcqk/gs/rep_main_wwcqk.action">
+		<span class="folder">信息共享未完成情况(公司)</span>		
+
+		<li data-pid="main" data-index="33" data-parent="" data-leaf="0" data-id="rep_wwcqk_bm" data-url="${base}/module/pams/gxgl/rep/wwcqk/bm/rep_main_wwcqk.action">
+		<span class="folder">信息共享未完成情况(部门)</span>	
+		
+		<li data-pid="main" data-index="33" data-parent="" data-leaf="0" data-id="rep_wwcqk_ry" data-url="${base}/module/pams/gxgl/rep/wwcqk/ry/rep_main_wwcqk.action">
+		<span class="folder">信息共享未完成情况(人员)</span>
+		
+			
 		</li>
 		</ul>
 	</li>

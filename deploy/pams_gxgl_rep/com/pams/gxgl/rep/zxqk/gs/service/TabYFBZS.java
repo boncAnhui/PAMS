@@ -14,6 +14,11 @@ import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.headray.framework.services.function.StringToolKit;
 import com.ray.nwpn.itsm.report.common.RepHelper;
 
+/**
+ * 已发布总数
+ * @author Administrator
+ *
+ */
 @Component
 @Transactional
 public class TabYFBZS

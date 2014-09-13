@@ -23,5 +23,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/pams_kpi_run"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ray_xj_sgcc_portal"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v5.5"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pams_gxgl_rep"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

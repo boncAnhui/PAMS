@@ -129,9 +129,21 @@
 	
 	<include file="com/pams/kpi/gxgl/action/struts-module.xml"></include>
 	
+	<!-- 共享管理报表 -->
+	<include file="com/pams/gxgl/rep/zxqk/gs/action/struts-module.xml"></include>
+	<include file="com/pams/gxgl/rep/zxqk/bm/action/struts-module.xml"></include>
+	<include file="com/pams/gxgl/rep/zxqk/ry/action/struts-module.xml"></include>
 	
+	<include file="com/pams/gxgl/rep/wcqk/gs/action/struts-module.xml"></include>
+	<include file="com/pams/gxgl/rep/wcqk/bm/action/struts-module.xml"></include>
+	<include file="com/pams/gxgl/rep/wcqk/ry/action/struts-module.xml"></include>
 	
-	
+	<include file="com/pams/gxgl/rep/wwcqk/gs/action/struts-module.xml"></include>
+	<include file="com/pams/gxgl/rep/wwcqk/bm/action/struts-module.xml"></include>
+	<include file="com/pams/gxgl/rep/wwcqk/ry/action/struts-module.xml"></include>
+
+	 
+	 
 	<!-- 户表改造 -->
 	<include file="com/pams/hbgl/main/action/struts-module.xml"></include>
 	<include file="com/pams/hbgl/xxsj/action/struts-module.xml"></include>
