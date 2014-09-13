@@ -18,14 +18,14 @@ jQuery(function($){
 <body><div id="gContainer">
 
 <#import "com/ray/nwpn/itsm/report/common/view/macros.ftl" as pub_macros>
-<@pub_macros.showheader repname="信息共享执行时长指标统计" />
+<@pub_macros.showheader repname="信息共享完成情况指标统计" />
 
 <#include "/com/ray/nwpn/itsm/report/common/view/nav.ftl">
 
 <br />
 <div class="section sec1">
-<h2><span class="title tab_zxqk">信息共享执行时长指标统计</span><span class="more"></span></h2>
-<div class="p8" id="tab_zxqk">
+<h2><span class="title tab_wcqk">信息共享完成情况指标统计</span><span class="more"></span></h2>
+<div class="p8" id="tab_wcqk">
 </div>
 </div>
 
@@ -33,14 +33,14 @@ jQuery(function($){
 
 <script>
 
-function page_load_zxqk_table()
+function page_load_wcqk_table()
 {
-	page_load_table("${base}/module/pams/gxgl/rep/zxqk/bm/rep_tab_zxqk.action", "zxqk", 0, new Array(), new Array());
+	page_load_table("${base}/module/pams/gxgl/rep/wcqk/bm/rep_tab_wcqk.action", "wcqk", 0, new Array(), new Array());
 }
 
 function page_load()
 {
-	page_load_zxqk_table();
+	page_load_wcqk_table();
 }
 
 page_load();
