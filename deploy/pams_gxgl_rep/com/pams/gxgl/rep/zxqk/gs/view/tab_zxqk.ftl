@@ -9,10 +9,10 @@
 <th width="100">正常发布总数</th>
 <th width="100">超时发布总数</th>
 <th width="100">发布文件总数</th>
-<th width="100"></th>
-<th width="100"></th>
-<th width="100"></th>
-
+<th width="100">超时率</th>
+<th width="100">正常执行总数</th>
+<th width="100">超时执行总数</th>
+<th width="100">超时率</th>
 </tr>
 
 <tr>
@@ -23,7 +23,8 @@
 <td>${data.yfbzs_csfbzs}</td>
 <td>${data.yfbzs_wjzs}</td>
 <td></td>
-<td></td>
+<td>${data.wfbzs_zczs}</td>
+<td>${data.wfbzs_cszs}</td>
 <td></td>
 </tr>
 

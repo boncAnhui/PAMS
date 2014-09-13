@@ -68,7 +68,7 @@ public class TabYFQZS
 
 		return datas;
 	}
-
+	
 	public void setJdbcTemplate(JdbcTemplate jt)
 	{
 		this.jt = jt;
