@@ -22,7 +22,7 @@ import com.ray.nwpn.itsm.report.common.RepHelper;
  */
 @Component
 @Transactional
-public class Tab_YWC_BM_FBZS
+public class Tab_WCQK_BM_FBZS
 {
 	JdbcTemplate jt;
 
