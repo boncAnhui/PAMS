@@ -55,12 +55,22 @@ public class LoginAction extends ActionSupport
 			obj.setAttr(GlobalConstants.sys_login_username, user.getCname());
 			obj.setAttr(GlobalConstants.sys_login_userid, user.getId());
 			
-			Organ organ = organService.getDeptByLoginname(loginname);
+			Organ dept = organService.getDeptByLoginname(loginname);
+
+			if (dept != null)
+			{
+				obj.setAttr(GlobalConstants.sys_login_dept, dept.getId());
+				obj.setAttr(GlobalConstants.sys_login_deptname, dept.getDeptname());
+				obj.setAttr(GlobalConstants.sys_login_dept_internal, dept.getInternal());
+			}
+			
+			Organ organ = organService.getOrganByLoginname(loginname);
 
 			if (organ != null)
 			{
-				obj.setAttr(GlobalConstants.sys_login_dept, organ.getId());
-				obj.setAttr(GlobalConstants.sys_login_deptname, organ.getDeptname());
+				obj.setAttr(GlobalConstants.sys_login_org, organ.getId());
+				obj.setAttr(GlobalConstants.sys_login_orgname, organ.getDeptname());
+				obj.setAttr(GlobalConstants.sys_login_org_internal, organ.getInternal());
 			}
 
 			// 增加屏蔽系统设置代码
