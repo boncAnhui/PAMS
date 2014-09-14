@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="com.pams.gxgl.rep.zxqk.gxd.action" extends="default" namespace="/module/pams/gxgl/rep/zxqk/gxd">
+		<action name="rep_*" class="com.pams.gxgl.rep.zxqk.gxd.action.RepAction" method="{1}">
+			<result name="mainframe" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/mainframe.ftl</result>
+			<result name="main_zxqk_yfqzs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/main_zxqk_yfqzs.ftl</result>
+			<result name="tab_zxqk_yfqzs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/tab_zxqk_yfqzs.ftl</result>
+		</action>
+	</package>
+</struts>
