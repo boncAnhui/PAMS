@@ -44,7 +44,7 @@ public class Tab_WWCQK_RY_YZXJDZS
 		
 		StringBuffer sql = new StringBuffer();
 
-		sql.append(" select usr.loginname, usr.cname, count(v.jds) num ").append("\n");
+		sql.append(" select usr.loginname, usr.cname, (case when sum(v.jds) is null then 0 else sum(v.jds) end) num ").append("\n");
 		sql.append("  from t_sys_user usr ").append("\n");
 		sql.append("   left join  ").append("\n");
 		sql.append(" ( ").append("\n");

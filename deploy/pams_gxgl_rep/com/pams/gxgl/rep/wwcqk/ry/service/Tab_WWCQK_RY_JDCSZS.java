@@ -38,12 +38,12 @@ public class Tab_WWCQK_RY_JDCSZS
 
 		obj.setAttr("sql_cdate", sql_cdate);
 		obj.setAttr("ispublish", "N");
-		obj.setAttr("isnodeovertime", "Y");		
+		obj.setAttr("isnodeovertime", "");		
 		obj.setAttr("isovertime", "");		
 		
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append(" select usr.loginname, usr.cname, (case when count(v.jds) is null then 0 else count(v.jds) end) num  ").append("\n");
+		sql.append(" select usr.loginname, usr.cname, (case when sum(v.cs) is null then 0 else sum(v.cs) end) num  ").append("\n");
 		sql.append("  from t_sys_user usr ").append("\n");
 		sql.append("   left join  ").append("\n");
 		sql.append(" ( ").append("\n");

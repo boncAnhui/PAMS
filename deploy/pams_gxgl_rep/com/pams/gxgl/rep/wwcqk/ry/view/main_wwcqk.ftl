@@ -18,13 +18,13 @@ jQuery(function($){
 <body><div id="gContainer">
 
 <#import "com/ray/nwpn/itsm/report/common/view/macros.ftl" as pub_macros>
-<@pub_macros.showheader repname="信息共享执行时长指标统计" />
+<@pub_macros.showheader repname="信息共享未完成情况(个人)指标统计" />
 
 <#include "/com/ray/nwpn/itsm/report/common/view/nav.ftl">
 
 <br />
 <div class="section sec1">
-<h2><span class="title tab_wwcqk">信息共享执行时长指标统计</span><span class="more"></span></h2>
+<h2><span class="title tab_wwcqk">信息共享未完成情况(个人)指标统计</span><span class="more"></span></h2>
 <div class="p8" id="tab_wwcqk">
 </div>
 </div>
