@@ -1,18 +1,18 @@
 package com.pams.gxgl.rep.wcqk.gs.action;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.blue.ssh.core.action.SimpleAction;
 import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
 import com.headray.framework.services.db.dybeans.DynamicObject;
-import com.pams.gxgl.rep.zxqk.gs.service.TabWFBZS;
-import com.pams.gxgl.rep.zxqk.gs.service.TabWFBZS_CSZS;
-import com.pams.gxgl.rep.zxqk.gs.service.TabWFBZS_ZCZS;
-import com.pams.gxgl.rep.zxqk.gs.service.TabYFBZS;
-import com.pams.gxgl.rep.zxqk.gs.service.TabYFBZS_CSFBZS;
-import com.pams.gxgl.rep.zxqk.gs.service.TabYFBZS_WJZS;
-import com.pams.gxgl.rep.zxqk.gs.service.TabYFBZS_ZCFBZS;
-import com.pams.gxgl.rep.zxqk.gs.service.TabYFQZS;
+import com.pams.gxgl.rep.wcqk.gs.service.Tab_WCQK_GS_CSFBJDZS;
+import com.pams.gxgl.rep.wcqk.gs.service.Tab_WCQK_GS_CSFBZS;
+import com.pams.gxgl.rep.wcqk.gs.service.Tab_WCQK_GS_FBZS;
+import com.pams.gxgl.rep.wcqk.gs.service.Tab_WCQK_GS_YFBZXSC;
+import com.pams.gxgl.rep.wcqk.gs.service.Tab_WCQK_GS_ZCFBJDZS;
+import com.pams.gxgl.rep.wcqk.gs.service.Tab_WCQK_GS_ZCFBZS;
 import com.ray.app.chart.report.dao.ReportDao;
 import com.ray.app.query.service.QueryService;
 
@@ -53,47 +53,48 @@ public class RepAction extends SimpleAction
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		
-		TabYFQZS tabYFQZS = new TabYFQZS();
-		tabYFQZS.setJdbcTemplate(reportDao.getJdbcTemplate());
+		//发布总数
+		Tab_WCQK_GS_FBZS tabFBZS = new Tab_WCQK_GS_FBZS();
+		tabFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		TabYFBZS tabYFBZS = new TabYFBZS();
-		tabYFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
+		List fbzs = tabFBZS.execute(obj);
+		data.put("fbzs", fbzs);
 		
-		TabWFBZS tabWFBZS = new TabWFBZS();
-		tabWFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		TabYFBZS_ZCFBZS tabYFBZS_ZCFBZS = new TabYFBZS_ZCFBZS();
-		tabYFBZS_ZCFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
+		//正常发布总数
+		Tab_WCQK_GS_ZCFBZS tabZCFBZS = new Tab_WCQK_GS_ZCFBZS();
+		tabZCFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		TabYFBZS_CSFBZS tabYFBZS_CSFBZS = new TabYFBZS_CSFBZS();
-		tabYFBZS_CSFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());		
+		List zcfbzs = tabZCFBZS.execute(obj);
+		data.put("zcfbzs", zcfbzs);
 		
-		TabYFBZS_WJZS tabYFBZS_WJZS = new TabYFBZS_WJZS();
-		tabYFBZS_WJZS.setJdbcTemplate(reportDao.getJdbcTemplate());	
+		//正常发布节点总数
+		Tab_WCQK_GS_ZCFBJDZS tabZCFBJDZS = new Tab_WCQK_GS_ZCFBJDZS();
+		tabZCFBJDZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		TabWFBZS_ZCZS tabWFBZS_ZCZS = new TabWFBZS_ZCZS();
-		tabWFBZS_ZCZS.setJdbcTemplate(reportDao.getJdbcTemplate());
+		List zcfbjdzs = tabZCFBJDZS.execute(obj);
+		data.put("zcfbjdzs", zcfbjdzs);
 		
-		TabWFBZS_CSZS tabWFBZS_CSZS = new TabWFBZS_CSZS();
-		tabWFBZS_CSZS.setJdbcTemplate(reportDao.getJdbcTemplate());
+		//超时发布节点总数
+		Tab_WCQK_GS_CSFBJDZS tabCSFBJDZS = new Tab_WCQK_GS_CSFBJDZS();
+		tabCSFBJDZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		String yfqzs = ((DynamicObject)(tabYFQZS.execute(obj)).get(0)).getFormatAttr("yfqzs");
-		String yfbzs = ((DynamicObject)(tabYFBZS.execute(obj)).get(0)).getFormatAttr("yfbzs");
-		String wfbzs = ((DynamicObject)(tabWFBZS.execute(obj)).get(0)).getFormatAttr("yfbzs");
-		String yfbzs_zcfbzs = ((DynamicObject)(tabYFBZS_ZCFBZS.execute(obj)).get(0)).getFormatAttr("num");
-		String yfbzs_csfbzs = ((DynamicObject)(tabYFBZS_CSFBZS.execute(obj)).get(0)).getFormatAttr("num");
-		String yfbzs_wjzs = ((DynamicObject)(tabYFBZS_WJZS.execute(obj)).get(0)).getFormatAttr("num");
-		String wfbzs_zczs = ((DynamicObject)(tabWFBZS_ZCZS.execute(obj)).get(0)).getFormatAttr("num");
-		String wfbzs_cszs = ((DynamicObject)(tabWFBZS_CSZS.execute(obj)).get(0)).getFormatAttr("num");
+		List csfbjdzs = tabCSFBJDZS.execute(obj);
+		data.put("csfbjdzs", csfbjdzs);
 		
-		data.put("yfqzs", yfqzs);
-		data.put("yfbzs", yfbzs);
-		data.put("wfbzs", wfbzs);
-		data.put("yfbzs_zcfbzs", yfbzs_zcfbzs);
-		data.put("yfbzs_csfbzs", yfbzs_csfbzs);	
-		data.put("yfbzs_wjzs", yfbzs_wjzs);	
-		data.put("wfbzs_zczs", wfbzs_zczs);	
-		data.put("wfbzs_cszs", wfbzs_cszs);	
+		//超时发布总数
+		Tab_WCQK_GS_CSFBZS tabCSFBZS = new Tab_WCQK_GS_CSFBZS();
+		tabCSFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
+		
+		List csfbzs = tabCSFBZS.execute(obj);
+		data.put("csfbzs", csfbzs);
+		
+		//计划执行时长、实际执行时长
+		Tab_WCQK_GS_YFBZXSC tabYFBZXSC = new Tab_WCQK_GS_YFBZXSC();
+		tabYFBZXSC.setJdbcTemplate(reportDao.getJdbcTemplate());
+		
+		List yfbsxzc = tabYFBZXSC.execute(obj);
+		data.put("yfbsxzc", yfbsxzc);
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
