@@ -39,8 +39,10 @@ public class RepAction extends SimpleAction
 	{
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		String internal = Struts2Utils.getRequest().getParameter("internal");
 		this.arg.put("begindate", begindate);
 		this.arg.put("enddate", enddate);
+		arg.put("internal", internal);
 		return "main_wcqk";
 	}
 	
@@ -48,10 +50,12 @@ public class RepAction extends SimpleAction
 	{
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		String internal = Struts2Utils.getRequest().getParameter("internal");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
+		obj.setAttr("internal", internal);
 		
 		//发布总数
 		Tab_WCQK_BM_FBZS tabFBZS = new Tab_WCQK_BM_FBZS();
@@ -98,6 +102,7 @@ public class RepAction extends SimpleAction
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
+		arg.put("internal", internal);
 		return "tab_wcqk";
 	}
 

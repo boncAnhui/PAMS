@@ -38,8 +38,12 @@ public class RepAction extends SimpleAction
 	{
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
-		this.arg.put("begindate", begindate);
-		this.arg.put("enddate", enddate);
+		String internal = Struts2Utils.getRequest().getParameter("internal");
+		
+		arg.put("begindate", begindate);
+		arg.put("enddate", enddate);
+		arg.put("internal", internal);
+		
 		return "main_wwcqk";
 	}
 	
@@ -47,10 +51,12 @@ public class RepAction extends SimpleAction
 	{
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		String internal = Struts2Utils.getRequest().getParameter("internal");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
+		obj.setAttr("internal", internal);
 		
 		//正常执行总数
 		Tab_WWCQK_BM_ZCZXZS tabZCZXZS = new Tab_WWCQK_BM_ZCZXZS();
@@ -91,6 +97,7 @@ public class RepAction extends SimpleAction
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
+		arg.put("internal", internal);
 		return "tab_wwcqk";
 	}
 

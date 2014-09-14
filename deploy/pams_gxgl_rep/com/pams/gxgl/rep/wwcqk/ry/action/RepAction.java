@@ -50,10 +50,12 @@ public class RepAction extends SimpleAction
 	{
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		String internal = Struts2Utils.getRequest().getParameter("internal");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
+		obj.setAttr("internal", internal);
 		
 		//未发布总数
 		Tab_WWCQK_RY_WFBZS tabWFBZS = new Tab_WWCQK_RY_WFBZS();
@@ -94,6 +96,7 @@ public class RepAction extends SimpleAction
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
+		arg.put("internal", internal);
 		return "tab_wwcqk";
 	}
 

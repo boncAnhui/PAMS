@@ -1,8 +1,7 @@
 <table class="repgGrid">
 <tr>
+<th width="300">统计单位</th>
 
-</tr>
-<tr>
 <th width="100">已发布总数</th>
 <th width="100">正常发布总数</th>
 <th width="100">正常发布节点总数</th>
@@ -24,18 +23,19 @@
 <#assign acsfbzs = data.csfbzs[afbzs_index]>
 <#assign ayfbsxzc = data.yfbsxzc[afbzs_index]>
 <tr>
-
-<td>${afbzs.num}</td>
+<td><a href="${base}/module/pams/gxgl/rep/wcqk/bm/rep_main_wcqk.action?internal=${afbzs.internal}&begindate=${arg.begindate}&enddate=${arg.enddate}">${afbzs.cname}</a></td>
 <td>${azcfbzs.num}</td>
 <td>${azcfbjdzs.num}</td>
 <td>${acsfbjdzs.num}</td>
-
-<td></td>
 <td>${acsfbzs.num}</td>
+<td>${ayfbsxzc.num}</td>
 <td></td>
 <td></td>
-<td>${ayfbsxzc.jhsc}</td>
-<td>${ayfbsxzc.sjsc}</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 

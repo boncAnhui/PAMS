@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.blue.ssh.core.action.SimpleAction;
 import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
 import com.headray.framework.services.db.dybeans.DynamicObject;
+import com.headray.framework.spec.GlobalConstants;
 import com.pams.gxgl.rep.wcqk.gs.service.Tab_WCQK_GS_CSFBJDZS;
 import com.pams.gxgl.rep.wcqk.gs.service.Tab_WCQK_GS_CSFBZS;
 import com.pams.gxgl.rep.wcqk.gs.service.Tab_WCQK_GS_FBZS;
@@ -39,19 +40,36 @@ public class RepAction extends SimpleAction
 	{
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		String internal = Struts2Utils.getRequest().getParameter("internal");
 		this.arg.put("begindate", begindate);
 		this.arg.put("enddate", enddate);
+		arg.put("internal", internal);
 		return "main_wcqk";
 	}
 	
+	// 本公司统计报表
+	public String main_local_zxqk() throws Exception
+	{
+		String begindate = Struts2Utils.getRequest().getParameter("begindate");
+		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		String internal = ((DynamicObject)Struts2Utils.getRequest().getSession().getAttribute(GlobalConstants.sys_login_token)).getFormatAttr(GlobalConstants.sys_login_org_internal);
+		
+		arg.put("begindate", begindate);
+		arg.put("enddate", enddate);
+		arg.put("internal", internal);
+		
+		return "main_wcqk";
+	}	
 	public String tab_wcqk() throws Exception
 	{
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		String internal = Struts2Utils.getRequest().getParameter("internal");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
+		obj.setAttr("internal", internal);
 		
 		//发布总数
 		Tab_WCQK_GS_FBZS tabFBZS = new Tab_WCQK_GS_FBZS();
@@ -98,6 +116,7 @@ public class RepAction extends SimpleAction
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
+		arg.put("internal", internal);
 		return "tab_wcqk";
 	}
 

@@ -27,7 +27,7 @@
 <#assign ajdcszs = data.jdcszs[awfbzs_index]>
 
 <tr>
-<td><a href="${base}/module/pams/gxgl/rep/wwcqk/bm/rep_main_wwcqk.action?internal=${awfbzs.internal}&begindate=${arg.begindate}&enddate=${arg.enddate}">${awfbzs.cname}</a></td>
+<td><a href="${base}/module/pams/gxgl/rep/wwcqk/ry/rep_main_wwcqk.action?internal=${awfbzs.internal}&begindate=${arg.begindate}&enddate=${arg.enddate}">${awfbzs.cname}</a></td>
 <td>${awfbzs.num}</td>
 <td>${azczxzs.num}</td>
 <td>${acszxzs.num}</td>

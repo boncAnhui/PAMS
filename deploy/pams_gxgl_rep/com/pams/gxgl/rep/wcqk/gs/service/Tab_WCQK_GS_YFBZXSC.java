@@ -41,7 +41,16 @@ public class Tab_WCQK_GS_YFBZXSC
 		
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append("select sum(bv.jhsc) jhsc, round(sum(bv.jhsc - (info.publishtime - info.obtaintime)),2) cs,round(sum(info.publishtime - info.obtaintime),2) sjsc").append("\n");
+		sql.append(" select org.internal, org.cname,  sum(v.jhsc) jhsc, sum(v.sjsc) sjsc ").append("\n");
+		sql.append("   from t_sys_organ org ").append("\n");
+		sql.append("   left join   ").append("\n");
+		sql.append("  (   ").append("\n");
+		sql.append("  select org.internal, v.cno, sum(v.cs) cs , sum(v.jhsc) jhsc, sum(v.sjsc) sjsc ").append("\n");
+		sql.append("  from t_sys_organ org ").append("\n");
+		sql.append("  left join ").append("\n");
+		sql.append("  (  ").append("\n");
+		
+		sql.append("select  info.cno,info.deptid,sum(bv.jhsc) jhsc, round(sum(bv.jhsc - (info.publishtime - info.obtaintime)),2) cs,round(sum(info.publishtime - info.obtaintime),2) sjsc").append("\n");
 		sql.append(" from t_app_infoshare info, ").append("\n");
 		sql.append("( ").append("\n");
 		sql.append(" select bv.cno, (count(0) + 1) jhsc").append("\n");
@@ -82,7 +91,18 @@ public class Tab_WCQK_GS_YFBZXSC
 		sql.append(") bv ").append("\n");
 		sql.append(" where 1 = 1").append("\n");		
 		sql.append("   and info.cno = bv.cno").append("\n");
+		sql.append("group by info.cno,info.deptid").append("\n");
 
+		sql.append("   ) v  ").append("\n");
+		sql.append("   on org.id = v.deptid  ").append("\n");
+		sql.append("   group by org.internal, v.cno  ").append("\n");
+		sql.append("   having sum(v.cs) = 0  ").append("\n");
+		sql.append("   ) v  ").append("\n");
+		sql.append("   on org.internal = substr(v.internal, 0, length(v.internal)-4) ").append("\n");
+		sql.append(" where 1 = 1 ").append("\n");
+		sql.append("   and org.ctype = 'ORG' ").append("\n");
+		sql.append("   group by org.internal, org.cname ").append("\n");
+		sql.append("   order by internal ").append("\n");
 		
 		List datas = DyDaoHelper.query(jt, sql.toString());
 		

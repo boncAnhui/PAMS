@@ -9,7 +9,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
 import com.headray.core.spring.jdo.DyDaoHelper;
+import com.headray.framework.services.db.SQLParser;
 import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.headray.framework.services.function.StringToolKit;
 import com.pams.gxgl.rep.helper.ZXQKHelper;
@@ -32,6 +34,7 @@ public class Tab_WWCQK_BM_CSZXZS
 		System.out.println("超时执行总数(部门)--->>>>>>>>");
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
+		String internal = Struts2Utils.getRequest().getParameter("internal");
 		String sql_cdate = RepHelper.compare_sysdate(enddate);		
 
 		obj.setAttr("sql_cdate", sql_cdate);
@@ -50,6 +53,12 @@ public class Tab_WWCQK_BM_CSZXZS
 
 		sql.append(" ) v   ").append("\n");
 		sql.append("  on org.id = v.deptid ").append("\n");
+		sql.append(" where 1 = 1 ").append("\n");
+		sql.append(" and org.ctype = 'DEPT' ").append("\n");
+		if (!StringToolKit.isBlank(internal))
+		{
+			sql.append(" and substr(org.internal, 0, length(org.internal) - 4) = " + SQLParser.charValue(internal)).append("\n");
+		}
 		sql.append(" group by internal, cname ").append("\n");
 		sql.append(" order by internal   ").append("\n");
 		

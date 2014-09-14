@@ -36,7 +36,14 @@ public class Tab_WCQK_GS_FBZS
 		
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append(" select (case when count(v.cno) is null then 0 else count(v.cno) end) num from").append("\n");
+
+		sql.append(" select org.internal, org.cname, sum(v.num) num  ").append("\n");
+		sql.append("   from t_sys_organ org ").append("\n");
+		sql.append("   left join   ").append("\n");
+		sql.append(" ( ").append("\n");
+		sql.append(" select org.internal, org.cname, count(v.cno) num ").append("\n");
+		sql.append("  from t_sys_organ org ").append("\n");
+		sql.append("   left join  ").append("\n");
 		sql.append(" ( ").append("\n");
 		sql.append("   select bv.cno, bv.title, bv.creater, bv.creatername, bv.deptid ").append("\n");
 		sql.append("    from t_app_infoshare bv ").append("\n");
@@ -57,8 +64,18 @@ public class Tab_WCQK_GS_FBZS
 		{
 			sql.append(RepHelper.date_end("bv.publishtime", enddate)).append("\n");
 		}
-
+		
+		sql.append("      ").append("\n");
 		sql.append(" ) v   ").append("\n");
+		sql.append("  on org.id = v.deptid ").append("\n");
+		sql.append(" group by internal, cname ").append("\n");
+		
+		sql.append(" ) v ").append("\n");
+		sql.append("   on org.internal = substr(v.internal, 0, length(v.internal)-4) ").append("\n");
+		sql.append(" where 1 = 1 ").append("\n");
+		sql.append("   and org.ctype = 'ORG' ").append("\n");
+		sql.append("   group by org.internal, org.cname ").append("\n");
+		sql.append("   order by internal ").append("\n");
 
 		
 		List datas = DyDaoHelper.query(jt, sql.toString());

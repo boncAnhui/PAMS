@@ -40,12 +40,28 @@ public class Tab_WCQK_GS_CSFBZS
 		
 		StringBuffer sql = new StringBuffer();
 
-		sql.append(" select (case when sum(v.jds) is null then 0 else sum(v.jds) end) num,sum(v.cs) zxsc from  ").append("\n");
-		sql.append(" ( ").append("\n");
+		
+		sql.append(" select org.internal, org.cname, (case when sum(v.jds) is null then 0 else sum(v.jds) end) num,sum(v.cs) zxsc  ").append("\n");
+		sql.append("   from t_sys_organ org ").append("\n");
+		sql.append("   left join   ").append("\n");
+		sql.append("  (   ").append("\n");
+		sql.append("  select org.internal, v.cno, sum(v.cs) cs , count(v.jds) jds ").append("\n");
+		sql.append("  from t_sys_organ org ").append("\n");
+		sql.append("  left join ").append("\n");
+		sql.append("  (  ").append("\n");
 		
 		sql.append(ZXQKHelper.sql_xxgx_zxqk(obj));
 
-		sql.append(" ) v   ").append("\n");
+		sql.append("   ) v  ").append("\n");
+		sql.append("   on org.id = v.deptid  ").append("\n");
+		sql.append("   group by org.internal, v.cno  ").append("\n");
+		sql.append("   having sum(v.cs) = 0  ").append("\n");
+		sql.append("   ) v  ").append("\n");
+		sql.append("   on org.internal = substr(v.internal, 0, length(v.internal)-4) ").append("\n");
+		sql.append(" where 1 = 1 ").append("\n");
+		sql.append("   and org.ctype = 'ORG' ").append("\n");
+		sql.append("   group by org.internal, org.cname ").append("\n");
+		sql.append("   order by internal ").append("\n");
 		
 		List datas = DyDaoHelper.query(jt, sql.toString());
 		

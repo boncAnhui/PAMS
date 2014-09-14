@@ -17,7 +17,7 @@ import com.ray.nwpn.itsm.report.common.RepHelper;
 
 /**
  * 共享未完成情况报表
- * 超时执行总数(部门)
+ * 超时执行总数(公司)
  * @author Administrator
  *
  */
@@ -29,7 +29,7 @@ public class Tab_WWCQK_GS_CSZXZS
 
 	public List execute(DynamicObject obj) throws Exception
 	{
-		System.out.println("超时执行总数(部门)--->>>>>>>>");
+		System.out.println("超时执行总数(公司)--->>>>>>>>");
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String sql_cdate = RepHelper.compare_sysdate(enddate);		
@@ -41,7 +41,11 @@ public class Tab_WWCQK_GS_CSZXZS
 		
 		StringBuffer sql = new StringBuffer();
 
-		sql.append(" select org.internal, org.cname, (case when count(v.cno) is null then 0 else count(v.cno) end) num ").append("\n");
+		sql.append(" select org.internal, org.cname, (case when sum(v.cno) is null then 0 else sum(v.cno) end) num ").append("\n");
+		sql.append("   from t_sys_organ org ").append("\n");
+		sql.append("   left join   ").append("\n");
+		sql.append("  (   ").append("\n");
+		sql.append(" select org.internal, org.cname, v.cno cno ").append("\n");
 		sql.append("  from t_sys_organ org ").append("\n");
 		sql.append("   left join  ").append("\n");
 		sql.append(" ( ").append("\n");
@@ -50,7 +54,13 @@ public class Tab_WWCQK_GS_CSZXZS
 
 		sql.append(" ) v   ").append("\n");
 		sql.append("  on org.id = v.deptid ").append("\n");
-		sql.append(" group by internal, cname ").append("\n");
+		sql.append("   group by org.internal, v.cno, org.cname  ").append("\n");
+		sql.append("   having sum(v.cs) = 0  ").append("\n");
+		sql.append("   ) v  ").append("\n");
+		sql.append("   on org.internal = substr(v.internal, 0, length(v.internal)-4) ").append("\n");
+		sql.append(" where 1 = 1 ").append("\n");
+		sql.append("   and org.ctype = 'ORG' ").append("\n");
+		sql.append("   group by org.internal, org.cname ").append("\n");
 		sql.append(" order by internal   ").append("\n");
 		
 		List datas = DyDaoHelper.query(jt, sql.toString());
