@@ -1,9 +1,6 @@
 <table class="repgGrid">
 <tr>
-周庆编辑
-</tr>
-<tr>
-<th width="40">部门</th>
+<th width="40">序号</th>
 <th width="350">部门</th>
 <th >已发起总数</th>
 <th >已发布总数</th>
