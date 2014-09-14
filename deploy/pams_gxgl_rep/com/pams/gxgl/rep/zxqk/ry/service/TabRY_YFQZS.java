@@ -26,6 +26,7 @@ public class TabRY_YFQZS
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String internal = obj.getFormatAttr("internal");
+		String orginternal = obj.getFormatAttr("orginternal");
 		
 		String sql_cdate = " sysdate ";
 		
@@ -60,8 +61,13 @@ public class TabRY_YFQZS
 		
 		if (!StringToolKit.isBlank(internal))
 		{
-			sql.append(" and usr.ownerdept = " + SQLParser.charValue(internal)).append("\n");
+			sql.append(" and substr(usr.ownerdept, 0, " + internal.length() + ") = " + SQLParser.charValue(internal)).append("\n");
 		}
+		
+		if (!StringToolKit.isBlank(orginternal))
+		{
+			sql.append(" and usr.ownerorg = " + SQLParser.charValue(orginternal)).append("\n");
+		}		
 		
 		sql.append(" group by loginname, cname ").append("\n");
 		sql.append(" order by loginname   ").append("\n");

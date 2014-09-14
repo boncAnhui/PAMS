@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.blue.ssh.core.action.SimpleAction;
 import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
 import com.headray.framework.services.db.dybeans.DynamicObject;
+import com.headray.framework.spec.GlobalConstants;
 import com.pams.gxgl.rep.zxqk.ry.service.TabRY_WFBZS;
 import com.pams.gxgl.rep.zxqk.ry.service.TabRY_WFBZS_CSZS;
 import com.pams.gxgl.rep.zxqk.ry.service.TabRY_WFBZS_ZCZS;
@@ -50,16 +51,34 @@ public class RepAction extends SimpleAction
 		return "main_zxqk";
 	}
 	
+	public String main_local_zxqk() throws Exception
+	{
+		String begindate = Struts2Utils.getRequest().getParameter("begindate");
+		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		String internal = Struts2Utils.getRequest().getParameter("internal");
+		String orginternal = ((DynamicObject)Struts2Utils.getRequest().getSession().getAttribute(GlobalConstants.sys_login_token)).getFormatAttr(GlobalConstants.sys_login_org_internal);
+		
+		arg.put("begindate", begindate);
+		arg.put("enddate", enddate);
+		arg.put("internal", internal);
+		arg.put("orginternal", orginternal);
+		
+		return "main_zxqk";
+	}	
+	
+	
 	public String tab_zxqk() throws Exception
 	{
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
+		String orginternal = Struts2Utils.getRequest().getParameter("orginternal");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("internal", internal);
+		obj.setAttr("orginternal", orginternal);		
 		
 		TabRY_YFQZS tabYFQZS = new TabRY_YFQZS();
 		tabYFQZS.setJdbcTemplate(reportDao.getJdbcTemplate());

@@ -3,17 +3,18 @@
 
 </tr>
 <tr>
-<th width="300">部门</th>
-<th width="100">已发起总数</th>
-<th width="100">已发布总数</th>
-<th width="100">未发布总数</th>
-<th width="100">正常发布总数</th>
-<th width="100">超时发布总数</th>
-<th width="100">发布文件总数</th>
-<th width="100">超时率</th>
-<th width="100">正常执行总数</th>
-<th width="100">超时执行总数</th>
-<th width="100">超时率</th>
+<th width="40">序号</th>
+<th width="60">人员</th>
+<th >已发起总数</th>
+<th >已发布总数</th>
+<th >未发布总数</th>
+<th >正常发布总数</th>
+<th >超时发布总数</th>
+<th >发布文件总数</th>
+<th >超时率</th>
+<th >正常执行总数</th>
+<th >超时执行总数</th>
+<th >超时率</th>
 </tr>
 
 <#assign sum_ayfqzs = 0>
@@ -35,8 +36,9 @@
 <#assign awfbzs_cszs = data.wfbzs_cszs[ayfqzs_index]>
 
 <tr>
+<td>${ayfqzs_index+1}</td>
 <td>${ayfqzs.cname}</td>
-<td>${ayfqzs.num}</td>
+<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfqzs.action?ownerctx=${ayfqzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${ayfqzs.num}</a></td>
 <td>${ayfbzs.num}</td>
 <td>${awfbzs.num}</td>
 <td>${ayfbzs_zcfbzs.num}</td>
@@ -60,6 +62,7 @@
 </#list>
 
 <tr>
+<td></td>
 <td></td>
 <td>${sum_ayfqzs}</td>
 <td>${sum_ayfbzs}</td>

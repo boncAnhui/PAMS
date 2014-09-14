@@ -36,7 +36,7 @@
 <#assign awfbzs_cszs = data.wfbzs_cszs[ayfqzs_index]>
 
 <tr>
-<td><a href="${base}/module/pams/gxgl/rep/zxqk/ry/rep_main_zxqk.action?internal=${ayfqzs.internal}&begindate=${arg.begindate}&enddate=${arg.enddate}">${ayfqzs.cname}</a></td>
+<td><a href="${base}/module/pams/gxgl/rep/zxqk/ry/rep_main_zxqk.action?internal=${ayfqzs.internal}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${ayfqzs.cname}</a></td>
 <td>${ayfqzs.num}</td>
 <td>${ayfbzs.num}</td>
 <td>${awfbzs.num}</td>
