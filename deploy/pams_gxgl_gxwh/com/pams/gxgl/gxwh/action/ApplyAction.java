@@ -2,6 +2,8 @@ package com.pams.gxgl.gxwh.action;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +19,7 @@ import com.blue.ssh.core.action.SimpleAction;
 import com.blue.ssh.core.orm.Page;
 import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
 import com.headray.core.spring.jdo.JdbcDao;
+import com.headray.framework.common.generator.FormatKey;
 import com.headray.framework.common.generator.TimeGenerator;
 import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.headray.framework.services.function.StringToolKit;
@@ -478,8 +481,13 @@ public class ApplyAction extends SimpleAction
 		String position = userService.getUserByLoginName(loginname).getPosition();
 
 		String obtaintimed = TimeGenerator.getDateStr();
-		String obtaintimet = "10:00";
-
+		Calendar ctime = new GregorianCalendar();
+		
+		String obtaintimet = "";
+		obtaintimet += FormatKey.format(String.valueOf(ctime.get(Calendar.HOUR_OF_DAY)), 2);
+		obtaintimet += ":";
+		obtaintimet += FormatKey.format(String.valueOf(ctime.get(Calendar.MINUTE)), 2);
+		
 		data.put("loginname", loginname);
 		data.put("username", username);
 

@@ -1,6 +1,7 @@
 package com.pams.gxgl.gxwh.service;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -383,6 +384,13 @@ public class InfoShareService
 	@Transactional
 	public String create(InfoShare infoshare, DynamicObject swapFlow) throws Exception
 	{
+		// 检查获取时间是否超过系统时间
+		Timestamp systime = new Timestamp(System.currentTimeMillis());
+		if(infoshare.getObtaintime().after(systime))
+		{
+			throw new Exception("信息获取时间超过系统当前时间，请重新输入。");
+		}
+		
 		// 创建业务数据
 		String cno = gen_cno();
 		infoshare.setCno(cno);

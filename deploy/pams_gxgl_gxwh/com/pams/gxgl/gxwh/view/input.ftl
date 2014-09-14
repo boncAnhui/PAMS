@@ -135,6 +135,17 @@ function page_save()
 
 	$("#obtaintime").val($("#obtaintimed").val() + " " + $("#obtaintimet").val() + ":00");
 
+	// 检查信息获取时间是否超过系统当前时间
+	var sobtaintime = $("#obtaintime").val();
+	sobtaintime = sobtaintime.replace("-","/");//替换字符，变成标准格式  
+	var sysdate = new Date();//取今天的日期  
+	var dobtaintime = new Date(Date.parse(sobtaintime));
+	if(dobtaintime>sysdate)
+	{  
+	  alert("信息获取时间大于当前时间，请重新输入。");
+	  return;
+	}  
+	
     $("#aform").attr("target","_parent");
 	$("#aform").attr("action","apply_insert.action");
     $("#aform").trigger('submit');
