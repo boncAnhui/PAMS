@@ -7,14 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.blue.ssh.core.action.SimpleAction;
 import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
 import com.headray.framework.services.db.dybeans.DynamicObject;
-import com.pams.gxgl.rep.zxqk.bm.service.TabBM_WFBZS;
-import com.pams.gxgl.rep.zxqk.bm.service.TabBM_WFBZS_CSZS;
-import com.pams.gxgl.rep.zxqk.bm.service.TabBM_WFBZS_ZCZS;
-import com.pams.gxgl.rep.zxqk.bm.service.TabBM_YFBZS;
-import com.pams.gxgl.rep.zxqk.bm.service.TabBM_YFBZS_CSFBZS;
-import com.pams.gxgl.rep.zxqk.bm.service.TabBM_YFBZS_WJZS;
-import com.pams.gxgl.rep.zxqk.bm.service.TabBM_YFBZS_ZCFBZS;
-import com.pams.gxgl.rep.zxqk.bm.service.TabBM_YFQZS;
+import com.pams.gxgl.rep.wwcqk.bm.service.Tab_WWCQK_BM_CSZXZS;
+import com.pams.gxgl.rep.wwcqk.bm.service.Tab_WWCQK_BM_WFBZS;
+import com.pams.gxgl.rep.wwcqk.bm.service.Tab_WWCQK_BM_JDCSZS;
+import com.pams.gxgl.rep.wwcqk.bm.service.Tab_WWCQK_BM_YZXJDZS;
+import com.pams.gxgl.rep.wwcqk.bm.service.Tab_WWCQK_BM_ZCZXZS;
 import com.ray.app.chart.report.dao.ReportDao;
 import com.ray.app.query.service.QueryService;
 
@@ -55,47 +52,42 @@ public class RepAction extends SimpleAction
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		
-		TabBM_YFQZS tabYFQZS = new TabBM_YFQZS();
-		tabYFQZS.setJdbcTemplate(reportDao.getJdbcTemplate());
+		//正常执行总数
+		Tab_WWCQK_BM_ZCZXZS tabZCZXZS = new Tab_WWCQK_BM_ZCZXZS();
+		tabZCZXZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		TabBM_YFBZS tabYFBZS = new TabBM_YFBZS();
-		tabYFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
+		List zczxzs = tabZCZXZS.execute(obj);
+		data.put("zczxzs", zczxzs);
 		
-		TabBM_WFBZS tabWFBZS = new TabBM_WFBZS();
+		
+		//已执行节点总数
+		Tab_WWCQK_BM_YZXJDZS tabYZXJDZS = new Tab_WWCQK_BM_YZXJDZS();
+		tabYZXJDZS.setJdbcTemplate(reportDao.getJdbcTemplate());
+		
+		List yzxjdzs = tabYZXJDZS.execute(obj);
+		data.put("yzxjdzs", yzxjdzs);
+		
+		
+		//未发布总数
+		Tab_WWCQK_BM_WFBZS tabWFBZS = new Tab_WWCQK_BM_WFBZS();
 		tabWFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		TabBM_YFBZS_ZCFBZS tabYFBZS_ZCFBZS = new TabBM_YFBZS_ZCFBZS();
-		tabYFBZS_ZCFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
-		
-		TabBM_YFBZS_CSFBZS tabYFBZS_CSFBZS = new TabBM_YFBZS_CSFBZS();
-		tabYFBZS_CSFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());		
-		
-		TabBM_YFBZS_WJZS tabYFBZS_WJZS = new TabBM_YFBZS_WJZS();
-		tabYFBZS_WJZS.setJdbcTemplate(reportDao.getJdbcTemplate());	
-		
-		TabBM_WFBZS_ZCZS tabWFBZS_ZCZS = new TabBM_WFBZS_ZCZS();
-		tabWFBZS_ZCZS.setJdbcTemplate(reportDao.getJdbcTemplate());
-		
-		TabBM_WFBZS_CSZS tabWFBZS_CSZS = new TabBM_WFBZS_CSZS();
-		tabWFBZS_CSZS.setJdbcTemplate(reportDao.getJdbcTemplate());
-		
-		List yfqzs = tabYFQZS.execute(obj);
-		List yfbzs = tabYFBZS.execute(obj);
 		List wfbzs = tabWFBZS.execute(obj);
-		List yfbzs_zcfbzs = tabYFBZS_ZCFBZS.execute(obj);
-		List yfbzs_csfbzs = tabYFBZS_CSFBZS.execute(obj);
-		List yfbzs_wjzs = tabYFBZS_WJZS.execute(obj);
-		List wfbzs_zczs = tabWFBZS_ZCZS.execute(obj);
-		List wfbzs_cszs = tabWFBZS_CSZS.execute(obj);
-		
-		data.put("yfqzs", yfqzs);
-		data.put("yfbzs", yfbzs);
 		data.put("wfbzs", wfbzs);
-		data.put("yfbzs_zcfbzs", yfbzs_zcfbzs);
-		data.put("yfbzs_csfbzs", yfbzs_csfbzs);	
-		data.put("yfbzs_wjzs", yfbzs_wjzs);	
-		data.put("wfbzs_zczs", wfbzs_zczs);	
-		data.put("wfbzs_cszs", wfbzs_cszs);	
+		
+		//超时执行总数
+		Tab_WWCQK_BM_CSZXZS tabCSZXZS = new Tab_WWCQK_BM_CSZXZS();
+		tabCSZXZS.setJdbcTemplate(reportDao.getJdbcTemplate());
+		
+		List cszxzs = tabCSZXZS.execute(obj);
+		data.put("cszxzs", cszxzs);
+		
+		//节点超时总数
+		Tab_WWCQK_BM_JDCSZS tabJDCSZS = new Tab_WWCQK_BM_JDCSZS();
+		tabJDCSZS.setJdbcTemplate(reportDao.getJdbcTemplate());
+		
+		List jdcszs = tabJDCSZS.execute(obj);
+		data.put("jdcszs", jdcszs);
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);

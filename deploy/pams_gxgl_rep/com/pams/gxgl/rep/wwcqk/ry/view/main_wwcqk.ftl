@@ -24,8 +24,8 @@ jQuery(function($){
 
 <br />
 <div class="section sec1">
-<h2><span class="title tab_zxqk">信息共享执行时长指标统计</span><span class="more"></span></h2>
-<div class="p8" id="tab_zxqk">
+<h2><span class="title tab_wwcqk">信息共享执行时长指标统计</span><span class="more"></span></h2>
+<div class="p8" id="tab_wwcqk">
 </div>
 </div>
 
@@ -33,14 +33,14 @@ jQuery(function($){
 
 <script>
 
-function page_load_zxqk_table()
+function page_load_wwcqk_table()
 {
-	page_load_table("${base}/module/pams/gxgl/rep/zxqk/ry/rep_tab_zxqk.action", "zxqk", 0, new Array("internal"), new Array("${arg.internal}"));
+	page_load_table("${base}/module/pams/gxgl/rep/wwcqk/ry/rep_tab_wwcqk.action", "wwcqk", 0, new Array("internal"), new Array("${arg.internal}"));
 }
 
 function page_load()
 {
-	page_load_zxqk_table();
+	page_load_wwcqk_table();
 }
 
 page_load();
