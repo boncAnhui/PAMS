@@ -3,30 +3,55 @@
 
 </tr>
 <tr>
-<th width="100">已发起总数</th>
-<th width="100">已发布总数</th>
+<th width="300">部门</th>
 <th width="100">未发布总数</th>
-<th width="100">正常发布总数</th>
-<th width="100">超时发布总数</th>
-<th width="100">发布文件总数</th>
-<th width="100">超时率</th>
 <th width="100">正常执行总数</th>
 <th width="100">超时执行总数</th>
-<th width="100">超时率</th>
+<th width="100">已执行节点数</th>
+<th width="100">节点超期总数</th>
+
 </tr>
+
+<#assign sum_ayfqzs = 0>
+<#assign sum_ayfbzs = 0>
+<#assign sum_awfbzs = 0>
+<#assign sum_ayfbzs_zcfbzs = 0>
+<#assign sum_ayfbzs_csfbzs = 0>
+
+
+<#list data.wfbzs as awfbzs>
+
+<#assign azczxzs = data.zczxzs[awfbzs_index]>
+<#assign acszxzs = data.cszxzs[awfbzs_index]>
+<#assign ayzxjdzs = data.yzxjdzs[awfbzs_index]>
+<#assign ajdcszs = data.jdcszs[awfbzs_index]>
 
 <tr>
-<td>${data.yfqzs}</td>
-<td>${data.yfbzs}</td>
-<td>${data.wfbzs}</td>
-<td>${data.yfbzs_zcfbzs}</td>
-<td>${data.yfbzs_csfbzs}</td>
-<td>${data.yfbzs_wjzs}</td>
-<td></td>
-<td>${data.wfbzs_zczs}</td>
-<td>${data.wfbzs_cszs}</td>
-<td></td>
+<td><a href="${base}/module/pams/gxgl/rep/wwcqk/bm/rep_main_wwcqk.action?internal=${awfbzs.internal}&begindate=${arg.begindate}&enddate=${arg.enddate}">${awfbzs.cname}</a></td>
+<td>${awfbzs.num}</td>
+<td>${azczxzs.num}</td>
+<td>${acszxzs.num}</td>
+<td>${ayzxjdzs.num}</td>
+<td>${ajdcszs.num}</td>
+
 </tr>
 
+<#assign sum_awfbzs = sum_awfbzs + awfbzs.num?number>
+<#assign sum_azczxzs = sum_azczxzs + azczxzs.num?number>
+<#assign sum_acszxzs = sum_acszxzs + acszxzs.num?number>
+<#assign sum_ayzxjdzs = sum_ayzxjdzs + ayzxjdzs.num?number>
+
+
+
+</#list>
+
+<tr>
+<td>合计:</td>
+<td>${sum_awfbzs}</td>
+<td>${sum_azczxzs}</td>
+<td>${sum_acszxzs}</td>
+<td>${sum_ayzxjdzs}</td>
+<td>${sum_ajdcszs}</td>
+</tr>
 
 </table>
