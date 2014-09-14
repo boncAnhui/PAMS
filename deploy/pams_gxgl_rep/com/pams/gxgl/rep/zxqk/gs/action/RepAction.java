@@ -1,18 +1,21 @@
 package com.pams.gxgl.rep.zxqk.gs.action;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.blue.ssh.core.action.SimpleAction;
 import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
 import com.headray.framework.services.db.dybeans.DynamicObject;
-import com.pams.gxgl.rep.zxqk.gs.service.TabWFBZS;
-import com.pams.gxgl.rep.zxqk.gs.service.TabWFBZS_CSZS;
-import com.pams.gxgl.rep.zxqk.gs.service.TabWFBZS_ZCZS;
-import com.pams.gxgl.rep.zxqk.gs.service.TabYFBZS;
-import com.pams.gxgl.rep.zxqk.gs.service.TabYFBZS_CSFBZS;
-import com.pams.gxgl.rep.zxqk.gs.service.TabYFBZS_WJZS;
-import com.pams.gxgl.rep.zxqk.gs.service.TabYFBZS_ZCFBZS;
-import com.pams.gxgl.rep.zxqk.gs.service.TabYFQZS;
+import com.headray.framework.spec.GlobalConstants;
+import com.pams.gxgl.rep.zxqk.gs.service.TabGS_WFBZS;
+import com.pams.gxgl.rep.zxqk.gs.service.TabGS_WFBZS_CSZS;
+import com.pams.gxgl.rep.zxqk.gs.service.TabGS_WFBZS_ZCZS;
+import com.pams.gxgl.rep.zxqk.gs.service.TabGS_YFBZS;
+import com.pams.gxgl.rep.zxqk.gs.service.TabGS_YFBZS_CSFBZS;
+import com.pams.gxgl.rep.zxqk.gs.service.TabGS_YFBZS_WJZS;
+import com.pams.gxgl.rep.zxqk.gs.service.TabGS_YFBZS_ZCFBZS;
+import com.pams.gxgl.rep.zxqk.gs.service.TabGS_YFQZS;
 import com.ray.app.chart.report.dao.ReportDao;
 import com.ray.app.query.service.QueryService;
 
@@ -35,56 +38,77 @@ public class RepAction extends SimpleAction
 		return "mainframe";
 	}
 
+	// 集团公司统计报表
 	public String main_zxqk() throws Exception
 	{
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
-		this.arg.put("begindate", begindate);
-		this.arg.put("enddate", enddate);
+		String internal = Struts2Utils.getRequest().getParameter("internal");
+		
+		arg.put("begindate", begindate);
+		arg.put("enddate", enddate);
+		arg.put("internal", internal);
+		
 		return "main_zxqk";
 	}
+	
+	// 本公司统计报表
+	public String main_local_zxqk() throws Exception
+	{
+		String begindate = Struts2Utils.getRequest().getParameter("begindate");
+		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		String internal = ((DynamicObject)Struts2Utils.getRequest().getSession().getAttribute(GlobalConstants.sys_login_token)).getFormatAttr(GlobalConstants.sys_login_org_internal);
+		
+		arg.put("begindate", begindate);
+		arg.put("enddate", enddate);
+		arg.put("internal", internal);
+		
+		return "main_zxqk";
+	}	
 	
 	public String tab_zxqk() throws Exception
 	{
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		String internal = Struts2Utils.getRequest().getParameter("internal");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
+		obj.setAttr("internal", internal);
 		
-		TabYFQZS tabYFQZS = new TabYFQZS();
+		TabGS_YFQZS tabYFQZS = new TabGS_YFQZS();
 		tabYFQZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		TabYFBZS tabYFBZS = new TabYFBZS();
+		TabGS_YFBZS tabYFBZS = new TabGS_YFBZS();
 		tabYFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		TabWFBZS tabWFBZS = new TabWFBZS();
+		TabGS_WFBZS tabWFBZS = new TabGS_WFBZS();
 		tabWFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		TabYFBZS_ZCFBZS tabYFBZS_ZCFBZS = new TabYFBZS_ZCFBZS();
+		TabGS_YFBZS_ZCFBZS tabYFBZS_ZCFBZS = new TabGS_YFBZS_ZCFBZS();
 		tabYFBZS_ZCFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		TabYFBZS_CSFBZS tabYFBZS_CSFBZS = new TabYFBZS_CSFBZS();
+		TabGS_YFBZS_CSFBZS tabYFBZS_CSFBZS = new TabGS_YFBZS_CSFBZS();
 		tabYFBZS_CSFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());		
 		
-		TabYFBZS_WJZS tabYFBZS_WJZS = new TabYFBZS_WJZS();
+		TabGS_YFBZS_WJZS tabYFBZS_WJZS = new TabGS_YFBZS_WJZS();
 		tabYFBZS_WJZS.setJdbcTemplate(reportDao.getJdbcTemplate());	
 		
-		TabWFBZS_ZCZS tabWFBZS_ZCZS = new TabWFBZS_ZCZS();
+		TabGS_WFBZS_ZCZS tabWFBZS_ZCZS = new TabGS_WFBZS_ZCZS();
 		tabWFBZS_ZCZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		TabWFBZS_CSZS tabWFBZS_CSZS = new TabWFBZS_CSZS();
+		TabGS_WFBZS_CSZS tabWFBZS_CSZS = new TabGS_WFBZS_CSZS();
 		tabWFBZS_CSZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		String yfqzs = ((DynamicObject)(tabYFQZS.execute(obj)).get(0)).getFormatAttr("yfqzs");
-		String yfbzs = ((DynamicObject)(tabYFBZS.execute(obj)).get(0)).getFormatAttr("yfbzs");
-		String wfbzs = ((DynamicObject)(tabWFBZS.execute(obj)).get(0)).getFormatAttr("yfbzs");
-		String yfbzs_zcfbzs = ((DynamicObject)(tabYFBZS_ZCFBZS.execute(obj)).get(0)).getFormatAttr("num");
-		String yfbzs_csfbzs = ((DynamicObject)(tabYFBZS_CSFBZS.execute(obj)).get(0)).getFormatAttr("num");
-		String yfbzs_wjzs = ((DynamicObject)(tabYFBZS_WJZS.execute(obj)).get(0)).getFormatAttr("num");
-		String wfbzs_zczs = ((DynamicObject)(tabWFBZS_ZCZS.execute(obj)).get(0)).getFormatAttr("num");
-		String wfbzs_cszs = ((DynamicObject)(tabWFBZS_CSZS.execute(obj)).get(0)).getFormatAttr("num");
+		List yfqzs = tabYFQZS.execute(obj);
+		List yfbzs = tabYFBZS.execute(obj);
+		List wfbzs = tabWFBZS.execute(obj);
+		List yfbzs_zcfbzs = tabYFBZS_ZCFBZS.execute(obj);
+		List yfbzs_csfbzs = tabYFBZS_CSFBZS.execute(obj);
+		List yfbzs_wjzs = tabYFBZS_WJZS.execute(obj);
+		List wfbzs_zczs = tabWFBZS_ZCZS.execute(obj);
+		List wfbzs_cszs = tabWFBZS_CSZS.execute(obj);
 		
 		data.put("yfqzs", yfqzs);
 		data.put("yfbzs", yfbzs);
@@ -97,6 +121,8 @@ public class RepAction extends SimpleAction
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
+		arg.put("internal", internal);
+		
 		return "tab_zxqk";
 	}
 

@@ -10,18 +10,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.headray.core.spring.jdo.DyDaoHelper;
+import com.headray.framework.services.db.SQLParser;
 import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.headray.framework.services.function.StringToolKit;
 import com.ray.nwpn.itsm.report.common.RepHelper;
 
-/**
- * 未发布总数
- * @author Administrator
- *
- */
 @Component
 @Transactional
-public class TabWFBZS
+public class TabGS_YFQZS
 {
 	JdbcTemplate jt;
 
@@ -29,6 +25,7 @@ public class TabWFBZS
 	{
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
+		String internal = obj.getFormatAttr("internal");
 		
 		String sql_cdate = " sysdate ";
 		
@@ -39,12 +36,12 @@ public class TabWFBZS
     	}
 		
 		StringBuffer sql = new StringBuffer();
-		
-		sql.append(" select sum(v.yfbzs) yfbzs ").append("\n");
-		sql.append(" from ").append("\n");
-		sql.append(" ( ").append("\n");
 
-		sql.append(" select org.internal, org.cname, count(v.cno) yfbzs ").append("\n");
+		sql.append(" select org.internal, org.cname, sum(v.num) num  ").append("\n");
+		sql.append("   from t_sys_organ org ").append("\n");
+		sql.append("   left join   ").append("\n");
+		sql.append(" ( ").append("\n");
+		sql.append(" select org.internal, org.cname, count(v.cno) num ").append("\n");
 		sql.append("  from t_sys_organ org ").append("\n");
 		sql.append("   left join  ").append("\n");
 		sql.append(" ( ").append("\n");
@@ -61,21 +58,28 @@ public class TabWFBZS
 			sql.append(RepHelper.date_end("bv.createtime", enddate)).append("\n");
 		}
 		
-		sql.append("     and bv.publishtime is null ").append("\n");
-		
+		sql.append("      ").append("\n");
 		sql.append(" ) v   ").append("\n");
 		sql.append("  on org.id = v.deptid ").append("\n");
 		sql.append(" group by internal, cname ").append("\n");
 		sql.append(" ) v ").append("\n");
-		sql.append("  ").append("\n");
-		sql.append(" order by internal   ").append("\n");
-
+		sql.append("   on org.internal = substr(v.internal, 0, length(v.internal)-4) ").append("\n");
+		sql.append(" where 1 = 1 ").append("\n");
+		sql.append("   and org.ctype = 'ORG' ").append("\n");
+		
+		if (!StringToolKit.isBlank(internal))
+		{
+			sql.append("  and org.internal = " + SQLParser.charValue(internal)).append("\n");
+		}
+		
+		sql.append("   group by org.internal, org.cname ").append("\n");
+		sql.append("   order by internal ").append("\n");
 
 		List datas = DyDaoHelper.query(jt, sql.toString());
 
 		return datas;
 	}
-
+	
 	public void setJdbcTemplate(JdbcTemplate jt)
 	{
 		this.jt = jt;
@@ -87,6 +91,3 @@ public class TabWFBZS
 	}
 
 }
-
-
-

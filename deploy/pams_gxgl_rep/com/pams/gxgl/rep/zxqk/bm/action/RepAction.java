@@ -41,8 +41,12 @@ public class RepAction extends SimpleAction
 	{
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
-		this.arg.put("begindate", begindate);
-		this.arg.put("enddate", enddate);
+		String internal = Struts2Utils.getRequest().getParameter("internal");
+		
+		arg.put("begindate", begindate);
+		arg.put("enddate", enddate);
+		arg.put("internal", internal);
+		
 		return "main_zxqk";
 	}
 	
@@ -50,10 +54,12 @@ public class RepAction extends SimpleAction
 	{
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		String internal = Struts2Utils.getRequest().getParameter("internal");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
+		obj.setAttr("internal", internal);
 		
 		TabBM_YFQZS tabYFQZS = new TabBM_YFQZS();
 		tabYFQZS.setJdbcTemplate(reportDao.getJdbcTemplate());
@@ -99,6 +105,8 @@ public class RepAction extends SimpleAction
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
+		arg.put("internal", internal);
+		
 		return "tab_zxqk";
 	}
 

@@ -61,7 +61,6 @@ public class RepAction extends SimpleAction
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("internal", internal);
 		
-		
 		TabRY_YFQZS tabYFQZS = new TabRY_YFQZS();
 		tabYFQZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		

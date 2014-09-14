@@ -14,14 +14,9 @@ import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.headray.framework.services.function.StringToolKit;
 import com.ray.nwpn.itsm.report.common.RepHelper;
 
-/**
- * 已发起总数
- * @author Administrator
- *
- */
 @Component
 @Transactional
-public class TabYFQZS
+public class TabGS_WFBZS
 {
 	JdbcTemplate jt;
 
@@ -39,11 +34,12 @@ public class TabYFQZS
     	}
 		
 		StringBuffer sql = new StringBuffer();
-
-		sql.append(" select sum(v.fqzs) yfqzs ").append("\n");
-		sql.append(" from ").append("\n");
+		
+		sql.append(" select org.internal, org.cname, sum(v.num) num  ").append("\n");
+		sql.append("   from t_sys_organ org ").append("\n");
+		sql.append("   left join   ").append("\n");
 		sql.append(" ( ").append("\n");
-		sql.append(" select org.internal, org.cname, count(v.cno) fqzs ").append("\n");
+		sql.append(" select org.internal, org.cname, count(v.cno) num ").append("\n");
 		sql.append("  from t_sys_organ org ").append("\n");
 		sql.append("   left join  ").append("\n");
 		sql.append(" ( ").append("\n");
@@ -60,20 +56,23 @@ public class TabYFQZS
 			sql.append(RepHelper.date_end("bv.createtime", enddate)).append("\n");
 		}
 		
-		sql.append("      ").append("\n");
+		sql.append("     and bv.publishtime is null ").append("\n");
+		
 		sql.append(" ) v   ").append("\n");
 		sql.append("  on org.id = v.deptid ").append("\n");
 		sql.append(" group by internal, cname ").append("\n");
 		sql.append(" ) v ").append("\n");
-		sql.append("  ").append("\n");
-		sql.append(" order by internal   ").append("\n");
-
+		sql.append("   on org.internal = substr(v.internal, 0, length(v.internal)-4) ").append("\n");
+		sql.append(" where 1 = 1 ").append("\n");
+		sql.append("   and org.ctype = 'ORG' ").append("\n");
+		sql.append("   group by org.internal, org.cname ").append("\n");
+		sql.append("   order by internal ").append("\n");
 
 		List datas = DyDaoHelper.query(jt, sql.toString());
 
 		return datas;
 	}
-	
+
 	public void setJdbcTemplate(JdbcTemplate jt)
 	{
 		this.jt = jt;
@@ -85,3 +84,6 @@ public class TabYFQZS
 	}
 
 }
+
+
+

@@ -14,15 +14,9 @@ import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.headray.framework.services.function.StringToolKit;
 import com.ray.nwpn.itsm.report.common.RepHelper;
 
-/**
- * 已发布总数
- * 正常发布总数
- * @author Administrator
- *
- */
 @Component
 @Transactional
-public class TabYFBZS_ZCFBZS
+public class TabGS_YFBZS
 {
 	JdbcTemplate jt;
 
@@ -41,23 +35,17 @@ public class TabYFBZS_ZCFBZS
 		
 		StringBuffer sql = new StringBuffer();
 		
-		
-		sql.append(" select count(cno) num ").append("\n");
-		sql.append("  from ").append("\n");
-		sql.append("  ( ").append("\n");
-		sql.append(" select v.deptid, v.cno, count(v.actdefid) jds, sum(v.zxsc) zxsc  ").append("\n");
-		sql.append("  from ").append("\n");
-		sql.append("  ( ").append("\n");
-		sql.append(" select bv.deptid, bv.cno, ract.actdefid, sum(ract.completetime - ract.createtime) zxsc ").append("\n");
-		sql.append("   from t_sys_wfbact bact, t_sys_wfrflow rflow, t_sys_wfract ract, t_app_infoshare bv ").append("\n");
-		sql.append("  where 1 = 1 ").append("\n");
-		sql.append("    and rflow.dataid = bv.id ").append("\n");
-		sql.append("    and rflow.tableid = 'InfoShare' ").append("\n");
-		sql.append("    and rflow.runflowkey = ract.runflowkey ").append("\n");
-		sql.append("    and bact.id = ract.actdefid ").append("\n");
-		sql.append("    and bact.ctype <> 'BEGIN' ").append("\n");
-		sql.append("    and bact.ctype <> 'END' ").append("\n");
-		sql.append("    and rflow.state = '结束' ").append("\n");
+		sql.append(" select org.internal, org.cname, sum(v.num) num  ").append("\n");
+		sql.append("   from t_sys_organ org ").append("\n");
+		sql.append("   left join   ").append("\n");
+		sql.append(" ( ").append("\n");
+		sql.append(" select org.internal, org.cname, count(v.cno) num ").append("\n");
+		sql.append("  from t_sys_organ org ").append("\n");
+		sql.append("   left join  ").append("\n");
+		sql.append(" ( ").append("\n");
+		sql.append("   select bv.cno, bv.title, bv.creater, bv.creatername, bv.deptid ").append("\n");
+		sql.append("    from t_app_infoshare bv ").append("\n");
+		sql.append("   where 1 = 1 ").append("\n");
 		if (!StringToolKit.isBlank(begindate))
 		{
 			sql.append(RepHelper.date_begin_eq("bv.createtime", begindate)).append("\n");
@@ -67,22 +55,25 @@ public class TabYFBZS_ZCFBZS
 		{
 			sql.append(RepHelper.date_end("bv.createtime", enddate)).append("\n");
 		}
+		
 		sql.append("     and bv.publishtime is not null ").append("\n");
 		
 		if (!StringToolKit.isBlank(enddate))
 		{
 			sql.append(RepHelper.date_end("bv.publishtime", enddate)).append("\n");
-		}		
+		}
 		
-		sql.append("  group by bv.deptid, bv.cno, ract.actdefid ").append("\n");
-		// sql.append("  having sum(ract.completetime - ract.createtime) < 1 ").append("\n");
-		sql.append("  order by bv.deptid, bv.cno, ract.actdefid   ").append("\n");
-		sql.append("   ) v ").append("\n");
-		sql.append("  where 1 = 1 ").append("\n");
-		sql.append("   group by deptid, v.cno ").append("\n");
-		sql.append("   having count(v.actdefid) + 1 > sum(v.zxsc) ").append("\n");
-		sql.append("  ) ").append("\n");
-		sql.append("   ").append("\n");
+		sql.append("      ").append("\n");
+		sql.append(" ) v   ").append("\n");
+		sql.append("  on org.id = v.deptid ").append("\n");
+		sql.append(" group by internal, cname ").append("\n");
+		sql.append(" ) v ").append("\n");
+		sql.append("   on org.internal = substr(v.internal, 0, length(v.internal)-4) ").append("\n");
+		sql.append(" where 1 = 1 ").append("\n");
+		sql.append("   and org.ctype = 'ORG' ").append("\n");
+		sql.append("   group by org.internal, org.cname ").append("\n");
+		sql.append("   order by internal ").append("\n");
+
 
 		List datas = DyDaoHelper.query(jt, sql.toString());
 
