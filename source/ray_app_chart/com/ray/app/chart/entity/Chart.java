@@ -35,6 +35,14 @@ public class Chart
 	// X轴名称
 	private String fxcname;
 	
+	private String fy;
+	
+	private String fycname;
+	
+	private String sfy;
+	
+	private String sfycname;	
+	
 	// 分组字段
 	private String fs;
 	
@@ -97,6 +105,16 @@ public class Chart
 		this.searchname = searchname;
 	}
 
+	public String getDy()
+	{
+		return dy;
+	}
+
+	public void setDy(String dy)
+	{
+		this.dy = dy;
+	}
+
 	public String getFx()
 	{
 		return fx;
@@ -115,6 +133,46 @@ public class Chart
 	public void setFxcname(String fxcname)
 	{
 		this.fxcname = fxcname;
+	}
+
+	public String getFy()
+	{
+		return fy;
+	}
+
+	public void setFy(String fy)
+	{
+		this.fy = fy;
+	}
+
+	public String getFycname()
+	{
+		return fycname;
+	}
+
+	public void setFycname(String fycname)
+	{
+		this.fycname = fycname;
+	}
+
+	public String getSfy()
+	{
+		return sfy;
+	}
+
+	public void setSfy(String sfy)
+	{
+		this.sfy = sfy;
+	}
+
+	public String getSfycname()
+	{
+		return sfycname;
+	}
+
+	public void setSfycname(String sfycname)
+	{
+		this.sfycname = sfycname;
 	}
 
 	public String getFs()
@@ -227,14 +285,6 @@ public class Chart
 		this.height = height;
 	}
 
-	public String getDy()
-	{
-		return dy;
-	}
 
-	public void setDy(String dy)
-	{
-		this.dy = dy;
-	}
 
 }

@@ -19,11 +19,15 @@ public class GlobalConstants
 
 	public static String sys_login_dept = "sys_login_dept";
 
+	public static String sys_login_dept_internal = "sys_login_dept_internal";	
+
 	public static String sys_login_deptname = "sys_login_deptname";
 	
 	public static String sys_login_userid = "sys_login_userid";
 
 	public static String sys_login_org = "sys_login_org";
+	
+	public static String sys_login_org_internal = "sys_login_org_internal";	
 
 	public static String sys_login_orgname = "sys_login_orgname";
 	

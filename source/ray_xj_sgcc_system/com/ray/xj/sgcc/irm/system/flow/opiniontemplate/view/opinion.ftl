@@ -133,9 +133,14 @@ function changeopinion()
 </head>
 <body>
 
+<div id="fixedOp">
+	<button id="bt_save" class="btn2">保存意见</button>
+	<button id="bt_clear">清除意见</button>
+	<button id="bt_add">添加意见列表</button>
+	<button id="bt_close" class="btn2">关闭</button>
+</div>
 
 <div id="pageContainer">
-
 <form id="locateform" method="post" action="/irm/">
 <input type="hidden" id="runflowkey" name="runflowkey" value="${data.runflowkey}">
 <input type="hidden" id="runactkey" name="runactkey" value="${data.runactkey}">
@@ -179,22 +184,10 @@ function changeopinion()
 		<td class="r">&nbsp;</td>
 		<td>&nbsp;</td>
 	</tr>	
-	 <tr>
-	 	<td class="r"></td>
-	 	<td>
-	 		<button id="bt_clear">清除当前意见</button>
-	 	</td>
-	 	<td>
-			<button id="bt_add">添加到意见列表</button>
-		</td>
-		<td class="r">&nbsp;</td>
-		<td>&nbsp;</td>
-	 </tr>
 </table>
 </form>
 	<div>
-		<button id="bt_save">确定</button>
-		<button id="bt_close">关闭</button>
+
 	</div>
 </div>
 </body>

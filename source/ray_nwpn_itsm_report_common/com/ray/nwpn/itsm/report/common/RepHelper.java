@@ -1,5 +1,6 @@
 package com.ray.nwpn.itsm.report.common;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,6 +29,11 @@ public class RepHelper
 	public static String to_time(String value)
 	{
 		return "to_date('" + value + " 00:00:00', 'yyyy-mm-dd hh24:mi:ss')";
+	}
+	
+	public static String to_time_end(String value)
+	{
+		return "to_date('" + value + " 00:00:00', 'yyyy-mm-dd hh24:mi:ss') + 1 ";
 	}
 
 	public static String date_begin(String field, String value)
@@ -92,6 +98,22 @@ public class RepHelper
 		return sql;		
 	}
 	
+	
+	public static String compare_sysdate(String enddate) throws Exception
+	{
+		String sql_cdate = " sysdate ";
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		
+		int daymillis = 24 * 60 * 60 * 1000;
+		
+	    if((df.parse(enddate).getTime() + daymillis) <System.currentTimeMillis())
+    	{
+	    	sql_cdate = RepHelper.to_time_end(enddate);
+    	}
+	    
+	    return sql_cdate;
+	}
 
 	public static List<String> get_dates(String begindate, String enddate) throws Exception
 	{

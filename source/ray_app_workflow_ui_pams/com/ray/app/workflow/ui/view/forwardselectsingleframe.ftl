@@ -22,8 +22,6 @@ margin-left:10px
 
 <script type="text/javascript">
 
-var cindex = 1;
-
 var navigationJSON=[ {name:'共享管理',link:'${base}/module/irm/portal/portal/portal/portal_browse.action?ccate=gxgl'}, {name:'共享管理'}];
 
 function initialTabNsHeight(){
@@ -40,13 +38,24 @@ $(function(){
 initialTabNsHeight();
 $(window).resize(function(){initialTabNsHeight();})
 
-//点击标签页
-$('.topTr li').click(function(){
 
-	cindex = $(this).index()+1;	
-	var oindex=$(this).index()+1;
+
+//radius border
+$('#gTabsContainterN .topTr li').wrapInner('<span class="r"><span class="m"></span></span>')
+
+$('.back2grid').click(function()
+{
+	window.close();
+})
+
+/////////////////////////////////////////
+})
+
+function page_select_tab(obj, oindex)
+{
 	$('.topTr li').removeClass('c')
-	$(this).addClass('c');
+	obj.style="c";
+	
 	$('.bottomTr li').removeClass('c')
 	$('.bottomTr li:nth-child('+oindex+')').addClass('c');
 	
@@ -75,19 +84,8 @@ $('.topTr li').click(function(){
 		// 人员
 		oFrame.attr('src','about:blank');
 	}
-	
-}).hoverClass('hover');
+}
 
-//radius border
-$('#gTabsContainterN .topTr li').wrapInner('<span class="r"><span class="m"></span></span>')
-
-$('.back2grid').click(function()
-{
-	window.close();
-})
-
-/////////////////////////////////////////
-})
 </script>
 
 <#assign txt_ctype="">
@@ -149,18 +147,18 @@ $('.back2grid').click(function()
 	<td width="20">&nbsp;</td>
 	<td width="40" align="center">
 	<#if data.bact.split=="OR" || data.routes?size==1>
-		<input class="route" type="radio" id="rindex${route_index}" name="rindex" <#if data.routes?size==1>checked</#if> onclick="page_selectroute('${route_index}','${route.endactid}')" acttype="${endact.ctype}">
+		<input class="route" type="radio" id="rindex${route_index}" name="rindex" onclick="page_selectroute('${route_index}','${route.endactid}','${endact.ctype}')" acttype="${endact.ctype}">
 	<#elseif data.bact.split=="AND">
-		<input class="route" type="checkbox" id="rindex${route_index}" name="rindex" checked onclick="page_selectroute('${route_index}','${route.endactid}')" acttype="${endact.ctype}">
+		<input class="route" type="checkbox" id="rindex${route_index}" name="rindex" checked onclick="page_selectroute('${route_index}','${route.endactid}','${endact.ctype}')" acttype="${endact.ctype}">
 	</#if>
 	</td>
-	<td width="140">${route.cname}&nbsp;</td>
+	<td width="140">${route.routename}&nbsp;</td>
 	<td width="400">
 	<#if endact.ctype=="END">
 	<input type="hidden" id="actowner${route_index}" name="actowner">
 	<#else>
 	<input readonly class="text" id="actowner${route_index}" name="actowner" style="width:300;">&nbsp;&nbsp;
-	<a href="javascript:void(0)" onclick="page_selectroute('${route_index}','${route.endactid}')">人员</a>
+	<a href="javascript:void(0)" onclick="page_selectroute('${route_index}','${route.endactid},'${endact.ctype}')">人员</a>
 	</#if>
 	</td>
 	</tr>
@@ -168,14 +166,14 @@ $('.back2grid').click(function()
 	</tbody>
 	</table>
 	</div>
-	
+
 	<h1 style="cursor:hand" onclick="page_toggle_persons()">3.选择转发人员 </h1>	
 	<div id="fs_persons" style="display:none">
 		<table id="gTabsContainterN">
 		<tr class="topTr">
 		<td>
 			<ul>
-				<li class="c" id="tab1">流程人员</li>
+				<li class="c" id="tab1" onclick="page_select_tab(this, 1)">流程人员</li>
 				<#--
 				<li id="tab2">组织机构</li>
 			    <li id="tab3">岗位角色</li>
@@ -191,6 +189,7 @@ $('.back2grid').click(function()
 		</tr>
 		</table>
 	</div>
+		
 	</div>
 </div>
 </form>
@@ -214,6 +213,9 @@ list_endacts[${route_index}] = "${route.endactid}";
 list_endactpersons[${route_index}] = new Array();
 
 </#list>
+
+
+
 function page_close()
 {
 	window.top.opener.top.location.reload();
@@ -227,11 +229,20 @@ function page_showflowdefine()
 }
 
 // 选择路由
-function page_selectroute(index, actdefid)
+function page_selectroute(index, actdefid, ctype)
 {
-	c_rindex = index;	
+	c_rindex = index;
+	
+	// 如果是目标活动是结束节点，不需要选择人员
+	if(ctype=="END")
+	{
+		$("#fs_persons").hide();
+		return;
+	}
+	
 	$("#fs_persons").show();
 	$("#tab1").trigger("click");
+
 }
 
 function page_add_tr(pindex, obj)
@@ -377,7 +388,8 @@ function page_forward()
 		return;
 	}
 	
-	openwin(url,"forward",pub_width_mid,pub_height_mid);
+	// openwin(url,"forward",pub_width_mid,pub_height_mid);
+	window.location = url;
 }
 
 // 检查路由
@@ -514,8 +526,22 @@ function page_toggle_persons()
 	}
 }
 
-page_toggle_node();
+function page_load()
+{
+	$("#tb_routes .route:eq(0)").trigger("click");
+	
+	// 如果选择的节点是结束，自动转发.
+	$("#tb_routes .route").length == 1
+	{
+		if ($("#tb_routes .route:eq(0)").attr("acttype") == "END")
+		{
+			page_forward();
+		}
+	}
+}
 
+page_toggle_node();
+page_load();
 
 </script>
 

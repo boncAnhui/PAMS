@@ -3755,7 +3755,9 @@ public class ActManager
 	{
 		StringBuffer sql = new StringBuffer(); 
 
-		sql.append("update " + SplitTableConstants.getSplitTable("t_sys_wfract", tableid) + " set state = " + SQLParser.charValueRT(DBFieldConstants.RACT_STATE_COMPLETED));
+		sql.append("update " + SplitTableConstants.getSplitTable("t_sys_wfract", tableid));
+		sql.append(" set state = " + SQLParser.charValueEnd(DBFieldConstants.RACT_STATE_COMPLETED));
+		sql.append(" completetime = sysdate ");
 		sql.append(" where 1 = 1 \n");
 		sql.append("   and runactkey = " + SQLParser.charValueRT(runactkey));
 		

@@ -49,7 +49,7 @@ function page_addperson()
 // 自动加人
 function page_autoaddperson()
 {
-	if($("#tb_persons tbody tr").length==1)
+	if($("#tb_persons tbody tr").length>=1)
 	{
 		// alert($("#tb_persons tbody tr:eq(0) .checkbox").attr("ownerctx"));
 		$("#tb_persons tbody tr:eq(0) .checkbox").val("1");

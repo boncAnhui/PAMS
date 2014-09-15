@@ -585,7 +585,7 @@ function page_load_table(url, chartid, nums, names, values)
 	url += "&random=" + Math.random();	
 	url += "&begindate=" + begindate;
 	url += "&enddate=" + enddate;
-	
+
 	for(i=0;i<names.length;i++)
 	{
 		url += "&" + names[i] + "=" + values[i];

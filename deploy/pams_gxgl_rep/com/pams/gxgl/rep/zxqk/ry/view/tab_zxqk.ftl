@@ -39,14 +39,14 @@
 <td>${ayfqzs_index+1}</td>
 <td>${ayfqzs.cname}</td>
 <td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfqzs.action?ownerctx=${ayfqzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${ayfqzs.num}</a></td>
-<td>${ayfbzs.num}</td>
-<td>${awfbzs.num}</td>
-<td>${ayfbzs_zcfbzs.num}</td>
-<td>${ayfbzs_csfbzs.num}</td>
+<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfbzs.action?ownerctx=${ayfqzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${ayfbzs.num}</a></td>
+<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_wfbzs.action?ownerctx=${ayfqzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${awfbzs.num}</a></td>
+<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfbzs_zcfbzs.action?ownerctx=${ayfqzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${ayfbzs_zcfbzs.num}</a></td>
+<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfbzs_csfbzs.action?ownerctx=${ayfqzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${ayfbzs_csfbzs.num}</a></td>
 <td>${ayfbzs_wjzs.num}</td>
 <td></td>
-<td>${awfbzs_zczs.num}</td>
-<td>${awfbzs_cszs.num}</td>
+<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_wfbzs_zczs.action?ownerctx=${ayfqzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${awfbzs_zczs.num}</a></td>
+<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_wfbzs_cszs.action?ownerctx=${ayfqzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${awfbzs_cszs.num}</a></td>
 <td></td>
 </tr>
 

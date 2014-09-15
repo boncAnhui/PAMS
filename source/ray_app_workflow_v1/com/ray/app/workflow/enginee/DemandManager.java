@@ -320,6 +320,35 @@ public class DemandManager
 		
 		return sign;
 	}
+	
+	// 新创建的检查流程是否已转发
+	public boolean checkflowforwarded(String tableid, String runflowkey) throws Exception
+	{
+		boolean sign = false;
+		
+		StringBuffer sql = new StringBuffer();
+		
+		// 查询流程是否转发过，转发过不允许删除
+		// 查看是否有开始、第一步以外的活动节点，如果有，表明已经转发过，不允许删除
+		sql = new StringBuffer();
+		sql.append("select count(a.runactkey) \n");
+		sql.append("  from " + SplitTableConstants.getSplitTable("t_sys_wfract", tableid) + " a, t_sys_wfbact b, " + SplitTableConstants.getSplitTable("t_sys_wfrflow", tableid) + " c \n");
+		sql.append(" where 1 = 1 \n");
+		sql.append("   and a.actdefid = b.id \n");
+		sql.append("   and b.isfirst <> 'Y' \n");
+		sql.append("   and b.ctype <> 'BEGIN' \n");
+		sql.append("   and a.runflowkey = c.runflowkey \n");
+		sql.append("   and c.runflowkey = " + SQLParser.charValueRT(runflowkey));	
+
+		int num = 0;
+		num = DyDaoHelper.queryForInt(dao_rflow.getJdbcDao().getJdbcTemplate(), sql.toString());
+		if(num == 0)
+		{
+			sign = true;
+		}
+		
+		return sign;
+	}
 
 	public String getFormAccess(String actdefid) throws Exception
 	{
@@ -1846,14 +1875,19 @@ public class DemandManager
 	public List getFlowStat(String runflowkey) throws Exception
 	{
 		StringBuffer sql = new StringBuffer();
-		sql.append("select bact.id, bact.cname, ract.createtime, ract.applytime, ract.completetime ");
-		sql.append(" from t_sys_wfrflow rflow, t_sys_wfract ract, t_sys_wfbact bact ");
+		
+
+		sql.append(" select bact.id, bact.cname, usr.cname username, ract.createtime, ract.applytime, ract.completetime, ");
+		sql.append(" case when ract.completetime is null then trunc((sysdate - ract.createtime) * 24, 1)  else trunc((ract.completetime - ract.createtime) * 24, 1) end zxsc ");
+		sql.append(" from t_sys_wfrflow rflow, t_sys_wfract ract, t_sys_wfbact bact, t_sys_wfractowner ractowner, t_sys_user usr ");
 		sql.append(" where 1 = 1 ");
 		sql.append(" and bact.ctype <> 'BEGIN'");
 		sql.append(" and bact.ctype <> 'END'");
 		sql.append(" and rflow.runflowkey = ract.runflowkey ");
 		sql.append(" and ract.actdefid = bact.id ");
 		sql.append(" and rflow.runflowkey = " + SQLParser.charValue(runflowkey));
+		sql.append(" and ract.runactkey = ractowner.runactkey ");
+		sql.append(" and ractowner.ownerctx = usr.loginname ");
 		sql.append(" order by ract.createtime ");
 		
 		List datas = DyDaoHelper.query(dao_rflow.getJdbcDao().getJdbcTemplate(), sql.toString());
@@ -3231,8 +3265,36 @@ public class DemandManager
 		sql.append("   and b.runactkey = " + SQLParser.charValueRT(runactkey));
 		return sql.toString();
 	}
-
+	
+	public DynamicObject getRoute(String beginactdefid, String endactdefid)
+			/*      */     throws Exception
+			/*      */   {
+			/* 1426 */     String sql = new String();
+			/*      */     
+			/* 1428 */     sql = SQL_GETROUTE(beginactdefid, endactdefid);
+			/* 1429 */     DynamicObject route = new DynamicObject(DyDaoHelper.queryForMap(this.dao_rflow.getJdbcDao().getJdbcTemplate(), sql.toString()));
+			/*      */     
+			/*      */ 
+			/* 1432 */     return route;
+			/*      */   }
 	//
+	
+	
+	public static String SQL_GETROUTE(String beginactdefid, String endactdefid)
+	/*      */   {
+	/* 3271 */     StringBuffer sql = new StringBuffer();
+	/*      */     
+	/* 3273 */     sql.append("select a.endactid, b.cname endactname, b.ctype, a.cname routename \n");
+	/* 3274 */     sql.append("  from t_sys_wfbroute a, t_sys_wfbact b \n");
+	/* 3275 */     sql.append(" where 1 = 1 \n");
+	/* 3276 */     sql.append("   and a.endactid = b.id \n");
+	/* 3277 */     sql.append("   and a.flowid = b.flowid \n");
+	/* 3278 */     sql.append("   and a.startactid = " + SQLParser.charValueRT(beginactdefid));
+	/* 3279 */     sql.append("   and a.endactid = " + SQLParser.charValueRT(endactdefid));
+	/*      */     
+	/* 3281 */     return sql.toString();
+	/*      */   }
+	
 	public static String SQL_GETROUTES(String actdefid)
 	{
 		StringBuffer sql = new StringBuffer();

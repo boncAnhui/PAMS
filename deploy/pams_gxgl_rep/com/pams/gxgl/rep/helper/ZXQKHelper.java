@@ -147,7 +147,7 @@ public class ZXQKHelper
 		sql.append(" select info.deptid, info.creater, info.creatername, info.cno, rflow.runflowkey, ract.actdefid, bact.cname actcname, ").append("\n");
 		if("Y".equals(ispublish))
 		{
-			sql.append(" sum(ract.completetime - ract.createtime) end zxsc ").append("\n");
+			sql.append(" sum(ract.completetime - ract.createtime) zxsc ").append("\n");
 		}
 		else
 		if("N".equals(ispublish))
@@ -235,6 +235,7 @@ public class ZXQKHelper
 		
 		if("Y".equals(ispublish))
 		{
+			sql.append("    and rflow.state = '结束' ").append("\n");
 			sql.append("    and info.publishtime is not null ").append("\n");			
 			if (!StringToolKit.isBlank(enddate))
 			{
@@ -244,7 +245,7 @@ public class ZXQKHelper
 		else
 		if("N".equals(ispublish))
 		{
-			sql.append("     and info.publishtime is null ").append("\n");
+			sql.append("    and info.publishtime is null ").append("\n");
 		}
 		
 		// sql.append("  order by deptid, creater, cno, actdefid  ").append("\n");

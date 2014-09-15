@@ -3,6 +3,7 @@ package com.ray.dev.vinit.query;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.hibernate.criterion.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -42,20 +43,20 @@ public class CopySearch
 		
 		Search search = (Search)BeanUtils.cloneBean(searchService.getSearch(sourceid));
 		
-		List<SearchOption> searchoptions = searchOptionService.findBy("searchid", search.getSearchid());
-		List<SearchItem> searchitems = searchItemService.findBy("searchid", search.getSearchid());
+		List<SearchOption> searchoptions = searchOptionService.findBy("searchid", search.getSearchid(), Order.asc("oorder"));
+		List<SearchItem> searchitems = searchItemService.findBy("searchid", search.getSearchid(), Order.asc("oorder"));
 		List<SearchUrl> searchurls = searchUrlService.findBy("searchid", search.getSearchid());
 		List<SearchLink> searchlinks = searchLinkService.findBy("searchid", search.getSearchid());
 
-		search.setSearchid(destionid);
-		search.setSearchname(search.getSearchname() + ".XXX");
-		searchService.saveSearch(search);
+//		search.setSearchid(destionid);
+//		search.setSearchname(search.getSearchname() + ".XXX");
+//		searchService.saveSearch(search);
 
 		for(int i=0;i<searchoptions.size();i++)
 		{
 			SearchOption searchoption = (SearchOption)BeanUtils.cloneBean(searchoptions.get(i));
 			searchoption.setSearchid(destionid);
-			searchoption.setSearchoptionid(destionid + FormatKey.format(i, 2));
+			searchoption.setSearchoptionid(destionid + FormatKey.format(i+1, 2));
 			searchOptionService.saveSearchOption(searchoption);
 		}
 		
@@ -63,7 +64,7 @@ public class CopySearch
 		{
 			SearchItem searchitem = (SearchItem)BeanUtils.cloneBean(searchitems.get(i));
 			searchitem.setSearchid(destionid);
-			searchitem.setSearchitemid(destionid + FormatKey.format(i, 2));
+			searchitem.setSearchitemid(destionid + FormatKey.format(i+1, 2));
 			searchItemService.saveSearchItem(searchitem);
 		}
 		
@@ -71,7 +72,7 @@ public class CopySearch
 		{
 			SearchUrl searchurl = (SearchUrl)BeanUtils.cloneBean(searchurls.get(i));
 			searchurl.setSearchid(destionid);
-			searchurl.setSearchurlid(destionid + FormatKey.format(i, 2));
+			searchurl.setSearchurlid(destionid + FormatKey.format(i+1, 2));
 			searchUrlService.saveSearchUrl(searchurl);
 		}
 		
@@ -79,7 +80,7 @@ public class CopySearch
 		{
 			SearchLink searchlink = (SearchLink)BeanUtils.cloneBean(searchlinks.get(i));
 			searchlink.setSearchid(destionid);
-			searchlink.setSearchlinkid(destionid + FormatKey.format(i, 2));
+			searchlink.setSearchlinkid(destionid + FormatKey.format(i+1, 2));
 			searchLinkService.saveSearchLink(searchlink);
 		}
 		

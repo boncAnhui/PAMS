@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -90,6 +91,9 @@ public class SearchOptionService
 		return searchoptionDao.findBy(propertyName, value);
 	}	
 	
-	
+	public List<SearchOption> findBy(String propertyName, Object value, Order order) 
+	{
+		return searchoptionDao.findBy(propertyName, value, order);
+	}		
 
 }

@@ -408,7 +408,9 @@ public class OrgService
 		}
 		else if (level > 0)
 		{
-			deptList = getSupLevelDepts(deptid, level, deptList);
+			Map deptObj = getDepartmentObject(deptid);
+			deptList.add(deptObj);
+			deptList.addAll(getSupLevelDepts(deptid, level, deptList));
 		}
 		return deptList;
 	}

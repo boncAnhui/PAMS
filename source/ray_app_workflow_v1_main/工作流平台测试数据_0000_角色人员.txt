@@ -29,6 +29,7 @@ update t_sys_organ set internal = id;
 insert into T_SYS_USER(id,loginname,cname,ownerorg,ownerdept,orgname,deptname) values('zhangy','zhangy','张瑜','000000000007','00000000000700010001','信通公司', '调度一组' );
 insert into T_SYS_USER(id,loginname,cname,ownerorg,ownerdept,orgname,deptname) values('gaob','gaob','高博','000000000007','00000000000700010002','信通公司', '调度一组' );
 insert into T_SYS_USER(id,loginname,cname,ownerorg,ownerdept,orgname,deptname) values('limm','limm','李梅梅','000000000007','0000000000070001','信通公司', '调度处' );
+insert into T_SYS_USER(id,loginname,cname,ownerorg,ownerdept,orgname,deptname) values('lixin','lixin','李新','000000000007','0000000000070001','信通公司', '检修处' );
 insert into T_SYS_USER(id,loginname,cname,ownerorg,ownerdept,orgname,deptname) values('yaoyq','yaoyq','姚亚强','000000000007','0000000000070002','信通公司', '运行处' );
 insert into T_SYS_USER(id,loginname,cname,ownerorg,ownerdept,orgname,deptname) values('ouxy','ouxy','欧晓勇','000000000007','0000000000070003','信通公司', '检修处' );
 insert into T_SYS_USER(id,loginname,cname,ownerorg,ownerdept,orgname,deptname) values('xum','xum','徐敏','000000000007','0000000000070003','信通公司', '检修处' );
@@ -49,6 +50,7 @@ insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), 
 insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), '信息共享专责','XXGXZZ','高博','gaob');
 insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), '部门主任','BMZR','李梅梅','limm');
 insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), '部门主任','BMZR','姚亚强','yaoyq');
+insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), '部门主任','BMZR','李新','lixin');
 insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), '公司主管领导','GSZGLD','欧晓勇','ouxy');
 insert into t_sys_userrole(id, rname, roleid, uname, userid) values(sys_guid(), '总经理','ZJL','徐敏','xum');
 

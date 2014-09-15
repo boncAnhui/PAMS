@@ -62,10 +62,8 @@
 <script>
 function closeWindow()
 {
-	// pujian rem 2013/01/25 
-	// 原有关闭前的功能逻辑暂时删除，后期视需要决定是否添加；
+	window.top.opener.top.location.reload();
 	window.close();
-	return;
 }
 
 function page_load()

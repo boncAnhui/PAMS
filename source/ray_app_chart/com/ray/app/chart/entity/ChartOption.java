@@ -28,6 +28,10 @@ public class ChartOption
 	private short oorder;
 	
 	private String chartid;
+	
+	private String parentyaxis;
+	
+	private String renderas;
 
 	public String getId()
 	{
@@ -78,4 +82,24 @@ public class ChartOption
 	{
 		this.chartid = chartid;
 	}
+
+	public String getParentyaxis()
+	{
+		return parentyaxis;
+	}
+
+	public void setParentyaxis(String parentyaxis)
+	{
+		this.parentyaxis = parentyaxis;
+	}
+
+	public String getRenderas()
+	{
+		return renderas;
+	}
+
+	public void setRenderas(String renderas)
+	{
+		this.renderas = renderas;
+	}	
 }

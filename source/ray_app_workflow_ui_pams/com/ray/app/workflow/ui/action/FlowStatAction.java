@@ -1,5 +1,6 @@
 package com.ray.app.workflow.ui.action;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,8 @@ public class FlowStatAction extends SimpleAction
 		DemandManager demandManager = workFlowEngine.getDemandManager();
 		List datas = demandManager.getFlowStat(runflowkey);
 
+		Date date = new Date();
+		data.put("cdate", date);
 		data.put("bean_datas", datas);
 
 		return "flowstat";

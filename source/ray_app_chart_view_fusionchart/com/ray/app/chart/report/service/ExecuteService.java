@@ -35,6 +35,11 @@ public class ExecuteService implements ApplicationContextAware, IExecuteService
 		Chart chart = chartService.getChartBy("chartname", _chartname);
 		
 //		IReportService reportService = (IReportService)ac.getBean(chart.getBeanid());
+		System.out.println(chart.getBeanid());
+		Class.forName("com.pams.kpi.gxgl.service.RepKpiDepartZXSC");
+		Class.forName(chart.getBeanid());
+		Object o = (Class.forName(chart.getBeanid()).newInstance());
+		
 		IReportService reportService = (IReportService)(Class.forName(chart.getBeanid()).newInstance());
 		reportService.setJdbcTemplate(reportDao.getJdbcTemplate());
 		return reportService.execute(map);
