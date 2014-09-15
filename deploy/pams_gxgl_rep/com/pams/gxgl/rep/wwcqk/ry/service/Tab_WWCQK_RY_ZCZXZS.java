@@ -38,7 +38,7 @@ public class Tab_WWCQK_RY_ZCZXZS
 		
 		obj.setAttr("sql_cdate", sql_cdate);
 		obj.setAttr("ispublish", "N");
-		obj.setAttr("isovertime", "N");
+		obj.setAttr("isovertime", "");
 		obj.setAttr("isnodeovertime", "N");
 		
 		StringBuffer sql = new StringBuffer();

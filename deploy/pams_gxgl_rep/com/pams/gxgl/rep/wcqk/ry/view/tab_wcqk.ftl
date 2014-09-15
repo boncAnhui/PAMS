@@ -3,18 +3,19 @@
 
 </tr>
 <tr>
-<th width="300">部门</th>
-<th width="100">已发布总数</th>
-<th width="100">正常发布总数</th>
-<th width="100">正常发布节点总数</th>
-<th width="100">超时发布节点总数</th>
-<th width="100">节点超时比</th>
-<th width="100">超时发布总数</th>
-<th width="100">信息共享及时性总数</th>
-<th width="100">超时总时长</th>
-<th width="100">计划执行时长</th>
-<th width="100">实际执行时长</th>
-<th width="100">执行及时率</th>
+<th width="40">序号</th>
+<th width="60">人员</th>
+<th>已发布总数</th>
+<th>正常发布总数</th>
+<th>正常发布节点总数</th>
+<th>超时发布节点总数</th>
+<th>节点超时比</th>
+<th>超时发布总数</th>
+<th>信息共享及时性总数</th>
+<th>超时总时长</th>
+<th>计划执行时长</th>
+<th>实际执行时长</th>
+<th>执行及时率</th>
 </tr>
 
 <#assign sum_ayfbzs = 0>
@@ -34,6 +35,7 @@
 <#assign acsfbzs = data.csfbzs[afbzs_index]>
 <#assign ayfbsxzc = data.yfbsxzc[afbzs_index]>
 <tr>
+<td>${afbzs_index+1}</td>
 <td>${afbzs.cname}</td>
 <td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfqzs.action?ownerctx=${afbzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${afbzs.num}</a></td>
 <td>${azcfbzs.num}</td>

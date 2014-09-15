@@ -40,7 +40,7 @@ public class Tab_WWCQK_BM_ZCZXZS
 		obj.setAttr("sql_cdate", sql_cdate);
 		obj.setAttr("ispublish", "N");
 		obj.setAttr("isovertime", "");
-		obj.setAttr("isnodeovertime", "N");
+		obj.setAttr("isnodeovertime", "");
 		
 		StringBuffer sql = new StringBuffer();
 		
@@ -53,6 +53,7 @@ public class Tab_WWCQK_BM_ZCZXZS
 
 		sql.append(" ) v   ").append("\n");
 		sql.append("  on org.id = v.deptid ").append("\n");
+		sql.append(" and  v.cs =0   ").append("\n");
 		sql.append(" where 1 = 1 ").append("\n");
 		sql.append(" and org.ctype = 'DEPT' ").append("\n");
 		if (!StringToolKit.isBlank(internal))
