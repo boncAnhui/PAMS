@@ -34,8 +34,8 @@
 <#assign acsfbzs = data.csfbzs[afbzs_index]>
 <#assign ayfbsxzc = data.yfbsxzc[afbzs_index]>
 <tr>
-<td><a href="${base}/module/pams/gxgl/rep/wcqk/ry/rep_main_wcqk.action?internal=${afbzs.internal}&begindate=${arg.begindate}&enddate=${arg.enddate}">${afbzs.cname}</a></td>
-<td>${afbzs.num}</td>
+<td>${afbzs.cname}</td>
+<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfqzs.action?ownerctx=${afbzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${afbzs.num}</a></td>
 <td>${azcfbzs.num}</td>
 <td>${azcfbjdzs.num}</td>
 <td>${acsfbjdzs.num}</td>

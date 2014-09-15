@@ -113,6 +113,17 @@ public class ZXQKHelper
 			sql.append("     and info.publishtime is null ").append("\n");
 		}
 		
+		if("Y".equals(isnodeovertime))
+		{
+			sql.append(" and (info.createtime - info.obtaintime) > 1 ").append("\n");
+		}
+		else 
+		if("N".equals(isnodeovertime))
+		{
+			sql.append(" and (info.createtime - info.obtaintime) < 1 ").append("\n");
+		}	
+		
+		
 		sql.append(" ) v ").append("\n");
 		sql.append(" group by deptid, creater, cno").append("\n");
 		

@@ -31,7 +31,7 @@ public class Tab_WCQK_BM_ZCFBJDZS
 
 	public List execute(DynamicObject obj) throws Exception
 	{
-		System.out.println("正常发布节点总数:--->>>>");
+		System.out.println("正常发布节点总数(部门):--->>>>");
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
@@ -40,7 +40,7 @@ public class Tab_WCQK_BM_ZCFBJDZS
 		obj.setAttr("sql_cdate", sql_cdate);
 		obj.setAttr("ispublish", "Y");
 		obj.setAttr("isnodeovertime", "N");	
-		obj.setAttr("isovertime", "N");
+		obj.setAttr("isovertime", "");
 		
 		StringBuffer sql = new StringBuffer();
 
