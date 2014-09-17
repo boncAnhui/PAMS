@@ -162,7 +162,7 @@ function page_cclassname()
 function page_scope()
 {
 	url = "${base}/module/pams/gxgl/gxwh/apply_selectscope.action";
-	openwin(url,'',pub_width_small,pub_height_small,null,'新增');
+	openwinT(url,'',pub_width_large,pub_height_large,null,'');
 }
 
 // 选择共享范围

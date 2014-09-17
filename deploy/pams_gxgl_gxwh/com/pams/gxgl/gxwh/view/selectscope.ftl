@@ -39,7 +39,7 @@ $('.topTr li').click(function(){
 	}else if(oindex==2){ // 角色岗位
 		oFrame.attr('src','apply_selectscoperole.action');
 	}else if(oindex==3){ // 人员
-		oFrame.attr('src','apply_selectscopeuser.action');
+		oFrame.attr('src','apply_selectscopeusermainframe.action');
 	}
 	
 }).hoverClass('hover');
