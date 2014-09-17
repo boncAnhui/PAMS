@@ -36,7 +36,11 @@ public class ZXQKHelper
 		else
 		if("N".equals(ispublish))
 		{
-			sql.append("case when sum(case when ract.completetime is null then " + sql_cdate + " - ract.createtime else ract.completetime - ract.createtime end) > 1 then 1 else 0 end cs ").append("\n");
+			sql.append(" case when sum(case when ract.completetime is null then " + sql_cdate + " - ract.createtime else ract.completetime - ract.createtime end) > 1 then 1 else 0 end cs ").append("\n");
+		}
+		else
+		{
+			sql.append(" case when sum(case when ract.completetime is null then " + sql_cdate + " - ract.createtime else ract.completetime - ract.createtime end) > 1 then 1 else 0 end cs ").append("\n");
 		}
 		
 		sql.append("   from t_sys_wfbact bact, t_sys_wfrflow rflow, t_sys_wfract ract, t_app_infoshare info ").append("\n");
