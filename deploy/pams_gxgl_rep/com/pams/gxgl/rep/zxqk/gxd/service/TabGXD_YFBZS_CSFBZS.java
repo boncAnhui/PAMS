@@ -28,7 +28,7 @@ public class TabGXD_YFBZS_CSFBZS
 		obj.setAttr("sql_cdate", sql_cdate);
 		obj.setAttr("ispublish", "Y");
 		obj.setAttr("isovertime", "Y");		
-		obj.setAttr("ownerctx", ownerctx);
+		obj.setAttr("creater", ownerctx);
 		
 		StringBuffer sql = new StringBuffer();
 
