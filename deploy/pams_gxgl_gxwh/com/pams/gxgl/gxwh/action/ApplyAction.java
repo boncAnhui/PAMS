@@ -1004,11 +1004,20 @@ public class ApplyAction extends SimpleAction
 
 	public String selectscopeuser() throws Exception
 	{
-		List<User> users = userService.getAllUser("ownerorg", true);
+		String organid = Struts2Utils.getRequest().getParameter("organid");
+		List<User> users = userService.findOrganUsers(organid);
 		data.put("users", users);
 
 		return "selectscopeuser";
 	}
+	
+	
+	
+	
+	public String selectscopeusermainframe() throws Exception
+	{
+		return "selectscopeusermainframe";
+	}	
 	
 	public String test() throws Exception
 	{
@@ -1028,6 +1037,8 @@ public class ApplyAction extends SimpleAction
 		
 		return "test";
 	}
+	
+	
 	
 	public String get_searchname()
 	{
