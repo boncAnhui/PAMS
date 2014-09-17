@@ -17,7 +17,7 @@ import com.ray.nwpn.itsm.report.common.RepHelper;
 
 /**
  * 共享未完成情况报表：
- * 正常执行总数(部门)
+ * 正常执行总数(公司)
  * @author zhouq
  *
  */
@@ -29,7 +29,7 @@ public class Tab_WWCQK_GS_ZCZXZS
 
 	public List execute(DynamicObject obj) throws Exception
 	{
-		System.out.println("正常执行总数(部门)------>>>>>>>");
+		System.out.println("正常执行总数(公司)------>>>>>>>");
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String sql_cdate = RepHelper.compare_sysdate(enddate);
@@ -37,7 +37,7 @@ public class Tab_WWCQK_GS_ZCZXZS
 		obj.setAttr("sql_cdate", sql_cdate);
 		obj.setAttr("ispublish", "N");
 		obj.setAttr("isovertime", "");
-		obj.setAttr("isnodeovertime", "N");
+		obj.setAttr("isnodeovertime", "");
 		
 		StringBuffer sql = new StringBuffer();
 		

@@ -3,12 +3,13 @@
 
 </tr>
 <tr>
-<th width="300">部门</th>
-<th width="100">未发布总数</th>
-<th width="100">正常执行总数</th>
-<th width="100">超时执行总数</th>
-<th width="100">已执行节点数</th>
-<th width="100">节点超期总数</th>
+<th width="40">序号</th>
+<th width="200">部门</th>
+<th >未发布总数</th>
+<th >正常执行总数</th>
+<th >超时执行总数</th>
+<th >已执行节点数</th>
+<th >节点超期总数</th>
 
 </tr>
 
@@ -27,7 +28,8 @@
 <#assign ajdcszs = data.jdcszs[awfbzs_index]>
 
 <tr>
-<td><a href="${base}/module/pams/gxgl/rep/wwcqk/ry/rep_main_wwcqk.action?internal=${awfbzs.internal}&begindate=${arg.begindate}&enddate=${arg.enddate}">${awfbzs.cname}</a></td>
+<td>${awfbzs_index+1}</td>
+<td><a href="${base}/module/pams/gxgl/rep/wwcqk/ry/rep_main_wwcqk.action?internal=${awfbzs.internal}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${awfbzs.cname}</a></td>
 <td>${awfbzs.num}</td>
 <td>${azczxzs.num}</td>
 <td>${acszxzs.num}</td>

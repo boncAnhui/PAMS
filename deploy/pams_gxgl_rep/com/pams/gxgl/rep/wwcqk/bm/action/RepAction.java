@@ -57,6 +57,13 @@ public class RepAction extends SimpleAction
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("internal", internal);
+
+		//未发布总数
+		Tab_WWCQK_BM_WFBZS tabWFBZS = new Tab_WWCQK_BM_WFBZS();
+		tabWFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
+		
+		List wfbzs = tabWFBZS.execute(obj);
+		data.put("wfbzs", wfbzs);
 		
 		//正常执行总数
 		Tab_WWCQK_BM_ZCZXZS tabZCZXZS = new Tab_WWCQK_BM_ZCZXZS();
@@ -66,27 +73,19 @@ public class RepAction extends SimpleAction
 		data.put("zczxzs", zczxzs);
 		
 		
-		//已执行节点总数
-		Tab_WWCQK_BM_YZXJDZS tabYZXJDZS = new Tab_WWCQK_BM_YZXJDZS();
-		tabYZXJDZS.setJdbcTemplate(reportDao.getJdbcTemplate());
-		
-		List yzxjdzs = tabYZXJDZS.execute(obj);
-		data.put("yzxjdzs", yzxjdzs);
-		
-		
-		//未发布总数
-		Tab_WWCQK_BM_WFBZS tabWFBZS = new Tab_WWCQK_BM_WFBZS();
-		tabWFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
-		
-		List wfbzs = tabWFBZS.execute(obj);
-		data.put("wfbzs", wfbzs);
-		
 		//超时执行总数
 		Tab_WWCQK_BM_CSZXZS tabCSZXZS = new Tab_WWCQK_BM_CSZXZS();
 		tabCSZXZS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
 		List cszxzs = tabCSZXZS.execute(obj);
 		data.put("cszxzs", cszxzs);
+		
+		//已执行节点总数
+		Tab_WWCQK_BM_YZXJDZS tabYZXJDZS = new Tab_WWCQK_BM_YZXJDZS();
+		tabYZXJDZS.setJdbcTemplate(reportDao.getJdbcTemplate());
+		
+		List yzxjdzs = tabYZXJDZS.execute(obj);
+		data.put("yzxjdzs", yzxjdzs);
 		
 		//节点超时总数
 		Tab_WWCQK_BM_JDCSZS tabJDCSZS = new Tab_WWCQK_BM_JDCSZS();

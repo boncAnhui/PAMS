@@ -41,11 +41,11 @@ public class Tab_WWCQK_GS_JDCSZS
 		
 		StringBuffer sql = new StringBuffer();
 
-		sql.append(" select org.internal, org.cname, (case when count(v.jds) is null then 0 else count(v.jds) end) num   ").append("\n");
+		sql.append(" select org.internal, org.cname, (case when sum(v.jds) is null then 0 else sum(v.jds) end) num   ").append("\n");
 		sql.append("   from t_sys_organ org ").append("\n");
 		sql.append("   left join   ").append("\n");
 		sql.append("  (   ").append("\n");
-		sql.append(" select org.internal, org.cname, count(v.jds) jds ").append("\n");
+		sql.append(" select org.internal, org.cname, sum(v.jds) jds ").append("\n");
 		sql.append("  from t_sys_organ org ").append("\n");
 		sql.append("   left join  ").append("\n");
 		sql.append(" ( ").append("\n");
@@ -55,7 +55,7 @@ public class Tab_WWCQK_GS_JDCSZS
 		sql.append(" ) v   ").append("\n");
 		sql.append("  on org.id = v.deptid ").append("\n");
 		sql.append("   group by org.internal, v.cno , org.cname ").append("\n");
-		sql.append("   having sum(v.cs) = 0  ").append("\n");
+		sql.append("   having sum(v.cs) > 0  ").append("\n");
 		sql.append("   ) v  ").append("\n");
 		sql.append("   on org.internal = substr(v.internal, 0, length(v.internal)-4) ").append("\n");
 		sql.append(" where 1 = 1 ").append("\n");

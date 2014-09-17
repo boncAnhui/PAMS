@@ -19,7 +19,7 @@ import com.ray.nwpn.itsm.report.common.RepHelper;
 
 /**
  * 共享未完成情况报表
- * 未发布总数
+ * 未发布总数(部门)
  * @author zhouq
  *
  */
@@ -31,7 +31,7 @@ public class Tab_WWCQK_BM_WFBZS
 
 	public List execute(DynamicObject obj) throws Exception
 	{
-		System.out.println("未发布总数---------->");
+		System.out.println("未发布总数(部门)---------->");
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");

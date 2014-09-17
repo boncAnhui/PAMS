@@ -31,7 +31,7 @@ public class Tab_WCQK_BM_CSFBJDZS
 
 	public List execute(DynamicObject obj) throws Exception
 	{
-		System.out.println("超时发布节点总数---------->");
+		System.out.println("超时发布节点总数(部门)---------->");
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
@@ -44,7 +44,7 @@ public class Tab_WCQK_BM_CSFBJDZS
 		
 		StringBuffer sql = new StringBuffer();
 
-		sql.append(" select org.internal, org.cname, (case when sum(v.jds) is null	 then 0 else sum(v.jds) end) num ").append("\n");
+		sql.append(" select org.internal, org.cname, (case when sum(v.cs) is null	 then 0 else sum(v.cs) end) num ").append("\n");
 		sql.append("  from t_sys_organ org ").append("\n");
 		sql.append("   left join  ").append("\n");
 		sql.append(" ( ").append("\n");
