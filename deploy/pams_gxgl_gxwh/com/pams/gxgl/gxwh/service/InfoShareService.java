@@ -904,7 +904,6 @@ public class InfoShareService
 		return generatorService.getNextValue(map);
 	}
 	
-
 	public GeneratorService getGeneratorService()
 	{
 		return generatorService;
