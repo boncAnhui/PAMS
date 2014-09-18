@@ -574,6 +574,9 @@ public class InfoShareService
 		sql = new StringBuffer();
 		sql.append(" from InfoShareScope where 1 = 1 and infoshareid = " + SQLParser.charValue(id));
 		List<InfoShareScope> infosharescopes = infosharescopeDao.find(sql.toString());
+		
+		knowledgescopeDao.batchExecute("delete from KnowledgeScope where 1 = 1 and knowledgeid = " + SQLParser.charValue(kid));
+		
 		for(int i=0;i<infosharescopes.size();i++)
 		{
 			InfoShareScope infosharescope = infosharescopes.get(i);
