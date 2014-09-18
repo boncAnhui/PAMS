@@ -94,6 +94,8 @@
 		<td colspan="3">
 		<input type="hidden" id="infosharescopeid" name="infosharescopeid">
 		<input type="hidden" id="infosharescopectype" name="infosharescopectype">
+		<input type="hidden" id="infosharescopeinternal" name="infosharescopeinternal">
+		
 		<input class="text" readonly id="infosharescope" name="infosharescope" style="width:45em" />
 		<button id="bt_scope" class="btn2">选择</button>
 		<button id="bt_scope_clear" class="btn2">清除</button>
@@ -171,6 +173,7 @@ function page_scope_clear()
 	$("#infosharescope").val("");
 	$("#infosharescopectype").val("");
 	$("#infosharescopeid").val("");
+	$("#infosharescopeinternal").val("");
 }
 </script>
 </body>

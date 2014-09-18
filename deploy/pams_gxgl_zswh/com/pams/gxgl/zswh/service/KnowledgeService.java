@@ -41,12 +41,43 @@ public class KnowledgeService
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append(" select k.*  ").append("\n");
-		sql.append("  from t_app_knowledge k, t_app_knowledgeclassrelation kcr, t_app_knowledgeclass kc, t_app_knowledgeclass kcc ").append("\n");
+		sql.append("  from t_app_knowledge k, t_app_knowledgeclassrelation kcr, t_app_knowledgeclass kc, t_app_knowledgeclass kcc, ").append("\n");
+		sql.append(" ( ").append("\n");
+		sql.append(" select k.id  ").append("\n");
+		sql.append("    from t_app_knowledge k, t_app_knowledgescope kscope, t_sys_wfgroupuser gu ").append("\n");
+		sql.append("   where 1 = 1 ").append("\n");
+		sql.append("     and k.id = kscope.knowledgeid ").append("\n");
+		sql.append("     and (kscope.grouptype = 'ORG' or kscope.grouptype = 'DEPT')  ").append("\n");
+		sql.append("     and kscope.grouptype = gu.ctype     ").append("\n");
+		sql.append("     and gu.groupinternal like kscope.groupinternal || '%'  ").append("\n");
+		sql.append("     and gu.loginname = " + SQLParser.charValue(loginname)).append("\n");
+		sql.append("   union ").append("\n");
+		sql.append("  select k.id  ").append("\n");
+		sql.append("    from t_app_knowledge k, t_app_knowledgescope kscope, t_sys_wfgroupuser gu ").append("\n");
+		sql.append("   where 1 = 1 ").append("\n");
+		sql.append("     and k.id = kscope.knowledgeid ").append("\n");
+		sql.append("     and kscope.grouptype = 'PERSON'  ").append("\n");
+		sql.append("     and kscope.grouptype = gu.ctype     ").append("\n");
+		sql.append("     and kscope.groupid = gu.groupid     ").append("\n");
+		sql.append("     and gu.loginname = " + SQLParser.charValue(loginname)).append("\n");
+		sql.append("   union ").append("\n");
+		sql.append("  select k.id  ").append("\n");
+		sql.append("    from t_app_knowledge k, t_app_knowledgescope kscope, t_sys_wfgroupuser gu ").append("\n");
+		sql.append("   where 1 = 1 ").append("\n");
+		sql.append("     and k.id = kscope.knowledgeid ").append("\n");
+		sql.append("     and kscope.grouptype = 'ROLE'  ").append("\n");
+		sql.append("     and kscope.grouptype = gu.ctype     ").append("\n");
+		sql.append("     and kscope.groupid = gu.groupid     ").append("\n");
+		sql.append("     and gu.loginname = " + SQLParser.charValue(loginname)).append("\n");
+		sql.append(" ) v ").append("\n");
+		
 		sql.append("  where 1 = 1 ").append("\n");
 		sql.append("  and k.id = kcr.kid  ").append("\n");
 		sql.append("  and kcr.classid = kc.id ").append("\n");
 		sql.append("  and kc.cno like kcc.cno || '%' ").append("\n");
 		sql.append("  and kcc.id = " +  SQLParser.charValue(cclassid)).append("\n");
+		sql.append("  and k.id = v.id ").append("\n");
+		
 		if (!StringToolKit.isBlank(title))
 		{
 			sql.append(" and lower(k.title) like lower(" + SQLParser.charLikeValue(title) + ")");
@@ -84,7 +115,8 @@ public class KnowledgeService
 	{
 		return knowledgeDao.get(id);
 	}
-	
+
+	@Transactional
 	public String save(Knowledge entity) throws Exception
 	{
 		knowledgeDao.save(entity);

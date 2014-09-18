@@ -1,7 +1,6 @@
 package com.pams.gxgl.gxwh.service;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,11 +21,13 @@ import com.pams.dao.InfoShareDao;
 import com.pams.dao.InfoShareScopeDao;
 import com.pams.dao.KnowledgeClassRelationDao;
 import com.pams.dao.KnowledgeDao;
+import com.pams.dao.KnowledgeScopeDao;
 import com.pams.entity.FileAttachment;
 import com.pams.entity.InfoShare;
 import com.pams.entity.InfoShareScope;
 import com.pams.entity.Knowledge;
 import com.pams.entity.KnowledgeClassRelation;
+import com.pams.entity.KnowledgeScope;
 import com.pams.entity.Relay;
 import com.pams.gxgl.zswh.service.KnowledgeService;
 import com.ray.app.query.generator.GeneratorService;
@@ -68,6 +69,9 @@ public class InfoShareService
 	
 	@Autowired
 	private KnowledgeClassRelationDao knowledgeclassrelationDao;
+	
+	@Autowired
+	private KnowledgeScopeDao knowledgescopeDao;	
 
 	// 查询待办记录
 	public String get_browsewait_sql(Map map) throws Exception
@@ -400,12 +404,14 @@ public class InfoShareService
 		String infosharescope = infoshare.getInfosharescope();
 		String infosharescopeid = infoshare.getInfosharescopeid();
 		String infosharescopectype = infoshare.getInfosharescopectype();
+		String infosharescopeinternal = infoshare.getInfosharescopeinternal();
+		
 		if(!StringToolKit.isBlank(infosharescopeid))
 		{
 			String[] infosharescopeids = StringToolKit.split(infosharescopeid, ",");
 			String[] infosharescopenames = StringToolKit.split(infosharescope, ",");
 			String[] infosharescopectypes = StringToolKit.split(infosharescopectype, ",");
-			
+			String[] infosharescopeinternals = StringToolKit.split(infosharescopeinternal, ",");			
 			for(int i=0;i<infosharescopeids.length;i++)
 			{
 				InfoShareScope scope = new InfoShareScope();
@@ -413,6 +419,7 @@ public class InfoShareService
 				scope.setGroupid(infosharescopeids[i]);
 				scope.setGroupname(infosharescopenames[i]);
 				scope.setGrouptype(infosharescopectypes[i]);
+				scope.setGroupinternal(infosharescopeinternals[i]);
 				infosharescopeDao.save(scope);
 			}
 		}
@@ -444,6 +451,7 @@ public class InfoShareService
 		String infosharescope = infoshare.getInfosharescope();
 		String infosharescopeid = infoshare.getInfosharescopeid();
 		String infosharescopectype = infoshare.getInfosharescopectype();
+		String infosharescopeinternal = infoshare.getInfosharescopeinternal();
 		
 		infosharescopeDao.batchExecute("delete from InfoShareScope where 1 = 1 and infoshareid = " + SQLParser.charValue(id));
 		
@@ -452,6 +460,7 @@ public class InfoShareService
 			String[] infosharescopeids = StringToolKit.split(infosharescopeid, ",");
 			String[] infosharescopenames = StringToolKit.split(infosharescope, ",");
 			String[] infosharescopectypes = StringToolKit.split(infosharescopectype, ",");
+			String[] infosharescopeinternals = StringToolKit.split(infosharescopeinternal, ",");
 			
 			for(int i=0;i<infosharescopeids.length;i++)
 			{
@@ -460,6 +469,7 @@ public class InfoShareService
 				scope.setGroupid(infosharescopeids[i]);
 				scope.setGroupname(infosharescopenames[i]);
 				scope.setGrouptype(infosharescopectypes[i]);
+				scope.setGroupinternal(infosharescopeinternals[i]);
 				infosharescopeDao.save(scope);
 			}
 		}
@@ -558,6 +568,23 @@ public class InfoShareService
 			newfile.setCreatetime(file.getCreatetime());
 			
 			fileattachmentDao.save(newfile);
+		}
+		
+		// 创建知识共享范围
+		sql = new StringBuffer();
+		sql.append(" from InfoShareScope where 1 = 1 and infoshareid = " + SQLParser.charValue(id));
+		List<InfoShareScope> infosharescopes = infosharescopeDao.find(sql.toString());
+		for(int i=0;i<infosharescopes.size();i++)
+		{
+			InfoShareScope infosharescope = infosharescopes.get(i);
+			KnowledgeScope knowledgescope = new KnowledgeScope();
+			knowledgescope.setGroupid(infosharescope.getGroupid());
+			knowledgescope.setGroupname(infosharescope.getGroupname());
+			knowledgescope.setGrouptype(infosharescope.getGrouptype());
+			knowledgescope.setGroupinternal(infosharescope.getGroupinternal());
+			knowledgescope.setKnowledgeid(kid);
+
+			knowledgescopeDao.save(knowledgescope);
 		}
 	}
 
@@ -992,6 +1019,14 @@ public class InfoShareService
 	public void setKnowledgeclassrelationDao(KnowledgeClassRelationDao knowledgeclassrelationDao)
 	{
 		this.knowledgeclassrelationDao = knowledgeclassrelationDao;
+	}
+
+	public KnowledgeScopeDao getKnowledgescopeDao() {
+		return knowledgescopeDao;
+	}
+
+	public void setKnowledgescopeDao(KnowledgeScopeDao knowledgescopeDao) {
+		this.knowledgescopeDao = knowledgescopeDao;
 	}
 
 	public static String getTableid()

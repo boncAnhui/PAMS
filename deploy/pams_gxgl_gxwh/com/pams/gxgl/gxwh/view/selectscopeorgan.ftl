@@ -22,7 +22,7 @@
 		</#if>
 	</#list>
 	<tr>
-	<td><input class="checkbox" data-id="${obj.id}" data-cname="${obj.cname}" data-ctype="ORG"></td>
+	<td><input class="checkbox" data-id="${obj.id}" data-cname="${obj.cname}" data-ctype="${obj.ctype}" data-internal="${obj.internal}"></td>
 	<td>${blank}${obj.cname}</td>
 	</tr>
 	</#list>
@@ -36,13 +36,15 @@ function page_save()
 	var oids=[];
 	var ocnames=[];
 	var octypes=[];
+	var ointernals=[];
 	$('.dataGrid tbody .checkbox').each(function(j,k)
 	{		
 		if($(this).val()==1)
 		{
 			oids.push($(this).attr('data-id'));
 			ocnames.push($(this).attr('data-cname'));	
-			octypes.push($(this).attr('data-ctype'));	
+			octypes.push($(this).attr('data-ctype'));
+			ointernals.push($(this).attr('data-internal'));
 		}		
 	})
 	
@@ -57,6 +59,7 @@ function page_save()
 	var v_infosharescope = opener.find('#infosharescope').val();
 	var v_infosharescopeid = opener.find('#infosharescopeid').val();
 	var v_infosharescopectype = opener.find('#infosharescopectype').val();
+	var v_infosharescopeinternal = opener.find('#infosharescopeinternal').val();
 	
 	if(v_infosharescope!="")
 	{
@@ -83,6 +86,15 @@ function page_save()
 	else
 	{
 		opener.find('#infosharescopectype').val(octypes);
+	}
+	
+	if(v_infosharescopeinternal!="")
+	{
+		opener.find('#infosharescopeinternal').val(v_infosharescopeinternal + "," + ointernals);	
+	}
+	else
+	{
+		opener.find('#infosharescopeinternal').val(ointernals);
 	}
 
 	window.parent.close();

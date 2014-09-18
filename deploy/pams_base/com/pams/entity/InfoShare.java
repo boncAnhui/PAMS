@@ -54,6 +54,8 @@ public class InfoShare extends IdEntity
 
 	private String infosharescopectype; //共享范围类型（冗余字段）
 	
+	private String infosharescopeinternal; //共享范围内部码（冗余字段）	
+	
 	private int filenums; //文件数量
 	
 	private String filetype; //文件形式
@@ -65,245 +67,207 @@ public class InfoShare extends IdEntity
 	private String creatername; //创建人姓名
 	
 	private Timestamp createtime; //创建人姓名
-	
-	public String getCno()
-	{
+
+	public String getCno() {
 		return cno;
 	}
 
-	public void setCno(String cno)
-	{
+	public void setCno(String cno) {
 		this.cno = cno;
 	}
 
-	public String getDeptid()
-	{
+	public String getDeptid() {
 		return deptid;
 	}
 
-	public void setDeptid(String deptid)
-	{
+	public void setDeptid(String deptid) {
 		this.deptid = deptid;
 	}
 
-	public String getDeptname()
-	{
+	public String getDeptname() {
 		return deptname;
 	}
 
-	public void setDeptname(String deptname)
-	{
+	public void setDeptname(String deptname) {
 		this.deptname = deptname;
 	}
 
-	public String getPositionname()
-	{
+	public String getPositionname() {
 		return positionname;
 	}
 
-	public void setPositionname(String positionname)
-	{
+	public void setPositionname(String positionname) {
 		this.positionname = positionname;
 	}
 
-	public String getSourceid()
-	{
+	public String getSourceid() {
 		return sourceid;
 	}
 
-	public void setSourceid(String sourceid)
-	{
+	public void setSourceid(String sourceid) {
 		this.sourceid = sourceid;
 	}
 
-	public String getSourcename()
-	{
+	public String getSourcename() {
 		return sourcename;
 	}
 
-	public void setSourcename(String sourcename)
-	{
+	public void setSourcename(String sourcename) {
 		this.sourcename = sourcename;
 	}
 
-	public Timestamp getObtaintime()
-	{
+	public Timestamp getObtaintime() {
 		return obtaintime;
 	}
 
-	public void setObtaintime(Timestamp obtaintime)
-	{
+	public void setObtaintime(Timestamp obtaintime) {
 		this.obtaintime = obtaintime;
 	}
 
-	public String getObtaintimed()
-	{
+	public String getObtaintimed() {
 		return obtaintimed;
 	}
 
-	public void setObtaintimed(String obtaintimed)
-	{
+	public void setObtaintimed(String obtaintimed) {
 		this.obtaintimed = obtaintimed;
 	}
 
-	public String getObtaintimet()
-	{
+	public String getObtaintimet() {
 		return obtaintimet;
 	}
 
-	public void setObtaintimet(String obtaintimet)
-	{
+	public void setObtaintimet(String obtaintimet) {
 		this.obtaintimet = obtaintimet;
 	}
 
-	public Timestamp getPublishtime()
-	{
+	public Timestamp getPublishtime() {
 		return publishtime;
 	}
 
-	public void setPublishtime(Timestamp publishtime)
-	{
+	public void setPublishtime(Timestamp publishtime) {
 		this.publishtime = publishtime;
 	}
 
-	public String getTitle()
-	{
+	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(String title)
-	{
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public String getSummary()
-	{
+	public String getSummary() {
 		return summary;
 	}
 
-	public void setSummary(String summary)
-	{
+	public void setSummary(String summary) {
 		this.summary = summary;
 	}
 
-	public String getCclassid()
-	{
+	public String getCclassid() {
 		return cclassid;
 	}
 
-	public void setCclassid(String cclassid)
-	{
+	public void setCclassid(String cclassid) {
 		this.cclassid = cclassid;
 	}
 
-	public String getCclassname()
-	{
+	public String getCclassname() {
 		return cclassname;
 	}
 
-	public void setCclassname(String cclassname)
-	{
+	public void setCclassname(String cclassname) {
 		this.cclassname = cclassname;
 	}
 
-	public String getShareauthor()
-	{
+	public String getShareauthor() {
 		return shareauthor;
 	}
 
-	public void setShareauthor(String shareauthor)
-	{
+	public void setShareauthor(String shareauthor) {
 		this.shareauthor = shareauthor;
 	}
 
-	public String getInfosharescope()
-	{
+	public String getInfosharescope() {
 		return infosharescope;
 	}
 
-	public void setInfosharescope(String infosharescope)
-	{
+	public void setInfosharescope(String infosharescope) {
 		this.infosharescope = infosharescope;
 	}
 
-	public String getInfosharescopeid()
-	{
+	public String getInfosharescopeid() {
 		return infosharescopeid;
 	}
 
-	public void setInfosharescopeid(String infosharescopeid)
-	{
+	public void setInfosharescopeid(String infosharescopeid) {
 		this.infosharescopeid = infosharescopeid;
 	}
-	
-	public String getInfosharescopectype()
-	{
+
+	public String getInfosharescopectype() {
 		return infosharescopectype;
 	}
 
-	public void setInfosharescopectype(String infosharescopectype)
-	{
+	public void setInfosharescopectype(String infosharescopectype) {
 		this.infosharescopectype = infosharescopectype;
 	}
 
-	public int getFilenums()
-	{
+	public String getInfosharescopeinternal() {
+		return infosharescopeinternal;
+	}
+
+	public void setInfosharescopeinternal(String infosharescopeinternal) {
+		this.infosharescopeinternal = infosharescopeinternal;
+	}
+
+	public int getFilenums() {
 		return filenums;
 	}
 
-	public void setFilenums(int filenums)
-	{
+	public void setFilenums(int filenums) {
 		this.filenums = filenums;
 	}
 
-	public String getFiletype()
-	{
+	public String getFiletype() {
 		return filetype;
 	}
 
-	public void setFiletype(String filetype)
-	{
+	public void setFiletype(String filetype) {
 		this.filetype = filetype;
 	}
 
-	public String getMemo()
-	{
+	public String getMemo() {
 		return memo;
 	}
 
-	public void setMemo(String memo)
-	{
+	public void setMemo(String memo) {
 		this.memo = memo;
 	}
 
-	public String getCreater()
-	{
+	public String getCreater() {
 		return creater;
 	}
 
-	public void setCreater(String creater)
-	{
+	public void setCreater(String creater) {
 		this.creater = creater;
 	}
 
-	public String getCreatername()
-	{
+	public String getCreatername() {
 		return creatername;
 	}
 
-	public void setCreatername(String creatername)
-	{
+	public void setCreatername(String creatername) {
 		this.creatername = creatername;
 	}
 
-	public Timestamp getCreatetime()
-	{
+	public Timestamp getCreatetime() {
 		return createtime;
 	}
 
-	public void setCreatetime(Timestamp createtime)
-	{
+	public void setCreatetime(Timestamp createtime) {
 		this.createtime = createtime;
 	}
+	
+
 	
 }

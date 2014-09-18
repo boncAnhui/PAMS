@@ -15,7 +15,7 @@
 <tbody>
 	<#list data.users as obj>
 	<tr>
-	<td><input class="checkbox" data-id="${obj.id}" data-cname="${obj.cname}" data-ctype="PERSON"></td>
+	<td><input class="checkbox" data-id="${obj.id}" data-cname="${obj.cname}" data-ctype="PERSON" data-internal="${obj.id}"></td>
 	<td>${obj.cname}</td>
 	<td>${obj.position}</td>
 	<td>${obj.phone}</td>
@@ -24,65 +24,6 @@
 	</#list>
 </tbody>
 </table>
-<script type="text/javascript">
-$("#bt_save").click(function() {page_save()});
 
-function page_save()
-{
-	var oids=[];
-	var ocnames=[];
-	var octypes=[];
-	$('.dataGrid tbody .checkbox').each(function(j,k)
-	{		
-		if($(this).val()==1)
-		{
-			oids.push($(this).attr('data-id'));
-			ocnames.push($(this).attr('data-cname'));	
-			octypes.push($(this).attr('data-ctype'));	
-		}		
-	})
-	
-	if(oids.length<=0)
-	{
-		alert("请选择要共享的人员！");
-		return;
-	}
-	
-	var opener=$('body',window.parent.opener.document);
-	
-	var v_infosharescope = opener.find('#infosharescope').val();
-	var v_infosharescopeid = opener.find('#infosharescopeid').val();
-	var v_infosharescopectype = opener.find('#infosharescopectype').val();
-	
-	if(v_infosharescope!="")
-	{
-		opener.find('#infosharescope').val(v_infosharescope + "," + ocnames);	
-	}
-	else
-	{
-		opener.find('#infosharescope').val(ocnames);
-	}
-
-	if(v_infosharescopeid!="")
-	{
-		opener.find('#infosharescopeid').val(v_infosharescopeid + "," + oids);	
-	}
-	else
-	{
-		opener.find('#infosharescopeid').val(oids);
-	}
-	
-	if(v_infosharescopectype!="")
-	{
-		opener.find('#infosharescopectype').val(v_infosharescopectype + "," + octypes);	
-	}
-	else
-	{
-		opener.find('#infosharescopectype').val(octypes);
-	}
-	
-	window.parent.close();
-}
-</script>
 </body>
 </html>

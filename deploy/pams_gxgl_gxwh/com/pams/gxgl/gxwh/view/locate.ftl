@@ -141,6 +141,7 @@ table.dataGrid{border-collapse:collapse;}
 		<td colspan="3">
 		<input type="hidden" id="infosharescopeid" name="infosharescopeid" value="${data.infoshare.infosharescopeid}">
 		<input type="hidden" id="infosharescopectype" name="infosharescopectype" value="${data.infoshare.infosharescopectype}">
+		<input type="hidden" id="infosharescopeinternal" name="infosharescopeinternal" value="${data.infoshare.infosharescopeinternal}">
 		<input class="text" id="infosharescope" name="infosharescope" value="${data.infoshare.infosharescope}" style="width:45em" />
 		<button id="bt_scope" class="btn2">选择</button>	
 		<button id="bt_clearscope" class="btn2">清空</button>	
@@ -326,6 +327,7 @@ function page_clearscope()
 	$("#infosharescope").val("");
 	$("#infosharescopectype").val("");
 	$("#infosharescopeid").val("");
+	$("#infosharescopeinternal").val("");
 }
 
 //填写意见

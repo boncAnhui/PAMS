@@ -24,6 +24,8 @@ public class InfoShareScope extends IdEntity
 	
 	private String groupname; //分组名称
 	
+	private String groupinternal; //分组内部码	
+	
 	public String getInfoshareid()
 	{
 		return infoshareid;
@@ -63,4 +65,14 @@ public class InfoShareScope extends IdEntity
 	{
 		this.groupname = groupname;
 	}
+
+	public String getGroupinternal() {
+		return groupinternal;
+	}
+
+	public void setGroupinternal(String groupinternal) {
+		this.groupinternal = groupinternal;
+	}
+	
+	
 }

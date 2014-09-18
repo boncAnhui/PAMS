@@ -546,6 +546,7 @@ public class ApplyAction extends SimpleAction
 		String infosharescope = Struts2Utils.getRequest().getParameter("infosharescope");
 		String infosharescopeid = Struts2Utils.getRequest().getParameter("infosharescopeid");
 		String infosharescopectype = Struts2Utils.getRequest().getParameter("infosharescopectype");
+		String infosharescopeinternal = Struts2Utils.getRequest().getParameter("infosharescopeinternal");
 
 		String memo = Struts2Utils.getRequest().getParameter("memo");
 
@@ -569,6 +570,7 @@ public class ApplyAction extends SimpleAction
 		infoshare.setInfosharescope(infosharescope);
 		infoshare.setInfosharescopeid(infosharescopeid);
 		infoshare.setInfosharescopectype(infosharescopectype);
+		infoshare.setInfosharescopeinternal(infosharescopeinternal);
 		infoshare.setMemo(memo);
 
 		infoshare.setCreater(loginname);
@@ -722,6 +724,7 @@ public class ApplyAction extends SimpleAction
 		String infosharescope = Struts2Utils.getRequest().getParameter("infosharescope");
 		String infosharescopeid = Struts2Utils.getRequest().getParameter("infosharescopeid");
 		String infosharescopectype = Struts2Utils.getRequest().getParameter("infosharescopectype");
+		String infosharescopeinternal = Struts2Utils.getRequest().getParameter("infosharescopeinternal");
 
 		String memo = Struts2Utils.getRequest().getParameter("memo");
 
@@ -745,6 +748,8 @@ public class ApplyAction extends SimpleAction
 		infoshare.setInfosharescope(infosharescope);
 		infoshare.setInfosharescopeid(infosharescopeid);
 		infoshare.setInfosharescopectype(infosharescopectype);
+		infoshare.setInfosharescopeinternal(infosharescopeinternal);
+		
 		infoshare.setMemo(memo);
 
 //		infoshare.setCreater(loginname);
