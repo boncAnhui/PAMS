@@ -520,8 +520,8 @@ public class InfoShareService
 		knowledge.setCclassid(cclassid);
 		knowledge.setTitle(title);
 		knowledge.setSummary(summary);
-		knowledge.setCreateuser(username);
-		knowledge.setCreateuserid(loginname);
+		knowledge.setCreateuser(infoshare.getCreater());
+		knowledge.setCreateuserid(infoshare.getCreatername());
 		knowledge.setCreatetime(nowtime);
 		knowledge.setMauthor(username);
 		knowledge.setMauthorid(loginname);

@@ -117,7 +117,7 @@ preload([
 	<a href="<%=request.getContextPath()%>/file/install_flash_player_11_active_x.exe">Flash插件（IE）</a> &nbsp;  
 	<a href="<%=request.getContextPath()%>/file/install_flash_player_11_plugin.exe">Flash插件（其它）</a> &nbsp;
 	</div>
-	<p>2014 <sup>&copy;</sup> 版权所有</p>    
+	<p>2014 <sup>&copy;</sup> 西安慧泉信息科技有限公司版权所有</p>    
     
     
     
