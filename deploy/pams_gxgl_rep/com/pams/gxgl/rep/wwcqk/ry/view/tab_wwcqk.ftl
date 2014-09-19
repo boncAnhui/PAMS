@@ -14,11 +14,11 @@
 
 </tr>
 
-<#assign sum_ayfqzs = 0>
-<#assign sum_ayfbzs = 0>
 <#assign sum_awfbzs = 0>
-<#assign sum_ayfbzs_zcfbzs = 0>
-<#assign sum_ayfbzs_csfbzs = 0>
+<#assign sum_azczxzs = 0>
+<#assign sum_acszxzs = 0>
+<#assign sum_ayzxjdzs = 0>
+<#assign sum_ajdcszs = 0>
 
 
 <#list data.wfbzs as awfbzs>
@@ -43,13 +43,14 @@
 <#assign sum_azczxzs = sum_azczxzs + azczxzs.num?number>
 <#assign sum_acszxzs = sum_acszxzs + acszxzs.num?number>
 <#assign sum_ayzxjdzs = sum_ayzxjdzs + ayzxjdzs.num?number>
-
+<#assign sum_ajdcszs = sum_ajdcszs + ajdcszs.num?number>
 
 
 </#list>
 
 <tr>
 <td>合计:</td>
+<td></td>
 <td>${sum_awfbzs}</td>
 <td>${sum_azczxzs}</td>
 <td>${sum_acszxzs}</td>

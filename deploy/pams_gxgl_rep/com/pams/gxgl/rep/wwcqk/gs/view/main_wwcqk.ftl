@@ -35,7 +35,7 @@ jQuery(function($){
 
 function page_load_wwcqk_table()
 {
-	page_load_table("${base}/module/pams/gxgl/rep/wwcqk/gs/rep_tab_wwcqk.action", "wwcqk", 0, new Array(), new Array());
+	page_load_table("${base}/module/pams/gxgl/rep/wwcqk/gs/rep_tab_wwcqk.action", "wwcqk", 0, new Array("internal"), new Array("${arg.internal}"));
 }
 
 function page_load()
