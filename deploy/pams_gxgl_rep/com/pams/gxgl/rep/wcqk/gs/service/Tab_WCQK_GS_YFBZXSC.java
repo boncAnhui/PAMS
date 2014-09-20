@@ -41,7 +41,7 @@ public class Tab_WCQK_GS_YFBZXSC
 		
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append(" select org.internal, org.cname,  sum(v.jhsc) jhsc, sum(v.sjsc) sjsc ").append("\n");
+		sql.append(" select org.internal, org.cname, round((case when sum(v.jhsc) is null then 0 else sum(v.jhsc) end),2) jhsc ,round((case when sum(sjsc) is null then 0 else sum(sjsc) end ),2) sjsc ").append("\n");
 		sql.append("   from t_sys_organ org ").append("\n");
 		sql.append("   left join   ").append("\n");
 		sql.append("  (   ").append("\n");
