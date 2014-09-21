@@ -35,7 +35,7 @@ jQuery(function($){
 
 function page_load_wjgx_table()
 {
-	page_load_table("${base}/module/pams/gxgl/kpi/wjgx/rep_tab_wjgx_bm.action", "wjgx", 0, new Array("internal"), new Array("${arg.internal}"));
+	page_load_table("${base}/module/pams/gxgl/kpi/jsl/rep_tab_jsl_bm.action", "wjgx", 0, new Array("internal"), new Array("${arg.internal}"));
 }
 
 function page_load()

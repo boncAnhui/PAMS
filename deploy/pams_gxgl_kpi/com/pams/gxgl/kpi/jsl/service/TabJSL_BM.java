@@ -24,6 +24,8 @@ public class TabJSL_BM
 
 	public List execute(DynamicObject obj) throws Exception
 	{
+		System.out.println("信息共享及时率(部门)");
+		
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String internal = obj.getFormatAttr("internal");
@@ -31,8 +33,9 @@ public class TabJSL_BM
 		String sql_cdate = RepHelper.compare_sysdate(enddate);
 		
 		obj.setAttr("sql_cdate", sql_cdate);
-		obj.setAttr("ispublish", "");
-		obj.setAttr("isovertime", "");			
+		obj.setAttr("ispublish", "Y");
+		obj.setAttr("isovertime", "Y");	
+		obj.setAttr("isnodeovertime", "");		
 	    
 		StringBuffer sql = new StringBuffer();
 		
@@ -41,25 +44,24 @@ public class TabJSL_BM
 		sql.append("   left join   ").append("\n");
 		sql.append("  (   ").append("\n");
 		
-		sql.append("  select org.internal, sum(zxsccskh) zxsccskh ").append("\n");
+		sql.append("  select org.internal, sum(zxsckh) zxsccskh ").append("\n");
 		sql.append("  from t_sys_organ org,  ").append("\n");
 		sql.append("  ( ").append("\n");
 		
-		sql.append("  select v.deptid, v.creater, v.cno, v.actdefid, case when zxsccs > 5 then 5 else zxsccs end zxsccskh ").append("\n");
-		sql.append("    from").append("\n");
-		sql.append("    ( ").append("\n");
-		sql.append("    select v.deptid, v.creater, v.cno, v.actdefid, case when zxsc < 1 then 0 else ceil(zxsc - 1) end zxsccs ").append("\n");
+		sql.append("    select v.deptid, v.creater, v.cno,case when ceil(sum(zxsc)-count(v.actdefid)) < 5 then  ceil(sum(zxsc)-count(v.actdefid)) else 5 end zxsckh  ").append("\n");
 		sql.append("      from ").append("\n");
 		sql.append("      ( ").append("\n");
 		
 		sql.append(ZXQKHelper.sql_xxgx_kpi_zxsc(obj));
 		
 		sql.append("      ) v ").append("\n");
-		sql.append("    ) v ").append("\n");
+		sql.append(" group by v.deptid, v.creater, v.cno");
+		
 		sql.append("  ) v ").append("\n");
 		sql.append(" where 1 = 1 ").append("\n");
 		sql.append("   and org.id = v.deptid ").append("\n");
 		sql.append(" group by org.internal ").append("\n");
+		
 		sql.append("  ) v ").append("\n");		
 		sql.append(" on substr(v.internal, 0, length(org.internal)) = org.internal ").append("\n");
 		sql.append(" where 1 = 1 ").append("\n");

@@ -114,8 +114,7 @@ $('.error').text('${data.error}');
      
     <div class="copyright1" >
 	<span style="color:#666;">相关下载：</span>
-	<a href="${base}/file/install_flash_player_11_active_x.exe">Flash插件（IE）</a> &nbsp;  
-	<a href="${base}/file/install_flash_player_11_plugin.exe">Flash插件（其它）</a> &nbsp;
+	<a href="<%=request.getContextPath()%>/file/chrome_installer.exe">Chrome浏览器</a> &nbsp; 
 	</div>
 	<p>2012 <sup>&copy;</sup> 西安慧泉信息科技有限公司版权所有</p>
     </div>    
