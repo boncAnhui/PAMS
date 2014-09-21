@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>户表管理系统</title>
+<title>信息共享单</title>
 <script type="text/javascript" src="${base}/themes/default/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="${base}/themes/default/gex.js"></script>
 <script type="text/javascript" src="${base}/themes/default/main.js"></script>
