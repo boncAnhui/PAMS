@@ -17,6 +17,15 @@
 <th >执行及时率</th>
 </tr>
 
+<#assign sum_ayfbzs = 0>
+<#assign sum_azcfbzs = 0>
+<#assign sum_azcfbjdzs = 0>
+<#assign sum_acsfbjdzs = 0>
+<#assign sum_acsfbzs = 0>
+<#assign sum_cszsc = 0>
+<#assign sum_jhzxsc = 0>
+<#assign sum_sjzxsc = 0>
+
 <#list data.fbzs as afbzs>
 
 <#assign azcfbzs = data.zcfbzs[afbzs_index]>
@@ -27,23 +36,37 @@
 <tr>
 <td>${afbzs_index+1}</td>
 <td><a href="${base}/module/pams/gxgl/rep/wcqk/bm/rep_main_wcqk.action?internal=${afbzs.internal}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${afbzs.cname}</a></td>
+<td>${afbzs.num}</td>
 <td>${azcfbzs.num}</td>
 <td>${azcfbjdzs.num}</td>
 <td>${acsfbjdzs.num}</td>
+
+<td></td>
 <td>${acsfbzs.num}</td>
-<td>${ayfbsxzc.num}</td>
 <td></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>${ayfbsxzc.jhsc}</td>
+<td>${ayfbsxzc.sjsc}</td>
 <td></td>
 </tr>
 
-
+<#assign sum_ayfbzs = sum_ayfbzs + afbzs.num?number>
+<#assign sum_azcfbzs = sum_azcfbzs + azcfbzs.num?number>
+<#assign sum_azcfbjdzs = sum_azcfbjdzs + azcfbjdzs.num?number>
+<#assign sum_acsfbjdzs = sum_acsfbjdzs + acsfbjdzs.num?number>
+<#assign sum_acsfbzs = sum_acsfbzs + acsfbzs.num?number>
 
 </#list>
+
+<tr>
+<td></td>
+<td></td>
+<td>${sum_ayfbzs}</td>
+<td>${sum_azcfbzs}</td>
+<td>${sum_azcfbjdzs}</td>
+<td>${sum_acsfbjdzs}</td>
+<td></td>
+<td>${sum_acsfbzs}</td>
+</tr>
 
 </table>

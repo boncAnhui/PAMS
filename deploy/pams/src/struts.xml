@@ -144,6 +144,8 @@
 	<include file="com/pams/gxgl/rep/wwcqk/ry/action/struts-module.xml"></include>
 
 	<include file="com/pams/gxgl/kpi/zxsc/action/struts-module.xml"></include> 
+	<include file="com/pams/gxgl/kpi/jsl/action/struts-module.xml"></include> 
+	<include file="com/pams/gxgl/kpi/wjgx/action/struts-module.xml"></include> 
 	 
 	<!-- 户表改造 -->
 	<include file="com/pams/hbgl/main/action/struts-module.xml"></include>
