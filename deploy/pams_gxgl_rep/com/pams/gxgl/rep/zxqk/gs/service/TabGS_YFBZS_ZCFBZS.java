@@ -32,6 +32,8 @@ public class TabGS_YFBZS_ZCFBZS
 		obj.setAttr("ispublish", "Y");
 		obj.setAttr("isovertime", "N");			
 	    
+		System.out.println("--执行情况统计  已发布 正常执行总数");
+		
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append(" select org.internal, org.cname, count(v.cno) num  ").append("\n");
