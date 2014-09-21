@@ -291,7 +291,7 @@ public class ZXQKHelper
 		}		
 		
 		sql.append("   union  ").append("\n");
-		sql.append("   select info.deptid, info.creater, info.cno, 'XXHQ' actdefid, case when (UF_Calculate_Duration(info.createtime, info.obtaintime)) > 1 then 1 else 0 end cs ").append("\n");
+		sql.append("   select info.deptid, info.creater, info.cno, 'XXHQ' actdefid, UF_Calculate_Duration(info.createtime, info.obtaintime) cs ").append("\n");
 		sql.append("     from t_app_infoshare info ").append("\n");
 		sql.append("    where 1 = 1 ").append("\n");
 		
