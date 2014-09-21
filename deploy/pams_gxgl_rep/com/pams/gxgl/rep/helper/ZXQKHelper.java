@@ -22,6 +22,7 @@ public class ZXQKHelper
 		String isnodeovertime = obj.getFormatAttr("isnodeovertime"); // 节点超时状态开关
 		String creater = obj.getFormatAttr("creater"); // 创建人
 		
+		System.out.println("sql_xxgx_zxqk.");
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append(" select v.deptid, v.creater, v.cno, count(v.actdefid) jds, sum(v.cs) cs  ").append("\n");
@@ -31,19 +32,15 @@ public class ZXQKHelper
 		sql.append(" select info.deptid, info.creater, info.cno, ract.actdefid, ").append("\n");
 		if("Y".equals(ispublish))
 		{
-			// sql.append(" case when sum(ract.completetime - ract.createtime) > 1 then 1 else 0 end cs ").append("\n");
 			sql.append(" case when sum(UF_Calculate_Duration(ract.completetime, ract.createtime)) > 1 then 1 else 0 end cs ").append("\n");
-			
 		}
 		else
 		if("N".equals(ispublish))
 		{
-			// sql.append(" case when sum(case when ract.completetime is null then " + sql_cdate + " - ract.createtime else ract.completetime - ract.createtime end) > 1 then 1 else 0 end cs ").append("\n");
 			sql.append(" case when sum(case when ract.completetime is null then UF_Calculate_Duration(" + sql_cdate + ", ract.createtime) else UF_Calculate_Duration(ract.completetime, ract.createtime) end) > 1 then 1 else 0 end cs ").append("\n");
 		}
 		else
 		{
-			// sql.append(" case when sum(case when ract.completetime is null then " + sql_cdate + " - ract.createtime else ract.completetime - ract.createtime end) > 1 then 1 else 0 end cs ").append("\n");
 			sql.append(" case when sum(case when ract.completetime is null then UF_Calculate_Duration(" + sql_cdate + ", ract.createtime) else UF_Calculate_Duration(ract.completetime, ract.createtime) end) > 1 then 1 else 0 end cs ").append("\n");
 		}
 		
@@ -100,7 +97,8 @@ public class ZXQKHelper
 		}		
 		
 		sql.append("   union  ").append("\n");
-		sql.append("   select info.deptid, info.creater, info.cno, 'XXHQ' actdefid, case when (UF_Calculate_Duration(info.createtime, info.obtaintime)) > 1 then 1 else 0 end cs ").append("\n");
+		sql.append("   select info.deptid, info.creater, info.cno, 'XXHQ' actdefid, ").append("\n");
+		sql.append("   case when UF_Calculate_Duration(info.createtime, info.obtaintime) > 1 then 1 else 0 end cs ").append("\n");
 		sql.append("     from t_app_infoshare info ").append("\n");
 		sql.append("    where 1 = 1 ").append("\n");
 		
@@ -173,10 +171,12 @@ public class ZXQKHelper
 		String isnodeovertime = obj.getFormatAttr("isnodeovertime"); // 节点超时状态开关
 		String creater = obj.getFormatAttr("creater"); // 创建人
 
+		System.out.println("sql_xxgx_zxqk_zxsc.");
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append(" select info.creater, info.creatername, rflow.runflowkey, v.cno, ract.actdefid, bact.cname actcname, ").append("\n");
-		sql.append(" sum(case when ract.completetime is null then UF_Calculate_Duration(" + sql_cdate + ", ract.createtime) else UF_Calculate_Duration(ract.completetime, ract.createtime) end) zxsc ").append("\n");
+		sql.append(" sum(case when ract.completetime is null then UF_Calculate_Duration(" + sql_cdate + ", ract.createtime) ").append("\n");
+		sql.append("     else UF_Calculate_Duration(ract.completetime, ract.createtime) end) zxsc ").append("\n");
 		sql.append(" from t_sys_wfbact bact, t_sys_wfrflow rflow, t_sys_wfract ract, t_app_infoshare info, ").append("\n");
 		sql.append(" ( ").append("\n");
 		sql.append(ZXQKHelper.sql_xxgx_zxqk(obj));
@@ -222,8 +222,8 @@ public class ZXQKHelper
 		String isnodeovertime = obj.getFormatAttr("isnodeovertime"); // 节点超时状态开关
 		String creater = obj.getFormatAttr("creater"); // 创建人
 		
+		System.out.println("sql_xxgx_kpi_zxsc.");
 		StringBuffer sql = new StringBuffer();
-		
 		sql.append(" select info.deptid, info.creater, info.cno, ract.actdefid, ").append("\n");
 		if("Y".equals(ispublish))
 		{
