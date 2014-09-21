@@ -965,7 +965,7 @@ $('form button.submit').click(function(){
 //////////////////////////form validate start
 $('form').submit(function(){
 
-return true; //临时测试	
+// return true; //临时测试	
 	
 var ok=true;
 var info='';
