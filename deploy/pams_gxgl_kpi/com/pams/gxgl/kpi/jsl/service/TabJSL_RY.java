@@ -31,27 +31,26 @@ public class TabJSL_RY
 		String sql_cdate = RepHelper.compare_sysdate(enddate);
 		
 		obj.setAttr("sql_cdate", sql_cdate);
-		obj.setAttr("ispublish", "");
-		obj.setAttr("isovertime", "");			
+		obj.setAttr("ispublish", "Y");
+		obj.setAttr("isovertime", "Y");	
+		obj.setAttr("isnodeovertime", "");		
 	    
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append("  select usr.loginname, usr.cname username, usr.ordernum, usr.owneorgname orgcname, usr.ownerdept, usr.deptname deptcname, case when sum(zxsccskh) is null then 0 else sum(zxsccskh) end zxsccskh ").append("\n");
+		sql.append("  select usr.loginname, usr.cname username, usr.ordernum, usr.owneorgname orgcname, usr.ownerdept, usr.deptname deptcname, case when sum(zxsckh) is null then 0 else sum(zxsckh) end zxsccskh ").append("\n");
 		sql.append("  from t_sys_user usr ").append("\n");
 		sql.append("  left join ").append("\n");
 		sql.append("  ( ").append("\n");
 		
-		sql.append("  select v.deptid, v.creater, v.cno, v.actdefid, case when zxsccs > 5 then 5 else zxsccs end zxsccskh ").append("\n");
-		sql.append("    from").append("\n");
-		sql.append("    ( ").append("\n");
-		sql.append("    select v.deptid, v.creater, v.cno, v.actdefid, case when zxsc < 1 then 0 else ceil(zxsc - 1) end zxsccs ").append("\n");
+		sql.append("    select v.deptid, v.creater, v.cno,case when ceil(sum(zxsc)-count(v.actdefid)) < 5 then  ceil(sum(zxsc)-count(v.actdefid)) else 5 end zxsckh  ").append("\n");
 		sql.append("      from ").append("\n");
 		sql.append("      ( ").append("\n");
 		
 		sql.append(ZXQKHelper.sql_xxgx_kpi_zxsc(obj));
 		
 		sql.append("      ) v ").append("\n");
-		sql.append("    ) v ").append("\n");
+		sql.append(" group by v.deptid, v.creater, v.cno");
+		
 		sql.append("  ) v ").append("\n");
 		sql.append("  on usr.loginname = v.creater ").append("\n");
 		sql.append(" where 1 = 1 ").append("\n");

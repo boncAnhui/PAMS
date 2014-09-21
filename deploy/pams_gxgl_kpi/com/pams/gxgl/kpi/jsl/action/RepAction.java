@@ -8,9 +8,9 @@ import com.blue.ssh.core.action.SimpleAction;
 import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
 import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.headray.framework.spec.GlobalConstants;
-import com.pams.gxgl.kpi.zxsc.service.TabZXSC_BM;
-import com.pams.gxgl.kpi.zxsc.service.TabZXSC_GS;
-import com.pams.gxgl.kpi.zxsc.service.TabZXSC_RY;
+import com.pams.gxgl.kpi.jsl.service.TabJSL_BM;
+import com.pams.gxgl.kpi.jsl.service.TabJSL_GS;
+import com.pams.gxgl.kpi.jsl.service.TabJSL_RY;
 import com.ray.app.chart.report.dao.ReportDao;
 import com.ray.app.query.service.QueryService;
 
@@ -73,10 +73,10 @@ public class RepAction extends SimpleAction
 		obj.setAttr("internal", internal);
 		
 		//发布总数
-		TabZXSC_GS tabZXSC_GS = new TabZXSC_GS();
-		tabZXSC_GS.setJdbcTemplate(reportDao.getJdbcTemplate());
+		TabJSL_GS tabJSL_GS = new TabJSL_GS();
+		tabJSL_GS.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		List datas = tabZXSC_GS.execute(obj);
+		List datas = tabJSL_GS.execute(obj);
 		data.put("jsls", datas);
 		
 		arg.put("begindate", begindate);
@@ -124,10 +124,10 @@ public class RepAction extends SimpleAction
 		obj.setAttr("internal", internal);
 		
 		//发布总数
-		TabZXSC_BM tabZXSC_BM = new TabZXSC_BM();
-		tabZXSC_BM.setJdbcTemplate(reportDao.getJdbcTemplate());
+		TabJSL_BM tabJSL_BM = new TabJSL_BM();
+		tabJSL_BM.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		List datas = tabZXSC_BM.execute(obj);
+		List datas = tabJSL_BM.execute(obj);
 		data.put("jsls", datas);
 		
 		arg.put("begindate", begindate);
@@ -176,10 +176,10 @@ public class RepAction extends SimpleAction
 		obj.setAttr("internal", internal);
 		
 		//发布总数
-		TabZXSC_RY tabZXSC_RY = new TabZXSC_RY();
-		tabZXSC_RY.setJdbcTemplate(reportDao.getJdbcTemplate());
+		TabJSL_RY tabJSL_RY = new TabJSL_RY();
+		tabJSL_RY.setJdbcTemplate(reportDao.getJdbcTemplate());
 		
-		List datas = tabZXSC_RY.execute(obj);
+		List datas = tabJSL_RY.execute(obj);
 		data.put("jsls", datas);
 		
 		arg.put("begindate", begindate);
