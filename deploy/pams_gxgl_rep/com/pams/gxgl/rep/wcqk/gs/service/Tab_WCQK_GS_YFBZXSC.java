@@ -50,7 +50,7 @@ public class Tab_WCQK_GS_YFBZXSC
 		sql.append("  left join ").append("\n");
 		sql.append("  (  ").append("\n");
 		
-		sql.append("select  info.cno,info.deptid,sum(bv.jhsc) jhsc, round(sum(bv.jhsc - (info.publishtime - info.obtaintime)),2) cs,round(sum(info.publishtime - info.obtaintime),2) sjsc").append("\n");
+		sql.append("select  info.cno,info.deptid,sum(bv.jhsc) jhsc, round(sum(bv.jhsc - (UF_Calculate_Duration(info.publishtime, info.obtaintime))),2) cs,round(sum(UF_Calculate_Duration(info.publishtime, info.obtaintime)),2) sjsc").append("\n");
 		sql.append(" from t_app_infoshare info, ").append("\n");
 		sql.append("( ").append("\n");
 		sql.append(" select bv.cno, (count(0) + 1) jhsc").append("\n");

@@ -333,4 +333,95 @@ public class ZXQKHelper
 		
 		return sql.toString();
 	}
+	
+	
+	/**
+	 * 该方法实现信息共享及时率的计算
+	 * @param obj
+	 * @return
+	 * @throws Exception
+	 */
+	public static String sql_xxgx_kpi_jsl(DynamicObject obj) throws Exception
+	{
+		String begindate = obj.getFormatAttr("begindate"); // 结束日期
+		String enddate = obj.getFormatAttr("enddate"); // 起始日期
+		String sql_cdate = obj.getFormatAttr("sql_cdate"); // 系统与查询比较时间
+		
+		String ispublish = obj.getFormatAttr("ispublish"); // 发布状态开关
+		String isovertime = obj.getFormatAttr("isovertime"); // 超时状态开关
+		String isnodeovertime = obj.getFormatAttr("isnodeovertime"); // 节点超时状态开关
+		String creater = obj.getFormatAttr("creater"); // 创建人
+		
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append(" select usr.loginname, usr.cname, usr.ownerdept, usr.deptname, sum(bzsc) bzsc, sum(zxsc) zxsc, sum(cskh)cskh ").append("\n");
+		sql.append("   from t_app_infoshare info, t_sys_user usr, ").append("\n");
+		sql.append("   (  ").append("\n");
+		sql.append("     select runflowkey, cno,  bzsc, zxsc, (case when (zxsc - bzsc) > 5 then 5 else (zxsc - bzsc) end) cskh ").append("\n");
+		sql.append("       from  ").append("\n");
+		sql.append("       ( ").append("\n");
+		sql.append("         select zx.runflowkey, zx.cno, zx.bzsc, ").append("\n");
+		
+		//sql.append("              ((case when info.publishtime is null then " + sql_cdate + " - info.obtaintime else info.publishtime - info.obtaintime end)) zxsc ").append("\n");
+		if("Y".equals(ispublish))
+		{
+			sql.append(" (ract.completetime - ract.createtime) zxsc ").append("\n");
+		}
+		else
+		if("N".equals(ispublish))
+		{
+			sql.append(" (case when ract.completetime is null then " + sql_cdate + " - info.obtaintime else info.publishtime - info.obtaintime end) zxsc ").append("\n");
+		}
+		else
+		{
+			sql.append(" (case when ract.completetime is null then " + sql_cdate + " - ract.createtime else info.publishtime - info.obtaintime end) zxsc ").append("\n");
+		}
+		
+		
+		sql.append("           from t_app_infoshare info,  ").append("\n");
+		sql.append("           ( ").append("\n");
+		sql.append("             select runflowkey, flowdefid, cno, sum(bzsc) bzsc ").append("\n");
+		sql.append("               from ").append("\n");
+		sql.append("               (  ").append("\n");
+		sql.append("                 select ract.runflowkey, ract.flowdefid, info.cno, ract.actdefid, sum(kpi.dvalue) bzsc               ").append("\n");
+		sql.append("                   from t_sys_wfract ract, t_sys_wfrflow rflow, t_sys_wfbflow bflow, t_sys_wfbact bact, t_app_kpi kpi, t_app_infoshare info  ").append("\n");
+		sql.append("                  where 1 = 1   ").append("\n");
+		sql.append("                    and rflow.runflowkey = ract.runflowkey  ").append("\n");
+		sql.append("                    and ract.actdefid = bact.id   ").append("\n");
+		sql.append("                    and bact.ctype <> 'BEGIN'   ").append("\n");
+		sql.append("                    and bact.ctype <> 'END'  ").append("\n");
+		sql.append("                    and ract.flowdefid = bflow.id  ").append("\n");
+		sql.append("                    and bflow.classid = 'GXGL'  ").append("\n");
+		sql.append("                    and ract.dataid = info.id ").append("\n");
+		sql.append("                    and ract.flowdefid = kpi.flowdefid ").append("\n");
+		sql.append("                    and ract.actdefid = kpi.actdefid ").append("\n");
+		sql.append("                    and kpi.pname = 'XXGX.ZXSC' ").append("\n");
+		if (!StringToolKit.isBlank(begindate))
+		{
+			sql.append(RepHelper.date_begin_eq("rflow.createtime", begindate)).append("\n");
+		}
+
+		if (!StringToolKit.isBlank(enddate))
+		{
+			sql.append(RepHelper.date_end("rflow.createtime", enddate)).append("\n");
+		}	
+		
+		sql.append("                  group by ract.runflowkey, info.cno, ract.flowdefid, ract.actdefid  ").append("\n");
+		sql.append("                  order by runflowkey ").append("\n");
+		sql.append("               ) zx  ").append("\n");
+		sql.append("             where 1 = 1  ").append("\n");
+		sql.append("             group by runflowkey, flowdefid, cno ").append("\n");
+		sql.append("           ) zx ").append("\n");
+		sql.append("           where 1 = 1 ").append("\n");
+		sql.append("             and info.cno = zx.cno    ").append("\n");
+		sql.append("       ) zx     ").append("\n");
+		sql.append("   ) zx  ").append("\n");
+		sql.append("   where 1 = 1  ").append("\n");
+		sql.append("     and zx.cno = info.cno  ").append("\n");
+		sql.append("     and info.creater = usr.loginname ");
+		sql.append("   group by usr.loginname, usr.cname, usr.ownerdept, usr.deptname ").append("\n");
+		sql.append("   order by usr.ownerdept, usr.deptname");
+		
+		return sql.toString();
+	}
 }
