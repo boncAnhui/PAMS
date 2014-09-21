@@ -31,16 +31,20 @@ public class ZXQKHelper
 		sql.append(" select info.deptid, info.creater, info.cno, ract.actdefid, ").append("\n");
 		if("Y".equals(ispublish))
 		{
-			sql.append(" case when sum(ract.completetime - ract.createtime) > 1 then 1 else 0 end cs ").append("\n");
+			// sql.append(" case when sum(ract.completetime - ract.createtime) > 1 then 1 else 0 end cs ").append("\n");
+			sql.append(" case when sum(UF_Calculate_Duration(ract.completetime, ract.createtime)) > 1 then 1 else 0 end cs ").append("\n");
+			
 		}
 		else
 		if("N".equals(ispublish))
 		{
-			sql.append(" case when sum(case when ract.completetime is null then " + sql_cdate + " - ract.createtime else ract.completetime - ract.createtime end) > 1 then 1 else 0 end cs ").append("\n");
+			// sql.append(" case when sum(case when ract.completetime is null then " + sql_cdate + " - ract.createtime else ract.completetime - ract.createtime end) > 1 then 1 else 0 end cs ").append("\n");
+			sql.append(" case when sum(case when ract.completetime is null then UF_Calculate_Duration(" + sql_cdate + ", ract.createtime) else UF_Calculate_Duration(ract.completetime, ract.createtime) end) > 1 then 1 else 0 end cs ").append("\n");
 		}
 		else
 		{
-			sql.append(" case when sum(case when ract.completetime is null then " + sql_cdate + " - ract.createtime else ract.completetime - ract.createtime end) > 1 then 1 else 0 end cs ").append("\n");
+			// sql.append(" case when sum(case when ract.completetime is null then " + sql_cdate + " - ract.createtime else ract.completetime - ract.createtime end) > 1 then 1 else 0 end cs ").append("\n");
+			sql.append(" case when sum(case when ract.completetime is null then UF_Calculate_Duration(" + sql_cdate + ", ract.createtime) else UF_Calculate_Duration(ract.completetime, ract.createtime) end) > 1 then 1 else 0 end cs ").append("\n");
 		}
 		
 		sql.append("   from t_sys_wfbact bact, t_sys_wfrflow rflow, t_sys_wfract ract, t_app_infoshare info ").append("\n");
@@ -86,16 +90,17 @@ public class ZXQKHelper
 		
 		if("Y".equals(isnodeovertime))
 		{
-			sql.append(" having sum(ract.completetime - ract.createtime) > 1 ").append("\n");
+			// sql.append(" having sum(ract.completetime - ract.createtime) > 1 ").append("\n");
+			sql.append(" having sum(UF_Calculate_Duration(ract.completetime, ract.createtime)) > 1 ").append("\n");
 		}
 		else 
 		if("N".equals(isnodeovertime))
 		{
-			sql.append(" having sum(ract.completetime - ract.createtime) < 1 ").append("\n");
+			sql.append(" having sum(UF_Calculate_Duration(ract.completetime, ract.createtime)) < 1 ").append("\n");
 		}		
 		
 		sql.append("   union  ").append("\n");
-		sql.append("   select info.deptid, info.creater, info.cno, 'XXHQ' actdefid, case when (info.createtime - info.obtaintime) > 1 then 1 else 0 end cs ").append("\n");
+		sql.append("   select info.deptid, info.creater, info.cno, 'XXHQ' actdefid, case when (UF_Calculate_Duration(info.createtime, info.obtaintime)) > 1 then 1 else 0 end cs ").append("\n");
 		sql.append("     from t_app_infoshare info ").append("\n");
 		sql.append("    where 1 = 1 ").append("\n");
 		
@@ -130,12 +135,12 @@ public class ZXQKHelper
 		
 		if("Y".equals(isnodeovertime))
 		{
-			sql.append(" and (info.createtime - info.obtaintime) > 1 ").append("\n");
+			sql.append(" and (UF_Calculate_Duration(info.createtime, info.obtaintime)) > 1 ").append("\n");
 		}
 		else 
 		if("N".equals(isnodeovertime))
 		{
-			sql.append(" and (info.createtime - info.obtaintime) < 1 ").append("\n");
+			sql.append(" and (UF_Calculate_Duration(info.createtime, info.obtaintime)) < 1 ").append("\n");
 		}	
 		
 		
@@ -171,7 +176,7 @@ public class ZXQKHelper
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append(" select info.creater, info.creatername, rflow.runflowkey, v.cno, ract.actdefid, bact.cname actcname, ").append("\n");
-		sql.append(" sum(case when ract.completetime is null then " + sql_cdate + " - ract.createtime else ract.completetime - ract.createtime end) zxsc ").append("\n");
+		sql.append(" sum(case when ract.completetime is null then UF_Calculate_Duration(" + sql_cdate + ", ract.createtime) else UF_Calculate_Duration(ract.completetime, ract.createtime) end) zxsc ").append("\n");
 		sql.append(" from t_sys_wfbact bact, t_sys_wfrflow rflow, t_sys_wfract ract, t_app_infoshare info, ").append("\n");
 		sql.append(" ( ").append("\n");
 		sql.append(ZXQKHelper.sql_xxgx_zxqk(obj));
@@ -186,7 +191,7 @@ public class ZXQKHelper
 		sql.append("    and bact.ctype <> 'END' ").append("\n");		
 		sql.append("  group by info.creater, info.creatername, rflow.runflowkey, v.cno, ract.actdefid, bact.cname ").append("\n");
 		sql.append(" union ").append("\n");
-		sql.append(" select info.creater, info.creatername, rflow.runflowkey, v.cno, 'XXHQ' actdefid, '信息获取' actcname, (info.createtime - info.obtaintime) zxsc ").append("\n");
+		sql.append(" select info.creater, info.creatername, rflow.runflowkey, v.cno, 'XXHQ' actdefid, '信息获取' actcname, (UF_Calculate_Duration(info.createtime, info.obtaintime)) zxsc ").append("\n");
 		sql.append(" from t_sys_wfbact bact, t_sys_wfrflow rflow, t_sys_wfract ract, t_app_infoshare info, ").append("\n");
 		sql.append(" ( ").append("\n");
 		sql.append(ZXQKHelper.sql_xxgx_zxqk(obj));
@@ -222,16 +227,16 @@ public class ZXQKHelper
 		sql.append(" select info.deptid, info.creater, info.cno, ract.actdefid, ").append("\n");
 		if("Y".equals(ispublish))
 		{
-			sql.append(" sum(ract.completetime - ract.createtime) zxsc ").append("\n");
+			sql.append(" sum(UF_Calculate_Duration(ract.completetime, ract.createtime)) zxsc ").append("\n");
 		}
 		else
 		if("N".equals(ispublish))
 		{
-			sql.append(" sum(case when ract.completetime is null then " + sql_cdate + " - ract.createtime else ract.completetime - ract.createtime end) zxsc ").append("\n");
+			sql.append(" sum(case when ract.completetime is null then UF_Calculate_Duration(" + sql_cdate + ", ract.createtime) else UF_Calculate_Duration(ract.completetime, ract.createtime) end) zxsc ").append("\n");
 		}
 		else
 		{
-			sql.append(" sum(case when ract.completetime is null then " + sql_cdate + " - ract.createtime else ract.completetime - ract.createtime end) zxsc ").append("\n");
+			sql.append(" sum(case when ract.completetime is null then UF_Calculate_Duration(" + sql_cdate + ", ract.createtime) else UF_Calculate_Duration(ract.completetime, ract.createtime) end) zxsc ").append("\n");
 		}
 		
 		sql.append("   from t_sys_wfbact bact, t_sys_wfrflow rflow, t_sys_wfract ract, t_app_infoshare info ").append("\n");
@@ -277,16 +282,16 @@ public class ZXQKHelper
 		
 		if("Y".equals(isnodeovertime))
 		{
-			sql.append(" having sum(ract.completetime - ract.createtime) > 1 ").append("\n");
+			sql.append(" having sum(UF_Calculate_Duration(ract.completetime, ract.createtime)) > 1 ").append("\n");
 		}
 		else 
 		if("N".equals(isnodeovertime))
 		{
-			sql.append(" having sum(ract.completetime - ract.createtime) < 1 ").append("\n");
+			sql.append(" having sum(UF_Calculate_Duration(ract.completetime, ract.createtime)) < 1 ").append("\n");
 		}		
 		
 		sql.append("   union  ").append("\n");
-		sql.append("   select info.deptid, info.creater, info.cno, 'XXHQ' actdefid, case when (info.createtime - info.obtaintime) > 1 then 1 else 0 end cs ").append("\n");
+		sql.append("   select info.deptid, info.creater, info.cno, 'XXHQ' actdefid, case when (UF_Calculate_Duration(info.createtime, info.obtaintime)) > 1 then 1 else 0 end cs ").append("\n");
 		sql.append("     from t_app_infoshare info ").append("\n");
 		sql.append("    where 1 = 1 ").append("\n");
 		
@@ -321,12 +326,12 @@ public class ZXQKHelper
 		
 		if("Y".equals(isnodeovertime))
 		{
-			sql.append(" and (info.createtime - info.obtaintime) > 1 ").append("\n");
+			sql.append(" and (UF_Calculate_Duration(info.createtime, info.obtaintime)) > 1 ").append("\n");
 		}
 		else 
 		if("N".equals(isnodeovertime))
 		{
-			sql.append(" and (info.createtime - info.obtaintime) < 1 ").append("\n");
+			sql.append(" and (UF_Calculate_Duration(info.createtime, info.obtaintime)) < 1 ").append("\n");
 		}	
 		
 		// sql.append("  order by deptid, creater, cno, actdefid  ").append("\n");
