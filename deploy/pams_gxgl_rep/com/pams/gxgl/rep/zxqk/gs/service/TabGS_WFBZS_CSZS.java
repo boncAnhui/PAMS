@@ -32,6 +32,7 @@ public class TabGS_WFBZS_CSZS
 		obj.setAttr("ispublish", "N");
 		obj.setAttr("isovertime", "Y");			
 	    
+		System.out.println("--执行情况统计  未发布  超时执行总数");
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append(" select org.internal, org.cname, count(v.cno) num  ").append("\n");
@@ -48,7 +49,7 @@ public class TabGS_WFBZS_CSZS
 		sql.append("   ) v  ").append("\n");
 		sql.append("   on org.id = v.deptid  ").append("\n");
 		sql.append("   group by org.internal, v.cno  ").append("\n");
-		sql.append("   having sum(v.cs) = 0  ").append("\n");
+		sql.append("   having sum(v.cs) > 0  ").append("\n");
 		sql.append("   ) v  ").append("\n");
 		sql.append("   on org.internal = substr(v.internal, 0, length(v.internal)-4) ").append("\n");
 		sql.append(" where 1 = 1 ").append("\n");
