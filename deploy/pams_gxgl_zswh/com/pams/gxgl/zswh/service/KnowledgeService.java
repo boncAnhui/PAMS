@@ -48,7 +48,8 @@ public class KnowledgeService
 		sql.append("   where 1 = 1 ").append("\n");
 		sql.append("     and k.id = kscope.knowledgeid ").append("\n");
 		sql.append("     and (kscope.grouptype = 'ORG' or kscope.grouptype = 'DEPT')  ").append("\n");
-		sql.append("     and kscope.grouptype = gu.ctype     ").append("\n");
+		sql.append("     and (gu.ctype = 'ORG' or gu.ctype = 'DEPT')  ").append("\n");
+		// sql.append("     and kscope.grouptype = gu.ctype     ").append("\n");
 		sql.append("     and gu.groupinternal like kscope.groupinternal || '%'  ").append("\n");
 		sql.append("     and gu.loginname = " + SQLParser.charValue(loginname)).append("\n");
 		sql.append("   union ").append("\n");
