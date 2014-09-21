@@ -14,7 +14,7 @@
 <#assign total = 0>
 <#list data.zxscs as aobj>
 <tr>
-<td>${aobj_index+1}</td>
+<td>${aobj_index + 1}</td>
 <td><#if creatername_old == "${aobj.creatername}"><#else>${aobj.creatername}</#if></td>
 <td><#if cno_old == "${aobj.cno}"><#else><a href="${base}/module/app/system/workflow/ui/flowstat.action?runflowkey=${aobj.runflowkey}" target="_blank">${aobj.cno}</a></#if></td>
 <td>${aobj.actcname}</td>
