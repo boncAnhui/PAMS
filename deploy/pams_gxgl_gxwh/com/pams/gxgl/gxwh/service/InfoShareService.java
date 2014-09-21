@@ -504,6 +504,16 @@ public class InfoShareService
 		String deptid = login_token.getFormatAttr(com.headray.framework.spec.GlobalConstants.sys_login_dept);
 		String deptname = login_token.getFormatAttr(com.headray.framework.spec.GlobalConstants.sys_login_deptname);
 		
+		// 检查是否应发布过
+		StringBuffer sql = new StringBuffer();
+		sql.append(" from Knowledge where 1 = 1 and restype = 'InfoShare' and origin = " + SQLParser.charValue(id));
+		
+		List<Knowledge> knowledges = knowledgeDao.find(sql.toString());
+		if(knowledges.size()>0)
+		{
+			return;
+		}
+		
 		InfoShare infoshare = infoshareDao.get(id);
 		Timestamp nowtime = new Timestamp(System.currentTimeMillis());
 		infoshare.setPublishtime(nowtime);
@@ -548,7 +558,7 @@ public class InfoShareService
 		knowledgeclassrelationDao.save(knowledgeclassrelation);
 		
 		// 创建共享知识与附件文档关联
-		StringBuffer sql = new StringBuffer();
+		sql = new StringBuffer();
 		sql.append(" from FileAttachment where 1 = 1 and dataid = " + SQLParser.charValue(id));
 		List<FileAttachment> fileattachments = fileattachmentDao.find(sql.toString());
 		for(int i=0;i<fileattachments.size();i++)
