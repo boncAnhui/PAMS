@@ -97,7 +97,7 @@ function page_save()
 		opener.find('#infosharescopeinternal').val(ointernals);
 	}	
 	
-	window.parent.close();
+	// window.parent.close();
 }
 </script>
 </body>
