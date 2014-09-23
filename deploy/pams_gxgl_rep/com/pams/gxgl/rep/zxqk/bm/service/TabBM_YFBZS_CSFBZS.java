@@ -43,6 +43,7 @@ public class TabBM_YFBZS_CSFBZS
 		
 		sql.append(" ) v   ").append("\n");
 		sql.append("  on org.id = v.deptid ").append("\n");
+		sql.append(" where 1 = 1 ").append("\n");
 		sql.append(" and org.ctype = 'DEPT' ").append("\n");
 		if (!StringToolKit.isBlank(internal))
 		{
