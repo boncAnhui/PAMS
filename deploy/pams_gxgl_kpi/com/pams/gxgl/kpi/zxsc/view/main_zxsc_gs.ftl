@@ -46,7 +46,7 @@ function page_load()
 function page_query_export()
 {
 	mform.target = "_blank";
-	mform.action = "${base}/module/pams/gxgl/kpi/zxsc/rep_export_tab_zxsc_gs.action?export=export_";
+	mform.action = "${base}/module/pams/gxgl/kpi/zxsc/rep_xls_zxsc_gs.action";
 	mform.submit();
 }
 

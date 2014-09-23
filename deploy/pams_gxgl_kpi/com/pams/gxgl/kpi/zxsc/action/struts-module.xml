@@ -13,7 +13,7 @@
 			<result name="tab_zxsc_gs" type="freemarker">/com/pams/gxgl/kpi/zxsc/view/tab_zxsc_gs.ftl</result>
 			<result name="tab_zxsc_bm" type="freemarker">/com/pams/gxgl/kpi/zxsc/view/tab_zxsc_bm.ftl</result>
 			<result name="tab_zxsc_ry" type="freemarker">/com/pams/gxgl/kpi/zxsc/view/tab_zxsc_ry.ftl</result>
-	     	<result name="export_tab_zxsc_gs" type="stream">
+	     	<result name="excel" type="stream">
 	     		<param name="contentType">application/vnd.ms-excel</param> 
             	<param name="inputName">excelStream</param>
             	<param name="contentDisposition">attachment;filename="${excelFileName}"</param>

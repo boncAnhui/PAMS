@@ -43,6 +43,13 @@ function page_load()
 	page_load_zxsc_table();
 }
 
+function page_query_export()
+{
+	mform.target = "_blank";
+	mform.action = "${base}/module/pams/gxgl/kpi/zxsc/rep_xls_zxsc_bm.action";
+	mform.submit();
+}
+
 page_load();
 
 </script>
