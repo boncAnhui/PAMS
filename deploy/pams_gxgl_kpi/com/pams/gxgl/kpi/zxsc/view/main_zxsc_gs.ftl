@@ -20,7 +20,7 @@ jQuery(function($){
 <#import "com/ray/nwpn/itsm/report/common/view/macros.ftl" as pub_macros>
 <@pub_macros.showheader repname="信息共享执行时长指标统计" />
 
-<#include "/com/ray/nwpn/itsm/report/common/view/nav.ftl">
+<#include "/com/ray/nwpn/itsm/report/common/view/navquery.ftl">
 
 <br />
 <div class="section sec1">
@@ -41,6 +41,13 @@ function page_load_zxsc_table()
 function page_load()
 {
 	page_load_zxsc_table();
+}
+
+function page_query_export()
+{
+	mform.target = "_blank";
+	mform.action = "${base}/module/pams/gxgl/kpi/zxsc/rep_export_tab_zxsc_gs.action?export=export_";
+	mform.submit();
 }
 
 page_load();
