@@ -51,10 +51,42 @@ function openwin(url,winname,w,h,handler){
 	winname.focus();
 }
 
+function getTotoNum()
+{
+	$.ajax(
+	{
+		type: 'POST',
+		url:'${base}/module/irm/portal/portal/portal/portal!workcount.action',
+		dataType: 'json', 
+		success:function(data)
+		{
+			data = eval("("+data+")");	
+			$("#workcount").text(data);	  
+		},
+		error:function()
+		{
+			alert("登陆会话过期，请重新登陆！");
+			var url = "${base}/login.jsp"
+			window.location = url;
+		}
+	});
+}	
+
 </script>
 </head>
 <body>
+<script>
+$(window).ready(function()
+{
+	window.setInterval(getTotoNum,120000);
+	getTotoNum();
 
+	$('#popContainer .close').click(function()
+	{
+		getTotoNum();
+	})
+});
+</script>
 
 
 <span id="numSpan" style="position:absolute;left:200px;top:0px;z-index:9999;display:none;" >10</span>
