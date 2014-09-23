@@ -135,10 +135,14 @@ textarea {	}
 
 
 <!--HTML start-->
-<div><strong>正文：</strong></div>
-<div id="realContent" style="border:solid 1px #ccc;padding:8px;margin:10px 0;height:10em;">
-${data.knowledge.content}
-</div>
+
+<#if data.knowledge.content != null || data.knowledge.content != "">
+
+	<div><strong>正文：</strong></div>
+	<div id="realContent" style="border:solid 1px #ccc;padding:8px;margin:10px 0;height:10em;">
+	${data.knowledge.content}
+	</div>
+</#if>
 
 <div style="padding:10px;"><strong>附件：</strong>
 <ul class="attachmentUl">
