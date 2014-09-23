@@ -88,13 +88,13 @@ $('#dragHandlerLR').draggable({iframeFix: true,scroll:false,containment:[0,0,400
 	<span class="root">共享申请</span>
 		<ul>
 		<li data-pid="main" data-index="21" data-parent="" data-leaf="0" data-id="gxgl_browsewait" data-url="${base}/module/pams/gxgl/gxwh/apply_browsewait.action?_searchname=gxgl.gxwh.browsewait&flowcclass=GXGL">
-		<span class="folder">个人待办工作</span>
+		<span class="folder">岗位待办工作</span>
 		</li>
 		<li data-pid="main" data-index="22" data-parent="" data-leaf="0" data-id="gxgl_browsehandle" data-url="${base}/module/pams/gxgl/gxwh/apply_browsehandle.action?_searchname=gxgl.gxwh.browsehandle&flowcclass=GXGL">
-		<span class="folder">个人已办工作</span>
+		<span class="folder">岗位已办工作</span>
 		</li>
 		<li data-pid="main" data-index="23" data-parent="" data-leaf="0" data-id="gxgl_browseall" data-url="${base}/module/pams/gxgl/gxwh/apply_browseall.action?_searchname=gxgl.gxwh.browseall&flowcclass=GXGL">
-		<span class="folder">个人所有工作</span>
+		<span class="folder">岗位所有工作</span>
 		</li>
 		<li data-pid="main" data-index="24" data-parent="" data-leaf="0" data-id="gxgl_browsegroupall" data-url="${base}/module/pams/gxgl/gxwh/apply_browsegroupall.action?_searchname=gxgl.gxwh.browsegroupall&flowcclass=GXGL">
 		<span class="folder">全体所有工作</span>
