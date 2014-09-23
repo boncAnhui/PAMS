@@ -843,8 +843,30 @@ public class PortalAction extends BaseAction
 		HttpServletRequest request = Struts2Utils.getRequest();
 		String zxms = request.getParameter("zxms");
 		portalService.updatezxms(zxms);
-
 	}
+	
+	public String workcount() throws Exception
+	{
+		String loginName = ActionSessionHelper._get_loginname();
+		int workcount = getWorkCount(loginName);
+		data.put("workcount", workcount);
+		return "workcount";
+	}	
+	
+	// from nwpn code
+	public int getWorkCount(String loginname) throws Exception
+	{
+		Map fmap = new HashMap();
+		fmap.put("loginname", loginname);
+
+		List taskworks = portalService.getAllToDo(loginname);
+		return taskworks.size();
+	}	
+	
+	
+	
+	
+	
 
 	public PortalService getPortalService()
 	{

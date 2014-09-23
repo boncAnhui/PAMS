@@ -881,7 +881,7 @@ public class ApplyAction extends SimpleAction
 					if(isdelete)
 					{
 						String id = workFlowEngine.getDemandManager().getRAct(runactkeys[i], "InfoShare").getFormatAttr("dataid");
-						// infoshareService.delete(id);
+						infoshareService.delete(id);
 					}
 				}
 				catch (Exception e)
