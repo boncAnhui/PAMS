@@ -59,6 +59,8 @@
 			<result name="browsephonerecord" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsephonerecord.ftl</result>
 			<result name="browsephonerecordgl" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/browsephonerecordgl.ftl</result>
 			
+			<result name="workcount" type="freemarker">/com/ray/xj/sgcc/irm/portal/portal/portal/view/workcount.ftl</result>
+			
 			
 		</action>
 	</package>
