@@ -143,8 +143,9 @@ table.dataGrid{border-collapse:collapse;}
 		<input type="hidden" id="infosharescopectype" name="infosharescopectype" value="${data.infoshare.infosharescopectype}">
 		<input type="hidden" id="infosharescopeinternal" name="infosharescopeinternal" value="${data.infoshare.infosharescopeinternal}">
 		<input class="text" id="infosharescope" name="infosharescope" value="${data.infoshare.infosharescope}" style="width:45em" />
-		<button id="bt_scope" class="btn2">选择</button>	
-		<button id="bt_clearscope" class="btn2">清空</button>	
+		<button id="bt_scope" class="btn2">选择</button>
+		<button id="bt_scope_clear" class="btn2">清除</button>
+		<button id="bt_scope_reset" class="btn2">恢复</button>
 		</td>
 	</tr>	
 	<tr>
@@ -191,7 +192,8 @@ $("#bt_backward").click(function() {page_backward()});
 
 $("#bt_cclassname").click(function() {page_cclassname()});
 $("#bt_scope").click(function() {page_scope()});
-$("#bt_clearscope").click(function() {page_clearscope()});
+$("#bt_scope_clear").click(function() {page_scope_clear()});
+$("#bt_scope_reset").click(function() {page_scope_reset()});
 
 function page_save()
 {
@@ -322,12 +324,20 @@ function page_scope()
 	openwinT(url,'',pub_width_large,pub_height_large,null,'');
 }
 
-function page_clearscope()
+function page_scope_clear()
 {
 	$("#infosharescope").val("");
 	$("#infosharescopectype").val("");
 	$("#infosharescopeid").val("");
 	$("#infosharescopeinternal").val("");
+}
+
+function page_scope_reset()
+{
+	$("#infosharescope").val("${data.defsharescope}");
+	$("#infosharescopectype").val("${data.defsharescopectype}");
+	$("#infosharescopeid").val("${data.defsharescopeid}");
+	$("#infosharescopeinternal").val("${data.defsharescopeinternal}");
 }
 
 //填写意见

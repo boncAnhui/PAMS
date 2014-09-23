@@ -122,7 +122,7 @@ function page_migration()
 
 <a href="javascript:void(0);" id="sbtn" hidefocus="true;">搜索</a>
 <a href="javascript:void(0);" class="showAdvSearch showAdvSearchOpened" hidefocus="true;">高级</a> 
-<div class="adv" style="display: block;">
+<div class="adv" style="display:none;">
 <div id="clearSearchStr"><span class="t">清除搜索</span></div>
 	<input cname="流程分类" name="flowcclass" type="hidden" value="GXGL"> 
 	<table class="formGrid">
@@ -138,16 +138,15 @@ function page_migration()
 		</td>
 		</tr>
 		<tr>
-		<td class="r">作者：</td>
+		<td class="r">主作者：</td>
 		<td>
 		<input type="text" class="text" id="mauthor" name="mauthor" style="width:20em" size="35" datatype="" value="${arg.mauthor}">
 		</td>
-		<td class="r">部门：</td>
+		<td class="r">主作者部门：</td>
 		<td>
 		<input type="text" class="text" id="mauthordept" name="mauthordept" style="width:20em" size="35" datatype="" value="${arg.mauthordept}">
 		</td>
 		</tr>
-		<tr>
 		<td class="r">发布时间开始：</td>
 		<td>
 		<input class="date" type="text" id="beginpublishdate" name="beginpublishdate" size="35" datatype="" value="${arg.beginpublishdate}">
@@ -174,9 +173,10 @@ function page_migration()
                            日期:<#if aobj.createtime!="">${aobj.createtime?datetime("yyyy-MM-dd HH:mm")}</#if>
                            文档编号：${aobj.kno} 
                            状态：<#if aobj.iseffective=="Y" >发布<#else>新建</#if>
-                           作者：${aobj.mauthor}
+                           主作者：${aobj.mauthor}
                            部门：${aobj.mauthordept}
-                          文档分类：<#if aobj.restype="InfoShare">信息共享</#if>
+                           发布人：${aobj.publisher}
+                           文档分类：<#if aobj.restype="InfoShare">信息共享</#if>
        
         </span>
         <span class="e">摘要：<#if aobj.summary?length &gt; 50>${aobj.summary?substring(0,50)}...<#else>${aobj.summary}</#if></span>

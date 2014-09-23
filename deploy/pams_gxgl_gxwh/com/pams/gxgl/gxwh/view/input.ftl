@@ -92,13 +92,13 @@
 	<tr>
 		<td class="r"><label for="infosharescope">共享范围：</label></td>
 		<td colspan="3">
-		<input type="hidden" id="infosharescopeid" name="infosharescopeid">
-		<input type="hidden" id="infosharescopectype" name="infosharescopectype">
-		<input type="hidden" id="infosharescopeinternal" name="infosharescopeinternal">
-		
-		<input class="text" readonly id="infosharescope" name="infosharescope" style="width:45em" />
+		<input type="hidden" id="infosharescopeid" name="infosharescopeid" value="${data.defsharescopeid}">
+		<input type="hidden" id="infosharescopectype" name="infosharescopectype" value="${data.defsharescopectype}">
+		<input type="hidden" id="infosharescopeinternal" name="infosharescopeinternal" value="${data.defsharescopeinternal}">
+		<input class="text" readonly id="infosharescope" name="infosharescope" style="width:45em" value="${data.defsharescope}"/>
 		<button id="bt_scope" class="btn2">选择</button>
 		<button id="bt_scope_clear" class="btn2">清除</button>
+		<button id="bt_scope_reset" class="btn2">恢复</button>
 		</td>
 	</tr>
 	<tr>
@@ -125,6 +125,7 @@ $("#bt_save").click(function() {page_save()});
 $("#bt_cclassname").click(function() {page_cclassname()});
 $("#bt_scope").click(function() {page_scope()});
 $("#bt_scope_clear").click(function() {page_scope_clear()});
+$("#bt_scope_reset").click(function() {page_scope_reset()});
 // 保存
 function page_save()
 {
@@ -174,6 +175,14 @@ function page_scope_clear()
 	$("#infosharescopectype").val("");
 	$("#infosharescopeid").val("");
 	$("#infosharescopeinternal").val("");
+}
+
+function page_scope_reset()
+{
+	$("#infosharescope").val("${data.defsharescope}");
+	$("#infosharescopectype").val("${data.defsharescopectype}");
+	$("#infosharescopeid").val("${data.defsharescopeid}");
+	$("#infosharescopeinternal").val("${data.defsharescopeinternal}");
 }
 </script>
 </body>

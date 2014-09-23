@@ -421,8 +421,10 @@ public class ApplyAction extends SimpleAction
 	{
 		String loginname = ActionSessionHelper._get_loginname();
 		String username = ActionSessionHelper._get_username();
+		String userid = ActionSessionHelper._get_userid();
 		String deptid = ActionSessionHelper._get_deptid();
 		String deptname = ActionSessionHelper._get_deptname();
+		String deptinternal = ActionSessionHelper._get_dept_internal();
 
 		String sourcename_texts = dictionaryService.getTexts("app.infoshare.sourcename");
 		String sourcename_values = dictionaryService.getValues("app.infoshare.sourcename");
@@ -488,6 +490,12 @@ public class ApplyAction extends SimpleAction
 		obtaintimet += ":";
 		obtaintimet += FormatKey.format(String.valueOf(ctime.get(Calendar.MINUTE)), 2);
 		
+		// 默认共享范围
+		String defsharescope = username + "," + deptname;
+		String defsharescopeid = userid + "," + deptid;
+		String defsharescopectype = "PERSON,DEPT";
+		String defsharescopeinternal = userid + "," + deptinternal;
+		
 		data.put("loginname", loginname);
 		data.put("username", username);
 
@@ -510,6 +518,11 @@ public class ApplyAction extends SimpleAction
 
 		data.put("obtaintimed", obtaintimed);
 		data.put("obtaintimet", obtaintimet);
+	
+		data.put("defsharescope", defsharescope);
+		data.put("defsharescopeid", defsharescopeid);
+		data.put("defsharescopectype", defsharescopectype);
+		data.put("defsharescopeinternal", defsharescopeinternal);
 
 		return "input";
 	}
@@ -599,9 +612,12 @@ public class ApplyAction extends SimpleAction
 	// 查看修改
 	public String locate() throws Exception
 	{
-		String userid = ActionSessionHelper._get_userid();
 		String loginname = ActionSessionHelper._get_loginname();
 		String username = ActionSessionHelper._get_username();
+		String userid = ActionSessionHelper._get_userid();
+		String deptid = ActionSessionHelper._get_deptid();
+		String deptname = ActionSessionHelper._get_deptname();
+		String deptinternal = ActionSessionHelper._get_dept_internal();
 
 		// String id = Struts2Utils.getRequest().getParameter("id");
 		String runactkey = Struts2Utils.getRequest().getParameter("runactkey");
@@ -611,8 +627,6 @@ public class ApplyAction extends SimpleAction
 		// 查询业务数据
 		InfoShare infoshare = infoshareService.locate(id);
 		
-		
-
 		// 查询流程数据
 		String actdefid = obj_ract.getFormatAttr("actdefid");
 		String tableid = obj_ract.getFormatAttr("tableid");
@@ -662,6 +676,12 @@ public class ApplyAction extends SimpleAction
 		
 		// 查询可选路由
 		List routes = workFlowEngine.getDemandManager().getRoutes(actdefid);
+		
+		// 默认共享范围
+		String defsharescope = username + "," + deptname;
+		String defsharescopeid = userid + "," + deptid;
+		String defsharescopectype = "PERSON,DEPT";
+		String defsharescopeinternal = userid + "," + deptinternal;
 
 		data.put("infoshare", infoshare);
 		data.put("fileattachments", flowfiles);
@@ -676,6 +696,11 @@ public class ApplyAction extends SimpleAction
 		data.put("shareauthor_values", shareauthor_values);
 
 		data.put("routes", routes);
+		
+		data.put("defsharescope", defsharescope);
+		data.put("defsharescopeid", defsharescopeid);
+		data.put("defsharescopectype", defsharescopectype);
+		data.put("defsharescopeinternal", defsharescopeinternal);
 		
 		arg.put("id", id);
 		arg.put("runflowkey", runflowkey);

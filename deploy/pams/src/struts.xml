@@ -134,6 +134,7 @@
 	<include file="com/pams/gxgl/rep/zxqk/bm/action/struts-module.xml"></include>
 	<include file="com/pams/gxgl/rep/zxqk/ry/action/struts-module.xml"></include>
 	<include file="com/pams/gxgl/rep/zxqk/gxd/action/struts-module.xml"></include>
+	<include file="com/pams/gxgl/rep/zxqk/gzl/action/struts-module.xml"></include> 
 	
 	<include file="com/pams/gxgl/rep/wcqk/gs/action/struts-module.xml"></include>
 	<include file="com/pams/gxgl/rep/wcqk/bm/action/struts-module.xml"></include>
