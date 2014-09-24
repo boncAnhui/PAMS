@@ -34,16 +34,16 @@
 <#assign ayfbzs_wjzs = data.yfbzs_wjzs[ayfqzs_index]>
 <#assign awfbzs_zczs = data.wfbzs_zczs[ayfqzs_index]>
 <#assign awfbzs_cszs = data.wfbzs_cszs[ayfqzs_index]>
-<#if ayfbzs.num == 0>
+<#if ayfbzs.num?number == 0>
 	<#assign rate_yfbcsl = 0>
 <#else>
 	<#assign rate_yfbcsl = ayfbzs_csfbzs.num?number/ayfbzs.num?number>
 </#if>
 
-<#if awfbzs.num == 0>
+<#if awfbzs.num?number == 0>
 	<#assign rate_wfbcsl = 0>
 <#else>
-	<#assign rate_wfbcsl = awfbzs_cszs.num?number/ayfbzs_csfbzs.num?number>
+	<#assign rate_wfbcsl = awfbzs_cszs.num?number/awfbzs.num?number>
 </#if>
 
 <tr>
