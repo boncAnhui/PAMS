@@ -54,7 +54,7 @@ public class Tab_WCQK_GS_CSFBJDZS
 		sql.append("   ) v  ").append("\n");
 		sql.append("   on org.id = v.deptid  ").append("\n");
 		sql.append("   group by org.internal, v.cno  ").append("\n");
-		sql.append("   having sum(v.cs) = 0  ").append("\n");
+		sql.append("   having sum(v.cs) > 0  ").append("\n");
 		sql.append("   ) v  ").append("\n");
 		sql.append("   on org.internal = substr(v.internal, 0, length(v.internal)-4) ").append("\n");
 		sql.append(" where 1 = 1 ").append("\n");

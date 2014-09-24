@@ -65,9 +65,9 @@ function getTotoNum()
 		},
 		error:function()
 		{
-			alert("登陆会话过期，请重新登陆！");
-			var url = "${base}/login.jsp"
-			window.location = url;
+			//alert("登陆会话过期，请重新登陆！");
+			//var url = "${base}/login.jsp"
+			//window.location = url;
 		}
 	});
 }	
@@ -78,7 +78,7 @@ function getTotoNum()
 <script>
 $(window).ready(function()
 {
-	window.setInterval(getTotoNum,120000);
+	window.setInterval(getTotoNum,12000000);
 	getTotoNum();
 
 	$('#popContainer .close').click(function()

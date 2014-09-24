@@ -1,8 +1,6 @@
 <table class="repgGrid">
 <tr>
 
-</tr>
-<tr>
 <th width="40">序号</th>
 <th width="60">人员</th>
 <th>已发布总数</th>
@@ -11,11 +9,9 @@
 <th>超时发布节点总数</th>
 <th>节点超时比</th>
 <th>超时发布总数</th>
-<th>信息共享及时性总数</th>
-<th>超时总时长</th>
-<th>计划执行时长</th>
-<th>实际执行时长</th>
-<th>执行及时率</th>
+<th >计划执行时长</th>
+<th >实际执行时长</th>
+<th >执行效率</th>
 </tr>
 
 <#assign sum_ayfbzs = 0>
@@ -27,6 +23,9 @@
 <#assign sum_jhzxsc = 0>
 <#assign sum_sjzxsc = 0>
 
+<#assign rate_jdcsb = 0>
+<#assign rate_zxjsl = 0>
+
 <#list data.fbzs as afbzs>
 
 <#assign azcfbzs = data.zcfbzs[afbzs_index]>
@@ -34,6 +33,19 @@
 <#assign acsfbjdzs = data.csfbjdzs[afbzs_index]>
 <#assign acsfbzs = data.csfbzs[afbzs_index]>
 <#assign ayfbsxzc = data.yfbsxzc[afbzs_index]>
+
+<#if azcfbjdzs.num?number == 0 && acsfbjdzs.num?number == 0 >
+	<#assign rate_jdcsb = 0>
+<#else>
+	<#assign rate_jdcsb = acsfbjdzs.num?number/(azcfbjdzs.num?number + acsfbjdzs.num?number)>
+</#if>
+
+<#if ayfbsxzc.jhsc?number == 0 && ayfbsxzc.sjsc == 0 >
+	<#assign rate_zxjsl = 0>
+<#else>
+	<#assign rate_zxjsl =  ayfbsxzc.jhsc?number/(ayfbsxzc.sjsc?number)>
+</#if>
+
 <tr>
 <td>${afbzs_index+1}</td>
 <td>${afbzs.cname}</td>
@@ -42,13 +54,11 @@
 <td>${azcfbjdzs.num}</td>
 <td>${acsfbjdzs.num}</td>
 
-<td></td>
+<td>${rate_jdcsb?string("#.0#%")}</td>
 <td>${acsfbzs.num}</td>
-<td></td>
-<td></td>
 <td>${ayfbsxzc.jhsc}</td>
 <td>${ayfbsxzc.sjsc}</td>
-<td></td>
+<td>${rate_zxjsl?string("#.0#%")}</td>
 </tr>
 
 <#assign sum_ayfbzs = sum_ayfbzs + afbzs.num?number>
@@ -66,7 +76,11 @@
 <td>${sum_azcfbzs}</td>
 <td>${sum_azcfbjdzs}</td>
 <td>${sum_acsfbjdzs}</td>
+<td></td>
 <td>${sum_acsfbzs}</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 
 </table>
