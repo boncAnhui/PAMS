@@ -8,10 +8,10 @@
 <th >正常发布总数</th>
 <th >超时发布总数</th>
 <th >发布文件总数</th>
-<th >超时率</th>
-<th >正常执行总数</th>
-<th >超时执行总数</th>
-<th >超时率</th>
+<th>已发布超时率</th>
+<th>正常执行总数</th>
+<th>超时执行总数</th>
+<th>未发布超时率</th>
 </tr>
 
 <#assign sum_ayfqzs = 0>
@@ -22,6 +22,8 @@
 <#assign sum_ayfbzs_wjzs = 0>
 <#assign sum_awfbzs_zczs = 0>
 <#assign sum_awfbzs_cszs = 0>
+<#assign rate_yfbcsl = 0>
+<#assign rate_wfbcsl = 0>
 
 <#list data.yfqzs as ayfqzs>
 
@@ -32,6 +34,17 @@
 <#assign ayfbzs_wjzs = data.yfbzs_wjzs[ayfqzs_index]>
 <#assign awfbzs_zczs = data.wfbzs_zczs[ayfqzs_index]>
 <#assign awfbzs_cszs = data.wfbzs_cszs[ayfqzs_index]>
+<#if ayfbzs.num?number == 0>
+	<#assign rate_yfbcsl = 0>
+<#else>
+	<#assign rate_yfbcsl = ayfbzs_csfbzs.num?number/ayfbzs.num?number>
+</#if>
+
+<#if ayfbzs_csfbzs.num?number == 0>
+	<#assign rate_wfbcsl = 0>
+<#else>
+	<#assign rate_wfbcsl = awfbzs_cszs.num?number/ayfbzs_csfbzs.num?number>
+</#if>
 
 <tr>
 <td>${ayfqzs_index + 1}</td>
@@ -42,10 +55,10 @@
 <td>${ayfbzs_zcfbzs.num}</td>
 <td>${ayfbzs_csfbzs.num}</td>
 <td>${ayfbzs_wjzs.num}</td>
-<td></td>
+<td>${rate_yfbcsl?string("#.0#%")}</td>
 <td>${awfbzs_zczs.num}</td>
 <td>${awfbzs_cszs.num}</td>
-<td></td>
+<td>${rate_wfbcsl?string("#.0#%")}</td>
 </tr>
 
 <#assign sum_ayfqzs = sum_ayfqzs + ayfqzs.num?number>

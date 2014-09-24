@@ -1,9 +1,6 @@
 <table class="repgGrid">
 <tr>
 
-</tr>
-<tr>
-
 <th width="40">序号</th>
 <th width="60">人员</th>
 <th >已发起总数</th>
@@ -12,10 +9,10 @@
 <th >正常发布总数</th>
 <th >超时发布总数</th>
 <th >发布文件总数</th>
-<th >超时率</th>
-<th >正常执行总数</th>
-<th >超时执行总数</th>
-<th >超时率</th>
+<th>已发布超时率</th>
+<th>正常执行总数</th>
+<th>超时执行总数</th>
+<th>未发布超时率</th>
 </tr>
 
 <#assign sum_ayfqzs = 0>
@@ -26,6 +23,8 @@
 <#assign sum_ayfbzs_wjzs = 0>
 <#assign sum_awfbzs_zczs = 0>
 <#assign sum_awfbzs_cszs = 0>
+<#assign rate_yfbcsl = 0>
+<#assign rate_wfbcsl = 0>
 
 <#list data.yfqzs as ayfqzs>
 <#assign ayfbzs = data.yfbzs[ayfqzs_index]>
@@ -35,6 +34,17 @@
 <#assign ayfbzs_wjzs = data.yfbzs_wjzs[ayfqzs_index]>
 <#assign awfbzs_zczs = data.wfbzs_zczs[ayfqzs_index]>
 <#assign awfbzs_cszs = data.wfbzs_cszs[ayfqzs_index]>
+<#if ayfbzs.num == 0>
+	<#assign rate_yfbcsl = 0>
+<#else>
+	<#assign rate_yfbcsl = ayfbzs_csfbzs.num?number/ayfbzs.num?number>
+</#if>
+
+<#if awfbzs.num == 0>
+	<#assign rate_wfbcsl = 0>
+<#else>
+	<#assign rate_wfbcsl = awfbzs_cszs.num?number/ayfbzs_csfbzs.num?number>
+</#if>
 
 <tr>
 <td>${ayfqzs_index + 1}</td>
@@ -45,10 +55,10 @@
 <td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfbzs_zcfbzs.action?ownerctx=${ayfqzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${ayfbzs_zcfbzs.num}</a></td>
 <td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfbzs_csfbzs.action?ownerctx=${ayfqzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${ayfbzs_csfbzs.num}</a></td>
 <td>${ayfbzs_wjzs.num}</td>
-<td></td>
+<td>${rate_yfbcsl?string("#.0#%")}</td>
 <td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_wfbzs_zczs.action?ownerctx=${ayfqzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${awfbzs_zczs.num}</a></td>
 <td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_wfbzs_cszs.action?ownerctx=${ayfqzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${awfbzs_cszs.num}</a></td>
-<td></td>
+<td>${rate_wfbcsl?string("#.0#%")}</td>
 </tr>
 
 <#assign sum_ayfqzs = sum_ayfqzs + ayfqzs.num?number>
