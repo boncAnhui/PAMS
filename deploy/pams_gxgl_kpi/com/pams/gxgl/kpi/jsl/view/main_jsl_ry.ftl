@@ -20,7 +20,15 @@ jQuery(function($){
 <#import "com/ray/nwpn/itsm/report/common/view/macros.ftl" as pub_macros>
 <@pub_macros.showheader repname="信息共享及时率指标统计" />
 
-<#include "/com/ray/nwpn/itsm/report/common/view/nav.ftl">
+<#include "/com/ray/nwpn/itsm/report/common/view/navquery.ftl">
+<div style="padding:10px;">
+<form id="form_advsearch" method="post">
+	<input type="hidden" name="begindate">
+	<input type="hidden" name="enddate">
+	<input type="hidden" name="internal" value="${arg.internal}">
+	<input type="hidden" name="orginternal" value="${arg.orginternal}">	
+</form>
+</div>
 
 <br />
 <div class="section sec1">
@@ -42,6 +50,16 @@ function page_load()
 {
 	page_load_jsl_table();
 }
+
+function page_query_export()
+{
+	form_advsearch.target = "_blank";
+	form_advsearch.begindate.value = mform.begindate.value;
+	form_advsearch.enddate.value = mform.enddate.value;
+	form_advsearch.action = "${base}/module/pams/gxgl/kpi/jsl/rep_xls_jsl_ry.action";
+	form_advsearch.submit();
+}
+
 
 page_load();
 
