@@ -22,6 +22,14 @@ jQuery(function($){
 
 <#include "/com/ray/nwpn/itsm/report/common/view/navquery.ftl">
 
+<div style="padding:10px;">
+<form id="form_advsearch" method="post">
+	<input type="hidden" name="begindate">
+	<input type="hidden" name="enddate">
+	<input type="hidden" name="internal" value="${arg.internal}">	
+</form>
+</div>
+
 <br />
 <div class="section sec1">
 <h2><span class="title tab_zxsc">信息共享执行时长指标统计</span><span class="more"></span></h2>
@@ -45,9 +53,11 @@ function page_load()
 
 function page_query_export()
 {
-	mform.target = "_blank";
-	mform.action = "${base}/module/pams/gxgl/kpi/zxsc/rep_xls_zxsc_gs.action";
-	mform.submit();
+	form_advsearch.target = "_blank";
+	form_advsearch.begindate.value = mform.begindate.value;
+	form_advsearch.enddate.value = mform.enddate.value;
+	form_advsearch.action = "${base}/module/pams/gxgl/kpi/zxsc/rep_xls_zxsc_gs.action";
+	form_advsearch.submit();
 }
 
 page_load();

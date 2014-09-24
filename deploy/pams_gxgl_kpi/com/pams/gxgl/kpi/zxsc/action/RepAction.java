@@ -240,6 +240,32 @@ public class RepAction extends ReportAction
 		arg.put("internal", internal);
 		return "tab_zxsc_ry";
 	}
+	
+	public String xls_zxsc_ry() throws Exception
+	{
+		String begindate = Struts2Utils.getRequest().getParameter("begindate");
+		String enddate = Struts2Utils.getRequest().getParameter("enddate");
+		String internal = Struts2Utils.getRequest().getParameter("internal");
+
+		DynamicObject obj = new DynamicObject();
+		obj.setAttr("begindate", begindate);
+		obj.setAttr("enddate", enddate);
+		obj.setAttr("internal", internal);
+
+		// 发布总数
+		TabZXSC_RY tabZXSC_RY = new TabZXSC_RY();
+		tabZXSC_RY.setJdbcTemplate(reportDao.getJdbcTemplate());
+
+		List datas = tabZXSC_RY.execute(obj);
+		
+		String[] cnames = new String[]{ "人员", "考核总分", "所属公司", "所属部门"};
+		String[] pnames = new String[]{ "username", "zxsccskh", "orgcname", "deptcname" };
+		String fileName = "执行时长考核人员统计.xls";
+
+		exp_excel(cnames, pnames, datas, fileName);
+
+		return "excel";	
+	}	
 
 	public String get_searchname()
 	{
