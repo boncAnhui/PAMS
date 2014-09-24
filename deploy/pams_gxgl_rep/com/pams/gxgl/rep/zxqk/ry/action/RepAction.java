@@ -181,7 +181,7 @@ public class RepAction extends ReportAction
 		for(int i=0;i<yfqzs.size();i++)
 		{
 			DynamicObject aobj = new DynamicObject();
-			aobj.put("orgcname", ((DynamicObject)yfqzs.get(i)).getFormatAttr("cname"));
+			aobj.put("cname", ((DynamicObject)yfqzs.get(i)).getFormatAttr("cname"));
 			aobj.put("num_yfqzs", ((DynamicObject)yfqzs.get(i)).getFormatAttr("num"));
 			aobj.put("num_yfbzs", ((DynamicObject)yfbzs.get(i)).getFormatAttr("num"));
 			aobj.put("num_wfbzs", ((DynamicObject)wfbzs.get(i)).getFormatAttr("num"));
