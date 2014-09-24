@@ -13,10 +13,14 @@
 
 		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:orcl" />				
 		-->
+<<<<<<< HEAD
 		
 		<property name="url" value="jdbc:oracle:thin:@13.1.1.2:1521:pams" />
 
 
+=======
+		<property name="url" value="jdbc:oracle:thin:@192.168.135.130:1521:pams" />
+>>>>>>> f2e40c0fb5be0449ce72a036fc1300f2eff8b5a6
 		<property name="username" value="pams" />
 		<property name="password" value="pams1234" />
 	</bean>
