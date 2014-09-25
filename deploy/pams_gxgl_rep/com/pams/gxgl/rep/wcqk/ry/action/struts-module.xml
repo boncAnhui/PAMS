@@ -9,6 +9,12 @@
 			<result name="mainframe" type="freemarker">/com/pams/gxgl/rep/wcqk/ry/view/mainframe.ftl</result>
 			<result name="main_wcqk" type="freemarker">/com/pams/gxgl/rep/wcqk/ry/view/main_wcqk.ftl</result>
 			<result name="tab_wcqk" type="freemarker">/com/pams/gxgl/rep/wcqk/ry/view/tab_wcqk.ftl</result>
+	     	<result name="excel" type="stream">
+	     		<param name="contentType">application/vnd.ms-excel</param> 
+            	<param name="inputName">excelStream</param>
+            	<param name="contentDisposition">attachment;filename="${excelFileName}"</param>
+            	<param name="bufferSize">1024</param>
+			</result>		
 		</action>
 	</package>
 </struts>

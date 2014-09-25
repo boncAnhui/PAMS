@@ -20,9 +20,18 @@ jQuery(function($){
 <#import "com/ray/nwpn/itsm/report/common/view/macros.ftl" as pub_macros>
 <@pub_macros.showheader repname="信息共享完成情况(公司)指标统计" />
 
-<#include "/com/ray/nwpn/itsm/report/common/view/nav.ftl">
+<#include "/com/ray/nwpn/itsm/report/common/view/navquery.ftl">
+
+<div style="padding:10px;">
+<form id="form_advsearch" method="post">
+	<input type="hidden" name="begindate">
+	<input type="hidden" name="enddate">
+	<input type="hidden" name="internal" value="${arg.internal}">	
+</form>
+</div>
 
 <br />
+
 <div class="section sec1">
 <h2><span class="title tab_wcqk">信息共享完成情况(公司)指标统计</span><span class="more"></span></h2>
 <div class="p8" id="tab_wcqk">
@@ -43,6 +52,14 @@ function page_load()
 	page_load_wcqk_table();
 }
 
+function page_query_export()
+{
+	form_advsearch.target = "_blank";
+	form_advsearch.begindate.value = mform.begindate.value;
+	form_advsearch.enddate.value = mform.enddate.value;
+	form_advsearch.action = "${base}/module/pams/gxgl/rep/wcqk/gs/rep_xls_wcqk.action";
+	form_advsearch.submit();
+}
 page_load();
 
 </script>
