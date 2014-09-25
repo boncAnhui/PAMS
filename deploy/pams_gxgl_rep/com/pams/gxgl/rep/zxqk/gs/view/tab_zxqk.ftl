@@ -40,10 +40,10 @@
 	<#assign rate_yfbcsl = ayfbzs_csfbzs.num?number/ayfbzs.num?number>
 </#if>
 
-<#if ayfbzs_csfbzs.num?number == 0>
+<#if awfbzs.num?number == 0>
 	<#assign rate_wfbcsl = 0>
 <#else>
-	<#assign rate_wfbcsl = awfbzs_cszs.num?number/ayfbzs_csfbzs.num?number>
+	<#assign rate_wfbcsl = awfbzs_cszs.num?number/awfbzs.num?number>
 </#if>
 
 <tr>

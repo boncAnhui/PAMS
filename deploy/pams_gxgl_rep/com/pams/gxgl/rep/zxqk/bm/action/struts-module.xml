@@ -9,6 +9,12 @@
 			<result name="mainframe" type="freemarker">/com/pams/gxgl/rep/zxqk/bm/view/mainframe.ftl</result>
 			<result name="main_zxqk" type="freemarker">/com/pams/gxgl/rep/zxqk/bm/view/main_zxqk.ftl</result>
 			<result name="tab_zxqk" type="freemarker">/com/pams/gxgl/rep/zxqk/bm/view/tab_zxqk.ftl</result>
+	     	<result name="excel" type="stream">
+	     		<param name="contentType">application/vnd.ms-excel</param> 
+            	<param name="inputName">excelStream</param>
+            	<param name="contentDisposition">attachment;filename="${excelFileName}"</param>
+            	<param name="bufferSize">1024</param>
+			</result>		
 		</action>
 	</package>
 </struts>
