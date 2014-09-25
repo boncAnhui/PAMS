@@ -188,16 +188,16 @@ public class RepAction extends ReportAction
 			aobj.put("num_wfbzs_cszs", ((DynamicObject)wfbzs_cszs.get(i)).getFormatAttr("num"));
 			
 			double rate_yfbcsl = 0;
-			double num_yfbzs = Types.parseInt(((DynamicObject)yfbzs.get(i)).getFormatAttr("num"), 0);
-			double num_yfbzs_csfbzs = Types.parseInt(((DynamicObject)yfbzs_csfbzs.get(i)).getFormatAttr("num"), 0);
+			double num_yfbzs = Types.parseFloat(((DynamicObject)yfbzs.get(i)).getFormatAttr("num"), 0);
+			double num_yfbzs_csfbzs = Types.parseFloat(((DynamicObject)yfbzs_csfbzs.get(i)).getFormatAttr("num"), 0);
 			if(num_yfbzs!=0)
 			{
 				rate_yfbcsl = num_yfbzs_csfbzs / num_yfbzs;
 			}
 			
 			double rate_wfbcsl = 0;
-			double num_wfbzs = Types.parseInt(((DynamicObject)wfbzs.get(i)).getFormatAttr("num"), 0);
-			double num_wfbzs_csfbzs = Types.parseInt(((DynamicObject)wfbzs_cszs.get(i)).getFormatAttr("num"), 0);
+			double num_wfbzs = Types.parseFloat(((DynamicObject)wfbzs.get(i)).getFormatAttr("num"), 0);
+			double num_wfbzs_csfbzs = Types.parseFloat(((DynamicObject)wfbzs_cszs.get(i)).getFormatAttr("num"), 0);
 			if(num_wfbzs!=0)
 			{
 				rate_wfbcsl = num_wfbzs_csfbzs / num_wfbzs;
