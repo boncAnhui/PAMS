@@ -1,6 +1,7 @@
 <table class="repgGrid">
 <tr>
 <th width="40">序号</th>
+<th width="250">公司</th>
 <th width="350">部门</th>
 <th >已发起总数</th>
 <th >已发布总数</th>
@@ -13,6 +14,8 @@
 <th>超时执行总数</th>
 <th>未发布超时率</th>
 </tr>
+
+<#assign scname_old = "">
 
 <#assign sum_ayfqzs = 0>
 <#assign sum_ayfbzs = 0>
@@ -48,6 +51,7 @@
 
 <tr>
 <td>${ayfqzs_index + 1}</td>
+<td><#if ayfqzs.scname == scname_old><#else>${ayfqzs.scname}</#if></td>
 <td><a href="${base}/module/pams/gxgl/rep/zxqk/ry/rep_main_zxqk.action?internal=${ayfqzs.internal}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${ayfqzs.cname}</a></td>
 <td>${ayfqzs.num}</td>
 <td>${ayfbzs.num}</td>
@@ -69,6 +73,8 @@
 <#assign sum_ayfbzs_wjzs = sum_ayfbzs_wjzs + ayfbzs_wjzs.num?number>
 <#assign sum_awfbzs_zczs = sum_awfbzs_zczs + awfbzs_zczs.num?number>
 <#assign sum_awfbzs_cszs = sum_awfbzs_cszs + awfbzs_cszs.num?number>
+
+<#assign scname_old = ayfqzs.scname>
 
 </#list>
 
