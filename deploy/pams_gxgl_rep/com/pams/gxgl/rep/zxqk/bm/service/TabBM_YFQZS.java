@@ -32,8 +32,10 @@ public class TabBM_YFQZS
 		
 		StringBuffer sql = new StringBuffer();
 
-		sql.append(" select org.internal, org.cname, count(v.cno) num ").append("\n");
+		sql.append(" select org.internal, org.cname, sorg.cname scname, count(v.cno) num ").append("\n");
 		sql.append("  from t_sys_organ org ").append("\n");
+		sql.append("   left join t_sys_organ sorg ").append("\n");
+		sql.append("  on org.parentorganid = sorg.id ").append("\n");
 		sql.append("   left join  ").append("\n");
 		sql.append(" ( ").append("\n");
 		sql.append("   select bv.cno, bv.title, bv.creater, bv.creatername, bv.deptid ").append("\n");
@@ -57,7 +59,7 @@ public class TabBM_YFQZS
 		{
 			sql.append(" and substr(org.internal, 0, length(org.internal) - 4) = " + SQLParser.charValue(internal)).append("\n");
 		}
-		sql.append(" group by internal, cname ").append("\n");
+		sql.append(" group by org.internal, org.cname, sorg.cname ").append("\n");
 		sql.append(" order by internal   ").append("\n");
 
 		List datas = DyDaoHelper.query(jt, sql.toString());
