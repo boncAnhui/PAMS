@@ -12,11 +12,11 @@ import org.hibernate.annotations.Proxy;
 import com.blue.ssh.core.entity.IdEntity;
 
 @Entity
-@Table(name = "T_APP_INFOSHARE")
+@Table(name = "T_APP_MARKETPOWER")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Proxy(lazy = false)
 // 信息共享单
-public class InfoShare extends IdEntity
+public class MarketPower extends IdEntity
 {
 	private String cno; //共享单编号
 	
@@ -48,13 +48,13 @@ public class InfoShare extends IdEntity
 	
 	private String shareauthor; //共享权限
 	
-	private String marketpowerscope; //共享范围（冗余字段）
+	private String infosharescope; //共享范围（冗余字段）
 	
-	private String marketpowerscopeid; //共享范围标识（冗余字段）	
+	private String infosharescopeid; //共享范围标识（冗余字段）	
 
-	private String marketpowerscopectype; //共享范围类型（冗余字段）
+	private String infosharescopectype; //共享范围类型（冗余字段）
 	
-	private String marketpowerscopeinternal; //共享范围内部码（冗余字段）	
+	private String infosharescopeinternal; //共享范围内部码（冗余字段）	
 	
 	private int filenums; //文件数量
 	
@@ -189,35 +189,35 @@ public class InfoShare extends IdEntity
 	}
 
 	public String getInfosharescope() {
-		return marketpowerscope;
+		return infosharescope;
 	}
 
-	public void setInfosharescope(String marketpowerscope) {
-		this.marketpowerscope = marketpowerscope;
+	public void setInfosharescope(String infosharescope) {
+		this.infosharescope = infosharescope;
 	}
 
 	public String getInfosharescopeid() {
-		return marketpowerscopeid;
+		return infosharescopeid;
 	}
 
-	public void setInfosharescopeid(String marketpowerscopeid) {
-		this.marketpowerscopeid = marketpowerscopeid;
+	public void setInfosharescopeid(String infosharescopeid) {
+		this.infosharescopeid = infosharescopeid;
 	}
 
 	public String getInfosharescopectype() {
-		return marketpowerscopectype;
+		return infosharescopectype;
 	}
 
-	public void setInfosharescopectype(String marketpowerscopectype) {
-		this.marketpowerscopectype = marketpowerscopectype;
+	public void setInfosharescopectype(String infosharescopectype) {
+		this.infosharescopectype = infosharescopectype;
 	}
 
 	public String getInfosharescopeinternal() {
-		return marketpowerscopeinternal;
+		return infosharescopeinternal;
 	}
 
-	public void setInfosharescopeinternal(String marketpowerscopeinternal) {
-		this.marketpowerscopeinternal = marketpowerscopeinternal;
+	public void setInfosharescopeinternal(String infosharescopeinternal) {
+		this.infosharescopeinternal = infosharescopeinternal;
 	}
 
 	public int getFilenums() {

@@ -6,5 +6,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/pams_authority"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/pams_base"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/pams_gxgl_wjwh"/>
+	<classpathentry kind="lib" path="D:/github/PAMS/lib/pams/skynet-core.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

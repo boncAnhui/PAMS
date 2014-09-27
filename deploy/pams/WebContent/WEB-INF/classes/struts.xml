@@ -129,6 +129,9 @@
 	
 	<include file="com/pams/kpi/gxgl/action/struts-module.xml"></include>
 	
+	<!-- 营配数据管理 -->
+	<include file="com/pams/ypsj/gxwh/action/struts-module.xml"></include>
+	
 	<!-- 共享管理报表 -->
 	<include file="com/pams/gxgl/rep/zxqk/gs/action/struts-module.xml"></include>
 	<include file="com/pams/gxgl/rep/zxqk/bm/action/struts-module.xml"></include>
