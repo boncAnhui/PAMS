@@ -39,6 +39,7 @@ public class FileTemplateService
 	public FileTemplate locate_by(Map<String, Object> map) throws Exception
 	{
 		StringBuffer sql = new StringBuffer();
+		String id = (String)map.get("id");
 		String flowdefid = (String)map.get("flowdefid");
 		String actdefid = (String)map.get("actdefid");
 		String cno = (String)map.get("cno");
@@ -46,7 +47,10 @@ public class FileTemplateService
 		String flowsno = (String)map.get("flowsno");
 		
 		sql.append(" from FileTemplate a where 1 = 1 ");
-		
+		if(!StringToolKit.isBlank(id))
+		{
+			sql.append(" and id = " + SQLParser.charValue(id));
+		}		
 		if(!StringToolKit.isBlank(flowdefid))
 		{
 			sql.append(" and flowdefid = " + SQLParser.charValue(flowdefid));

@@ -164,17 +164,18 @@ public class FileAttachmentAction extends SimpleAction
 		DynamicObject obj_bact = workFlowEngine.getDemandManager().getBAct(actdefid);
 
 		Map amap = new DynamicObject();
-		amap.put("filetemplateid", filetemplateid);
-
-		String cclass = "GXGL"; // 临时代码
+		amap.put("id", filetemplateid);
 
 		FileTemplate filetemplate = filetemplateService.locate_by(amap);
+		
+		String cclass = filetemplate.getCclass();
+		String cclassname = filetemplate.getCclassname();
 
 		String cno = filetemplate.getCno();
 
 		Calendar cal = new GregorianCalendar();
 		// 保存上传附件
-		String dir = "信息共享\\" + cal.get(Calendar.YEAR) + "\\" + (cal.get(Calendar.YEAR) + "" + FormatKey.format(cal.get(Calendar.MONTH), 2)) + "\\" + ( cal.get(Calendar.YEAR) + "" + FormatKey.format(cal.get(Calendar.MONTH), 2) + "" + FormatKey.format(cal.get(Calendar.DATE), 2));
+		String dir = cclassname + "\\" + cal.get(Calendar.YEAR) + "\\" + (cal.get(Calendar.YEAR) + "" + FormatKey.format(cal.get(Calendar.MONTH)+1, 2)) + "\\" + ( cal.get(Calendar.YEAR) + "" + FormatKey.format(cal.get(Calendar.MONTH)+1, 2) + "" + FormatKey.format(cal.get(Calendar.DATE), 2));
 		try
 		{
 			Map<String, String> map = uploaddoc(dir);
