@@ -496,7 +496,7 @@ public class MarketPowerService
 		return marketpowerDao.get(id);
 	}
 
-	public void publish(String id, String cclassid, DynamicObject login_token) throws Exception
+	public void publish(String id, String runflowkey, String cclassid, DynamicObject login_token) throws Exception
 	{
 		String loginname = login_token.getFormatAttr(com.headray.framework.spec.GlobalConstants.sys_login_user);
 		String username = login_token.getFormatAttr(com.headray.framework.spec.GlobalConstants.sys_login_username);
@@ -513,9 +513,15 @@ public class MarketPowerService
 			return;
 		}
 
+		sql = new StringBuffer();
+		sql.append(" from FileAttachment where 1 = 1 and runflowkey = " + SQLParser.charValue(runflowkey));
+		List<FileAttachment> fileattachments = fileattachmentDao.find(sql.toString());
+		
+		// 更新发布时间，文件数量
 		MarketPower marketpower = marketpowerDao.get(id);
 		Timestamp nowtime = new Timestamp(System.currentTimeMillis());
 		marketpower.setPublishtime(nowtime);
+		marketpower.setFilenums(fileattachments.size());
 		marketpowerDao.save(marketpower);
 
 		String title = marketpower.getTitle();
@@ -557,9 +563,6 @@ public class MarketPowerService
 		knowledgeclassrelationDao.save(knowledgeclassrelation);
 
 		// 创建共享知识与附件文档关联
-		sql = new StringBuffer();
-		sql.append(" from FileAttachment where 1 = 1 and dataid = " + SQLParser.charValue(id));
-		List<FileAttachment> fileattachments = fileattachmentDao.find(sql.toString());
 		for (int i = 0; i < fileattachments.size(); i++)
 		{
 			FileAttachment file = fileattachments.get(i);
