@@ -22,4 +22,3 @@ values(sys_guid(), 'app.infoshare.shareauthor','查询','READ',1);
 insert into t_sys_dictionary (id, dkey, dtext, dvalue, dorder)
 values(sys_guid(), 'app.infoshare.shareauthor','共享','SHARE',2);
 
-
