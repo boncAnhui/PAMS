@@ -34,13 +34,16 @@ public class Tab_WWCQK_BM_ZCZXZS
 		System.out.println("正常执行总数(部门)------>>>>>>>");
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
-		String internal = Struts2Utils.getRequest().getParameter("internal");
-		String sql_cdate = RepHelper.compare_sysdate(enddate);		
+		String internal = obj.getFormatAttr("internal");
+		String sql_cdate = RepHelper.compare_sysdate(enddate);
+		String report_type = obj.getFormatAttr("reptype");//报表类型
 
 		obj.setAttr("sql_cdate", sql_cdate);
 		obj.setAttr("ispublish", "N");
+		obj.setAttr("isnodeovertime", "N");	
 		obj.setAttr("isovertime", "");
 		obj.setAttr("isnodeovertime", "");
+		obj.setAttr("reptype",report_type);
 		
 		StringBuffer sql = new StringBuffer();
 		
@@ -49,7 +52,7 @@ public class Tab_WWCQK_BM_ZCZXZS
 		sql.append("   left join  ").append("\n");
 		sql.append(" ( ").append("\n");
 		
-		sql.append(ZXQKHelper.sql_xxgx_zxqk(obj));
+		sql.append(ZXQKHelper.sql_xxgx_zxqk1(obj));
 
 		sql.append(" ) v   ").append("\n");
 		sql.append("  on org.id = v.deptid ").append("\n");

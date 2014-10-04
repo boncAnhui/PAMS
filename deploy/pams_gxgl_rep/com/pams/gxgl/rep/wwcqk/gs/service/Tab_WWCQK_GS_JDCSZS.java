@@ -33,11 +33,13 @@ public class Tab_WWCQK_GS_JDCSZS
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String sql_cdate = RepHelper.compare_sysdate(enddate);		
+		String report_type = obj.getFormatAttr("reptype");//报表类型
 
 		obj.setAttr("sql_cdate", sql_cdate);
 		obj.setAttr("ispublish", "N");
 		obj.setAttr("isnodeovertime", "Y");		
 		obj.setAttr("isovertime", "");		
+		obj.setAttr("reptype", report_type);		
 		
 		StringBuffer sql = new StringBuffer();
 
@@ -50,8 +52,8 @@ public class Tab_WWCQK_GS_JDCSZS
 		sql.append("   left join  ").append("\n");
 		sql.append(" ( ").append("\n");
 		
-		sql.append(ZXQKHelper.sql_xxgx_zxqk(obj));
- 
+		sql.append(ZXQKHelper.sql_xxgx_zxqk1(obj));
+
 		sql.append(" ) v   ").append("\n");
 		sql.append("  on org.id = v.deptid ").append("\n");
 		sql.append("   group by org.internal, v.cno , org.cname ").append("\n");
