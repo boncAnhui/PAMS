@@ -44,7 +44,7 @@ jQuery(function($){
 
 function page_load_zxqk_table()
 {
-	page_load_table("${base}/module/pams/gxgl/rep/zxqk/ry/rep_tab_zxqk.action", "zxqk", 0, new Array("internal","orginternal"), new Array("${arg.internal}","${arg.orginternal}"));
+	page_load_table("${base}/module/pams/gxgl/rep/zxqk/ry/rep_tab_zxqk.action", "zxqk", 0, new Array("internal","orginternal","reptype"), new Array("${arg.internal}","${arg.orginternal}","${arg.reptype}"));
 }
 
 function page_load()

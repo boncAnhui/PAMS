@@ -31,7 +31,7 @@
 <tr>
 <td>${awfbzs_index+1}</td>
 <td>${awfbzs.cname}</td>
-<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfqzs.action?ownerctx=${awfbzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${awfbzs.num}</a></td>
+<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfqzs.action?ownerctx=${awfbzs.loginname}&reptype=infoshare&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${awfbzs.num}</a></td>
 <td>${azczxzs.num}</td>
 <td>${acszxzs.num}</td>
 <td>${ayzxjdzs.num}</td>

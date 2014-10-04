@@ -540,7 +540,7 @@ public class ZXQKHelper {
 				" from t_sys_wfbact bact, t_sys_wfrflow rflow, t_sys_wfract ract, t_app_pubinfo info, ")
 				.append("\n");
 		sql.append(" ( ").append("\n");
-		sql.append(ZXQKHelper.sql_xxgx_zxqk(obj));
+		sql.append(ZXQKHelper.sql_xxgx_zxqk1(obj));
 		sql.append(" ) v   ").append("\n");
 		sql.append("  where 1 = 1 ").append("\n");
 		sql.append("    and v.cno = info.cno ").append("\n");
@@ -550,6 +550,8 @@ public class ZXQKHelper {
 		sql.append("    and bact.id = ract.actdefid ").append("\n");
 		sql.append("    and bact.ctype <> 'BEGIN' ").append("\n");
 		sql.append("    and bact.ctype <> 'END' ").append("\n");
+		sql.append("    and info.reptype='" + report_type + "' ").append("\n");
+		
 		sql.append(
 				"  group by info.creater, info.creatername, rflow.runflowkey, v.cno, ract.actdefid, bact.cname ")
 				.append("\n");
@@ -561,7 +563,7 @@ public class ZXQKHelper {
 				" from t_sys_wfbact bact, t_sys_wfrflow rflow, t_sys_wfract ract, t_app_pubinfo info, ")
 				.append("\n");
 		sql.append(" ( ").append("\n");
-		sql.append(ZXQKHelper.sql_xxgx_zxqk(obj));
+		sql.append(ZXQKHelper.sql_xxgx_zxqk1(obj));
 		sql.append(" ) v   ").append("\n");
 		sql.append("  where 1 = 1 ").append("\n");
 		sql.append("    and v.cno = info.cno ").append("\n");
@@ -571,7 +573,7 @@ public class ZXQKHelper {
 		sql.append("    and bact.id = ract.actdefid ").append("\n");
 		sql.append("    and bact.ctype <> 'BEGIN' ").append("\n");
 		sql.append("    and bact.ctype <> 'END' ").append("\n");
-
+		sql.append("    and info.reptype='" + report_type + "' ").append("\n");
 		sql.append("  order by cno desc ").append("\n");
 
 		return sql.toString();

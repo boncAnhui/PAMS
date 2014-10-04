@@ -22,6 +22,7 @@ public class TabGXD_WFBZS_ZCZS
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String ownerctx = obj.getFormatAttr("ownerctx");
+		String report_type = obj.getFormatAttr("reptype");//报表类型
 		
 		String sql_cdate = RepHelper.compare_sysdate(enddate);		
 
@@ -29,10 +30,11 @@ public class TabGXD_WFBZS_ZCZS
 		obj.setAttr("ispublish", "N");
 		obj.setAttr("isnodeovertime", "N");
 		obj.setAttr("creater", ownerctx);
+		obj.setAttr("reptype", report_type);
 		
 		StringBuffer sql = new StringBuffer();
 
-		sql.append(ZXQKHelper.sql_xxgx_zxqk_zxsc(obj));
+		sql.append(ZXQKHelper.sql_xxgx_zxqk_zxsc1(obj));
 		
 		List datas = DyDaoHelper.query(jt, sql.toString());
 
