@@ -35,6 +35,8 @@ public class FileTemplate extends IdEntity
 	private String property; // 文件属性
 
 	private String required; // 是否必要
+	
+	private String cclassname; // 业务分类名称
 
 	public String getCclass()
 	{
@@ -135,7 +137,14 @@ public class FileTemplate extends IdEntity
 	{
 		this.required = required;
 	}
-	
-	
 
+	public String getCclassname()
+	{
+		return cclassname;
+	}
+
+	public void setCclassname(String cclassname)
+	{
+		this.cclassname = cclassname;
+	}
 }

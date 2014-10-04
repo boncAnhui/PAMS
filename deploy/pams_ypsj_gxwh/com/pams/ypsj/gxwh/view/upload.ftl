@@ -14,7 +14,7 @@ var uploadNames=[];
  
 $('#file_upload').uploadify({
     'uploader'  : '${base}/uploadify/uploadify.swf',
-    'script'    : '${base}/module/pams/ypsj/wjwh/fileattachment_upload.action',
+    'script'    : '${base}/module/pams/gxgl/wjwh/fileattachment_upload.action',
     'scriptData': {'runactkey':'${data.obj_ract.runactkey}','filetemplateid':'${data.obj_filetemplate.id}'},
 	'buttonImg': '${base}/uploadify/upload.png',
     'cancelImg' : '${base}/uploadify/cancel.png',
@@ -33,7 +33,7 @@ $('#file_upload').uploadify({
 			var oid=[];
 			var oname=[];
 			$.each(uploadQueue,function(j,k){				
-				ohtml+='<li data-id="'+k[1]+'" data-name="'+k[2]+'"><a target="_blank" class="attachment" href="${base}/module/pams/ypsj/wjwh/fileattachment_downloadbyid.action?id='+k[1]+'">'+uploadNames[j]+'</a><span class="del" title="删除">x</span></li>';
+				ohtml+='<li data-id="'+k[1]+'" data-name="'+k[2]+'"><a target="_blank" class="attachment" href="${base}/module/pams/gxgl/wjwh/fileattachment_downloadbyid.action?id='+k[1]+'">'+uploadNames[j]+'</a><span class="del" title="删除">x</span></li>';
 				oid.push(k[1])
 				oname.push(k[2])
 			})
@@ -54,7 +54,7 @@ $('.attachmentUl .del').live('click',function(){
 		var othis=$(this);
 		var oparent=othis.parent();
 		$.ajax({
-			url:'${base}/module/pams/ypsj/wjwh/fileattachment_isdelete.action',
+			url:'${base}/module/pams/gxgl/wjwh/fileattachment_isdelete.action',
 			data:{attachid:oid},
 			success:function(d){
 				if(d=='done'){//后台确认已经删除	
@@ -127,7 +127,7 @@ function page_close()
 				<#--
 		 		<#list data.attachs as aobj>
 				<li data-id="${aobj.attachid}">
-				<a target="_blank" class="attachment" href="${base}/module/pams/ypsj/wjwh/fileattachment_downloadbyid.action?attachid=${aobj.attachid}">${aobj.attachname}</a><span class="del">X</span><br>
+				<a target="_blank" class="attachment" href="${base}/module/pams/gxgl/wjwh/fileattachment_downloadbyid.action?attachid=${aobj.attachid}">${aobj.attachname}</a><span class="del">X</span><br>
 				</li>
 				</#list>
 				-->

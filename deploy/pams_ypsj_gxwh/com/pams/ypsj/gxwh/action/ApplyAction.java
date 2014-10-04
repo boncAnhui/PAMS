@@ -799,9 +799,10 @@ public class ApplyAction extends SimpleAction
 
 		String runactkey = Struts2Utils.getRequest().getParameter("runactkey");
 		String id = workFlowEngine.getDemandManager().getRAct(runactkey, MarketPowerService._tableid).getFormatAttr("dataid");
-
+		String runflowkey = workFlowEngine.getDemandManager().getRAct(runactkey, MarketPowerService._tableid).getFormatAttr("runflowkey");
 		String cclassid = marketpowerService.get(id).getCclassid(); // 信息共享分类标识
-		marketpowerService.publish(id, cclassid, login_token);
+		
+		marketpowerService.publish(id, runflowkey, cclassid, login_token);
 		
 		arg.put("runactkey", runactkey);
 
@@ -818,9 +819,9 @@ public class ApplyAction extends SimpleAction
 
 		String runactkey = Struts2Utils.getRequest().getParameter("runactkey");
 		String id = workFlowEngine.getDemandManager().getRAct(runactkey, MarketPowerService._tableid).getFormatAttr("dataid");
-
+		String runflowkey = workFlowEngine.getDemandManager().getRAct(runactkey, MarketPowerService._tableid).getFormatAttr("runflowkey");
 		String cclassid = marketpowerService.get(id).getCclassid(); // 信息共享分类标识
-		marketpowerService.publish(id, cclassid, login_token);
+		marketpowerService.publish(id, runflowkey, cclassid, login_token);
 		String flag = "success";
 		arg.put("runactkey", runactkey);
 		arg.put("flag", flag);
