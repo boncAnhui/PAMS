@@ -35,7 +35,8 @@ public class Tab_WCQK_BM_YFBZXSC
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
-		String sql_cdate = RepHelper.compare_sysdate(enddate);		
+		String sql_cdate = RepHelper.compare_sysdate(enddate);	
+		String report_type = obj.getFormatAttr("reptype");//报表类型
 
 		obj.setAttr("sql_cdate", sql_cdate);
 		obj.setAttr("ispublish", "Y");
@@ -57,7 +58,7 @@ public class Tab_WCQK_BM_YFBZXSC
 		sql.append(" (").append("\n");
 		sql.append("select bv.cno, ract.actdefid").append("\n");
 		
-		sql.append("from t_sys_wfbact bact, t_sys_wfrflow rflow, t_sys_wfract ract, t_app_infoshare bv").append("\n");
+		sql.append("from t_sys_wfbact bact, t_sys_wfrflow rflow, t_sys_wfract ract, t_app_pubinfo bv").append("\n");
 		sql.append(" where 1 = 1").append("\n");
 		sql.append("   and rflow.dataid = bv.id").append("\n");
 		sql.append("   and rflow.tableid = 'InfoShare'").append("\n");
@@ -67,6 +68,7 @@ public class Tab_WCQK_BM_YFBZXSC
 		
 		sql.append("   and bact.ctype <> 'END'").append("\n");
 		sql.append("   and rflow.state = '结束'").append("\n");
+		sql.append("    and bv.reptype='" + report_type + "' ").append("\n");
 		
 		if (!StringToolKit.isBlank(begindate))
 		{

@@ -40,7 +40,7 @@
 	<#assign rate_jdcsb = acsfbjdzs.num?number/(azcfbjdzs.num?number + acsfbjdzs.num?number)>
 </#if>
 
-<#if ayfbsxzc.jhsc?number == 0 && ayfbsxzc.sjsc == 0 >
+<#if ayfbsxzc.jhsc?number == 0 && ayfbsxzc.sjsc?number == 0 >
 	<#assign rate_zxjsl = 0>
 <#else>
 	<#assign rate_zxjsl =  ayfbsxzc.jhsc?number/(ayfbsxzc.sjsc?number)>
