@@ -18,6 +18,7 @@ import com.pams.entity.KnowledgeClass;
 import com.pams.entity.KnowledgeComment;
 import com.pams.gxgl.wjwh.service.FileAttachmentService;
 import com.pams.gxgl.zsflwh.service.KnowledgeClassService;
+import com.pams.gxgl.zsgxfw.service.KnowledgeScopeService;
 import com.pams.gxgl.zsplwh.service.KnowledgeCommentService;
 import com.pams.gxgl.zswh.service.KnowledgeService;
 import com.ray.app.dictionary.service.DictionaryService;
@@ -44,6 +45,9 @@ public class KnowledgeAction extends SimpleAction
 
 	@Autowired
 	private FileAttachmentService fileattachmentService;
+	
+	@Autowired
+	private KnowledgeScopeService  knowledgescopeService;
 
 	public String mainframe() throws Exception
 	{
@@ -144,6 +148,9 @@ public class KnowledgeAction extends SimpleAction
 		Map amap = new HashMap();
 		amap.put("dataid", id);
 		List<FileAttachment> fileattachments = fileattachmentService.find(amap);
+		
+		// 读取共享范围
+		List knowledgescopes = knowledgescopeService.findBy("knowledgeid", id, Order.asc("id"));
 
 		Integer getViews = knowledge.getViews();
 		if (getViews == null)
@@ -164,6 +171,8 @@ public class KnowledgeAction extends SimpleAction
 
 		data.put("knowledgecomment", knowledgecomment);
 
+		data.put("knowledgescopes", knowledgescopes);
+		
 		arg.put("views", getViews);
 
 		arg.put("username", username);

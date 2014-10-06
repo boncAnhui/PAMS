@@ -131,7 +131,7 @@ textarea {	}
 
 <div><strong>摘要：</strong><p style="padding:10px;border:solid 1px #ccc;background:#eef;">${data.knowledge.summary}</p></div>
 
-<div><strong>关键字：</strong><a href="#1">${data.knowledge.keyword}</a> </div>
+<#-- <div><strong>关键字：</strong><a href="#1">${data.knowledge.keyword}</a> </div> -->
 
 
 <!--HTML start-->
@@ -153,6 +153,7 @@ textarea {	}
 </div>
 <!--HTML end-->
 
+<#--
 <h2 id="comment" class="collapsable blue"><span class="t">评论</span></h2>
 <div class="commentDiv">
 
@@ -168,24 +169,37 @@ textarea {	}
 </#if>
 </div>
 
+-->
+
 <table style="width:100%;border:dotted 1px #ccc;border-left:0;border-right:0;margin-top:8px;" cellspacing="5">
 <tr>
 <td width="15%">文档分类：</td>
-<td colspan="3">${arg.cclassallname}</td>
+<td>${arg.cclassallname}</td>
+<td>主作者部门：</td>
+<td>${data.knowledge.mauthordept}</td>
 </tr>
 <tr>
 <td width="15%">主作者：</td>
-<td width="35%">${data.knowledge.mauthor}</td>
-<td width="15%">次作者：</td>
-<td width="35%">${data.knowledge.sauthor}</td>
+<td width="35%">${data.knowledge.createuser}</td>
+<td width="15%">创建时间：</td>
+<td width="35%">${data.knowledge.createtime}</td>
 </tr>
 <tr>
-<td>创建者：</td><td>${data.knowledge.createuser}</td>
-<td>创建时间：</td><td>${data.knowledge.createtime}</td>
+<td width="15%">发布者：</td>
+<td width="35%">${data.knowledge.publisher}</td>
+<td width="15%">发布时间：</td>
+<td width="35%">${data.knowledge.publishdate}</td>
 </tr>
 <tr>
-<td>主作者部门：</td><td>${data.knowledge.mauthordept}</td>
-<td>安全级别：</td><td>${data.knowledge.slevel}</td>
+<td width="15%">共享范围：</td>
+<#assign scopetext = "">
+<#list data.knowledgescopes as scope>
+	<#assign scopetext = scopetext + scope.groupname>
+	<#if scope_index &lt; data.knowledgescopes?size - 1>
+	<#assign scopetext = scopetext + ",">
+	</#if>
+</#list>
+<td colspan="3">${scopetext}</td>
 </tr>
 </table>
 
