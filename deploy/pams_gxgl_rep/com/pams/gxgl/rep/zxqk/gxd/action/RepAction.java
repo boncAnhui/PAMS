@@ -41,11 +41,12 @@ public class RepAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String report_type = Struts2Utils.getRequest().getParameter("reptype");
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("ownerctx", ownerctx);
-		
+		arg.put("reptype", report_type);		
 		return "main_zxqk_yfqzs";
 	}
 	
@@ -54,11 +55,13 @@ public class RepAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("ownerctx", ownerctx);
+		obj.setAttr("reptype", reptype);
 		
 		TabGXD_YFQZS tabYFQZS = new TabGXD_YFQZS();
 		tabYFQZS.setJdbcTemplate(reportDao.getJdbcTemplate());
@@ -70,6 +73,7 @@ public class RepAction extends SimpleAction
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("ownerctx", ownerctx);
+		arg.put("reptype", reptype);
 		
 		return "tab_zxqk_yfqzs";
 	}
@@ -79,10 +83,12 @@ public class RepAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("ownerctx", ownerctx);
+		arg.put("reptype", reptype);
 		
 		return "main_zxqk_yfbzs";
 	}
@@ -92,11 +98,13 @@ public class RepAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("ownerctx", ownerctx);
+		arg.put("reptype", reptype);
 		
 		TabGXD_YFBZS tabYFBZS = new TabGXD_YFBZS();
 		tabYFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
@@ -108,6 +116,7 @@ public class RepAction extends SimpleAction
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("ownerctx", ownerctx);
+		arg.put("reptype", reptype);
 		
 		return "tab_zxqk_yfbzs";
 	}
@@ -117,10 +126,12 @@ public class RepAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("ownerctx", ownerctx);
+		arg.put("reptype", reptype);
 		
 		return "main_zxqk_wfbzs";
 	}
@@ -130,11 +141,13 @@ public class RepAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("ownerctx", ownerctx);
+		obj.setAttr("reptype", reptype);
 		
 		TabGXD_WFBZS tabWFBZS = new TabGXD_WFBZS();
 		tabWFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
@@ -146,6 +159,7 @@ public class RepAction extends SimpleAction
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("ownerctx", ownerctx);
+		arg.put("reptype", reptype);
 		
 		return "tab_zxqk_wfbzs";
 	}
@@ -155,10 +169,12 @@ public class RepAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("ownerctx", ownerctx);
+		arg.put("reptype", reptype);
 		
 		return "main_zxqk_yfbzs_zcfbzs";
 	}
@@ -168,11 +184,13 @@ public class RepAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("ownerctx", ownerctx);
+		obj.setAttr("reptype", reptype);
 		
 		TabGXD_YFBZS_ZCFBZS tabYFBZS_ZCFBZS = new TabGXD_YFBZS_ZCFBZS();
 		tabYFBZS_ZCFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
@@ -184,6 +202,7 @@ public class RepAction extends SimpleAction
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("ownerctx", ownerctx);
+		arg.put("reptype", reptype);
 		
 		return "tab_zxqk_yfbzs_zcfbzs";
 	}
@@ -193,10 +212,12 @@ public class RepAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("ownerctx", ownerctx);
+		arg.put("reptype", reptype);
 		
 		return "main_zxqk_yfbzs_csfbzs";
 	}
@@ -206,11 +227,13 @@ public class RepAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("ownerctx", ownerctx);
+		obj.setAttr("reptype", reptype);
 		
 		TabGXD_YFBZS_CSFBZS tabYFBZS_CSFBZS = new TabGXD_YFBZS_CSFBZS();
 		tabYFBZS_CSFBZS.setJdbcTemplate(reportDao.getJdbcTemplate());
@@ -231,10 +254,12 @@ public class RepAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("ownerctx", ownerctx);
+		arg.put("reptype", reptype);
 		
 		return "main_zxqk_wfbzs_zczs";
 	}
@@ -244,11 +269,13 @@ public class RepAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("ownerctx", ownerctx);
+		obj.setAttr("reptype", reptype);
 		
 		TabGXD_WFBZS_ZCZS tabWFBZS_ZCZS = new TabGXD_WFBZS_ZCZS();
 		tabWFBZS_ZCZS.setJdbcTemplate(reportDao.getJdbcTemplate());
@@ -260,6 +287,7 @@ public class RepAction extends SimpleAction
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("ownerctx", ownerctx);
+		arg.put("reptype", reptype);
 		
 		return "tab_zxqk_wfbzs_zczs";
 	}
@@ -269,10 +297,12 @@ public class RepAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("ownerctx", ownerctx);
+		arg.put("reptype", reptype);
 		
 		return "main_zxqk_wfbzs_cszs";
 	}
@@ -282,11 +312,13 @@ public class RepAction extends SimpleAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String ownerctx = Struts2Utils.getRequest().getParameter("ownerctx");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("ownerctx", ownerctx);
+		obj.setAttr("reptype", reptype);
 		
 		TabGXD_WFBZS_CSZS tabWFBZS_CSZS = new TabGXD_WFBZS_CSZS();
 		tabWFBZS_CSZS.setJdbcTemplate(reportDao.getJdbcTemplate());
@@ -298,6 +330,7 @@ public class RepAction extends SimpleAction
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("ownerctx", ownerctx);
+		arg.put("reptype", reptype);
 		
 		return "tab_zxqk_wfbzs_cszs";
 	}

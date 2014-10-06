@@ -35,12 +35,15 @@ public class Tab_WWCQK_BM_WFBZS
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
-		String sql_cdate = RepHelper.compare_sysdate(enddate);		
+		String sql_cdate = RepHelper.compare_sysdate(enddate);	
+		String report_type = obj.getFormatAttr("reptype");//报表类型	
 
 		obj.setAttr("sql_cdate", sql_cdate);
 		obj.setAttr("ispublish", "Y");
 		obj.setAttr("isnodeovertime", "Y");		
-		obj.setAttr("isovertime", "");		
+		obj.setAttr("isovertime", "");	
+		obj.setAttr("reptype",report_type);	
+		
 		
 		StringBuffer sql = new StringBuffer();
 
@@ -48,9 +51,10 @@ public class Tab_WWCQK_BM_WFBZS
 		sql.append("  from t_sys_organ org ").append("\n");
 		sql.append("   left join  ").append("\n");
 		sql.append(" ( ").append("\n");
-		sql.append("   select bv.cno, bv.title, bv.creater, bv.creatername, bv.deptid ").append("\n");
-		sql.append("    from t_app_infoshare bv ").append("\n");
+		sql.append("   select bv.cno,bv.creater, bv.creatername, bv.deptid ").append("\n");
+		sql.append("    from t_app_pubinfo bv ").append("\n");
 		sql.append("   where 1 = 1 ").append("\n");
+		sql.append("    and bv.reptype='" + report_type + "' ").append("\n");
 		if (!StringToolKit.isBlank(begindate))
 		{
 			sql.append(RepHelper.date_begin_eq("bv.createtime", begindate)).append("\n");

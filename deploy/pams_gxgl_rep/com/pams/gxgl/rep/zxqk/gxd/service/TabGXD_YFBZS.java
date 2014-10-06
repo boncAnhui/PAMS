@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
 import com.headray.core.spring.jdo.DyDaoHelper;
 import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.pams.gxgl.rep.helper.ZXQKHelper;
@@ -22,6 +23,7 @@ public class TabGXD_YFBZS
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String ownerctx = obj.getFormatAttr("ownerctx");
+		String report_type = Struts2Utils.getRequest().getParameter("reptype");//��������
 		
 		String sql_cdate = RepHelper.compare_sysdate(enddate);		
 
@@ -29,10 +31,11 @@ public class TabGXD_YFBZS
 		obj.setAttr("ispublish", "Y");
 		obj.setAttr("isovertime", "");		
 		obj.setAttr("creater", ownerctx);
+		obj.setAttr("reptype", report_type);
 		
 		StringBuffer sql = new StringBuffer();
 
-		sql.append(ZXQKHelper.sql_xxgx_zxqk_zxsc(obj));
+		sql.append(ZXQKHelper.sql_xxgx_zxqk_zxsc1(obj));
 		
 		List datas = DyDaoHelper.query(jt, sql.toString());
 

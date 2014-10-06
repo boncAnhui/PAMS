@@ -35,7 +35,7 @@ jQuery(function($){
 
 function page_load_zxscmx_table()
 {
-	page_load_table("${base}/module/pams/gxgl/rep/zxqk/gxd/rep_tab_zxqk_wfbzs_zczs.action", "zxscmx", 0, new Array("ownerctx"), new Array("${arg.ownerctx}"));
+	page_load_table("${base}/module/pams/gxgl/rep/zxqk/gxd/rep_tab_zxqk_wfbzs_zczs.action", "zxscmx", 0, new Array("ownerctx","reptype"), new Array("${arg.ownerctx}","${arg.reptype}"));
 }
 
 function page_load()

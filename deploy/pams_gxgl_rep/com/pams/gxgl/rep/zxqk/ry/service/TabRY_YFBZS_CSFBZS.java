@@ -1,14 +1,12 @@
 package com.pams.gxgl.rep.zxqk.ry.service;
 
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
 import com.headray.core.spring.jdo.DyDaoHelper;
 import com.headray.framework.services.db.SQLParser;
 import com.headray.framework.services.db.dybeans.DynamicObject;
@@ -27,12 +25,14 @@ public class TabRY_YFBZS_CSFBZS
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String internal = obj.getFormatAttr("internal");
+		String report_type = Struts2Utils.getRequest().getParameter("reptype");
 		
 		String sql_cdate = RepHelper.compare_sysdate(enddate);
 		
 		obj.setAttr("sql_cdate", sql_cdate);
 		obj.setAttr("ispublish", "Y");
 		obj.setAttr("isovertime", "Y");
+		obj.setAttr("reptype", report_type);
 		
 		StringBuffer sql = new StringBuffer();
 		
@@ -41,7 +41,7 @@ public class TabRY_YFBZS_CSFBZS
 		sql.append("   left join  ").append("\n");
 		sql.append(" ( ").append("\n");
 		
-		sql.append(ZXQKHelper.sql_xxgx_zxqk(obj));
+		sql.append(ZXQKHelper.sql_xxgx_zxqk1(obj));
 
 		sql.append(" ) v   ").append("\n");
 		sql.append("  on usr.loginname = v.creater ").append("\n");

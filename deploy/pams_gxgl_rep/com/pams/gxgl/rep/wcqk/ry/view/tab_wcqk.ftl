@@ -40,8 +40,10 @@
 	<#assign rate_jdcsb = acsfbjdzs.num?number/(azcfbjdzs.num?number + acsfbjdzs.num?number)>
 </#if>
 
-<#if ayfbsxzc.jhsc?number == 0 && ayfbsxzc.sjsc == 0 >
+<#if ayfbsxzc.jhsc?number == 0 >
 	<#assign rate_zxjsl = 0>
+<#elseif ayfbsxzc.sjsc?number == 0 >
+	<#assign rate_zxjsl = ayfbsxzc.jhsc?number/0.001>
 <#else>
 	<#assign rate_zxjsl =  ayfbsxzc.jhsc?number/(ayfbsxzc.sjsc?number)>
 </#if>
@@ -49,7 +51,7 @@
 <tr>
 <td>${afbzs_index+1}</td>
 <td>${afbzs.cname}</td>
-<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfqzs.action?ownerctx=${afbzs.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${afbzs.num}</a></td>
+<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfbzs.action?ownerctx=${afbzs.loginname}&reptype=infoshare&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${afbzs.num}</a></td>
 <td>${azcfbzs.num}</td>
 <td>${azcfbjdzs.num}</td>
 <td>${acsfbjdzs.num}</td>

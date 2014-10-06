@@ -25,12 +25,14 @@ public class TabGS_YFBZS_ZCFBZS
 	{
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
+		String report_type = obj.getFormatAttr("reptype");//报表类型
 		
 		String sql_cdate = RepHelper.compare_sysdate(enddate);
 		
 		obj.setAttr("sql_cdate", sql_cdate);
 		obj.setAttr("ispublish", "Y");
 		obj.setAttr("isovertime", "N");			
+		obj.setAttr("reptype", report_type);
 	    
 		System.out.println("--执行情况统计  已发布 正常执行总数");
 		
@@ -45,7 +47,7 @@ public class TabGS_YFBZS_ZCFBZS
 		sql.append("  left join ").append("\n");
 		sql.append("  (  ").append("\n");
 		
-		sql.append(ZXQKHelper.sql_xxgx_zxqk(obj));
+		sql.append(ZXQKHelper.sql_xxgx_zxqk1(obj));
 		
 		sql.append("   ) v  ").append("\n");
 		sql.append("   on org.id = v.deptid  ").append("\n");

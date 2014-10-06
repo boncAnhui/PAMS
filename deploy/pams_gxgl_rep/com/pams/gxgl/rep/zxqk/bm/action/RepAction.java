@@ -45,11 +45,12 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
+		String report_type = Struts2Utils.getRequest().getParameter("reptype");//报表类型
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("internal", internal);
-		
+		arg.put("reptype", "infoshare");
 		return "main_zxqk";
 	}
 	
@@ -58,11 +59,13 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = ((DynamicObject)Struts2Utils.getRequest().getSession().getAttribute(GlobalConstants.sys_login_token)).getFormatAttr(GlobalConstants.sys_login_org_internal);
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
+		
 
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("internal", internal);
-		
+		arg.put("reptype", "infoshare");
 		return "main_zxqk";
 	}
 	
@@ -71,11 +74,13 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("internal", internal);
+		obj.setAttr("reptype", reptype);
 		
 		TabBM_YFQZS tabYFQZS = new TabBM_YFQZS();
 		tabYFQZS.setJdbcTemplate(reportDao.getJdbcTemplate());
@@ -131,11 +136,13 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("internal", internal);
+		obj.setAttr("reptype", reptype);
 		
 		TabBM_YFQZS tabYFQZS = new TabBM_YFQZS();
 		tabYFQZS.setJdbcTemplate(reportDao.getJdbcTemplate());
