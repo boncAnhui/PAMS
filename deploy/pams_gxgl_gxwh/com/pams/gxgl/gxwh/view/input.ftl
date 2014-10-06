@@ -8,8 +8,19 @@
 <script type="text/javascript" src="${base}/themes/default/main.js"></script>
 <script type="text/javascript" src="${base}/resource/default/script/public_complete.js"></script>
 <style type="text/css">@import url(${base}/themes/default/main.css);</style>
+<script type="text/javascript" src="${base}/themes/default/jquery.limit-1.2.source.js"></script>
+<script type="text/javascript">
+</script>
+
 </head>
 <body>
+<style>
+textarea {}
+.textLimit {position:relative;background:red;}
+.textLimit .numDiv {position:absolute;right:0;margin-right:20px;top:-30px;}
+.textLimit .numDiv span {display:inline;white-space:nowrap;font-size:18px;color:#666;font-size:700;font-style:italic}
+</style>
+
 <div class="formDiv">
 
 <div id="fixedOp">
@@ -18,6 +29,10 @@
 
 <div id="pageContainer" style="display:inline-block;">
 	<div class="formDiv">
+	
+
+	
+	
 	<form id="aform" action="apply_create.action" method="post">
 		<input type="hidden" id="flowdefid" name="flowdefid" value="${data.bflow_values}">
 		<input type="hidden" id="flowname" name="flowname" value="${data.bflow_texts}">
@@ -70,7 +85,7 @@
 	</tr>	
 	<tr>
 		<td class="r"><label for="summary">内容摘要：</label></td>
-		<td colspan="3"><textarea class="text" id="summary" name="summary" maxlength="500"></textarea></td>
+		<td colspan="3"><textarea id="summary" name="summary" maxlength="100"></textarea></td>
 	</tr>
 	<tr>
 		<td class="r"><label for="cclassname">分类：</label></td>
@@ -103,7 +118,7 @@
 	</tr>
 	<tr>
 		<td class="r"><label for="memo">备注：</label></td>
-		<td colspan="3"><textarea class="text" id="memo" name="memo" maxlength="500"></textarea></td>
+		<td colspan="3"><textarea id="memo" name="memo" maxlength="500"></textarea></td>
 	</tr>	
 	<!--	
 	<tr>
@@ -129,6 +144,18 @@ $("#bt_scope_reset").click(function() {page_scope_reset()});
 // 保存
 function page_save()
 {
+	if($("#summary").val().length > 100)
+	{
+		alert("摘要仅能输入100个字符.");
+		return;
+	}
+	
+	if($("#memo").val().length > 500)
+	{
+		alert("备注仅能输入500个字符.");
+		return;
+	}
+
 	// 检查是否具备共享流程
 	if($("#flowdefid").val()=="")
 	{
@@ -184,6 +211,7 @@ function page_scope_reset()
 	$("#infosharescopeid").val("${data.defsharescopeid}");
 	$("#infosharescopeinternal").val("${data.defsharescopeinternal}");
 }
+
 </script>
 </body>
 </html>

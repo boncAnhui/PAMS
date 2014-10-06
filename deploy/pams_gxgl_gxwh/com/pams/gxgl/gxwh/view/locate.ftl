@@ -117,7 +117,7 @@ table.dataGrid{border-collapse:collapse;}
 	</tr>	
 	<tr>
 		<td class="r"><label for="summary">内容摘要：</label></td>
-		<td colspan="3"><textarea class="text" id="summary" name="summary" maxlength="500">${data.infoshare.summary}</textarea></td>
+		<td colspan="3"><textarea class="text" id="summary" name="summary" maxlength="100">${data.infoshare.summary}</textarea></td>
 	</tr>
 	<tr>
 		<td class="r"><label for="cclassname">分类：</label></td>
@@ -197,6 +197,18 @@ $("#bt_scope_reset").click(function() {page_scope_reset()});
 
 function page_save()
 {
+
+	if($("#summary").val().length > 100)
+	{
+		alert("摘要仅能输入100个字符.");
+		return;
+	}
+	
+	if($("#memo").val().length > 500)
+	{
+		alert("备注仅能输入500个字符.");
+		return;
+	}
 	
 	$("#obtaintime").val($("#obtaintimed").val() + " " + $("#obtaintimet").val() + ":00");
 
