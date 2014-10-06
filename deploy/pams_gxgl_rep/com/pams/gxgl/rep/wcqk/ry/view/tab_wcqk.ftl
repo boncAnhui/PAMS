@@ -51,7 +51,7 @@
 <tr>
 <td>${afbzs_index+1}</td>
 <td>${afbzs.cname}</td>
-<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfbzs.action?ownerctx=${afbzs.loginname}&reptype=infoshare&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${afbzs.num}</a></td>
+<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfbzs.action?ownerctx=${afbzs.loginname}&reptype=${arg.reptype}&begindate=${arg.begindate}&enddate=${arg.enddate}" target="_blank">${afbzs.num}</a></td>
 <td>${azcfbzs.num}</td>
 <td>${azcfbjdzs.num}</td>
 <td>${acsfbjdzs.num}</td>
