@@ -27,7 +27,8 @@ jQuery(function($){
 	<input type="hidden" name="begindate">
 	<input type="hidden" name="enddate">
 	<input type="hidden" name="internal" value="${arg.internal}">
-	<input type="hidden" name="orginternal" value="${arg.orginternal}">			
+	<input type="hidden" name="orginternal" value="${arg.orginternal}">
+	<input type="hidden" name="reptype" value="${arg.reptype}">				
 </form>
 </div>
 
