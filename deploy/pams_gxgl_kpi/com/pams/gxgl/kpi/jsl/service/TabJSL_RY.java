@@ -49,11 +49,13 @@ public class TabJSL_RY
 		sql.append(ZXQKHelper.sql_xxgx_kpi_zxsc(obj));
 		
 		sql.append("      ) v ").append("\n");
+
 		sql.append(" group by v.deptid, v.creater, v.cno");
 		
 		sql.append("  ) v ").append("\n");
 		sql.append("  on usr.loginname = v.creater ").append("\n");
 		sql.append(" where 1 = 1 ").append("\n");
+		sql.append(" and zxsckh >0 ").append("\n");
 		if(!StringToolKit.isBlank(internal))
 		{
 			sql.append(" and usr.ownerdept = " + SQLParser.charValue(internal)).append("\n");

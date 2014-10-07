@@ -9,9 +9,9 @@
 <#assign total = total + aobj.zxsccskh?number>
 <tr>
 <td>${aobj_index+1}</td>
-<td>${aobj.orgcname}</td>
+<td><a href="${base}/module/pams/gxgl/kpi/jsl/rep_main_jsl_ry.action?internal=${aobj.internal}&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.orgcname}</a></td>
 <td>
-<a href="${base}/module/pams/gxgl/kpi/jsl/rep_main_jsl_ry.action?internal=${aobj.internal}&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.zxsccskh}</a>
+${aobj.zxsccskh}
 </td>
 </tr>
 </#list>

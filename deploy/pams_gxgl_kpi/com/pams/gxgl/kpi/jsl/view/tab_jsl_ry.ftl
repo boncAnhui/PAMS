@@ -14,9 +14,9 @@
 <#assign total = total + aobj.zxsccskh?number>
 <tr>
 <td>${aobj_index+1}</td>
-<td>${aobj.username}</td>
+<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfqzs.action?ownerctx=${aobj.loginname}&reptype=infoshare&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.username}</a></td>
 <td>
-<a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfqzs.action?ownerctx=${aobj.loginname}&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.zxsccskh}</a>
+${aobj.zxsccskh}
 </td>
 <td><#if orgcname_old!=aobj.orgcname>${aobj.orgcname}</#if></td>
 <td><#if deptcname_old!=aobj.deptcname>${aobj.deptcname}</#if></td>
