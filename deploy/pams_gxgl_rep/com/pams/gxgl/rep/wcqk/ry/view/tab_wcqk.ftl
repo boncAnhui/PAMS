@@ -42,7 +42,7 @@
 
 <#if ayfbsxzc.jhsc?number == 0 >
 	<#assign rate_zxjsl = 0>
-<#elseif ayfbsxzc.sjsc?number == 0 >
+<#elseif ayfbsxzc.jhsc?number != 0 && ayfbsxzc.sjsc?number == 0 >
 	<#assign rate_zxjsl = ayfbsxzc.jhsc?number/0.001>
 <#else>
 	<#assign rate_zxjsl =  ayfbsxzc.jhsc?number/(ayfbsxzc.sjsc?number)>
