@@ -25,6 +25,7 @@ public class TabRY_WFBZS_CSZS
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String internal = obj.getFormatAttr("internal");
+		String orginternal = obj.getFormatAttr("orginternal");		
 		String report_type = Struts2Utils.getRequest().getParameter("reptype");
 		
 		String sql_cdate = RepHelper.compare_sysdate(enddate);
@@ -49,8 +50,13 @@ public class TabRY_WFBZS_CSZS
 		
 		if (!StringToolKit.isBlank(internal))
 		{
-			sql.append(" and usr.ownerdept = " + SQLParser.charValue(internal)).append("\n");
+			sql.append(" and substr(usr.ownerdept, 0, " + internal.length() + ") = " + SQLParser.charValue(internal)).append("\n");
 		}
+		
+		if (!StringToolKit.isBlank(orginternal))
+		{
+			sql.append(" and usr.ownerorg = " + SQLParser.charValue(orginternal)).append("\n");
+		}	
 		
 		sql.append(" group by loginname, cname ").append("\n");
 		sql.append(" order by loginname   ").append("\n");

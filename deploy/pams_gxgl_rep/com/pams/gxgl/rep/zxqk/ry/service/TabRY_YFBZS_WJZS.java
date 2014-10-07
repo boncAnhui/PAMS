@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
 import com.headray.core.spring.jdo.DyDaoHelper;
+import com.headray.framework.services.db.SQLParser;
 import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.headray.framework.services.function.StringToolKit;
 import com.ray.nwpn.itsm.report.common.RepHelper;
@@ -24,9 +25,11 @@ public class TabRY_YFBZS_WJZS
 	{
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
+		String internal = obj.getFormatAttr("internal");
+		String orginternal = obj.getFormatAttr("orginternal");
+		String report_type = Struts2Utils.getRequest().getParameter("reptype");	
 		
 		String sql_cdate = " sysdate ";
-		String report_type = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 	    if(df.parse(enddate).getTime()<System.currentTimeMillis())
@@ -63,6 +66,18 @@ public class TabRY_YFBZS_WJZS
 		sql.append("      ").append("\n");
 		sql.append(" ) v   ").append("\n");
 		sql.append("  on usr.loginname = v.creater ").append("\n");
+		sql.append(" where 1 = 1 ").append("\n");
+		
+		if (!StringToolKit.isBlank(internal))
+		{
+			sql.append(" and substr(usr.ownerdept, 0, " + internal.length() + ") = " + SQLParser.charValue(internal)).append("\n");
+		}
+		
+		if (!StringToolKit.isBlank(orginternal))
+		{
+			sql.append(" and usr.ownerorg = " + SQLParser.charValue(orginternal)).append("\n");
+		}		
+		
 		sql.append(" group by loginname, cname ").append("\n");
 		sql.append(" order by loginname ").append("\n");
 		
