@@ -81,6 +81,7 @@
 <tr>
 <td></td>
 <td></td>
+<td></td>
 <td>${sum_ayfqzs}</td>
 <td>${sum_ayfbzs}</td>
 <td>${sum_awfbzs}</td>
