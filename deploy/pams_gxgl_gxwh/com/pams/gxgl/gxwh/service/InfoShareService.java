@@ -936,7 +936,7 @@ public class InfoShareService
 		Calendar calendar = Calendar.getInstance();
 		Date date = calendar.getTime();
 		String sysdate = sf.format(date);
-		String csql = " select substring(max(cno),length(max(cno))-3, 4) as cno from Knowledge where to_char(createtime,'yyyy-mm-dd') = to_char(to_date('" + sysdate + "', 'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm-dd')";
+		String csql = " select substring(max(kno),length(max(kno))-3, 4) as cno from Knowledge where to_char(createtime,'yyyy-mm-dd') = to_char(to_date('" + sysdate + "', 'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm-dd')";
 		String express = "$yy$mm$dd####";
 
 		Map map = new HashMap();

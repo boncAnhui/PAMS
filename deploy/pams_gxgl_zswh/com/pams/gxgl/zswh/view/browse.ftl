@@ -162,6 +162,8 @@ function page_migration()
 
 </div>
 
+
+<#--
 <ul class="knowList">
 <#list data.knowledges as aobj>
 	<li>
@@ -182,6 +184,33 @@ function page_migration()
         <span class="e">摘要：<#if aobj.summary?length &gt; 50>${aobj.summary?substring(0,50)}...<#else>${aobj.summary}</#if></span>
     </li>
 </#list>
+-->
+
+<table class="dataGrid">
+<thead>
+<tr>
+<th>资源编号</th>	
+<th width="400">标题</th>
+<th>主作者</th>
+<th>发布者</th>
+<th>发布时间</th>
+<th>部门</th>
+</tr>
+</thead>
+<tbody>
+<#list data.knowledges as aobj>
+<tr>
+<td><a href="javascript:void(0)" onclick="openwin('knowledge_readpage.action?id=${aobj.id}&cclassid=${arg.cclassid}','locateknowledge', pub_width_large, pub_height_large)">${aobj.kno}</a></td>
+<td>${aobj.title}</td>
+<td>${aobj.mauthor}</td>
+<td>${aobj.publisher}</td>
+<td><#if aobj.publishdate!="">${aobj.publishdate?datetime("yyyy-MM-dd HH:mm")}</#if></td>
+<td>${aobj.mauthordept}</td>
+</tr>
+</#list>
+</tbody>
+</table>
+
 
 </ul>
 <#if data.knowledges?size &lt; 1>
