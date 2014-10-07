@@ -34,7 +34,7 @@ create table T_APP_PUBINFO
 
 
 create or replace trigger trg_info after insert or update or delete 
-on t_App_Infoshare for each row
+on t_app_infoshare for each row
    
 begin
   if inserting then 
