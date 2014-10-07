@@ -15,7 +15,11 @@
 		-->
 
 
+<<<<<<< HEAD
 		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:orcl" />	
+=======
+		<property name="url" value="jdbc:oracle:thin:@192.168.135.130:1521:pams" />	
+>>>>>>> 3d9f10f158b6164eb86911b1900827502461fda1
 
 		<property name="username" value="pams" />
 		<property name="password" value="pams123" />
