@@ -27,6 +27,7 @@ jQuery(function($){
 	<input type="hidden" name="begindate">
 	<input type="hidden" name="enddate">
 	<input type="hidden" name="internal" value="${arg.internal}">	
+	<input type="hidden" name="reptype" value="${arg.reptype}">
 </form>
 </div>
 
@@ -43,7 +44,7 @@ jQuery(function($){
 
 function page_load_zxsc_table()
 {
-	page_load_table("${base}/module/pams/gxgl/kpi/zxsc/rep_tab_zxsc_gs.action", "zxsc", 0, new Array("internal"), new Array("${arg.internal}"));
+	page_load_table("${base}/module/pams/gxgl/kpi/zxsc/rep_tab_zxsc_gs.action", "zxsc", 0, new Array("internal","reptype"), new Array("${arg.internal}","${arg.reptype}"));
 }
 
 function page_load()

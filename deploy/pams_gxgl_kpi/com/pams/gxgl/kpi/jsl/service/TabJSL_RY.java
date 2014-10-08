@@ -27,6 +27,7 @@ public class TabJSL_RY
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String internal = obj.getFormatAttr("internal");
+		String reptype = obj.getFormatAttr("reptype");
 		
 		String sql_cdate = RepHelper.compare_sysdate(enddate);
 		
@@ -34,6 +35,7 @@ public class TabJSL_RY
 		obj.setAttr("ispublish", "Y");
 		obj.setAttr("isovertime", "Y");	
 		obj.setAttr("isnodeovertime", "");		
+		obj.setAttr("reptype", reptype);	
 	    
 		StringBuffer sql = new StringBuffer();
 		
@@ -46,7 +48,7 @@ public class TabJSL_RY
 		sql.append("      from ").append("\n");
 		sql.append("      ( ").append("\n");
 		
-		sql.append(ZXQKHelper.sql_xxgx_kpi_zxsc(obj));
+		sql.append(ZXQKHelper.sql_xxgx_kpi_zxsc1(obj));
 		
 		sql.append("      ) v ").append("\n");
 

@@ -25,6 +25,7 @@ create table T_APP_PUBINFO
   temp1                  VARCHAR2(255),
   reptype                VARCHAR2(255),
   cno                    VARCHAR2(255),
+  title                  VARCHAR2(255),
   infosharescopeinternal VARCHAR2(255)
 )
 
@@ -33,24 +34,24 @@ create table T_APP_PUBINFO
 
 
 
-create or replace trigger trg_info after insert or update or delete 
-on t_app_infoshare for each row
-   
+create or replace trigger trg_info after insert or update or delete
+on t_App_Infoshare for each row
+
 begin
-  if inserting then 
+  if inserting then
     insert into t_app_pubinfo(
-           id,cclassid,cclassname,creater,creatername,createtime,deptid,deptname,
+           id,cclassid,cclassname,creater,creatername,createtime,deptid,deptname,title,
            filenums,filetype,infosharescope,infosharescopectype,infosharescopeid,amount,
-           obtaintime,obtaintimed,obtaintimet,publishtime,shareauthor,sourceid,sourcename,cno,infosharescopeinternal,reptype) 
+           obtaintime,obtaintimed,obtaintimet,publishtime,shareauthor,sourceid,sourcename,cno,infosharescopeinternal,reptype)
          values(
-           :new.ID,:new.cclassid,:new.cclassname,:new.creater,:new.creatername,:new.createtime,:new.deptid,:new.deptname,
+           :new.ID,:new.cclassid,:new.cclassname,:new.creater,:new.creatername,:new.createtime,:new.deptid,:new.deptname,:new.title,
            :new.filenums,:new.filetype,:new.infosharescope,:new.infosharescopectype,:new.infosharescopeid,0,
            :new.obtaintime,:new.obtaintimed,:new.obtaintimet,:new.publishtime,:new.shareauthor,:new.sourceid,:new.sourcename,
            :new.cno,:new.infosharescopeinternal,'infoshare'
          );
   elsif updating then
     update t_app_pubinfo t set t.cclassid=:new.cclassid,t.cclassname=:new.cclassname,t.creater=:new.creater,t.creatername=:new.creatername,t.createtime=:new.createtime,
-           t.deptid=:new.deptid,t.deptname=:new.deptname,t.filenums=:new.filenums,
+           t.deptid=:new.deptid,t.deptname=:new.deptname,t.filenums=:new.filenums,t.title=:new.title,
            t.filetype=:new.filetype,t.infosharescope=:new.infosharescope,t.infosharescopectype=:new.infosharescopectype,
            t.infosharescopeid=:new.infosharescopeid,t.amount=0,
            t.obtaintime=:new.obtaintime,t.obtaintimed=:new.obtaintime,t.obtaintimet=:new.obtaintimet,t.publishtime=:new.publishtime,t.shareauthor=:new.shareauthor,
@@ -59,5 +60,5 @@ begin
   elsif deleting then
     delete from t_app_pubinfo where id=:OLD.id;
   end if;
-  
-end;  
+
+end;

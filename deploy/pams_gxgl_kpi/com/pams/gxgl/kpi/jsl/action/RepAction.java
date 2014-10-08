@@ -39,10 +39,12 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("internal", internal);
+		arg.put("reptype", reptype);
 		
 		return "main_jsl_gs";
 	}
@@ -53,10 +55,12 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = ((DynamicObject)Struts2Utils.getRequest().getSession().getAttribute(GlobalConstants.sys_login_token)).getFormatAttr(GlobalConstants.sys_login_org_internal);
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("internal", internal);
+		arg.put("reptype", reptype);
 		
 		return "main_jsl_gs";
 	}
@@ -66,11 +70,13 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("internal", internal);
+		obj.setAttr("reptype", reptype);
 		
 		//发布总数
 		TabJSL_GS tabJSL_GS = new TabJSL_GS();
@@ -82,6 +88,7 @@ public class RepAction extends ReportAction
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("internal", internal);
+		arg.put("reptype", reptype);
 		return "tab_jsl_gs";
 	}
 	
@@ -90,11 +97,13 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("internal", internal);
+		obj.setAttr("reptype", reptype);
 		
 		//发布总数
 		TabJSL_GS tabJSL_GS = new TabJSL_GS();
@@ -117,10 +126,12 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("internal", internal);
+		arg.put("reptype", reptype);
 		
 		return "main_jsl_bm";
 	}
@@ -130,10 +141,12 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = ((DynamicObject)Struts2Utils.getRequest().getSession().getAttribute(GlobalConstants.sys_login_token)).getFormatAttr(GlobalConstants.sys_login_org_internal);
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("internal", internal);
+		arg.put("reptype", reptype);
 		
 		return "main_jsl_bm";
 	}
@@ -143,11 +156,13 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("internal", internal);
+		obj.setAttr("reptype", reptype);
 		
 		//发布总数
 		TabJSL_BM tabJSL_BM = new TabJSL_BM();
@@ -159,6 +174,7 @@ public class RepAction extends ReportAction
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("internal", internal);
+		arg.put("reptype", reptype);
 		return "tab_jsl_bm";
 	}
 	
@@ -167,11 +183,13 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("internal", internal);
+		obj.setAttr("reptype", reptype);
 		
 		//发布总数
 		TabJSL_BM tabJSL_BM = new TabJSL_BM();
@@ -193,10 +211,12 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("internal", internal);
+		arg.put("reptype", reptype);
 		
 		return "main_jsl_ry";
 	}
@@ -207,11 +227,13 @@ public class RepAction extends ReportAction
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = ((DynamicObject)Struts2Utils.getRequest().getSession().getAttribute(GlobalConstants.sys_login_token)).getFormatAttr(GlobalConstants.sys_login_org_internal);
 		String orginternal = ((DynamicObject)Struts2Utils.getRequest().getSession().getAttribute(GlobalConstants.sys_login_token)).getFormatAttr(GlobalConstants.sys_login_org_internal);
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("internal", internal);
 		arg.put("orginternal", orginternal);
+		arg.put("reptype", reptype);
 		
 		return "main_jsl_ry";
 	}
@@ -221,11 +243,13 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("internal", internal);
+		obj.setAttr("reptype", reptype);
 		
 		//发布总数
 		TabJSL_RY tabJSL_RY = new TabJSL_RY();
@@ -237,6 +261,7 @@ public class RepAction extends ReportAction
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("internal", internal);
+		arg.put("reptype", reptype);
 		return "tab_jsl_ry";
 	}	
 	
@@ -246,11 +271,13 @@ public class RepAction extends ReportAction
 		String begindate = Struts2Utils.getRequest().getParameter("begindate");
 		String enddate = Struts2Utils.getRequest().getParameter("enddate");
 		String internal = Struts2Utils.getRequest().getParameter("internal");
+		String reptype = Struts2Utils.getRequest().getParameter("reptype");
 		
 		DynamicObject obj = new DynamicObject();
 		obj.setAttr("begindate", begindate);
 		obj.setAttr("enddate", enddate);
 		obj.setAttr("internal", internal);
+		obj.setAttr("reptype", reptype);
 		
 		//发布总数
 		TabJSL_RY tabJSL_RY = new TabJSL_RY();
