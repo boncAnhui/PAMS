@@ -18,16 +18,16 @@
 			<result name="tab_zxqk_wfbzs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/tab_zxqk_yfqzs.ftl</result>
 			
 			<result name="main_zxqk_yfbzs_zcfbzs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/main_zxqk_yfbzs_zcfbzs.ftl</result>
-			<result name="tab_zxqk_yfbzs_zcfbzs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/tab_zxqk_yfqzs.ftl</result>
+			<result name="tab_zxqk_yfbzs_zcfbzs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/tab_zxqk_yfbzs_zcfbzs.ftl</result>
 			
 			<result name="main_zxqk_yfbzs_csfbzs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/main_zxqk_yfbzs_csfbzs.ftl</result>
-			<result name="tab_zxqk_yfbzs_csfbzs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/tab_zxqk_yfqzs.ftl</result>	
+			<result name="tab_zxqk_yfbzs_csfbzs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/tab_zxqk_yfbzs_csfbzs.ftl</result>	
 
 			<result name="main_zxqk_wfbzs_zczs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/main_zxqk_wfbzs_zczs.ftl</result>
-			<result name="tab_zxqk_wfbzs_zczs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/tab_zxqk_yfqzs.ftl</result>
+			<result name="tab_zxqk_wfbzs_zczs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/tab_zxqk_wfbzs_zczs.ftl</result>
 
 			<result name="main_zxqk_wfbzs_cszs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/main_zxqk_wfbzs_cszs.ftl</result>
-			<result name="tab_zxqk_wfbzs_cszs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/tab_zxqk_yfqzs.ftl</result>
+			<result name="tab_zxqk_wfbzs_cszs" type="freemarker">/com/pams/gxgl/rep/zxqk/gxd/view/tab_zxqk_wfbzs_cszs.ftl</result>
 
 		</action>
 	</package>
