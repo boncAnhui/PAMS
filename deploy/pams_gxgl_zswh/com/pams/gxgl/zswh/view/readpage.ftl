@@ -121,7 +121,7 @@ function page_callback()
 textarea {	}
 .textLimit {position:relative;background:red;}
 .textLimit .numDiv {position:absolute;right:0;margin-right:20px;top:-30px;}
-.textLimit .numDiv span {display:inline;white-space:nowrap;font-size:18px;color:#666;font-size:700;font-style:italic}
+.textLimit .numDiv span {display:inline;white-space:nowrap;font-size:18px;color:#666;font-weight:700;font-style:italic}
 </style>
 
 <form id="aform" method="post">
