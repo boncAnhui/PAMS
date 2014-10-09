@@ -5,14 +5,31 @@
 <script type="text/javascript" src="${base}/themes/default/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="${base}/themes/default/gex.js"></script>
 <script type="text/javascript" src="${base}/themes/default/main.js"></script>
+<script type="text/javascript" src="${base}/themes/default/jquery.limit-1.2.source.js"></script>
 <style type="text/css">@import url(${base}/themes/default/main.css);</style>
+
+<script>
+$(function()
+{
+	$('textarea').each(function()
+	{
+		if(!isNaN($(this).attr('maxlength')))
+		{
+			$(this).after('<span class="textLimit" title="字数限制为：'+$(this).attr('maxlength')+'"><div class="numDiv"><span></span><span class="num"></span></div></span>');
+			var textLeft=$(this).parent().find('.textLimit span.num');
+			$(this).limit($(this).attr('maxlength'),textLeft);
+			//textLeft.after('个字符').before('还剩');
+		}
+	})
+})
+</script>
 </head>
 <body>
 <style>
 textarea {	}
 .textLimit {position:relative;background:red;}
 .textLimit .numDiv {position:absolute;right:0;margin-right:20px;top:-30px;}
-.textLimit .numDiv span {display:inline;white-space:nowrap;font-size:18px;color:#666;font-size:700;font-style:italic}
+.textLimit .numDiv span {display:inline;white-space:nowrap;font-size:18px;color:#666;font-weight:700;font-style:italic}
 
 span.deltr,span.savetr,span.uploadtr,span.back,span.end,span.start ,span.toggleTr_toggle,span.toggleTr_add{
 	display:inline-block;*zoom:1;*display:inline;width: 16px;height: 16px;vertical-align: middle;cursor:pointer;margin: 0 6px;
@@ -117,7 +134,7 @@ table.dataGrid{border-collapse:collapse;}
 	</tr>	
 	<tr>
 		<td class="r"><label for="summary">内容摘要：</label></td>
-		<td colspan="3"><textarea class="text" id="summary" name="summary" maxlength="100">${data.infoshare.summary}</textarea></td>
+		<td colspan="3"><textarea class="text" id="summary" name="summary" maxlength="200">${data.infoshare.summary}</textarea></td>
 	</tr>
 	<tr>
 		<td class="r"><label for="cclassname">分类：</label></td>
@@ -197,19 +214,6 @@ $("#bt_scope_reset").click(function() {page_scope_reset()});
 
 function page_save()
 {
-
-	if($("#summary").val().length > 100)
-	{
-		alert("摘要仅能输入100个字符.");
-		return;
-	}
-	
-	if($("#memo").val().length > 500)
-	{
-		alert("备注仅能输入500个字符.");
-		return;
-	}
-	
 	$("#obtaintime").val($("#obtaintimed").val() + " " + $("#obtaintimet").val() + ":00");
 
 	// 检查信息获取时间是否超过系统当前时间
