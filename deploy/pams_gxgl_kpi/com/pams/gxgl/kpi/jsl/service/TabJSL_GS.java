@@ -67,6 +67,7 @@ public class TabJSL_GS
 		sql.append("  ) v ").append("\n");
 		sql.append(" where 1 = 1 ").append("\n");
 		sql.append("   and org.id = v.deptid ").append("\n");
+		sql.append("   and zxsckh > 0  ").append("\n");
 		sql.append(" group by org.internal ").append("\n");
 		
 		sql.append("  ) v ").append("\n");		
