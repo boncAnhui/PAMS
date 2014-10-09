@@ -9,7 +9,7 @@
 <#assign total = total + aobj.zxsccskh?number>
 <tr>
 <td>${aobj_index+1}</td>
-<td><a href="${base}/module/pams/gxgl/kpi/zxsc/rep_main_zxsc_bm.action?internal=${aobj.internal}&reptype=infoshare&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.orgcname}</a></td>
+<td><a href="${base}/module/pams/gxgl/kpi/zxsc/rep_main_zxsc_bm.action?internal=${aobj.internal}&reptype=${arg.reptype}&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.orgcname}</a></td>
 <td <#if aobj.zxsccskh?number &gt; 0>style="font-weight:bold;color:red"<#else></#if>>${aobj.zxsccskh}</td>
 </tr>
 </#list>

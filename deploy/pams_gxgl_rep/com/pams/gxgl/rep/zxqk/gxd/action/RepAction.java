@@ -240,11 +240,12 @@ public class RepAction extends SimpleAction
 		
 		List yfbzs_csfbzs = tabYFBZS_CSFBZS.execute(obj);
 		
-		data.put("zxscs", yfbzs_csfbzs);
+		data.put("yfbzs_csfbzs", yfbzs_csfbzs);
 		
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("ownerctx", ownerctx);
+		arg.put("reptype", reptype);
 		
 		return "tab_zxqk_yfbzs_csfbzs";
 	}	

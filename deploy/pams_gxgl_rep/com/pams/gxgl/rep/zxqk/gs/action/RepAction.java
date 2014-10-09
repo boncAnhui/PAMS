@@ -51,7 +51,7 @@ public class RepAction extends ReportAction
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("internal", internal);
-		arg.put("reptype", "infoshare");
+		arg.put("reptype", report_type);
 		return "main_zxqk";
 	}
 	
@@ -66,7 +66,8 @@ public class RepAction extends ReportAction
 		arg.put("begindate", begindate);
 		arg.put("enddate", enddate);
 		arg.put("internal", internal);
-		arg.put("reptype", "infoshare");
+		arg.put("reptype", reptype);
+		
 		return "main_zxqk";
 	}	
 	

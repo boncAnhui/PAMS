@@ -14,8 +14,13 @@
 <#assign total = total + aobj.zxsccskh?number>
 <tr>
 <td>${aobj_index+1}</td>
+<<<<<<< HEAD
 <td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfqzs.action?ownerctx=${aobj.loginname}&reptype=infoshare&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.username}</a></td>
 <td>
+=======
+<td><a href="${base}/module/pams/gxgl/rep/zxqk/gxd/rep_main_zxqk_yfbzs_csfbzs.action?ownerctx=${aobj.loginname}&reptype=${arg.reptype}&begindate=${arg.begindate}&enddate=${arg.enddate}">${aobj.username}</a></td>
+<td <#if aobj.zxsccskh?number &gt; 0 >style="font-weight:bold;color:red"</#if>>
+>>>>>>> 935dd493ebe0241f90e1e89a103f3bdf3a41c08c
 ${aobj.zxsccskh}
 </td>
 <td><#if orgcname_old!=aobj.orgcname>${aobj.orgcname}</#if></td>
@@ -29,7 +34,8 @@ ${aobj.zxsccskh}
 <tr>
 <td></td>
 <td></td>
-<td>${total}</td>
+<td <#if total?number &gt; 0 >style="font-weight:bold;color:red"</#if>>
+${total}</td>
 <td></td>
 <td></td>
 </tr>

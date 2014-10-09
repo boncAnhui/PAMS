@@ -27,12 +27,14 @@ public class TabZXSC_GS
 		String begindate = obj.getFormatAttr("begindate");
 		String enddate = obj.getFormatAttr("enddate");
 		String internal = obj.getFormatAttr("internal");
+		String reptype = obj.getFormatAttr("reptype");
 		
 		String sql_cdate = RepHelper.compare_sysdate(enddate);
 		
 		obj.setAttr("sql_cdate", sql_cdate);
 		obj.setAttr("ispublish", "");
 		obj.setAttr("isovertime", "");			
+		obj.setAttr("reptype", reptype);	
 	    
 		StringBuffer sql = new StringBuffer();
 		
@@ -52,7 +54,7 @@ public class TabZXSC_GS
 		sql.append("      from ").append("\n");
 		sql.append("      ( ").append("\n");
 		
-		sql.append(ZXQKHelper.sql_xxgx_kpi_zxsc(obj));
+		sql.append(ZXQKHelper.sql_xxgx_kpi_zxsc1(obj));
 		sql.append("      ) v ").append("\n");
 		sql.append("    ) v ").append("\n");
 		sql.append("  ) v ").append("\n");
