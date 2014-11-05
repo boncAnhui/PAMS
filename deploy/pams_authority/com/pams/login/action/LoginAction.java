@@ -14,6 +14,7 @@ import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.headray.framework.spec.GlobalConstants;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pams.login.service.LoginService;
+import com.ray.xj.sgcc.irm.system.author.userorgan.service.UserOrganService;
 import com.ray.xj.sgcc.irm.system.organ.organ.entity.Organ;
 import com.ray.xj.sgcc.irm.system.organ.organ.service.OrganService;
 import com.ray.xj.sgcc.irm.system.organ.user.entity.User;
@@ -33,6 +34,9 @@ public class LoginAction extends ActionSupport
 
 	@Autowired
 	private OrganService organService;
+	
+	@Autowired
+	private UserOrganService userorganService;	
 
 	public String execute() throws Exception
 	{
@@ -55,7 +59,8 @@ public class LoginAction extends ActionSupport
 			obj.setAttr(GlobalConstants.sys_login_username, user.getCname());
 			obj.setAttr(GlobalConstants.sys_login_userid, user.getId());
 			
-			Organ dept = organService.getDeptByLoginname(loginname);
+			// Organ dept = organService.getDeptByLoginname(loginname);
+			Organ dept = userorganService.getDeptByLoginname(loginname);
 
 			if (dept != null)
 			{
@@ -64,7 +69,8 @@ public class LoginAction extends ActionSupport
 				obj.setAttr(GlobalConstants.sys_login_dept_internal, dept.getInternal());
 			}
 			
-			Organ organ = organService.getOrganByLoginname(loginname);
+			// Organ organ = organService.getOrganByLoginname(loginname);
+			Organ organ = userorganService.getOrganByLoginname(loginname);
 
 			if (organ != null)
 			{
