@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="com.pams.jhgl.jhmb.action" extends="default" namespace="/module/pams/jhgl/jhmb">
+		<action name="apply_*" class="com.pams.jhgl.jhmb.action.ApplyAction" method="{1}">
+			<result name="mainframe" type="freemarker">/com/pams/jhgl/jhmb/view/mainframe.ftl</result>
+			<result name="browse" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+		</action>
+	</package>
+</struts>
