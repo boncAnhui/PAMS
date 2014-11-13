@@ -9,7 +9,8 @@
 			<result name="mainframe" type="freemarker">/com/pams/jhgl/jhbz/view/mainframe.ftl</result>
 			<result name="browsecreate" type="freemarker">/com/ray/app/query/view/page.module.ftl</result>
 			<result name="browsehead" type="freemarker">/com/ray/app/query/view/page.ftl</result>
-			
+			<result name="treebrowse" type="freemarker">/com/pams/jhgl/jhbz/view/treebrowse.ftl</result>
+						
 			<result name="input" type="freemarker">/com/pams/jhgl/jhbz/view/input.ftl</result>
 			<result name="insert" type="redirect">apply_locateframe.action?id=${arg.id}&amp;isinput=${arg.isinput}</result>
 
@@ -19,8 +20,7 @@
 			<result name="locateframe" type="freemarker">/com/pams/jhgl/jhbz/view/locateframe.ftl</result>
 			<result name="locate" type="freemarker">/com/pams/jhgl/jhbz/view/locate.ftl</result>
 			
-			<result name="selectmodel" type="freemarker">/com/ray/app/query/view/page.ftl</result>			
-			
+			<result name="selectmodel" type="freemarker">/com/ray/app/query/view/page.ftl</result>
 		</action>
 	</package>
 </struts>

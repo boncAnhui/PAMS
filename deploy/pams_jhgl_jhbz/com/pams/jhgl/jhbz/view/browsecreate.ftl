@@ -6,21 +6,69 @@ var navigationJSON=[ {name:'计划管理',link:'${base}/module/irm/portal/portal
 
 var dataJSON={thead:<@pub_macros.displayheaderjson vo = vo arg = arg />, tbody:<@pub_macros.displaylistjson apage = apage vo = vo />};
 
-
 var tbtreepadding=10;  //树缩进距离
 var tbtreetds=9;//表格的列数
 
-//构造 dataGird 内容
-var tbHtml='';
 <#list vo.searchoptions as option>
 var c_${option.field} = ${option_index + 1};
 </#list>
 
+function tbtreeAjax(url,id){
+	var ohtml='';
+    $.ajax({
+    	url:url,
+        data:{supid:id},
+        cache:false,
+		async:false,
+        success:function(d)
+        {
+        	eval('var d='+d);
+       		$.each(d,function(j,k)
+       		{				
+				if(k.leaf)
+				{
+					ohtml+='<tr data-parent="'+id+'" class="folder" data-id="'+k.id+'">';
+					ohtml+='<td style="padding-left:'+tbtreepadding*k.level+'px"><span class="toggle"></span>'+k.name+'</td>';
+					ohtml+='<td colspan="'+(tbtreetds-1)+'"></td>';
+					ohtml+='<td><a title="新建下级计划" href="javascript:void(0);" onclick="page_insert('+"\'"+k.id+"\'"+')" class="tbtree-add"></a></td>';		
+					ohtml+='<td><input class="checkbox"></td></tr>';	
+				}
+				else
+				{
+					var tdHtml='';
+					$.each(k.cells,function(j,k)
+					{
+						tdHtml+='<td>'+k+'</td>';
+					})
+					ohtml+='<tr data-parent="'+id+'" class="file" data-id="'+k.id+'">';
+					ohtml+='<td style="padding-left:'+tbtreepadding*k.level+'px"><span class="f">'+k.name+'</span></td>';
+					ohtml+=tdHtml;
+					ohtml+='<td><a title="新建下级计划" href="javascript:void(0);" onclick="page_insert('+"\'"+k.id+"\'"+')" class="tbtree-add"></a></td>';					
+					ohtml+='<td><input class="checkbox"></td></tr>';	
+				}
+			})
+        }
+    })
+	return ohtml;
+}
+
+//构造 dataGird 内容
+var tbHtml='';
+
+
 $.each(dataJSON.tbody,function(j,k)
 {
-	tbHtml+='<tr data-parent="R0" class="file" data-id="'+k[c_id].name+'">';
-
+	console.log("islast:" + k[c_islast].name);
 	
+	if(k[c_islast].name==1)
+	{
+		tbHtml+='<tr data-parent="R0" class="folder" data-id="'+k[c_id].name+'">';
+	}
+	else
+	{
+		tbHtml+='<tr data-parent="R0" class="file" data-id="'+k[c_id].name+'">';
+	}
+
 	var title;
 	if((k[c_title].name).length>20)
 	{
@@ -31,8 +79,17 @@ $.each(dataJSON.tbody,function(j,k)
 		title=k[c_title].name;
 	}
 	
-	tbHtml+='<td style="padding-left:'+tbtreepadding*1+'px"><span class="f"></span>';
-	tbHtml+='<a href="javascript:void(0);" onclick="page_readpageframe('+"\'"+k[c_id].name+'\')">'+title+'</a></td>';
+	var thisToggle='';
+	
+	if(k[c_islast].name==1)
+	{	
+		thisToggle='<span class="toggle"></span>';
+	}
+	
+	console.log("thisToggle:" + thisToggle);	
+	
+	tbHtml+='<td style="padding-left:'+tbtreepadding*1+'px">' + thisToggle;
+	tbHtml+='<a href="javascript:void(0);" onclick="page_readpageframe(\'' +k[c_id].name+'\')">'+title+'</a></td>';
 	tbHtml+='<td>' + k[c_planbegintime].name + '</td>';
 	tbHtml+='<td>' + k[c_planendtime].name + '</td>';
 	tbHtml+='<td>' + k[c_headername].name + '</td>';
@@ -42,37 +99,40 @@ $.each(dataJSON.tbody,function(j,k)
 	tbHtml+='<td>' + k[c_state].name + '</td>';		
 	tbHtml+='<td>' + k[c_planmodelid].name + '</td>';
 	
-	tbHtml+='<td><a title="新建下级计划" href="javascript:void(0);" onclick="page_insert('+"\'"+k[c_id].name+"\'"+')" class="tbtree-add"></a></td></tr>';
+	tbHtml+='<td><a title="新建下级计划" href="javascript:void(0);" onclick="page_insert('+"\'"+k[c_id].name+"\'"+')" class="tbtree-add"></a></td>';
+	tbHtml+='<td><input class="checkbox"></td>';
 	tbHtml+='</tr>';
 
 });
 
+
+
+var allChildren=[];
+
+function getallchild(pid)
+{
+	$(".tbtree2 tr").each(function()
+	{
+		var o = $(this);		
+		if (o.attr("data-parent")== pid)
+		{
+			allChildren.push(o);
+			if(o.hasClass('file'))
+			{
+				return;
+			}	
+			getallchild(o.attr("data-id"));
+		}		
+	})
+}
+
+
 $(function()
 {
-	var allChildren=[];
-
-	function getallchild(pid)
-	{		
-		$(".tbtree2 tr").each(function()
-		{
-			var o = $(this);		
-			if(o.attr("data-parent") == pid)
-			{
-				allChildren.push(o);
-				if(o.hasClass('file'))
-				{
-					return;
-				}
-				getallchild(o.attr("data-id"));
-			}
-		})
-	}	
-
 	$('.tbtree2 tbody').empty().append(tbHtml);
 	
 	$('.tbtree2 .toggle').live('click',function(e)
 	{
-		alert("click");
 		var otr=$(this).parents('tr');
 		if($(this).hasClass('expanded'))
 		{
@@ -101,7 +161,8 @@ $(function()
 			}
 			else
 			{
-				otr.after(tbtreeAjax('task_treebrowse.action?id=${arg.supid}',otr.attr('data-id')))
+				console.log("data-id:" + otr.attr('data-id'));
+				otr.after(tbtreeAjax('apply_treebrowse.action',otr.attr('data-id')))
 				otr.attr('data-ajaxed','done');
 				$(this).addClass('expanded');
 			}
@@ -130,7 +191,8 @@ $(function()
 	<th>版本</th>
 	<th>状态</th>
 	<th>模板标识</th>
-	<th></th>
+	<th>&nbsp;</th>
+	<th>&nbsp;</th>	
 </thead>
 <tbody>
 </tbody>

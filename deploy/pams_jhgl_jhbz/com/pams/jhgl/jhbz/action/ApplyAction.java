@@ -1,7 +1,7 @@
 package com.pams.jhgl.jhbz.action;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -64,6 +64,27 @@ public class ApplyAction extends SimpleAction
 
 		return "browsecreate";
 	}
+	
+	
+	// 浏览子任务
+	public String treebrowse() throws Exception
+	{
+		String username = ActionSessionHelper._get_username();
+		String loginname = ActionSessionHelper._get_loginname();
+		String userid = ActionSessionHelper._get_userid();
+		String supid = Struts2Utils.getRequest().getParameter("supid");
+		Map map = new DynamicObject();
+		map = (HashMap) ((HashMap) arg).clone();
+		map.put("loginname", loginname);
+		map.put("swap_coperatorid", userid);
+		map.put("supid", supid);
+
+		List plans = planService.childplan(map);
+
+		data.put("plans", plans);
+
+		return "treebrowse";
+	}	
 	
 	public String input() throws Exception
 	{

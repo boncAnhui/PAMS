@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,22 @@ public class PlanService
 		sql.append(" select * from t_app_planmodel where 1 = 1 and unittype = 'MODEL' ").append("\n");
 
 		return sql.toString();
+	}
+	
+	
+	public List childplan(Map map) throws RuntimeException
+	{
+		String supid = (String) map.get("supid");
+
+		StringBuffer sql = new StringBuffer();
+		sql.append(" from Plan ").append("\n");
+		sql.append(" where 1 = 1 ").append("\n");
+		sql.append(" and supid = " + SQLParser.charValue(supid));
+		sql.append(" order by internal ").append("\n");
+
+		List task = planDao.find(sql.toString());
+
+		return task;
 	}	
 		
 	@Transactional
