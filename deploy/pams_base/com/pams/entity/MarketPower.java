@@ -67,6 +67,10 @@ public class MarketPower extends IdEntity
 	private String creatername; //创建人姓名
 	
 	private Timestamp createtime; //创建人姓名
+	
+	private String planid; // 计划标识
+	
+	private String planname; // 计划名称
 
 	public String getCno() {
 		return cno;
@@ -267,7 +271,25 @@ public class MarketPower extends IdEntity
 	public void setCreatetime(Timestamp createtime) {
 		this.createtime = createtime;
 	}
-	
 
+	public String getPlanid()
+	{
+		return planid;
+	}
+
+	public void setPlanid(String planid)
+	{
+		this.planid = planid;
+	}
+
+	public String getPlanname()
+	{
+		return planname;
+	}
+
+	public void setPlanname(String planname)
+	{
+		this.planname = planname;
+	}
 	
 }
