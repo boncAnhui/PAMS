@@ -2,6 +2,7 @@ package com.pams.ypsj.gxwh.action;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -26,10 +27,12 @@ import com.headray.framework.services.function.StringToolKit;
 import com.pams.entity.FileTemplate;
 import com.pams.entity.KnowledgeClass;
 import com.pams.entity.MarketPower;
+import com.pams.entity.Plan;
 import com.pams.gxgl.wjwh.service.FileAttachmentService;
 import com.pams.gxgl.wjwh.service.FileTemplateService;
 import com.pams.gxgl.zsflwh.service.KnowledgeClassService;
 import com.pams.gxgl.zswh.service.KnowledgeService;
+import com.pams.jhgl.jhbz.service.PlanService;
 import com.pams.ypsj.gxwh.service.MarketPowerService;
 import com.ray.app.dictionary.service.DictionaryService;
 import com.ray.app.query.action.QueryActionHelper;
@@ -88,10 +91,12 @@ public class ApplyAction extends SimpleAction
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private PlanService planService;
+	
 	private final static String tableid = "MarketPower";
 	
 	private final static String flowclass = "YPSJ";
-	
 	
 	@Autowired
 	JdbcDao jdbcDao;
@@ -425,7 +430,7 @@ public class ApplyAction extends SimpleAction
 		String deptid = ActionSessionHelper._get_deptid();
 		String deptname = ActionSessionHelper._get_deptname();
 		String deptinternal = ActionSessionHelper._get_dept_internal();
-
+		
 		String sourcename_texts = dictionaryService.getTexts("app.marketpower.sourcename");
 		String sourcename_values = dictionaryService.getValues("app.marketpower.sourcename");
 
@@ -434,7 +439,25 @@ public class ApplyAction extends SimpleAction
 		
 		// List bflows = workFlowEngine.getDemandManager().getFlowsByClassid(flowclassid);
 		
-		List bflows = workFlowEngine.getDemandManager().getEnableCreateFlow(loginname, "PERSON", flowclass);
+
+		String planid = Struts2Utils.getRequest().getParameter("planid");
+		String flowdefid = Struts2Utils.getRequest().getParameter("flowdefid");
+		
+		Plan plan = planService.get(planid);
+		
+		String planname = plan.getTitle();
+		
+		List bflows = new ArrayList();
+		
+		// 如果由计划启动，已指定流程标识 
+		if(!StringToolKit.isBlank(flowdefid))
+		{
+			bflows.add(workFlowEngine.getDemandManager().getBFlow(flowdefid));
+		}
+		else
+		{
+			bflows = workFlowEngine.getDemandManager().getEnableCreateFlow(loginname, "PERSON", flowclass);
+		}
 		
 		StringBuffer bflow_texts = new StringBuffer();
 		StringBuffer bflow_values = new StringBuffer();
@@ -523,7 +546,10 @@ public class ApplyAction extends SimpleAction
 		data.put("defsharescopeid", defsharescopeid);
 		data.put("defsharescopectype", defsharescopectype);
 		data.put("defsharescopeinternal", defsharescopeinternal);
-
+		
+		data.put("planid", planid);
+		data.put("planname", planname);
+		
 		return "input";
 	}
 

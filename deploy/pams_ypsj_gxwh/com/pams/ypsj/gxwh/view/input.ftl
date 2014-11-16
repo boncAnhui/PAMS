@@ -23,6 +23,13 @@
 		<input type="hidden" id="flowname" name="flowname" value="${data.bflow_texts}">
 	<table class="formGrid">
 	<tr>
+		<td class="r"><label for="planname">计划名称：</label></td>
+		<td colspan="3">
+		<input type="hidden" id="planid" name="planid" value="${data.planid}"/>
+		<input readonly class="text " id="planname" name="planname" style="width:50em" value="${data.planname}"/>
+		</td>
+	</tr>
+	<tr>
 		<td class="r"><label for="deptname">信息共享部门：</label></td>
 		<td>
 		<input type="hidden" id="deptid" name="deptid" value="${data.deptid}"/>
