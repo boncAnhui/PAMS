@@ -7,7 +7,7 @@ var navigationJSON=[ {name:'计划管理',link:'${base}/module/irm/portal/portal
 var dataJSON={thead:<@pub_macros.displayheaderjson vo = vo arg = arg />, tbody:<@pub_macros.displaylistjson apage = apage vo = vo />};
 
 var tbtreepadding=10;  //树缩进距离
-var tbtreetds=9;//表格的列数
+var tbtreetds=11;//表格的列数
 
 <#list vo.searchoptions as option>
 var c_${option.field} = ${option_index + 1};
@@ -22,30 +22,41 @@ function tbtreeAjax(url,id){
 		async:false,
         success:function(d)
         {
+        	console.log(d);
         	eval('var d='+d);
        		$.each(d,function(j,k)
-       		{				
+       		{	
+       			var tdHtml='';		
+
 				if(k.leaf)
 				{
-					ohtml+='<tr data-parent="'+id+'" class="folder" data-id="'+k.id+'">';
-					ohtml+='<td style="padding-left:'+tbtreepadding*k.level+'px"><span class="toggle"></span>'+k.name+'</td>';
-					ohtml+='<td colspan="'+(tbtreetds-1)+'"></td>';
-					ohtml+='<td><a title="新建下级计划" href="javascript:void(0);" onclick="page_insert('+"\'"+k.id+"\'"+')" class="tbtree-add"></a></td>';		
-					ohtml+='<td><input class="checkbox"></td></tr>';	
+					tdHtml+='<tr data-parent="'+id+'" class="file" data-id="'+k.id+'">';
+					tdHtml+='<td style="padding-left:'+tbtreepadding*k.level+'px"><span class="toggle"></span>';
+					tdHtml+='<span class="f"><a href="javascript:void(0);" onclick="page_readpageframe(\'' +k.id+'\')">'+k.name+'</a></span></td>';					
 				}
 				else
 				{
-					var tdHtml='';
-					$.each(k.cells,function(j,k)
-					{
-						tdHtml+='<td>'+k+'</td>';
-					})
-					ohtml+='<tr data-parent="'+id+'" class="file" data-id="'+k.id+'">';
-					ohtml+='<td style="padding-left:'+tbtreepadding*k.level+'px"><span class="f">'+k.name+'</span></td>';
-					ohtml+=tdHtml;
-					ohtml+='<td><a title="新建下级计划" href="javascript:void(0);" onclick="page_insert('+"\'"+k.id+"\'"+')" class="tbtree-add"></a></td>';					
-					ohtml+='<td><input class="checkbox"></td></tr>';	
-				}
+					tdHtml+='<tr data-parent="'+id+'" class="file" data-id="'+k.id+'">';
+					tdHtml+='<td style="padding-left:'+tbtreepadding*k.level+'px">';
+					tdHtml+='<span class="f"><a href="javascript:void(0);" onclick="page_readpageframe(\'' +k.id+'\')">'+k.name+'</a></span></td>';
+				}					
+
+				tdHtml+='<td>' + k.cells.planbegintime + '</td>';
+				tdHtml+='<td>' + k.cells.planendtime + '</td>';
+				tdHtml+='<td>' + k.cells.planperiodnum + '</td>';
+				tdHtml+='<td>' + k.cells.periodnum + '</td>';
+				tdHtml+='<td>' + k.cells.headername + '</td>';
+				tdHtml+='<td>' + k.cells.headerdeptname + '</td>';
+				tdHtml+='<td>' + k.cells.creatername + '</td>';
+				tdHtml+='<td>' + k.cells.version + '</td>';	
+				tdHtml+='<td>' + k.cells.state + '</td>';		
+				tdHtml+='<td>' + k.cells.planmodelid + '</td>';				
+				
+				tdHtml+='<td><a title="新建下级计划" href="javascript:void(0);" onclick="page_insert(\''+k.id+'\')" class="tbtree-add"></a></td>';	
+				tdHtml+='<td><a title="启动流程" href="javascript:void(0);" onclick="page_startflow(\''+k.id+'\',\''+k.cells.flowdefid+'\')" class="tbtree-add"></a></td>';								
+				tdHtml+='<td><input class="checkbox"></td></tr>';
+				
+				ohtml+=tdHtml;	
 			})
         }
     })
@@ -92,14 +103,17 @@ $.each(dataJSON.tbody,function(j,k)
 	tbHtml+='<a href="javascript:void(0);" onclick="page_readpageframe(\'' +k[c_id].name+'\')">'+title+'</a></td>';
 	tbHtml+='<td>' + k[c_planbegintime].name + '</td>';
 	tbHtml+='<td>' + k[c_planendtime].name + '</td>';
+	tbHtml+='<td>' + k[c_planperiodnum].name + '</td>';
+	tbHtml+='<td>' + k[c_periodnum].name + '</td>';
 	tbHtml+='<td>' + k[c_headername].name + '</td>';
 	tbHtml+='<td>' + k[c_headerdeptname].name + '</td>';
 	tbHtml+='<td>' + k[c_creatername].name + '</td>';
 	tbHtml+='<td>' + k[c_version].name + '</td>';	
 	tbHtml+='<td>' + k[c_state].name + '</td>';		
 	tbHtml+='<td>' + k[c_planmodelid].name + '</td>';
-	
-	tbHtml+='<td><a title="新建下级计划" href="javascript:void(0);" onclick="page_insert('+"\'"+k[c_id].name+"\'"+')" class="tbtree-add"></a></td>';
+
+	tbHtml+='<td><a title="新建下级计划" href="javascript:void(0);" onclick="page_insert(\''+k[c_id].name+'\')" class="tbtree-add"></a></td>';	
+	tbHtml+='<td><a title="启动流程" href="javascript:void(0);" onclick="page_startflow(\''+k[c_id].name+'\',\''+k[c_flowdefid].name+'\')" class="tbtree-add"></a></td>';
 	tbHtml+='<td><input class="checkbox"></td>';
 	tbHtml+='</tr>';
 
@@ -185,6 +199,8 @@ $(function()
 	<th>计划名称</th>
 	<th>计划开始时间</th>
 	<th>计划结束时间</th>
+	<th>计划时长</th>
+	<th>标准时长</th>
 	<th>负责人</th>
 	<th>负责部门</th>
 	<th>编制人</th>
@@ -192,7 +208,8 @@ $(function()
 	<th>状态</th>
 	<th>模板标识</th>
 	<th>&nbsp;</th>
-	<th>&nbsp;</th>	
+	<th>&nbsp;</th>
+	<th>&nbsp;</th>		
 </thead>
 <tbody>
 </tbody>
@@ -262,6 +279,20 @@ function page_insert(supid)
 	{
 		alert("您没有任务下达权限，如有需要请与系统管理员联系！");
 	}
+}
+
+function page_readpageframe(id)
+{
+	url = '${base}/module/pams/jhgl/jhbz/apply_readpageframe.action?id='+id;
+	console.log("url:" + url);
+	openwin(url,'readpageframe',pub_width_large,pub_height_large);		
+}
+
+function page_startflow(id, flowdefid)
+{
+	url = '${base}/module/pams/jhgl/jhbz/apply_startflow.action?id='+id+'&flowdefid='+flowdefid;
+	console.log("url:" + url);
+	openwin(url,'startflow',pub_width_large,pub_height_large);	
 }
 
 </script>

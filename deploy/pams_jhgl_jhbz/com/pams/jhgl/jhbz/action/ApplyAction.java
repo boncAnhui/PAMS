@@ -156,6 +156,8 @@ public class ApplyAction extends SimpleAction
 		flowobj.setAttr(GlobalConstants.swap_tableid, "Plan");
 		flowobj.setAttr(GlobalConstants.swap_dataid, id);
 		boolean isedit = planService.isedit(flowobj); // 是否修改页面
+		
+		arg.put("id", id);
 
 		if (isedit)
 		{
@@ -252,6 +254,17 @@ public class ApplyAction extends SimpleAction
 		data.put("page", page);
 
 		return "selectmodel";
+	}
+	
+	public String startflow() throws Exception
+	{
+		String id = Struts2Utils.getRequest().getParameter("id"); //计划标识
+		String flowdefid = Struts2Utils.getRequest().getParameter("flowdefid"); // 流程定义标识
+		
+		arg.put("id", id);
+		arg.put("flowdefid", flowdefid);
+		
+		return "startflow";
 	}
 	
 	public String get_searchname()

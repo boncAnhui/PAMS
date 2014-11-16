@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.headray.framework.services.db.SQLParser;
 import com.headray.framework.services.db.dybeans.DynamicObject;
+import com.headray.framework.services.function.StringToolKit;
 import com.pams.dao.PlanDao;
 import com.pams.dao.PlanModelDao;
 import com.pams.entity.Plan;
+import com.pams.entity.PlanModel;
 import com.ray.app.query.generator.GeneratorService;
 
 @Component
@@ -31,9 +34,9 @@ public class PlanService
 
 	@Autowired
 	private PlanModelDao planmodelDao;
-	
+
 	@Autowired
-	private PlanDao planDao;	
+	private PlanDao planDao;
 
 	// 查询我编制的计划
 	public String get_browsecreate_sql(Map map) throws Exception
@@ -47,7 +50,7 @@ public class PlanService
 
 		return sql.toString();
 	}
-	
+
 	// 查询计划模板
 	public String get_selectmodel_sql(Map map) throws Exception
 	{
@@ -57,8 +60,7 @@ public class PlanService
 
 		return sql.toString();
 	}
-	
-	
+
 	public List childplan(Map map) throws RuntimeException
 	{
 		String supid = (String) map.get("supid");
@@ -72,33 +74,53 @@ public class PlanService
 		List task = planDao.find(sql.toString());
 
 		return task;
-	}	
-		
+	}
+
 	@Transactional
 	public String create(DynamicObject obj, DynamicObject swapFlow) throws Exception
 	{
-		
+		Plan plan = createplan(obj, swapFlow);
+		String planmodelid = plan.getPlanmodelid();
+		String id = plan.getId();
+
+		// 根据计划模板生成相关子计划
+		if (!StringToolKit.isBlank(planmodelid))
+		{
+			DynamicObject aobj = new DynamicObject();
+			aobj.setAttr("planmodelid", planmodelid);
+			aobj.setAttr("supid", id);
+			createsubplan(aobj, swapFlow);
+		}
+
+		return id;
+	}
+
+	@Transactional
+	public Plan createplan(DynamicObject obj, DynamicObject swapFlow) throws Exception
+	{
 		String supid = obj.getFormatAttr("supid"); // 上级计划标识
 		String planmodelid = obj.getFormatAttr("planmodelid");
 		String title = obj.getFormatAttr("title");
 		String memo = obj.getFormatAttr("memo");
 		String creater = obj.getFormatAttr("creater");
 		String creatername = obj.getFormatAttr("creatername");
-		
+
 		String tlevel = "1";
 		String islast = "0";
 
-		String internal = gen_internal(supid);	
+		String internal = gen_internal(supid);
+
 		Plan supplan = new Plan();
+		PlanModel planmodel = planmodelDao.get(planmodelid);
+
 		if (!"R0".equals(supid))
 		{
-	
 			supplan = planDao.get(supid);
-			supplan.setIslast("1"); //上级计划不再为叶子节点
-			planDao.save(supplan);			
+			supplan.setIslast("1"); // 上级计划不再为叶子节点
+			planDao.save(supplan);
 			tlevel = String.valueOf(Integer.parseInt(supplan.getTlevel()) + 1);
 		}
-		
+
 		// 创建业务数据
 		Plan plan = new Plan();
 		String cno = gen_cno();
@@ -113,47 +135,84 @@ public class PlanService
 		plan.setCreater(creater);
 		plan.setCreatername(creatername);
 		plan.setCreatetime(nowtime);
+
+		plan.setPeriodnum(planmodel.getPeriodnum());
+		plan.setPeriodunit(planmodel.getPeriodunit());
+		plan.setPlanperiodnum(planmodel.getPeriodnum());
+		plan.setPlanperiodunit(planmodel.getPeriodunit());
+		plan.setFlowdefid(planmodel.getFlowdefid());
+		plan.setActdefid(planmodel.getActdefid());
+
+		Calendar cal = new GregorianCalendar();
+
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+		Date pdate = sf.parse(sf.format(cal.getTime()));
+		Timestamp planbegintime = new Timestamp(pdate.getTime() + (24*60*60*1000));
+		Timestamp planendtime = new Timestamp(planbegintime.getTime() + (24*60*60*1000));
 		
+		plan.setPlanbegintime(planbegintime);
+		plan.setPlanendtime(planendtime);
+
 		planDao.save(plan);
-		
-		String id = plan.getId();
-		return id;
+
+		return plan;
 	}
-	
+
+	@Transactional
+	public void createsubplan(DynamicObject obj, DynamicObject swapFlow) throws Exception
+	{
+		String planmodelid = obj.getFormatAttr("planmodelid");
+		String supid = obj.getFormatAttr("supid");
+
+		List planmodels = planmodelDao.find(" from PlanModel where 1 = 1 and supmodelid = " + SQLParser.charValue(planmodelid));
+		// 根据模板生成对应计划
+		for (int i = 0; i < planmodels.size(); i++)
+		{
+			PlanModel planmodel = (PlanModel) planmodels.get(i);
+			DynamicObject aobj = new DynamicObject();
+			aobj.setAttr("supid", supid);
+			aobj.setAttr("planmodelid", planmodel.getId());
+			aobj.setAttr("title", planmodel.getCname());
+			aobj.setAttr("memo", "");
+
+			createplan(aobj, swapFlow);
+		}
+	}
+
 	@Transactional
 	public Plan locate(String id) throws Exception
 	{
 		return planDao.get(id);
-	}	
-	
+	}
+
 	// 是否可读
 	public boolean isread(DynamicObject map) throws Exception
 	{
 		boolean sign = true;
 		return sign;
 	}
-	
+
 	// 是否可写（修改）
 	public boolean isedit(DynamicObject map) throws Exception
 	{
 		boolean sign = true;
 		return sign;
 	}
-	
+
 	// 是否可保存（修改）
 	public boolean issave(DynamicObject map) throws Exception
 	{
 		boolean sign = true;
 		return sign;
 	}
-	
+
 	// 是否可删除
 	public boolean isdelete(DynamicObject map) throws Exception
 	{
 		boolean sign = true;
 		return sign;
-	}		
-	
+	}
+
 	@Transactional(isolation = Isolation.SERIALIZABLE)
 	public String gen_cno()
 	{
@@ -171,7 +230,7 @@ public class PlanService
 
 		return generatorService.getNextValue(map);
 	}
-	
+
 	public String gen_internal(String supid) throws Exception
 	{
 		// 查询上级内部编码
@@ -199,7 +258,11 @@ public class PlanService
 		map.put("express", express);
 
 		return generatorService.getNextValue(map);
-	}	
-
+	}
+	
+	public Plan get(String id)
+	{
+		return planDao.get(id);
+	}
 
 }

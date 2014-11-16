@@ -20,7 +20,10 @@
 			<result name="locateframe" type="freemarker">/com/pams/jhgl/jhbz/view/locateframe.ftl</result>
 			<result name="locate" type="freemarker">/com/pams/jhgl/jhbz/view/locate.ftl</result>
 			
+			<result name="startflow" type="redirect">${base}/module/pams/ypsj/gxwh/apply_input.action?planid=${arg.id}&amp;flowdefid=${arg.flowdefid}</result>
+						
 			<result name="selectmodel" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			
 		</action>
 	</package>
 </struts>
