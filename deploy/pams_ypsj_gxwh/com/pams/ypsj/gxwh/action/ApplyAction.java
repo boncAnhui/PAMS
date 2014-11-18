@@ -588,6 +588,9 @@ public class ApplyAction extends SimpleAction
 		String marketpowerscopeinternal = Struts2Utils.getRequest().getParameter("marketpowerscopeinternal");
 
 		String memo = Struts2Utils.getRequest().getParameter("memo");
+		
+		String planid = Struts2Utils.getRequest().getParameter("planid");
+		String planname = Struts2Utils.getRequest().getParameter("planname");
 
 		MarketPower marketpower = new MarketPower();
 		Timestamp nowtime = new Timestamp(System.currentTimeMillis());
@@ -611,6 +614,8 @@ public class ApplyAction extends SimpleAction
 		marketpower.setInfosharescopectype(marketpowerscopectype);
 		marketpower.setInfosharescopeinternal(marketpowerscopeinternal);
 		marketpower.setMemo(memo);
+		marketpower.setPlanid(planid);
+		marketpower.setPlanname(planname);
 
 		marketpower.setCreater(loginname);
 		marketpower.setCreatername(username);

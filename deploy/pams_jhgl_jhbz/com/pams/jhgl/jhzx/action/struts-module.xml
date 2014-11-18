@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="com.pams.jhgl.jhzx.action" extends="default" namespace="/module/pams/jhgl/jhzx">
+		<action name="apply_*" class="com.pams.jhgl.jhzx.action.ApplyAction" method="{1}">
+			<result name="mainframe" type="freemarker">/com/pams/jhgl/jhzx/view/mainframe.ftl</result>
+			<result name="browsecreate" type="freemarker">/com/ray/app/query/view/page.module.ftl</result>
+			<result name="browsehead" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			<result name="treebrowse" type="freemarker">/com/pams/jhgl/jhzx/view/treebrowse.ftl</result>
+						
+			<result name="readpageframe" type="freemarker">/com/pams/jhgl/jhzx/view/readpageframe.ftl</result>
+			<result name="readpage" type="freemarker">/com/pams/jhgl/jhzx/view/readpage.ftl</result>
+			<result name="tolocateframe" type="redirect">apply_locateframe.action?id=${arg.id}</result>
+			<result name="locateframe" type="freemarker">/com/pams/jhgl/jhzx/view/locateframe.ftl</result>
+			<result name="locate" type="freemarker">/com/pams/jhgl/jhzx/view/locate.ftl</result>
+		</action>
+	</package>
+</struts>

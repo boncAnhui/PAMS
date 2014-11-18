@@ -22,6 +22,7 @@ import com.pams.dao.PlanModelDao;
 import com.pams.entity.Plan;
 import com.pams.entity.PlanModel;
 import com.ray.app.query.generator.GeneratorService;
+import com.ray.app.workflow.spec.GlobalConstants;
 
 @Component
 @Transactional
@@ -41,15 +42,38 @@ public class PlanService
 	// 查询我编制的计划
 	public String get_browsecreate_sql(Map map) throws Exception
 	{
+		String userid = (String)map.get(GlobalConstants.swap_coperatorid);
+		String loginname = (String)map.get(GlobalConstants.swap_coperatorloginname);
+		String username = (String)map.get(GlobalConstants.swap_coperatorcname);		
+		
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append(" select * from t_app_plan ").append("\n");
+		sql.append("  where 1 = 1 ").append("\n");
+		sql.append("    and supid = 'R0' ").append("\n");
+		sql.append("    and creater = " + SQLParser.charValue(loginname));
+		sql.append("  order by createtime desc ").append("\n");
+
+		return sql.toString();
+	}
+	
+	// 查询我负责的计划
+	public String get_browsehead_sql(Map map) throws Exception
+	{
+		String userid = (String)map.get(GlobalConstants.swap_coperatorid);
+		String loginname = (String)map.get(GlobalConstants.swap_coperatorloginname);
+		String username = (String)map.get(GlobalConstants.swap_coperatorcname);		
+		
 		StringBuffer sql = new StringBuffer();
 
 		sql.append(" select * from t_app_plan ").append("\n");
 		sql.append("  where 1 = 1 ").append("\n");
 		sql.append("    and supid = 'R0' ").append("\n");
+		sql.append("    and header = " + SQLParser.charValue(loginname));
 		sql.append("  order by createtime desc ").append("\n");
 
 		return sql.toString();
-	}
+	}	
 
 	// 查询计划模板
 	public String get_selectmodel_sql(Map map) throws Exception

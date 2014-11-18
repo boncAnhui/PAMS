@@ -1,0 +1,15 @@
+insert into t_app_planmodel(id, cname, sno, flowdefid, actdefid, periodnum, periodunit, unittype, version, state, internal, supmodelid)
+values('YPSJ', '营配贯通工作计划', 'YPSJ', 'YPSJ_JNRY', NULL, 6, 'D', 'MODEL', 1, '生效', '00000001','R0');
+
+insert into t_app_planmodel(id, cname, sno, flowdefid, actdefid, periodnum, periodunit, unittype, version, state, internal, supmodelid)
+values('YPSJ_JNRY_QC', '起草', 'YPSJ_JNRY_QC', 'YPSJ_JNRY', 'YPSJ_JNRY_QC', 1, 'D', 'PACKAGE', 1, '生效', '000000010001','YPSJ');
+insert into t_app_planmodel(id, cname, sno, flowdefid, actdefid, periodnum, periodunit, unittype, version, state, internal, supmodelid)
+values('YPSJ_JNRY_BZZ', '班组长审核', 'YPSJ_JNRY_BZZ', 'YPSJ_JNRY', 'YPSJ_JNRY_BZZ', 1, 'D', 'PACKAGE', 1, '生效', '000000010002','YPSJ');
+insert into t_app_planmodel(id, cname, sno, flowdefid, actdefid, periodnum, periodunit, unittype, version, state, internal, supmodelid)
+values('YPSJ_JNRY_BMJCSH', '部门交叉审核', 'YPSJ_JNRY_BMJCSH', 'YPSJ_JNRY', 'YPSJ_JNRY_BMJCSH', 1, 'D', 'PACKAGE', 1, '生效', '000000010003','YPSJ');
+insert into t_app_planmodel(id, cname, sno, flowdefid, actdefid, periodnum, periodunit, unittype, version, state, internal, supmodelid)
+values('YPSJ_JNRY_BMJCSHHZ', '部门交叉审核汇总', 'YPSJ_JNRY_BMJCSHHZ', 'YPSJ_JNRY', 'YPSJ_JNRY_BMJCSH', 1, 'D', 'PACKAGE', 1, '生效', '000000010004','YPSJ');
+insert into t_app_planmodel(id, cname, sno, flowdefid, actdefid, periodnum, periodunit, unittype, version, state, internal, supmodelid)
+values('YPSJ_JNRY_ZZSH', '部门专责审核', 'YPSJ_JNRY_ZZSH', 'YPSJ_JNRY', 'YPSJ_JNRY_ZZSH', 1, 'D', 'PACKAGE', 1, '生效', '000000010005','YPSJ');
+insert into t_app_planmodel(id, cname, sno, flowdefid, actdefid, periodnum, periodunit, unittype, version, state, internal, supmodelid)
+values('YPSJ_JNRY_QXZXSH', '抢修中心分管审核', 'YPSJ_JNRY_QXZXSH', 'YPSJ_JNRY', 'YPSJ_JNRY_QXZXSH', 1, 'D', 'PACKAGE', 1, '生效', '000000010006','YPSJ');

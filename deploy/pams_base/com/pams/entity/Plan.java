@@ -66,6 +66,10 @@ public class Plan extends IdEntity
 	
 	private Timestamp realendtime; //
 	
+	private int realperiodnum; // 实际工期时长
+
+	private String realperiodunit; // 实际工期时长单元	
+	
 	private String realheadername; //
 	
 	private String realheader; //
@@ -89,7 +93,7 @@ public class Plan extends IdEntity
 	private String islast;// 是否叶子节点   1-不是  0-是	
 	
 	private String internal;//内部码  用于记录树形关系及计算层级	
-	
+
 	public String getCno()
 	{
 		return cno;
@@ -328,6 +332,26 @@ public class Plan extends IdEntity
 	public void setRealendtime(Timestamp realendtime)
 	{
 		this.realendtime = realendtime;
+	}
+
+	public int getRealperiodnum()
+	{
+		return realperiodnum;
+	}
+
+	public void setRealperiodnum(int realperiodnum)
+	{
+		this.realperiodnum = realperiodnum;
+	}
+
+	public String getRealperiodunit()
+	{
+		return realperiodunit;
+	}
+
+	public void setRealperiodunit(String realperiodunit)
+	{
+		this.realperiodunit = realperiodunit;
 	}
 
 	public String getRealheadername()
