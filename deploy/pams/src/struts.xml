@@ -154,7 +154,8 @@
 	<!-- 计划管理 -->
 	<include file="com/pams/jhgl/jhmb/action/struts-module.xml"></include>
 	<include file="com/pams/jhgl/jhbz/action/struts-module.xml"></include>
-	 
+	<include file="com/pams/jhgl/jhzx/action/struts-module.xml"></include>
+		 
 	<!-- 户表改造 -->
 	<include file="com/pams/hbgl/main/action/struts-module.xml"></include>
 	<include file="com/pams/hbgl/xxsj/action/struts-module.xml"></include>
