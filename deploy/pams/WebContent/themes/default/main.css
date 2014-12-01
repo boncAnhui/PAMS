@@ -555,8 +555,9 @@ table.tbtree2 tbody tr.selected td {background-color:#5589AA;color:#fff;}
 .tbtree2 .expanded {background-image: url(images/folder-open.png);_background-image: url(images/folder_open.gif)}
 .tbtree2 .f {display:inline-block;*display:inline;*zoom:1;background-repeat:no-repeat;padding-left:24px;}
 
-a.tbtree-add {display:inline-block;*display:inline;*zoom:1;background:url(images/btn-add2.png) 0 0 no-repeat;width:16px;height:16px;vertical-align:middle;background:url(images/btn-add2.gif) 0 0 no-repeat;
-}
+a.tbtree-add {display:inline-block;*display:inline;*zoom:1;background:url(images/btn-add2.png) 0 0 no-repeat;width:16px;height:16px;vertical-align:middle;background:url(images/btn-add2.gif) 0 0 no-repeat;}
+a.tbtree-play {display:inline-block;*display:inline;*zoom:1;background:url(images/btn-play2.png) 0 0 no-repeat;width:16px;height:16px;vertical-align:middle;background:url(images/btn-play2.gif) 0 0 no-repeat;}
+
 
 table.formGrid {width:auto;border-spacing:0;min-width:75%;margin-bottom:8px;}
 table.formGrid td {padding:0 3px;text-align:left;white-space:nowrap;line-height:30px;height:30px;border:0;}
