@@ -11,6 +11,7 @@ import com.blue.ssh.core.action.ActionSessionHelper;
 import com.blue.ssh.core.action.SimpleAction;
 import com.blue.ssh.core.orm.Page;
 import com.blue.ssh.core.utils.web.struts2.Struts2Utils;
+import com.headray.framework.common.generator.TimeGenerator;
 import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.pams.entity.Plan;
 import com.pams.jhgl.jhbz.service.PlanService;
@@ -21,6 +22,7 @@ import com.ray.app.query.service.QueryService;
 import com.ray.app.workflow.enginee.WorkFlowEngine;
 import com.ray.app.workflow.spec.GlobalConstants;
 import com.ray.app.workflow.ui.action.FormHelper;
+import com.ray.xj.sgcc.irm.system.organ.user.service.UserService;
 
 public class ApplyAction extends SimpleAction
 {
@@ -33,10 +35,13 @@ public class ApplyAction extends SimpleAction
 	private WorkFlowEngine workFlowEngine;
 	
 	@Autowired
+	private UserService userService;
+	
+	@Autowired
 	private PlanModelService planmodelService;
 	
 	@Autowired
-	private PlanService planService;	
+	private PlanService planService;
 	
 	public String mainframe() throws Exception
 	{
@@ -65,7 +70,6 @@ public class ApplyAction extends SimpleAction
 		return "browsecreate";
 	}
 	
-	
 	// 浏览子任务
 	public String treebrowse() throws Exception
 	{
@@ -88,7 +92,25 @@ public class ApplyAction extends SimpleAction
 	
 	public String input() throws Exception
 	{
+		String loginname = ActionSessionHelper._get_loginname();
+		String username = ActionSessionHelper._get_username();
+		String userid = ActionSessionHelper._get_userid();
+		String deptid = ActionSessionHelper._get_deptid();
+		String deptname = ActionSessionHelper._get_deptname();
+		String deptinternal = ActionSessionHelper._get_dept_internal();
+		
+		// 岗位信息
+		String position = userService.getUserByLoginName(loginname).getPosition();
+		
 		String supid = Struts2Utils.getRequest().getParameter("supid");
+		String createtime = TimeGenerator.getDateStr();
+		
+		data.put("loginname", loginname);
+		data.put("username", username);
+		data.put("deptid", deptid);
+		data.put("deptname", deptname);
+		data.put("createtime", createtime);
+
 		arg.put("supid", supid);
 		return "input";
 	}
@@ -192,14 +214,24 @@ public class ApplyAction extends SimpleAction
 	public String locate() throws Exception
 	{
 		String id = Struts2Utils.getRequest().getParameter("id");
-
 		// 查询业务数据
 		Plan plan = planService.locate(id);
 
+		// 权限设置
+		set_author();
+		
 		data.put("plan", plan);
 		arg.put("id", id);
 
 		return "locate";
+	}
+	
+	// 查看修改
+	public String update() throws Exception
+	{
+		String id = Struts2Utils.getRequest().getParameter("id");
+		arg.put("id", id);		
+		return "update";
 	}
 	
 	public void set_author() throws Exception
@@ -295,6 +327,36 @@ public class ApplyAction extends SimpleAction
 	public void setWorkFlowEngine(WorkFlowEngine workFlowEngine)
 	{
 		this.workFlowEngine = workFlowEngine;
+	}
+
+	public UserService getUserService()
+	{
+		return userService;
+	}
+
+	public void setUserService(UserService userService)
+	{
+		this.userService = userService;
+	}
+
+	public PlanModelService getPlanmodelService()
+	{
+		return planmodelService;
+	}
+
+	public void setPlanmodelService(PlanModelService planmodelService)
+	{
+		this.planmodelService = planmodelService;
+	}
+
+	public PlanService getPlanService()
+	{
+		return planService;
+	}
+
+	public void setPlanService(PlanService planService)
+	{
+		this.planService = planService;
 	}
 	
 	

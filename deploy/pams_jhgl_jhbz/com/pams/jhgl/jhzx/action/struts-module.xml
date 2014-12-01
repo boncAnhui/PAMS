@@ -7,8 +7,7 @@
 	<package name="com.pams.jhgl.jhzx.action" extends="default" namespace="/module/pams/jhgl/jhzx">
 		<action name="apply_*" class="com.pams.jhgl.jhzx.action.ApplyAction" method="{1}">
 			<result name="mainframe" type="freemarker">/com/pams/jhgl/jhzx/view/mainframe.ftl</result>
-			<result name="browsecreate" type="freemarker">/com/ray/app/query/view/page.module.ftl</result>
-			<result name="browsehead" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			<result name="browsehead" type="freemarker">/com/ray/app/query/view/page.module.ftl</result>
 			<result name="treebrowse" type="freemarker">/com/pams/jhgl/jhzx/view/treebrowse.ftl</result>
 						
 			<result name="readpageframe" type="freemarker">/com/pams/jhgl/jhzx/view/readpageframe.ftl</result>

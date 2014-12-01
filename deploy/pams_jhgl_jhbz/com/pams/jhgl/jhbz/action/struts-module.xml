@@ -8,7 +8,7 @@
 		<action name="apply_*" class="com.pams.jhgl.jhbz.action.ApplyAction" method="{1}">
 			<result name="mainframe" type="freemarker">/com/pams/jhgl/jhbz/view/mainframe.ftl</result>
 			<result name="browsecreate" type="freemarker">/com/ray/app/query/view/page.module.ftl</result>
-			<result name="browsehead" type="freemarker">/com/ray/app/query/view/page.ftl</result>
+			<result name="browsehead" type="freemarker">/com/ray/app/query/view/page.module.ftl</result>
 			<result name="treebrowse" type="freemarker">/com/pams/jhgl/jhbz/view/treebrowse.ftl</result>
 						
 			<result name="input" type="freemarker">/com/pams/jhgl/jhbz/view/input.ftl</result>
@@ -19,6 +19,7 @@
 			<result name="tolocateframe" type="redirect">apply_locateframe.action?id=${arg.id}</result>
 			<result name="locateframe" type="freemarker">/com/pams/jhgl/jhbz/view/locateframe.ftl</result>
 			<result name="locate" type="freemarker">/com/pams/jhgl/jhbz/view/locate.ftl</result>
+			<result name="update" type="redirect">apply_locateframe.action?id=${arg.id}</result>			
 			
 			<result name="startflow" type="redirect">${base}/module/pams/ypsj/gxwh/apply_input.action?planid=${arg.id}&amp;flowdefid=${arg.flowdefid}</result>
 			<result name="selectmodel" type="freemarker">/com/ray/app/query/view/page.ftl</result>

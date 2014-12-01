@@ -50,7 +50,7 @@ public class ApplyAction extends SimpleAction
 
 		arg.putAll(helper.mockArg(_searchname, queryService));
 
-		Map amap = new HashMap();
+		Map amap = new HashMap<String, Comparable>();
 		amap = (HashMap) ((HashMap) arg).clone();
 
 		Search search = (Search) BeanUtils.cloneBean(queryService.findUniqueByOfSearch("searchname", _searchname));
@@ -192,10 +192,12 @@ public class ApplyAction extends SimpleAction
 	public String locate() throws Exception
 	{
 		String id = Struts2Utils.getRequest().getParameter("id");
-
 		// 查询业务数据
 		Plan plan = planService.locate(id);
 
+		// 权限设置
+		set_author();
+		
 		data.put("plan", plan);
 		arg.put("id", id);
 

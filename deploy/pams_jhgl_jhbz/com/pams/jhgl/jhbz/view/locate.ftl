@@ -63,52 +63,78 @@ table.dataGrid{border-collapse:collapse;}
 
 <input type="hidden" id="actcname" name="actcname" value="${arg.actcname}">
 
-<table class="formGrid">
+<input type="hidden" id="supid" name="supid" value="${data.plan.supid}">
+	<table class="formGrid">
 	<tr>
-		<td class="r"><label for="deptname">信息共享部门：</label></td>
-		<td>
-		<input type="hidden" id="deptid" name="deptid" value="${data.plan.deptid}"/>
-		<input readonly class="text required" id="deptname" name="deptname" style="width:20em" value="${data.plan.deptname}"/>
-		</td>
-		<td class="r"><label for="positionname">岗位：</label></td>
-		<td>
-		<input type="text" readonly id="positionname" name="positionname" value="${data.plan.positionname}" style="width:20em">
-		</td>
-	</tr>
-	<tr>
-		<td class="r"><label for="creatername">共享人：</label></td>
-		<td>
-		<input type="text" readonly id="creatername" name="creatername" value="${data.plan.creatername}" style="width:20em">
-		</td>
-		<td class="r"><label for="sourcename">信息来源：</label></td>
-		<td>
+		<td class="r"><label for="planmodelname">计划模板：</label></td>
+		<td colspan="3">
+		<input type="hidden" id="planmodelid" name="planmodelid" value="${data.plan.planmodelid}">
+		<input type="text" readonly id="planmodelname" name="planmodelname" value="${data.plan.planmodelname}" style="width:40em">
 		</td>
 	</tr>
 	<tr>
 		<td class="r"><label for="title">计划名称：</label></td>
-		<td colspan="3"><input class="text required" id="title" name="title" style="width:50em" value="${data.plan.title}"/></td>
-	</tr>	
+		<td colspan="3"><input class="text required" id="title" name="title" style="width:45em" value="${data.plan.title}"/></td>
+	</tr>
+	<tr>
+		<td class="r"><label for="planbegintime">计划开始日期：</label></td>
+		<td>
+		<input class="date required" id="planbegintime" name="planbegintime" style="width:10em" value="${data.plan.planbegintime?string('yyyy-MM-dd')}"/>
+		</td>
+		<td class="r"><label for="planendtime">计划结束日期：</label></td>
+		<td>
+		<input class="date required" id="planendtime" name="planendtime" style="width:10em" value="${data.plan.planendtime?string('yyyy-MM-dd')}"/>
+		<input readonly class="text" id="planperiodnum" name="planperiodnum" style="width:8em" value="${data.plan.planperiodnum}"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="r"><label for="headername">负责人：</label></td>
+		<td>
+		<input type="hidden" id="header" name="header" value="">
+		<input class="text" id="hedername" name="headername" style="width:20em" value="${data.plan.headername}"/>
+		</td>
+		<td class="r"><label for="headerdeptname">负责部门：</label></td>
+		<td>
+		<input type="hidden" id="headerdept" name="headerdept" value="${data.plan.headerdept}">
+		<input class="text" id="headerdeptname" name="headerdeptname" style="width:20em" value="${data.plan.headerdeptname}"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="r"><label for="createrdeptname">编制部门：</label></td>
+		<td>
+		<input type="hidden" id="createrdept" name="createrdept" value="${data.plan.createrdept}"/>
+		<input readonly class="text" id="createrdeptname" name="createrdeptname" style="width:20em" value="${data.plan.createdeptname}"/>
+		</td>
+		<td class="r"><label for="positionname">岗位：</label></td>
+		<td>
+		<span class="selectSpan">
+		<input type="text" readonly id="positionname" name="positionname" value="" style="width:20em">
+		</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="r"><label for="creatername">编制人：</label></td>
+		<td>
+		<input type="hidden" id="creater" name="creater" value="${data.plan.creater}"/>		
+		<input readonly type="text" id="creatername" name="creatername" value="${data.plan.creatername}" style="width:20em">
+		</td>
+		<td class="r"><label for="createtime">编制日期：</label></td>
+		<td>
+		<input readonly class="text required" id="createtime" name="createtime" style="width:10em" value="${data.plan.createtime?string("yyyy-MM-dd")}"/>
+		</td>
+	</tr>
+
 	<tr>
 		<td class="r"><label for="memo">备注：</label></td>
-		<td colspan="3"><textarea class="text" id="memo" name="memo" maxlength="500">${data.plan.memo}</textarea></td>
-	</tr>
-</table>
+		<td colspan="3"><textarea id="memo" name="memo" maxlength="500"></textarea></td>
+	</tr>				
+	</table>
 </form>
 </div>
 </div>
 
 <script type="text/javascript">
 $("#bt_save").click(function() {page_save()});
-$("#bt_publish").click(function() {page_publish()});
-$("#bt_opinion").click(function() {page_opinion()});
-
-$("#bt_forward").click(function() {page_forward()});
-$("#bt_backward").click(function() {page_backward()});
-
-$("#bt_cclassname").click(function() {page_cclassname()});
-$("#bt_scope").click(function() {page_scope()});
-$("#bt_scope_clear").click(function() {page_scope_clear()});
-$("#bt_scope_reset").click(function() {page_scope_reset()});
 
 function page_save()
 {

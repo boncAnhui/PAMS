@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.headray.framework.services.db.SQLParser;
 import com.headray.framework.services.db.dybeans.DynamicObject;
 import com.headray.framework.services.function.StringToolKit;
+import com.headray.framework.services.function.Types;
 import com.pams.dao.PlanDao;
 import com.pams.dao.PlanModelDao;
 import com.pams.entity.Plan;
@@ -51,7 +52,7 @@ public class PlanService
 		sql.append(" select * from t_app_plan ").append("\n");
 		sql.append("  where 1 = 1 ").append("\n");
 		sql.append("    and supid = 'R0' ").append("\n");
-		sql.append("    and creater = " + SQLParser.charValue(loginname));
+		// sql.append("    and creater = " + SQLParser.charValue(loginname));
 		sql.append("  order by createtime desc ").append("\n");
 
 		return sql.toString();
@@ -69,7 +70,7 @@ public class PlanService
 		sql.append(" select * from t_app_plan ").append("\n");
 		sql.append("  where 1 = 1 ").append("\n");
 		sql.append("    and supid = 'R0' ").append("\n");
-		sql.append("    and header = " + SQLParser.charValue(loginname));
+		// sql.append("    and creater = " + SQLParser.charValue(loginname));
 		sql.append("  order by createtime desc ").append("\n");
 
 		return sql.toString();
@@ -113,7 +114,7 @@ public class PlanService
 			DynamicObject aobj = new DynamicObject();
 			aobj.setAttr("planmodelid", planmodelid);
 			aobj.setAttr("supid", id);
-			createsubplan(aobj, swapFlow);
+			createchildplan(aobj, swapFlow);
 		}
 
 		return id;
@@ -171,8 +172,17 @@ public class PlanService
 
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
 		Date pdate = sf.parse(sf.format(cal.getTime()));
-		Timestamp planbegintime = new Timestamp(pdate.getTime() + (24*60*60*1000));
-		Timestamp planendtime = new Timestamp(planbegintime.getTime() + (24*60*60*1000));
+		
+		int seconds = 24*60*60*1000;
+		int begindays = 1;
+		
+		if (!"R0".equals(supid))
+		{
+			begindays = Types.parseInt(swapFlow.getFormatAttr("oorder"), 1);
+		}
+		
+		Timestamp planbegintime = new Timestamp(pdate.getTime() + (begindays * seconds));
+		Timestamp planendtime = new Timestamp(planbegintime.getTime() + (planmodel.getPeriodnum() * seconds));
 		
 		plan.setPlanbegintime(planbegintime);
 		plan.setPlanendtime(planendtime);
@@ -183,7 +193,7 @@ public class PlanService
 	}
 
 	@Transactional
-	public void createsubplan(DynamicObject obj, DynamicObject swapFlow) throws Exception
+	public void createchildplan(DynamicObject obj, DynamicObject swapFlow) throws Exception
 	{
 		String planmodelid = obj.getFormatAttr("planmodelid");
 		String supid = obj.getFormatAttr("supid");
@@ -198,8 +208,10 @@ public class PlanService
 			aobj.setAttr("planmodelid", planmodel.getId());
 			aobj.setAttr("title", planmodel.getCname());
 			aobj.setAttr("memo", "");
-
-			createplan(aobj, swapFlow);
+			
+			DynamicObject sswapFlow = (DynamicObject)swapFlow.clone();
+			sswapFlow.setAttr("oorder", (i+1));
+			createplan(aobj, sswapFlow);
 		}
 	}
 

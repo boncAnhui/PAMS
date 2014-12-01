@@ -53,7 +53,7 @@ function tbtreeAjax(url,id){
 				tdHtml+='<td>' + k.cells.planmodelid + '</td>';				
 				
 				tdHtml+='<td><a title="新建下级计划" href="javascript:void(0);" onclick="page_insert(\''+k.id+'\')" class="tbtree-add"></a></td>';	
-				tdHtml+='<td><a title="启动流程" href="javascript:void(0);" onclick="page_startflow(\''+k.id+'\',\''+k.cells.flowdefid+'\')" class="tbtree-add"></a></td>';								
+				tdHtml+='<td><a title="启动流程" href="javascript:void(0);" onclick="page_startflow(\''+k.id+'\',\''+k.cells.flowdefid+'\')" class="tbtree-play"></a></td>';								
 				tdHtml+='<td><input class="checkbox"></td></tr>';
 				
 				ohtml+=tdHtml;	
@@ -113,7 +113,7 @@ $.each(dataJSON.tbody,function(j,k)
 	tbHtml+='<td>' + k[c_planmodelid].name + '</td>';
 
 	tbHtml+='<td><a title="新建下级计划" href="javascript:void(0);" onclick="page_insert(\''+k[c_id].name+'\')" class="tbtree-add"></a></td>';	
-	tbHtml+='<td><a title="启动流程" href="javascript:void(0);" onclick="page_startflow(\''+k[c_id].name+'\',\''+k[c_flowdefid].name+'\')" class="tbtree-add"></a></td>';
+	tbHtml+='<td><a title="启动流程" href="javascript:void(0);" onclick="page_startflow(\''+k[c_id].name+'\',\''+k[c_flowdefid].name+'\')" class="tbtree-play"></a></td>';
 	tbHtml+='<td><input class="checkbox"></td>';
 	tbHtml+='</tr>';
 
